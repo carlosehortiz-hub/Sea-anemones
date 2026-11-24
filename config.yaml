@@ -1,0 +1,32 @@
+# Single configuration file. All paths are relative to the repository root.
+source:
+  doi: "10.1186/s41200-016-0016-7"
+  citation: >-
+    González-Muñoz R, Simões N, Guerra-Castro EJ, Hernández-Ortíz C, Carrasquel G,
+    Mendez E, Lira C, Rada M, Hernández I, Pauls SM, Croquer A, Cruz-Motta JJ (2016).
+    Sea anemones (Cnidaria: Actiniaria, Corallimorpharia, Ceriantharia, Zoanthidea)
+    from marine shallow-water environments in Venezuela: new records and an updated
+    inventory. Marine Biodiversity Records 9:18.
+  pdf: data/raw/gonzalez-munoz_2016_mbr_9_18.pdf
+  license: CC-BY-4.0
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  cache: data/cache
+  reports: reports
+  schema: schema/anemone_kg.yaml
+  mappings: mappings
+  shapes: shapes
+  queries: queries
+
+namespace:
+  base: "https://w3id.org/anemone-kg/"   # placeholder PID base; not yet registered
+  prefix: "ak"
+
+resolution:
+  user_agent: "anemone-kg/0.1 (research pipeline)"
+  request_timeout_s: 30
+  min_interval_s: 0.5          # politeness delay between live API calls
+  offline: false               # true -> cache only; a miss is reported, never guessed
