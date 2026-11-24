@@ -1,0 +1,72 @@
+locality_id,locality_name,verbatim_locality,locality_level,parent_locality_id,region,state_province,country_code,decimal_latitude,decimal_longitude,verbatim_coordinates,sampled_in_study,source_ref,source_page
+98f3170a-b0ee-5cbe-9cb8-8e9c7dc5e189,"Isla de Pájaros, Maracaibo","Isla de Pájaros, Maracaibo",area,,West Coast,,VE,,,,False,"Table 1, header, block A col 1",3
+eb3c064d-e91e-5468-bf80-6f6688fdaceb,Morrocoy National Park,Morrocoy National Park,area,,West Coast,,VE,,,,True,"Table 1, header, block A col 2",3
+0ade493f-b288-5759-9442-5f791856a57c,"Isla Goaigoaza, Puerto Cabello","Isla Goaigoaza, Puerto Cabello",area,,West Coast,,VE,,,,False,"Table 1, header, block A col 3",3
+4baa4865-950c-52db-a9ba-cd31239dac8e,San Esteban National Park,San Esteban National Park,area,,West Coast,,VE,,,,False,"Table 1, header, block A col 4",3
+3993131c-0b24-5636-a447-1f98ed4f1447,Chichiriviche de la Costa,Chichiriviche de la Costa,area,,Central Coast,,VE,,,,True,"Table 1, header, block A col 5",3
+ada135e2-2522-5aa7-a75e-4ca25d604f09,"Playa Azul, litoral Central","Playa Azul, litoral Central",area,,Central Coast,,VE,,,,False,"Table 1, header, block A col 6",3
+13a6259d-ca92-572f-b7db-52263719ae2d,Balneario Camuri Chico,Balneario Camuri Chico,area,,Central Coast,,VE,,,,False,"Table 1, header, block A col 7",3
+1f66dd06-885a-5e35-934b-d891dd620927,Los Totumos,Los Totumos,area,,Central Coast,,VE,,,,False,"Table 1, header, block A col 8",3
+f7d1868c-5e2d-5983-9c65-dcccc41f47a4,Mochima National Park,Mochima National Park,area,,East Coast,,VE,,,,True,"Table 1, header, block A col 9",3
+13505e5e-8bef-5167-a977-e75773fbed91,Araya,Araya,area,,East Coast,,VE,,,,False,"Table 1, header, block A col 10",3
+4de8029f-42e8-579c-adeb-3bb149a64ac5,"Playa San Luis, Cumaná","Playa San Luis, Cumaná",area,,East Coast,,VE,,,,False,"Table 1, header, block A col 11",3
+b71bacf5-752f-5222-9cc9-9501e319b55f,"La Chica, Golfo de Cariaco","La Chica, Golfo de Cariaco",area,,East Coast,,VE,,,,False,"Table 1, header, block A col 12",3
+37646bb0-6287-5ec9-ad3b-23bcbcb6e2a9,"Laguna de Chacopata, Península de Araya","Laguna de Chacopata, Península de Araya",area,,East Coast,,VE,,,,False,"Table 1, header, block B col 1",7
+37dd3d88-0e80-56a7-a3d0-6841fd191470,Isla Tortuga,Isla Tortuga,area,,East Coast,,VE,,,,False,"Table 1, header, block B col 2",7
+841ab824-6184-5bf7-a00c-fc137d35ce68,Laguna de Piedras (Isla de Margarita),Laguna de Piedras (Isla de Margarita),area,,East Coast,,VE,,,,False,"Table 1, header, block B col 3",7
+badd85d1-7ffb-5874-907c-477fb26dd46e,Laguna de la Restinga (Isla de Margarita),Laguna de la Restinga (Isla de Margarita),area,,East Coast,,VE,,,,True,"Table 1, header, block B col 4",7
+aa97bcee-9d38-5db2-8bff-bb2875982dd0,Isla de Cubagua,Isla de Cubagua,area,,East Coast,,VE,,,,True,"Table 1, header, block B col 5",7
+228595b3-ffa3-5557-85bb-0f20c8c97cdd,Isla de Coche,Isla de Coche,area,,East Coast,,VE,,,,False,"Table 1, header, block B col 6",7
+85279f75-f73c-5e09-ba8a-64a9f7061560,"Isla Testigo Grande, Los Testigos","Isla Testigo Grande, Los Testigos",area,,East Coast,,VE,,,,False,"Table 1, header, block B col 7",7
+0fc17c9d-eb19-5157-871f-bb97bbff2178,"Isla Iguana, Los Testigos","Isla Iguana, Los Testigos",area,,East Coast,,VE,,,,False,"Table 1, header, block B col 8",7
+f36464d1-2ebd-512d-86e9-58a6a4c00b46,Golfo de Paria,Golfo de Paria,area,,East Coast,,VE,,,,False,"Table 1, header, block B col 9",7
+03074134-a4f1-5c95-a78a-1664d6a7159a,Archipiélago Los Roques National Park,Archipiélago Los Roques National Park,area,,Oceanic Islands,,VE,,,,True,"Table 1, header, block B col 10",7
+037b6223-36db-5799-9838-cced8f8915e5,Archipiélago la Orchilla,Archipiélago la Orchilla,area,,Oceanic Islands,,VE,,,,False,"Table 1, header, block B col 11",7
+26ae0088-59a3-5088-9169-e74e7bdc389c,Isla La Blanquilla,Isla La Blanquilla,area,,Oceanic Islands,,VE,,,,False,"Table 1, header, block B col 12",7
+031d4f05-fb18-5ef6-8fe4-77cc17d0bb53,Isla Los Hermanos,Isla Los Hermanos,area,,Oceanic Islands,,VE,,,,False,"Table 1, header, block B col 13",7
+b53938b0-25f3-52c1-9660-c87ac02f71c1,Isla de Aves,Isla de Aves,area,,Oceanic Islands,,VE,,,,False,"Table 1, header, block B col 14",7
+1f529fa4-fb0c-5036-afef-75c04c1e2c9c,Cayo sombrero,Cayo sombrero,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,10.884031,-68.212128,"10° 53’ 2.51” N, 68° 12’ 43.66” W",,"Table 2, row 1",26
+d8f17f62-5f6c-50df-af12-11f099ad467f,Tumba 4,Tumba 4,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,10.837183,-68.237244,"10° 50’ 13.86” N, 68° 14’ 14.08” W",,"Table 2, row 5",26
+29b261ed-d42e-5cd9-8d97-cf978d629cbf,Muelle,Muelle,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,10.857508,-68.280033,"10° 51’ 27.03” N, 68° 16’ 48.12” W",,"Table 2, row 6",26
+fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,Boca Seca,Boca Seca,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,10.832981,-68.236278,"10° 49’ 58.73” N, 68° 14’ 10.60” W",,"Table 2, row 8",26
+89ffab08-4320-5603-9f80-ca5230ff2678,Las Luisas,Las Luisas,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,10.858428,-68.309783,"10° 51’ 30.34” N, 68° 18’ 35.22” W",,"Table 2, row 21",26
+120faba9-f773-5e37-a774-c8ce5c192cd4,Punta la Cruz,Punta la Cruz,site,f7d1868c-5e2d-5983-9c65-dcccc41f47a4,,Sucre,VE,10.395675,-64.367267,"10° 23’ 44.43” N, 64° 22’ 2.16” W",,"Table 2, row 25",26
+202d2040-18b0-56f8-b100-8056313c3993,Manglar,Manglar,site,f7d1868c-5e2d-5983-9c65-dcccc41f47a4,,Sucre,VE,10.371714,-64.336758,"10° 22’ 18.17” N, 64° 20’ 12.33” W",,"Table 2, row 38",26
+ba7586d0-a611-52ad-aec3-4b6b9c46f0e3,Las burbujas,Las burbujas,site,f7d1868c-5e2d-5983-9c65-dcccc41f47a4,,Sucre,VE,10.351675,-64.412739,"10° 21’ 6.03” N, 64° 24’ 45.86” W",,"Table 2, row 40",26
+dd7b8b3d-98ee-5476-807b-9357986b8bdd,Las Cabeceras,Las Cabeceras,site,aa97bcee-9d38-5db2-8bff-bb2875982dd0,,Nueva Esparta,VE,10.835667,-64.147706,"10° 50’ 8.40” N, 64° 8’ 51.74” W",,"Table 2, row 42",26
+35ced857-6672-53f7-b20c-aa7cd00eb639,Boca de Cote,Boca de Cote,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.772686,-66.702408,"11° 46’ 21.67” N, 66° 42’ 8.67” W",,"Table 2, row 55",27
+07d8f211-327f-5274-85aa-dc2ebac47e0e,Isla Larga,Isla Larga,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.927961,-66.750847,"11° 55’ 40.66” N, 66° 45’ 3.05” W",,"Table 2, row 58",27
+375f447d-7629-5866-9fda-4a067458fccd,Arena y Manglar,Arena y Manglar,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.886058,-66.847217,"11° 53’ 9.81” N, 66° 50’ 49.98” W",,"Table 2, row 59",27
+b3bee32d-108e-5714-b52c-6f2241713175,La Herradura,La Herradura,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.800269,-66.884892,"11° 48’ 0.97” N, 66° 53’ 5.61” W",,"Table 2, row 61",27
+02384a85-6b3b-5a7f-8658-8de5cda49f99,Dos Mosquises,Dos Mosquises,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.792422,-66.893803,"11° 47’ 32.72” N, 66° 53’ 37.69” W",,"Table 2, row 62",27
+c006db98-a188-52f6-a195-93991d2da269,Dos Mosquises,Dos Mosquises,site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,11.793492,-66.888175,"11° 47’ 36.57” N, 66° 53’ 17.43” W",,"Table 2, row 65",27
+d511a036-dd6e-5791-b6dd-0f00e4ecca94,La Brea,La Brea,site,aa97bcee-9d38-5db2-8bff-bb2875982dd0,,Nueva Esparta,VE,10.831381,-64.210156,"10° 49’ 52.97” N, 64° 12’ 36.56” W",,"Table 2, row 88",28
+3e40120f-446d-5d12-b39f-8c5d5f9d5222,Canal de Entrada,Canal de Entrada,site,badd85d1-7ffb-5874-907c-477fb26dd46e,,Nueva Esparta,VE,10.977897,-64.170511,"10° 58’ 40.43” N, 64° 10’ 13.84” W",,"Table 2, row 122",28
+002c97d0-913d-5442-83e9-45276209901d,"Laguna de Punta de Piedras, Isla Margarita","Laguna de Punta de Piedras, Isla Margarita",site,,,Nueva Esparta,VE,,,,,"Table 3, row 1",29
+a2d47646-bed5-5b3e-83bd-110a5900c068,Isla La Blanquilla,Isla La Blanquilla,site,26ae0088-59a3-5088-9169-e74e7bdc389c,,Dependencias Federales,VE,,,,,"Table 3, row 3",29
+4f6f253b-a304-50fb-a7b5-1b0ce1ff45aa,Isla de Aves,Isla de Aves,site,b53938b0-25f3-52c1-9660-c87ac02f71c1,,Dependencias Federales,VE,,,,,"Table 3, row 4",29
+63eb23f9-3171-564c-a86f-d1577ef454b1,"Cayo Pescadores, Morrocoy","Cayo Pescadores, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 7",29
+95cba7ee-05e4-55a6-95c5-6f8de92e8d37,"Playa Azul, Morrocoy","Playa Azul, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 9",29
+e304488d-4b49-5d1d-bd42-08c76ad44abd,Isla La Tortuga,Isla La Tortuga,site,37dd3d88-0e80-56a7-a3d0-6841fd191470,,Dependencias Federales,VE,,,,,"Table 3, row 10",29
+9741474e-15fc-51ca-8fad-87281186bee0,"Playa Azul, Litoral Central","Playa Azul, Litoral Central",site,ada135e2-2522-5aa7-a75e-4ca25d604f09,,Vargas,VE,,,,,"Table 3, row 11",29
+0ccda41b-23a1-59d3-b946-c2a011213ce0,"Playa Norte, Morrocoy","Playa Norte, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 13",29
+778391e6-5315-54be-bafb-c068c993ff33,"Cayo Sombrero, Morrocoy","Cayo Sombrero, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 14",29
+8e47676a-ccad-542a-bbc3-434ae29b4055,Balneario Camuri Chico,Balneario Camuri Chico,site,13a6259d-ca92-572f-b7db-52263719ae2d,,Vargas,VE,,,,,"Table 3, row 15",29
+00aa3167-84b2-59eb-9a62-1e1f9f2a6f35,"Golfo de Paria, Caño Guariquén","Golfo de Paria, Caño Guariquén",site,f36464d1-2ebd-512d-86e9-58a6a4c00b46,,Sucre,VE,,,,,"Table 3, row 16",29
+4ea6529c-e2c0-5880-afb2-1593d378130a,"Archipiélago Los Testigos, Isla La Iguana","Archipiélago Los Testigos, Isla La Iguana",site,0fc17c9d-eb19-5157-871f-bb97bbff2178,,Dependencias Federales,VE,,,,,"Table 3, row 22",29
+150a19a7-6931-5948-b81d-9ad5327c27af,Los Totumos,Los Totumos,site,1f66dd06-885a-5e35-934b-d891dd620927,,Miranda,VE,,,,,"Table 3, row 23",29
+f89327c1-ec0e-50f9-ab80-876b3a346f6b,"Playa San Luis, Cumaná","Playa San Luis, Cumaná",site,4de8029f-42e8-579c-adeb-3bb149a64ac5,,Sucre,VE,,,,,"Table 3, row 25",29
+0701fdab-1972-5eff-ae77-777c3b74b5b9,"Playa Azul, Municipio Vargas, Litoral Central","Playa Azul, Municipio Vargas, Litoral Central",site,ada135e2-2522-5aa7-a75e-4ca25d604f09,,Vargas,VE,,,,,"Table 3, row 26",29
+486532ad-8c74-5be2-bb20-75b9e86efab9,"Caño de Manglar, Morrocoy","Caño de Manglar, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 27",29
+e2ba0674-50b5-59e8-9d0f-8581271a1cf2,Isla de Pájaros,Isla de Pájaros,site,98f3170a-b0ee-5cbe-9cb8-8e9c7dc5e189,,Zulia,VE,,,,,"Table 3, row 30",30
+20f66c72-15c4-5c2b-a6c9-9eef034661cf,"Boca Seca, Morrocoy","Boca Seca, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 32",30
+cf41cf7d-0ee3-5664-8178-cfdfe745727f,"Cayo Boca Seca, Morrocoy","Cayo Boca Seca, Morrocoy",site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 33",30
+a6f0f134-2a4f-58ab-9f9f-f2ae4f41900d,Golfo de Cariaco,Golfo de Cariaco,site,,,Sucre,VE,,,,,"Table 3, row 41",30
+43361228-41d3-5f04-94d1-27f6fad0ca87,Laguna de Chacopata,Laguna de Chacopata,site,37646bb0-6287-5ec9-ad3b-23bcbcb6e2a9,,Sucre,VE,,,,,"Table 3, row 57",30
+6dbd2cf4-4656-55fb-ac57-7fa97733dcae,"Ensenada Penetepe, Golfo de Cariaco","Ensenada Penetepe, Golfo de Cariaco",site,,,,VE,,,,,"Table 3, row 59",30
+83d203d4-4e1f-5399-8906-517772237068,"Gran Roque, Los Roques","Gran Roque, Los Roques",site,03074134-a4f1-5c95-a78a-1664d6a7159a,,Dependencias Federales,VE,,,,,"Table 3, row 61",31
+1d876d77-0ca2-56ae-975d-2bc06aa784b0,Parque Nacional Morrocoy,Parque Nacional Morrocoy,site,eb3c064d-e91e-5468-bf80-6f6688fdaceb,,Falcón,VE,,,,,"Table 3, row 62",31
+e8b3e3c7-b84e-51b9-ba35-84798ef21f54,Isla Cubagua,Isla Cubagua,site,aa97bcee-9d38-5db2-8bff-bb2875982dd0,,Nueva Esparta,VE,,,,,"Table 3, row 63",31
+356adf40-948a-5a2b-8986-a77c67e772f9,"Isla La Blanquilla, Caronton","Isla La Blanquilla, Caronton",site,26ae0088-59a3-5088-9169-e74e7bdc389c,,Dependencias Federales,VE,,,,,"Table 3, row 65",31
+2652e9a6-344f-54fb-8a3c-2b349ab63453,"Laguna de La Restinga, Isla Margarita","Laguna de La Restinga, Isla Margarita",site,badd85d1-7ffb-5874-907c-477fb26dd46e,,Nueva Esparta,VE,,,,,"Table 3, row 66",31
+bf813c8c-f682-5ff4-80db-864edfccacb6,"Bajo Manzanillo, Isla Margarita","Bajo Manzanillo, Isla Margarita",site,,,Nueva Esparta,VE,,,,,"Table 3, row 74",31

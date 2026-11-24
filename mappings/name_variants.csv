@@ -1,0 +1,5 @@
+verbatim_name,canonical_name,rule_id,evidence,status,reviewed
+Phymantus crucifer,Phymanthus crucifer,R_TYPO,"Table 2 row 25; edit distance 1; 12 other Table 2 rows, Table 1 row 18 and the species account spell Phymanthus",accepted,author 2026-11-24
+Anemonia sargassansis,Anemonia sargassensis,R_TYPO,Table 2; edit distance 1; Table 1 row 4 and the species account spell sargassensis,accepted,author 2026-11-24
+Bunodeopsis antillensis,Bunodeopsis antilliensis,R_TYPO,Table 2; edit distance 1; Table 1 row 26 and the species account spell antilliensis,accepted,author 2026-11-24
+Callactis tricolor,Calliactis tricolor,R_TYPO,Table 2; edit distance 1; Table 1 row 28 and the species account spell Calliactis,accepted,author 2026-11-24

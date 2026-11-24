@@ -1,0 +1,34 @@
+source_table,verbatim_key,table1_locality_col_id,rule,status,note
+table2,Morrocoy,T1A02,park_name,accepted,Table 2 'National Park' column -> Table 1 column
+table2,Mochima,T1A09,park_name,accepted,
+table2,Los Roques,T1B10,park_name,accepted,
+table2,La Restinga,T1B04,park_name,accepted,
+table2,Isla Cubagua,T1B05,park_name,accepted,
+table3,"Archipiélago Los Testigos, Isla La Iguana",T1B08,names_area,accepted,same island and archipelago named
+table3,"Gran Roque, Los Roques",T1B10,names_area,accepted,Gran Roque is named as part of Los Roques
+table3,Isla La Blanquilla,T1B12,exact,accepted,
+table3,"Isla La Blanquilla, Caronton",T1B12,names_area,accepted,
+table3,Isla La Tortuga,T1B02,article_variant,accepted,'Isla La Tortuga' vs 'Isla Tortuga'
+table3,Isla de Aves,T1B14,exact,accepted,
+table3,"Boca Seca, Morrocoy",T1A02,names_area,accepted,
+table3,"Cayo Boca Seca, Morrocoy",T1A02,names_area,accepted,
+table3,"Cayo Pescadores, Morrocoy",T1A02,names_area,accepted,
+table3,"Cayo Sombrero, Morrocoy",T1A02,names_area,accepted,
+table3,"Caño de Manglar, Morrocoy",T1A02,names_area,accepted,
+table3,Parque Nacional Morrocoy,T1A02,names_area,accepted,
+table3,"Playa Azul, Morrocoy",T1A02,names_area,accepted,Not the Playa Azul of Litoral Central (state Falcón vs Vargas)
+table3,"Playa Norte, Morrocoy",T1A02,names_area,accepted,
+table3,Los Totumos,T1A08,exact,accepted,
+table3,Isla Cubagua,T1B05,article_variant,accepted,'Isla Cubagua' vs 'Isla de Cubagua'
+table3,"Laguna de La Restinga, Isla Margarita",T1B04,names_area,accepted,
+table3,"Golfo de Paria, Caño Guariquén",T1B09,names_area,accepted,
+table3,Laguna de Chacopata,T1B01,names_area,accepted,
+table3,"Playa San Luis, Cumaná",T1A11,exact,accepted,
+table3,Balneario Camuri Chico,T1A07,exact,accepted,
+table3,"Playa Azul, Litoral Central",T1A06,names_area,accepted,
+table3,"Playa Azul, Municipio Vargas, Litoral Central",T1A06,names_area,accepted,
+table3,Isla de Pájaros,T1A01,names_area,accepted,
+table3,"Laguna de Punta de Piedras, Isla Margarita",T1B03,geographic_knowledge,rejected,Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper | Reviewed by author 2026-11-24: keep unlinked
+table3,Golfo de Cariaco,T1A12,geographic_knowledge,rejected,Table 1 column is 'La Chica' within the gulf; the gulf is broader | Reviewed by author 2026-11-24: keep unlinked
+table3,"Ensenada Penetepe, Golfo de Cariaco",T1A12,geographic_knowledge,rejected,Same question as above | Reviewed by author 2026-11-24: keep unlinked
+table3,"Bajo Manzanillo, Isla Margarita",,no_match,accepted,No Table 1 column for this site

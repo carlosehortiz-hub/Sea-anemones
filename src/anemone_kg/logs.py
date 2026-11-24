@@ -13,10 +13,16 @@ def setup_logging(level: str = "INFO") -> None:
     logging.getLogger("pdfminer").setLevel(logging.ERROR)
 
 
-def log_counts(logger: logging.Logger, stage: str, n_in: int, n_out: int, note: str = "") -> None:
-    """Log in/out counts; a drop is logged as WARNING so it cannot pass silently."""
-    dropped = n_in - n_out
-    msg = f"[{stage}] in={n_in} out={n_out} dropped={dropped}"
+def log_counts(
+    logger: logging.Logger, stage: str, n_in: int, n_out: int, note: str = "", merged: int = 0
+) -> None:
+    """Log in/out counts; an unexplained drop is logged as WARNING so it cannot pass silently.
+
+    ``merged`` counts inputs intentionally folded into another output row; they
+    are reported separately and do not count as dropped.
+    """
+    dropped = n_in - n_out - merged
+    msg = f"[{stage}] in={n_in} out={n_out} merged={merged} dropped={dropped}"
     if note:
         msg += f" ({note})"
     (logger.warning if dropped > 0 else logger.info)(msg)
