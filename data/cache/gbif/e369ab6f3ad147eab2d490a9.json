@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Telmatactis vernonia",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Andvakiidae",
+  "familyKey": 4339241,
+  "genus": "Telmatactis",
+  "genusKey": 2255786,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Telmatactis vernonia (Duchassaing & Michelotti, 1864)",
+  "species": "Telmatactis vernonia",
+  "speciesKey": 4283411,
+  "status": "ACCEPTED",
+  "usageKey": 4283411
+ },
+ "retrieved_at": "2026-11-24T12:46:38+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Telmatactis+vernonia&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

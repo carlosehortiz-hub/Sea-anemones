@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Zoanthus solanderi",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Zoanthidae",
+  "familyKey": 3351,
+  "genus": "Zoanthus",
+  "genusKey": 2257951,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Zoanthus solanderi Le Sueur, 1818",
+  "species": "Zoanthus solanderi",
+  "speciesKey": 2257959,
+  "status": "ACCEPTED",
+  "usageKey": 2257959
+ },
+ "retrieved_at": "2026-11-24T12:47:19+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Zoanthus+solanderi&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

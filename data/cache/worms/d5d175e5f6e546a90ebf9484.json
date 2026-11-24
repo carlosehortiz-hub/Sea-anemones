@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 888639,
+   "authority": "(Duchassaing de Fombressin & Michelotti, 1860)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Laviactis lucida (Duchassaing de Fombressin & Michelotti, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=888639 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Aiptasiidae",
+   "genus": "Laviactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:888639",
+   "match_type": "exact",
+   "modified": "2016-10-31T17:15:54.293Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741459,
+   "parentNameUsageID": 888638,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Laviactis lucida",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=888639",
+   "valid_AphiaID": 888639,
+   "valid_authority": "(Duchassaing de Fombressin & Michelotti, 1860)",
+   "valid_name": "Laviactis lucida"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:18+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Laviactis lucida?like=false&marine_only=false"
+}

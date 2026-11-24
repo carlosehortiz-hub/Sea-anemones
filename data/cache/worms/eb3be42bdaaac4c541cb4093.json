@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283712,
+   "authority": "(Le Sueur, 1817)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Phymanthus crucifer (Le Sueur, 1817). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283712 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Phymanthidae",
+   "genus": "Phymanthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283712",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741654,
+   "parentNameUsageID": 100772,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Phymanthus crucifer",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283712",
+   "valid_AphiaID": 283712,
+   "valid_authority": "(Le Sueur, 1817)",
+   "valid_name": "Phymanthus crucifer"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:05+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Phymanthus crucifer?like=false&marine_only=false"
+}

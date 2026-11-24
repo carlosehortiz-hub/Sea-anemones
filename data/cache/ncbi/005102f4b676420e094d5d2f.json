@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1078902": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2012/03/29 00:00",
+    "rank": "genus",
+    "scientificname": "Phymactis",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1078902,
+    "uid": "1078902"
+   },
+   "uids": [
+    "1078902"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:59+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1078902&retmode=json"
+}

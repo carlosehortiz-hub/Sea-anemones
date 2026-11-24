@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Homostichanthus duerdeni",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 91,
+  "family": "Homostichanthidae",
+  "familyKey": 4283389,
+  "genus": "Homostichanthus",
+  "genusKey": 2257109,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "FUZZY",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Homostichanthus duerdeni Carlgren, 1900",
+  "species": "Homostichanthus duerdeni",
+  "speciesKey": 2257002,
+  "status": "ACCEPTED",
+  "usageKey": 2257002
+ },
+ "retrieved_at": "2026-11-24T12:47:49+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Homostichantus+duerdenii&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

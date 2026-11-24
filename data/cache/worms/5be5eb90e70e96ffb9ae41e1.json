@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 291135,
+   "authority": "(Ellis, 1768)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Stichodactyla helianthus (Ellis, 1768). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=291135 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Stichodactylidae",
+   "genus": "Stichodactyla",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:291135",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 854712,
+   "parentNameUsageID": 267869,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Stichodactyla helianthus",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=291135",
+   "valid_AphiaID": 291135,
+   "valid_authority": "(Ellis, 1768)",
+   "valid_name": "Stichodactyla helianthus"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:07+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Stichodactyla helianthus?like=false&marine_only=false"
+}

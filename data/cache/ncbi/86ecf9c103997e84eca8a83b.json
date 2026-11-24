@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "656065": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/05/05 00:00",
+    "rank": "species",
+    "scientificname": "Calliactis tricolor",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 656065,
+    "uid": "656065"
+   },
+   "uids": [
+    "656065"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:32+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=656065&retmode=json"
+}

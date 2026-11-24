@@ -16,6 +16,8 @@ prefixes:
   dwc: http://rs.tdwg.org/dwc/terms/
   dcterms: http://purl.org/dc/terms/
   ak: https://w3id.org/anemone-kg/
+  sssom: https://w3id.org/sssom/
+  semapv: https://w3id.org/semapv/vocab/
 default_prefix: ak
 default_range: string
 imports:
@@ -60,6 +62,33 @@ enums:
       table3_current: {}
       table3_previous: {}
       species_account: {}
+
+  MappingStatusEnum:
+    description: Outcome of an identifier or vocabulary lookup. Only 'accepted' is asserted.
+    permissible_values:
+      accepted: {description: "exact unique match, or a candidate accepted by a curator"}
+      candidate: {description: "fuzzy match awaiting curation; never used as an identifier"}
+      ambiguous: {description: "more than one record survives the filters"}
+      unresolved: {description: "no match, or the curator rejected the candidate"}
+      negated: {description: "habitat phrase preceded by a negation in the text"}
+  MatchTypeEnum:
+    permissible_values:
+      exact_accepted: {description: "exact name; the record is the accepted name"}
+      exact_synonym: {description: "exact name; the service points to another accepted name"}
+      exact_other: {description: "exact name; other status without an accepted pointer"}
+      via_accepted_name: {description: "NCBI matched on the WoRMS accepted name, not the paper's"}
+      fuzzy: {}
+      none: {}
+  ServiceEnum:
+    permissible_values:
+      worms: {meaning: "https://www.marinespecies.org"}
+      gbif: {meaning: "https://www.gbif.org"}
+      ncbi: {meaning: "https://www.ncbi.nlm.nih.gov/taxonomy"}
+  HabitatKindEnum:
+    permissible_values:
+      habitat: {}
+      zone: {}
+      substrate: {}
 
 # --------------------------------------------------------------------- slots
 slots:
@@ -184,8 +213,49 @@ slots:
     required: true
 
   # Habitat
-  habitat_statement_id: {identifier: true}
   habitat_text: {slot_uri: dwc:habitat, required: true}
+
+  # TaxonMapping (SSSOM-aligned)
+  mapping_id: {identifier: true}
+  subject_id: {slot_uri: sssom:subject_id, range: Taxon, required: true}
+  subject_label: {slot_uri: sssom:subject_label, required: true}
+  predicate_id: {slot_uri: sssom:predicate_id, pattern: "^skos:(exact|close)Match$"}
+  object_id: {slot_uri: sssom:object_id, pattern: "^(worms|gbif|NCBITaxon):\\d+$"}
+  object_label: {slot_uri: sssom:object_label}
+  object_source: {slot_uri: sssom:object_source, range: ServiceEnum, required: true}
+  match_type: {range: MatchTypeEnum, required: true}
+  status: {range: MappingStatusEnum, required: true}
+  confidence: {slot_uri: sssom:confidence, range: decimal, minimum_value: 0, maximum_value: 1}
+  mapping_justification:
+    slot_uri: sssom:mapping_justification
+    required: true
+    pattern: "^semapv:(LexicalMatching|ManualMappingCuration)$"
+  mapping_tool: {slot_uri: sssom:mapping_tool, required: true, description: The request URL.}
+  mapping_date: {slot_uri: sssom:mapping_date, description: Retrieval time of the cached response.}
+  cache_key: {description: "File under data/cache/ holding the raw response."}
+  query_name: {required: true}
+  comment: {slot_uri: sssom:comment}
+
+  # WormsRecord
+  aphia_id: {identifier: true, range: integer}
+  taxonomic_status: {slot_uri: dwc:taxonomicStatus, required: true}
+  unaccept_reason: {}
+  valid_aphia_id: {range: integer}
+  valid_name: {slot_uri: dwc:acceptedNameUsage}
+  worms_rank: {required: true}
+  lsid: {pattern: "^urn:lsid:marinespecies.org:taxname:\\d+$", required: true}
+  url: {required: true}
+
+  # HabitatAnnotation
+  annotation_id: {identifier: true}
+  habitat_statement_id: {identifier: true}
+  matched_text: {required: true}
+  char_start: {range: integer, required: true, minimum_value: 0}
+  char_end: {range: integer, required: true, minimum_value: 1}
+  phrase_pattern: {required: true}
+  envo_label: {required: true}
+  envo_id: {pattern: "^ENVO:\\d{8}$"}
+  habitat_kind: {range: HabitatKindEnum, required: true}
 
 # ------------------------------------------------------------------- classes
 classes:
@@ -314,4 +384,28 @@ classes:
     description: The Habitat paragraph of a species account. Habitat is per species here.
     slots: [habitat_statement_id, taxon_id, habitat_text, source_ref, source_page]
     slot_usage:
+      taxon_id: {identifier: false, required: true, range: Taxon}
+
+  TaxonMapping:
+    description: >-
+      One lookup of a paper name in one service (SSSOM-aligned). Every taxon has
+      one row per service, resolved or not, so gaps are explicit.
+    class_uri: sssom:Mapping
+    slots: [mapping_id, subject_id, subject_label, predicate_id, object_id, object_label,
+            object_source, match_type, status, confidence, mapping_justification,
+            mapping_tool, mapping_date, cache_key, query_name, comment]
+
+  WormsRecord:
+    description: A WoRMS name record (matched name, or the accepted name it points to).
+    slots: [aphia_id, scientific_name, scientific_name_authorship, taxonomic_status,
+            unaccept_reason, valid_aphia_id, valid_name, worms_rank, order, family, lsid,
+            url, mapping_date, cache_key]
+
+  HabitatAnnotation:
+    description: A phrase in a habitat statement linked to an ENVO class.
+    slots: [annotation_id, habitat_statement_id, taxon_id, matched_text, char_start,
+            char_end, phrase_pattern, envo_label, envo_id, habitat_kind, status,
+            mapping_justification, mapping_tool, mapping_date, cache_key, comment]
+    slot_usage:
+      habitat_statement_id: {identifier: false, required: true, range: HabitatStatement}
       taxon_id: {identifier: false, required: true, range: Taxon}

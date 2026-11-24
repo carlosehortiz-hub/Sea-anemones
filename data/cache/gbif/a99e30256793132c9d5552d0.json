@@ -1,0 +1,29 @@
+{
+ "body": {
+  "acceptedUsageKey": 2257975,
+  "canonicalName": "Isaurus duchassaingi",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Zoanthidae",
+  "familyKey": 3351,
+  "genus": "Isaurus",
+  "genusKey": 2257974,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Isaurus duchassaingi Andres, 1884",
+  "species": "Isaurus tuberculatus",
+  "speciesKey": 2257975,
+  "status": "SYNONYM",
+  "usageKey": 2257976
+ },
+ "retrieved_at": "2026-11-24T12:47:08+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Isaurus+duchassaingi&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

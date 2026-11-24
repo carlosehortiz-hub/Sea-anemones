@@ -1,0 +1,92 @@
+{
+ "body": {
+  "facet_counts": {
+   "facet_fields": {
+    "isDefiningOntology": [
+     "true",
+     "1"
+    ],
+    "isObsolete": [
+     "false",
+     "1"
+    ],
+    "ontologyId": [
+     "gaz",
+     "12",
+     "ror",
+     "2",
+     "slso",
+     "1",
+     "gscmixs",
+     "1",
+     "ecocore",
+     "1",
+     "eupath",
+     "1",
+     "gold",
+     "1",
+     "rbo",
+     "1",
+     "mesh",
+     "1",
+     "snomed",
+     "1",
+     "genepio",
+     "1",
+     "valuesets",
+     "1",
+     "peco",
+     "1",
+     "envo",
+     "1",
+     "mondo",
+     "1",
+     "ecto",
+     "1",
+     "agro",
+     "1",
+     "xlmod",
+     "1",
+     "foodon",
+     "1",
+     "micro",
+     "1",
+     "dpo",
+     "1",
+     "enm",
+     "1"
+    ],
+    "ontologyIri": [
+     "http://purl.obolibrary.org/obo/envo.owl",
+     "1"
+    ],
+    "ontologyPreferredPrefix": [
+     "ENVO",
+     "1"
+    ],
+    "type": [
+     "class",
+     "1"
+    ]
+   }
+  },
+  "response": {
+   "docs": [
+    {
+     "iri": "http://purl.obolibrary.org/obo/ENVO_01000017",
+     "label": "sand",
+     "obo_id": "ENVO:01000017"
+    }
+   ],
+   "numFound": 1,
+   "start": 0
+  },
+  "responseHeader": {
+   "QTime": 0,
+   "status": 0
+  }
+ },
+ "retrieved_at": "2026-11-24T12:48:01+00:00",
+ "status_code": 200,
+ "url": "https://www.ebi.ac.uk/ols4/api/search?exact=true&fieldList=iri%2Clabel%2Cobo_id&ontology=envo&q=sand&queryFields=label&rows=5"
+}

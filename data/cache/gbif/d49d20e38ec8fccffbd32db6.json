@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Palythoa variabilis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Sphenopidae",
+  "familyKey": 3365,
+  "genus": "Palythoa",
+  "genusKey": 2257986,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Palythoa variabilis (Duerden, 1898)",
+  "species": "Palythoa variabilis",
+  "speciesKey": 5184389,
+  "status": "ACCEPTED",
+  "usageKey": 5184389
+ },
+ "retrieved_at": "2026-11-24T12:47:05+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Palythoa+variabilis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

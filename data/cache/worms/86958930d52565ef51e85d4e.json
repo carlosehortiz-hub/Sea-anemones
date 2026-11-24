@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283505,
+   "authority": "Duerden, 1897",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Bunodeopsis antilliensis Duerden, 1897. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283505 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Boloceroididae",
+   "genus": "Bunodeopsis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283505",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 283505,
+   "parentNameUsageID": 100726,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Bunodeopsis antilliensis",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283505",
+   "valid_AphiaID": 283505,
+   "valid_authority": "Duerden, 1897",
+   "valid_name": "Bunodeopsis antilliensis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:26+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Bunodeopsis antilliensis?like=false&marine_only=false"
+}

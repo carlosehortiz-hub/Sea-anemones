@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 410958,
+   "authority": "Pax, 1910",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Bunodosoma kuekenthali Pax, 1910. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=410958 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Bunodosoma",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:410958",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 410958,
+   "parentNameUsageID": 100700,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Bunodosoma kuekenthali",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=410958",
+   "valid_AphiaID": 410958,
+   "valid_authority": "Pax, 1910",
+   "valid_name": "Bunodosoma kuekenthali"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:51+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Bunodosoma kuekenthali?like=false&marine_only=false"
+}

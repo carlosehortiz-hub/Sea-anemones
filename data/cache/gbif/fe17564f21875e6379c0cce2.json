@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Discosoma carlgreni",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Discosomidae",
+  "familyKey": 4283414,
+  "genus": "Discosoma",
+  "genusKey": 2256203,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Corallimorpharia",
+  "orderKey": 1242,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Discosoma carlgreni (Watzl, 1922)",
+  "species": "Discosoma carlgreni",
+  "speciesKey": 5184844,
+  "status": "ACCEPTED",
+  "usageKey": 5184844
+ },
+ "retrieved_at": "2026-11-24T12:46:53+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Discosoma+carlgreni&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

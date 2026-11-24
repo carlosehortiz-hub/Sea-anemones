@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1240238": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "tube anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/05/13 00:00",
+    "rank": "species",
+    "scientificname": "Isarachnanthus nocturnus",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1240238,
+    "uid": "1240238"
+   },
+   "uids": [
+    "1240238"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:41+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1240238&retmode=json"
+}

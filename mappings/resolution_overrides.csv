@@ -1,0 +1,9 @@
+subject_label,service,object_id,decision,predicate_id,evidence,reviewed
+Homostichantus duerdenii,worms,worms:418868,accept,skos:exactMatch,"Orthographic variant (WoRMS phonetic match) of Homostichanthus duerdeni Carlgren, 1900, listed in Table 1 row 17. Name on an old MOHBR label (Table 3 row 26); that specimen is now identified as Actinoporus elegans - the mapping is about the name, not the specimen.",author 2026-11-24
+Homostichantus duerdenii,gbif,gbif:2257002,accept,skos:exactMatch,"Same orthographic variant as the WoRMS row (GBIF fuzzy match to Homostichanthus duerdeni Carlgren, 1900).",author 2026-11-24
+Palythoa caribbeorum,worms,worms:288456,accept,skos:exactMatch,"Orthographic variant: Table 3 row 59 gives 'Palythoa caribbeorum' as previous and 'Palythoa caribaeorum' as current identification of the same specimen.",author 2026-11-24
+Palythoa caribbeorum,gbif,gbif:5711857,reject,,"GBIF fuzzy match is Palythoa caribbea, a different species.",author 2026-11-24
+Ceriantheopsis americanus,worms,worms:158282,accept,skos:exactMatch,"Mandatory gender agreement (ICZN Art. 34.2): Ceriantheopsis is feminine, so americanus -> americana; same name.",author 2026-11-24
+Ceriantheopsis americanus,gbif,gbif:2258556,accept,skos:exactMatch,"Same gender-agreement correction as the WoRMS row.",author 2026-11-24
+Bunodosoma cavernata,gbif,gbif:6472214,accept,skos:exactMatch,"Gender agreement cavernata -> cavernatum; Table 3 row 66 gives cavernata as previous and cavernatum as current identification; WoRMS holds cavernata as unaccepted pointing to cavernatum.",author 2026-11-24
+Ceriantheomorphe brasiliensis,worms,worms:1665452,accept,skos:exactMatch,"WoRMS homonyms 1665452 (Mello-Leitão, 1919; accepted) and 289584 (Carlgren, 1931; junior homonym). The paper prints no authority, so the usage cannot be identified, but both records point to 1665452 as accepted name.",author 2026-11-24

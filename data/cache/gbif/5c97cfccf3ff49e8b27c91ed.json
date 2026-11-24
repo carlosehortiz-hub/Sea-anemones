@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Palythoa grandis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Sphenopidae",
+  "familyKey": 3365,
+  "genus": "Palythoa",
+  "genusKey": 2257986,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Palythoa grandis (Verrill, 1900)",
+  "species": "Palythoa grandis",
+  "speciesKey": 5711858,
+  "status": "ACCEPTED",
+  "usageKey": 5711858
+ },
+ "retrieved_at": "2026-11-24T12:47:02+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Palythoa+grandis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

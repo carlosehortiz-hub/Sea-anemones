@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 267740,
+   "authority": "Milne Edwards, 1857",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Phymactis Milne Edwards, 1857. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=267740 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Phymactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:267740",
+   "match_type": "exact",
+   "modified": "2015-10-06T13:36:17.557Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100653,
+   "phylum": "Cnidaria",
+   "rank": "Genus",
+   "scientificname": "Phymactis",
+   "status": "accepted",
+   "taxonRankID": 180,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=267740",
+   "valid_AphiaID": 267740,
+   "valid_authority": "Milne Edwards, 1857",
+   "valid_name": "Phymactis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:57+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Phymactis?like=false&marine_only=false"
+}

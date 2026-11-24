@@ -1,3 +1,3 @@
 """Pipeline stages. Importing this package registers every stage with the CLI, in order."""
 
-from anemone_kg.stages import canonicalize, extract  # noqa: F401
+from anemone_kg.stages import canonicalize, extract, resolve  # noqa: F401

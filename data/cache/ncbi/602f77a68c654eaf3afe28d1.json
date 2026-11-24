@@ -1,0 +1,32 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "0",
+   "errorlist": {
+    "fieldsnotfound": [],
+    "phrasesnotfound": [
+     "Lebrunia danae[Scientific Name]"
+    ]
+   },
+   "idlist": [],
+   "querytranslation": "(Lebrunia danae[Scientific Name])",
+   "retmax": "0",
+   "retstart": "0",
+   "translationset": [],
+   "warninglist": {
+    "outputmessages": [
+     "No items found."
+    ],
+    "phrasesignored": [],
+    "quotedphrasesnotfound": []
+   }
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:45+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmode=json&term=Lebrunia+danae%5BScientific+Name%5D"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283408,
+   "authority": "Corrêa in Belém, 1987",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Bunodosoma caissarum Corrêa in Belém, 1987. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283408 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Bunodosoma",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283408",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 283408,
+   "parentNameUsageID": 100700,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Bunodosoma caissarum",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283408",
+   "valid_AphiaID": 283408,
+   "valid_authority": "Corrêa in Belém, 1987",
+   "valid_name": "Bunodosoma caissarum"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:41+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Bunodosoma caissarum?like=false&marine_only=false"
+}

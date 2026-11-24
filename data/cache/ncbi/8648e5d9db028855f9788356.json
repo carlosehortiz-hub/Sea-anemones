@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "3034631": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2023/03/27 00:00",
+    "rank": "species",
+    "scientificname": "Actinostella flosculifera",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 3034631,
+    "uid": "3034631"
+   },
+   "uids": [
+    "3034631"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:29+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=3034631&retmode=json"
+}

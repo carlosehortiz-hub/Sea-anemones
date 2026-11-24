@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "86597": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "mat anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/02/14 00:00",
+    "rank": "species",
+    "scientificname": "Palythoa variabilis",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 86597,
+    "uid": "86597"
+   },
+   "uids": [
+    "86597"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:06+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=86597&retmode=json"
+}

@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1720311": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/05/13 00:00",
+    "rank": "species",
+    "scientificname": "Laviactis lucida",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1720311,
+    "uid": "1720311"
+   },
+   "uids": [
+    "1720311"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:20+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1720311&retmode=json"
+}

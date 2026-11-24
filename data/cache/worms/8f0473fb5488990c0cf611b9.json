@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 590578,
+   "authority": "Verrill, 1900",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Zoanthus proteus Verrill, 1900. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=590578 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Zoanthidae",
+   "genus": "Zoanthus",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:590578",
+   "match_type": "exact",
+   "modified": "2011-12-12T13:40:41.437Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 590578,
+   "parentNameUsageID": 206284,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Zoanthus proteus",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=590578",
+   "valid_AphiaID": 288843,
+   "valid_authority": "(Ellis, 1768)",
+   "valid_name": "Zoanthus sociatus"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:10+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Zoanthus proteus?like=false&marine_only=false"
+}
