@@ -89,12 +89,18 @@ def summary_markdown(t: dict[str, pd.DataFrame], ledger: Ledger, inp: Inputs) ->
     out += [f"| `{r}` | {n} | {RULES[r]} |" for r, n in sorted(ledger.counts.items())]
     out += ["", "## Individual changes and gaps", "", "| rule | source | detail |", "|---|---|---|"]
     out += [f"| `{e['rule_id']}` | {e['source_ref']} | {e['detail']} |" for e in ledger.events]
-    review = inp.crosswalk[inp.crosswalk.status == "needs_review"]
-    out += ["", "## Awaiting review (not applied)", ""]
-    out += [
-        f"- crosswalk: `{r.verbatim_key}` -> `{r.table1_locality_col_id}`? {r.note}"
-        for r in review.itertuples()
-    ] or ["- none"]
+    cw = inp.crosswalk
+    out += ["", "## Crosswalk rows not applied", ""]
+    for status, label in (
+        ("needs_review", "awaiting review"),
+        ("rejected", "reviewed, kept unlinked"),
+    ):
+        out += [
+            f"- {label}: `{r.verbatim_key}` -> `{r.table1_locality_col_id}`? {r.note}"
+            for r in cw[cw.status == status].itertuples()
+        ]
+    if not len(cw[cw.status != "accepted"]):
+        out.append("- none")
     taxa = t["taxon"]
     out += ["", "## Taxa by role", ""]
     for role in ("table1", "table2", "table3_current", "table3_previous", "species_account"):

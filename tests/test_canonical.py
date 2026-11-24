@@ -189,9 +189,13 @@ def test_reidentifications_keep_both_names(built):
     assert rows.loc[True, "verbatim_name"] == "Exaiptasia pallida"
 
 
-def test_needs_review_crosswalk_rows_are_not_applied(built):
+def test_only_accepted_crosswalk_rows_are_applied(cfg, built):
+    """Rows the author kept unlinked (status 'rejected') must not create a parent link."""
+    cw = pd.read_csv(cfg.path("mappings") / "locality_crosswalk.csv")
+    assert set(cw.status) <= {"accepted", "rejected", "needs_review"}
     loc = built[0]["locality"].set_index("locality_name")
-    assert pd.isna(loc.loc["Golfo de Cariaco", "parent_locality_id"])
+    for key in cw.loc[cw.status != "accepted", "verbatim_key"]:
+        assert pd.isna(loc.loc[key, "parent_locality_id"]), key
 
 
 def test_table2_event_dates_follow_methods(built):

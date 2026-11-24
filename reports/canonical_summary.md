@@ -78,11 +78,11 @@
 | `R_CROSSWALK` | Table 3, row 59 | no accepted area for 'Ensenada Penetepe, Golfo de Cariaco' (table3) |
 | `R_DATE_DMY` | Table 3, row 73 | '31/04/2012': impossible calendar date |
 
-## Awaiting review (not applied)
+## Crosswalk rows not applied
 
-- crosswalk: `Laguna de Punta de Piedras, Isla Margarita` -> `T1B03`? Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper
-- crosswalk: `Golfo de Cariaco` -> `T1A12`? Table 1 column is 'La Chica' within the gulf; the gulf is broader
-- crosswalk: `Ensenada Penetepe, Golfo de Cariaco` -> `T1A12`? Same question as above
+- reviewed, kept unlinked: `Laguna de Punta de Piedras, Isla Margarita` -> `T1B03`? Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper | Reviewed by author 2026-11-24: keep unlinked
+- reviewed, kept unlinked: `Golfo de Cariaco` -> `T1A12`? Table 1 column is 'La Chica' within the gulf; the gulf is broader | Reviewed by author 2026-11-24: keep unlinked
+- reviewed, kept unlinked: `Ensenada Penetepe, Golfo de Cariaco` -> `T1A12`? Same question as above | Reviewed by author 2026-11-24: keep unlinked
 
 ## Taxa by role
 

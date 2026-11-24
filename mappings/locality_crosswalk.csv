@@ -28,7 +28,7 @@ table3,Balneario Camuri Chico,T1A07,exact,accepted,
 table3,"Playa Azul, Litoral Central",T1A06,names_area,accepted,
 table3,"Playa Azul, Municipio Vargas, Litoral Central",T1A06,names_area,accepted,
 table3,Isla de Pájaros,T1A01,names_area,accepted,
-table3,"Laguna de Punta de Piedras, Isla Margarita",T1B03,geographic_knowledge,needs_review,Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper
-table3,Golfo de Cariaco,T1A12,geographic_knowledge,needs_review,Table 1 column is 'La Chica' within the gulf; the gulf is broader
-table3,"Ensenada Penetepe, Golfo de Cariaco",T1A12,geographic_knowledge,needs_review,Same question as above
+table3,"Laguna de Punta de Piedras, Isla Margarita",T1B03,geographic_knowledge,rejected,Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper | Reviewed by author 2026-11-24: keep unlinked
+table3,Golfo de Cariaco,T1A12,geographic_knowledge,rejected,Table 1 column is 'La Chica' within the gulf; the gulf is broader | Reviewed by author 2026-11-24: keep unlinked
+table3,"Ensenada Penetepe, Golfo de Cariaco",T1A12,geographic_knowledge,rejected,Same question as above | Reviewed by author 2026-11-24: keep unlinked
 table3,"Bajo Manzanillo, Isla Margarita",,no_match,accepted,No Table 1 column for this site
