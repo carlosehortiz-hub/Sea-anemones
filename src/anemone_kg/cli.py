@@ -23,7 +23,12 @@ def stage(name: str) -> Callable[[Callable[[Config], None]], Callable[[Config], 
     return register
 
 
+def _load_stages() -> None:
+    import anemone_kg.stages  # noqa: F401  (registers stages via @stage)
+
+
 def build_parser() -> argparse.ArgumentParser:
+    _load_stages()
     p = argparse.ArgumentParser(prog="anemone_kg", description=__doc__)
     p.add_argument("--config", default=None, help="path to config.yaml")
     p.add_argument("--log-level", default="INFO")

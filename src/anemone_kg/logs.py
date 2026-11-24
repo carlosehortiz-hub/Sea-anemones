@@ -9,6 +9,8 @@ LOG_FORMAT = "%(asctime)s %(levelname)-7s %(name)s | %(message)s"
 
 def setup_logging(level: str = "INFO") -> None:
     logging.basicConfig(level=level, format=LOG_FORMAT, datefmt="%H:%M:%S")
+    # pdfminer logs a harmless warning per page about a 2-component colour space.
+    logging.getLogger("pdfminer").setLevel(logging.ERROR)
 
 
 def log_counts(logger: logging.Logger, stage: str, n_in: int, n_out: int, note: str = "") -> None:
