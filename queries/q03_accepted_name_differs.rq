@@ -1,0 +1,26 @@
+# title: Names whose accepted name differs today
+# question: Which names used in the paper does WoRMS currently treat as something else, and what is the accepted name?
+# why: The core harmonisation result: the 2016 inventory is kept as published, and the graph links each name to today's taxonomy instead of overwriting it.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?nameInPaper ?wormsStatus ?acceptedName ?acceptedRecord
+WHERE {
+  ?taxon dwc:taxonID ?id ;
+         dwc:scientificName ?nameInPaper ;
+         skos:exactMatch ?record .
+  FILTER STRSTARTS(STR(?record), "urn:lsid:marinespecies.org:taxname:")
+  ?record dwc:taxonomicStatus ?wormsStatus ;
+          akv:hasAcceptedName ?acceptedRecord .
+  ?acceptedRecord dwc:scientificName ?acceptedName .
+  FILTER (?acceptedName != ?nameInPaper)
+}
+ORDER BY ?nameInPaper

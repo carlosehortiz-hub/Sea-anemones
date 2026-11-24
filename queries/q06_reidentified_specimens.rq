@@ -1,0 +1,29 @@
+# title: Re-identified MOHBR specimens, from label to today's accepted name
+# question: Which collection specimens did the authors re-identify, and what does WoRMS accept for the new identification today?
+# why: Three layers of taxonomic history in one hop each: the old label, the 2016 identification (prov:wasRevisionOf), and the current accepted name.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?catalogNumber ?previousIdentification ?identification2016 ?acceptedToday
+WHERE {
+  ?current prov:wasRevisionOf ?previous ;
+           dsw:identifies ?organism ;
+           dwc:verbatimIdentification ?identification2016 .
+  ?previous dwc:verbatimIdentification ?previousIdentification .
+  ?specimen dsw:occurrenceOf ?organism ; dwc:catalogNumber ?catalogNumber .
+  OPTIONAL {
+    ?current dwciri:toTaxon ?taxon .
+    ?taxon skos:exactMatch ?record .
+    FILTER STRSTARTS(STR(?record), "urn:lsid:marinespecies.org:taxname:")
+    ?record akv:hasAcceptedName/dwc:scientificName ?acceptedToday .
+  }
+}
+ORDER BY ?catalogNumber
