@@ -15,6 +15,7 @@ from collections import Counter
 
 import pyshacl
 import rdflib
+import rdflib.collection
 from rdflib import RDF, RDFS, Namespace
 from rdflib.compare import to_canonical_graph
 
@@ -41,6 +42,29 @@ def validate_graph(data: rdflib.Graph, shapes: rdflib.Graph) -> tuple[bool, rdfl
     return conforms, report
 
 
+def path_str(report: rdflib.Graph, path, nsm) -> str:
+    """Render a SHACL property path; complex paths are blank nodes with random ids.
+
+    Printing the blank node made reports/shacl_report.md differ on every run.
+    """
+    if path is None:
+        return ""
+    if isinstance(path, rdflib.URIRef):
+        return nsm.normalizeUri(path)
+    alt = report.value(path, SH.alternativePath)
+    if alt is not None:
+        items = rdflib.collection.Collection(report, alt)
+        return " | ".join(path_str(report, i, nsm) for i in items)
+    inv = report.value(path, SH.inversePath)
+    if inv is not None:
+        return f"^{path_str(report, inv, nsm)}"
+    if (path, RDF.first, None) in report:  # sequence path
+        return " / ".join(
+            path_str(report, i, nsm) for i in rdflib.collection.Collection(report, path)
+        )
+    return "(complex path)"
+
+
 def results(report: rdflib.Graph, data: rdflib.Graph) -> list[dict]:
     out = []
     for r in report.subjects(RDF.type, SH.ValidationResult):
@@ -54,12 +78,15 @@ def results(report: rdflib.Graph, data: rdflib.Graph) -> list[dict]:
                 "message": str(report.value(r, SH.resultMessage)),
                 "focus": str(focus),
                 "label": str(data.value(focus, RDFS.label) or ""),
-                "path": data.namespace_manager.normalizeUri(report.value(r, SH.resultPath))
-                if report.value(r, SH.resultPath) is not None
-                else "",
+                "path": path_str(report, report.value(r, SH.resultPath), data.namespace_manager),
             }
         )
     return sorted(out, key=lambda d: (d["severity"], d["message"], d["focus"]))
+
+
+def _cell(text: str) -> str:
+    """Escape pipes so SHACL alternative paths do not split Markdown table cells."""
+    return text.replace("|", "\\|")
 
 
 def to_markdown(conforms: bool, res: list[dict], n_shapes: int, data_triples: int) -> str:
@@ -84,7 +111,7 @@ def to_markdown(conforms: bool, res: list[dict], n_shapes: int, data_triples: in
         "|---|---|---:|",
     ]
     for (sev, msg), n in sorted(Counter((r["severity"], r["message"]) for r in res).items()):
-        lines.append(f"| {sev} | {msg} | {n} |")
+        lines.append(f"| {sev} | {_cell(msg)} | {n} |")
     lines += [
         "",
         "## Focus nodes",
@@ -93,7 +120,9 @@ def to_markdown(conforms: bool, res: list[dict], n_shapes: int, data_triples: in
         "|---|---|---|---|",
     ]
     for r in res:
-        lines.append(f"| {r['severity']} | `{r['focus']}` | {r['label']} | {r['path']} |")
+        lines.append(
+            f"| {r['severity']} | `{r['focus']}` | {_cell(r['label'])} | {_cell(r['path'])} |"
+        )
     lines.append("")
     return "\n".join(lines)
 

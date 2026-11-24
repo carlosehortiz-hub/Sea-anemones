@@ -28,8 +28,8 @@ Violations stop the pipeline. Warnings and Info record gaps in the source that t
 | Warning | `https://w3id.org/anemone-kg/event/1f849e46-170d-577c-9025-af280c60795f` |  | dsw:locatedAt |
 | Warning | `https://w3id.org/anemone-kg/event/9f301ed8-3c25-5741-b990-a673c20cf045` |  | dsw:locatedAt |
 | Warning | `https://w3id.org/anemone-kg/event/aa426d71-0539-5846-8202-42dd89b3470e` |  | dsw:locatedAt |
-| Warning | `https://w3id.org/anemone-kg/habitat/a0c61a95-d204-54a9-be6b-5f99672d12fe` |  | <n366d563814ea49d8b68bc427491bf711b108> |
-| Warning | `https://w3id.org/anemone-kg/habitat/c9425cba-ff74-5fc4-b74b-18eda2659a5a` |  | <n366d563814ea49d8b68bc427491bf711b108> |
+| Warning | `https://w3id.org/anemone-kg/habitat/a0c61a95-d204-54a9-be6b-5f99672d12fe` |  | dwciri:habitat \| dwciri:substrate |
+| Warning | `https://w3id.org/anemone-kg/habitat/c9425cba-ff74-5fc4-b74b-18eda2659a5a` |  | dwciri:habitat \| dwciri:substrate |
 | Warning | `https://w3id.org/anemone-kg/occurrence/211cc241-5efc-5e72-b6dc-6f1914e113f0` | MOHBR I-896 | dwciri:toTaxon |
 | Warning | `https://w3id.org/anemone-kg/occurrence/d23283b8-5d04-503a-9570-d80bca12d86e` | MOHBR I-955 | dwciri:toTaxon |
 | Warning | `https://w3id.org/anemone-kg/occurrence/e545e28a-c6c5-5cf1-88fd-c48a5882495f` | MOHBR I-954 | dwciri:toTaxon |
