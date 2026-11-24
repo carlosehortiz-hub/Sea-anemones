@@ -1,0 +1,94 @@
+{
+ "DOI": "10.1186/s13326-016-0097-6",
+ "author": [
+  {
+   "affiliation": [],
+   "family": "Buttigieg",
+   "given": "Pier Luigi",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [],
+   "family": "Pafilis",
+   "given": "Evangelos",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Lewis",
+   "given": "Suzanna E.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Schildhauer",
+   "given": "Mark P.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Walls",
+   "given": "Ramona L.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Mungall",
+   "given": "Christopher J.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Journal of Biomedical Semantics"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2016,
+    9,
+    23
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "The environment ontology in 2016: bridging domains with increased scope, semantic density, and interoperation"
+ ],
+ "volume": "7"
+}

@@ -1,0 +1,206 @@
+# Every reference cited by the manuscript. Entries with a DOI are verified against
+# Crossref (cached in paper/references/crossref/, checked by tests/test_paper.py).
+# Entries without a DOI are specifications, software or the source's own citations,
+# with the version or access date actually used.
+
+gonzalezmunoz2016:
+  authors: [González-Muñoz R, Simões N, Guerra-Castro EJ, Hernández-Ortíz C, Carrasquel G, Mendez E, Lira C, Rada M, Hernández I, Pauls SM, Croquer A, Cruz-Motta JJ]
+  year: 2016
+  title: "Sea anemones (Cnidaria: Actiniaria, Corallimorpharia, Ceriantharia, Zoanthidea) from marine shallow-water environments in Venezuela: new records and an updated inventory"
+  journal: Marine Biodiversity Records
+  volume: "9"
+  pages: "18"
+  doi: 10.1186/s41200-016-0016-7
+  cite_as: González-Muñoz et al. 2016
+
+agudo1987:
+  authors: [Agudo I]
+  year: 1987
+  title: "Contribución al conocimiento de la actinofauna de Venezuela (Anthozoa: Ceriantipatharia y Zoantharia)"
+  publisher: "Caracas: Proyecto Taxonomía, Ecología, Zoogeografía y Toxicología de la Actinofauna de Venezuela"
+  note: as cited in González-Muñoz et al. (2016)
+  cite_as: Agudo 1987
+
+grajales2014:
+  authors: [Grajales A, Rodríguez E]
+  year: 2014
+  title: "Morphological revision of the genus Aiptasia and the family Aiptasiidae (Cnidaria, Actiniaria, Metridioidea)"
+  journal: Zootaxa
+  volume: "3826"
+  pages: "55–100"
+  doi: 10.11646/zootaxa.3826.1.2
+  cite_as: Grajales & Rodríguez 2014
+
+wieczorek2012:
+  authors: [Wieczorek J, Bloom D, Guralnick R, Blum S, Döring M, Giovanni R, Robertson T, Vieglais D]
+  year: 2012
+  title: "Darwin Core: an evolving community-developed biodiversity data standard"
+  journal: PLoS ONE
+  volume: "7"
+  pages: e29715
+  doi: 10.1371/journal.pone.0029715
+  cite_as: Wieczorek et al. 2012
+
+baskauf2016:
+  authors: [Baskauf SJ, Webb CO]
+  year: 2016
+  title: "Darwin-SW: Darwin Core-based terms for expressing biodiversity data as RDF"
+  journal: Semantic Web
+  volume: "7"
+  pages: "629–643"
+  doi: 10.3233/SW-150203
+  cite_as: Baskauf & Webb 2016
+
+matentzoglu2022:
+  authors: [Matentzoglu N, Balhoff JP, Bello SM, et al.]
+  year: 2022
+  title: "A Simple Standard for Sharing Ontological Mappings (SSSOM)"
+  journal: Database
+  volume: "2022"
+  pages: baac035
+  doi: 10.1093/database/baac035
+  cite_as: Matentzoglu et al. 2022
+
+wilkinson2016:
+  authors: [Wilkinson MD, Dumontier M, Aalbersberg IJ, et al.]
+  year: 2016
+  title: "The FAIR Guiding Principles for scientific data management and stewardship"
+  journal: Scientific Data
+  volume: "3"
+  pages: "160018"
+  doi: 10.1038/sdata.2016.18
+  cite_as: Wilkinson et al. 2016
+
+schoch2020:
+  authors: [Schoch CL, Ciufo S, Domrachev M, et al.]
+  year: 2020
+  title: "NCBI Taxonomy: a comprehensive update on curation, resources and tools"
+  journal: Database
+  volume: "2020"
+  pages: baaa062
+  doi: 10.1093/database/baaa062
+  cite_as: Schoch et al. 2020
+
+buttigieg2013:
+  authors: [Buttigieg PL, Morrison N, Smith B, Mungall CJ, Lewis SE, ENVO Consortium]
+  year: 2013
+  title: "The environment ontology: contextualising biological and biomedical entities"
+  journal: Journal of Biomedical Semantics
+  volume: "4"
+  pages: "43"
+  doi: 10.1186/2041-1480-4-43
+  cite_as: Buttigieg et al. 2013
+
+buttigieg2016:
+  authors: [Buttigieg PL, Pafilis E, Lewis SE, Schildhauer MP, Walls RL, Mungall CJ]
+  year: 2016
+  title: "The environment ontology in 2016: bridging domains with increased scope, semantic density, and interoperation"
+  journal: Journal of Biomedical Semantics
+  volume: "7"
+  pages: "57"
+  doi: 10.1186/s13326-016-0097-6
+  cite_as: Buttigieg et al. 2016
+
+bantilan2020:
+  authors: [Bantilan N]
+  year: 2020
+  title: "pandera: statistical data validation of pandas dataframes"
+  journal: Proceedings of the 19th Python in Science Conference
+  pages: "116–124"
+  doi: 10.25080/majora-342d178e-010
+  cite_as: Bantilan 2020
+
+raasveldt2019:
+  authors: [Raasveldt M, Mühleisen H]
+  year: 2019
+  title: "DuckDB: an embeddable analytical database"
+  journal: "Proceedings of the 2019 International Conference on Management of Data (SIGMOD)"
+  pages: "1981–1984"
+  doi: 10.1145/3299869.3320212
+  cite_as: Raasveldt & Mühleisen 2019
+
+worms2026:
+  authors: [WoRMS Editorial Board]
+  year: 2026
+  title: World Register of Marine Species
+  url: https://www.marinespecies.org
+  note: REST API accessed 24 November 2026
+  cite_as: WoRMS Editorial Board 2026
+
+gbif2026:
+  authors: [GBIF Secretariat]
+  year: 2026
+  title: GBIF Backbone Taxonomy, species match API
+  url: https://api.gbif.org/v1/species/match
+  note: accessed 24 November 2026
+  cite_as: GBIF Secretariat 2026
+
+iczn1999:
+  authors: [International Commission on Zoological Nomenclature]
+  year: 1999
+  title: International Code of Zoological Nomenclature. 4th ed.
+  publisher: "London: International Trust for Zoological Nomenclature"
+  cite_as: ICZN 1999
+
+w3c_provo:
+  authors: [Lebo T, Sahoo S, McGuinness D]
+  year: 2013
+  title: "PROV-O: The PROV Ontology. W3C Recommendation"
+  url: https://www.w3.org/TR/prov-o/
+  cite_as: Lebo et al. 2013
+
+w3c_shacl:
+  authors: [Knublauch H, Kontokostas D]
+  year: 2017
+  title: "Shapes Constraint Language (SHACL). W3C Recommendation"
+  url: https://www.w3.org/TR/shacl/
+  cite_as: Knublauch & Kontokostas 2017
+
+w3c_skos:
+  authors: [Miles A, Bechhofer S]
+  year: 2009
+  title: "SKOS Simple Knowledge Organization System Reference. W3C Recommendation"
+  url: https://www.w3.org/TR/skos-reference/
+  cite_as: Miles & Bechhofer 2009
+
+w3c_sparql:
+  authors: [Harris S, Seaborne A]
+  year: 2013
+  title: "SPARQL 1.1 Query Language. W3C Recommendation"
+  url: https://www.w3.org/TR/sparql11-query/
+  cite_as: Harris & Seaborne 2013
+
+sw_linkml:
+  authors: [LinkML contributors]
+  year: 2026
+  title: "LinkML: the Linked Data Modeling Language (linkml-runtime {{ v.linkml_runtime }})"
+  url: https://linkml.io
+  cite_as: LinkML contributors 2026
+
+sw_rdflib:
+  authors: [RDFLib Team]
+  year: 2026
+  title: "RDFLib: a Python library for working with RDF (version {{ v.rdflib }})"
+  url: https://github.com/RDFLib/rdflib
+  cite_as: RDFLib Team 2026
+
+sw_pyshacl:
+  authors: [Sommer A]
+  year: 2026
+  title: "pySHACL: a Python validator for SHACL (version {{ v.pyshacl }})"
+  url: https://github.com/RDFLib/pySHACL
+  cite_as: Sommer 2026
+
+sw_oxigraph:
+  authors: [Pellissier Tanon T]
+  year: 2026
+  title: "Oxigraph: a SPARQL graph database (version {{ v.pyoxigraph }})"
+  url: https://github.com/oxigraph/oxigraph
+  cite_as: Pellissier Tanon 2026
+
+sw_pdfplumber:
+  authors: [Singer-Vine J, The pdfplumber contributors]
+  year: 2026
+  title: "pdfplumber (version {{ v.pdfplumber }})"
+  url: https://github.com/jsvine/pdfplumber
+  cite_as: Singer-Vine 2026

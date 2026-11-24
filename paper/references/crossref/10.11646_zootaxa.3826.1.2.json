@@ -1,0 +1,46 @@
+{
+ "DOI": "10.11646/zootaxa.3826.1.2",
+ "author": [
+  {
+   "affiliation": [],
+   "family": "GRAJALES",
+   "given": "ALEJANDRO",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [],
+   "family": "RODRÍGUEZ",
+   "given": "ESTEFANÍA",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Zootaxa"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2014,
+    6,
+    27
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "Morphological revision of the genus Aiptasia and the family Aiptasiidae (Cnidaria, Actiniaria, Metridioidea)"
+ ],
+ "volume": "3826"
+}

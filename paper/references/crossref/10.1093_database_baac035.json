@@ -1,0 +1,762 @@
+{
+ "DOI": "10.1093/database/baac035",
+ "author": [
+  {
+   "affiliation": [
+    {
+     "name": "Semanticly Ltd, London WC2H 9JQ, UK"
+    }
+   ],
+   "family": "Matentzoglu",
+   "given": "Nicolas",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-8688-6599",
+   "affiliation": [
+    {
+     "name": "RENCI, University of North Carolina, Chapel Hill, NC 27517, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Balhoff",
+   "given": "James P",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0003-4606-0597",
+   "affiliation": [
+    {
+     "name": "The Jackson Laboratory, Bar Harbor, ME 04609, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Bello",
+   "given": "Susan M",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-9491-7674",
+   "affiliation": [
+    {
+     "name": "RENCI, University of North Carolina, Chapel Hill, NC 27517, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Bizon",
+   "given": "Chris",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "Brush",
+   "given": "Matthew",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "Callahan",
+   "given": "Tiffany J",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-5437-2545",
+   "affiliation": [
+    {
+     "name": "Johns Hopkins University, Baltimore, MD 21210, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Chute",
+   "given": "Christopher G",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-9625-1899",
+   "affiliation": [
+    {
+     "name": "Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Duncan",
+   "given": "William D",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-5301-3142",
+   "affiliation": [
+    {
+     "name": "Maastricht University, Maastricht 6211 LK, The Netherlands"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Evelo",
+   "given": "Chris T",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Johns Hopkins University, Baltimore, MD 21210, USA"
+    }
+   ],
+   "family": "Gabriel",
+   "given": "Davera",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Stanford University, Stanford, CA 94305, USA"
+    }
+   ],
+   "family": "Graybeal",
+   "given": "John",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Department of Computer Science, Heriot-Watt University, Edinburgh, Currie EH14 4AS, UK"
+    }
+   ],
+   "family": "Gray",
+   "given": "Alasdair",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-9439-5346",
+   "affiliation": [
+    {
+     "name": "Harvard Medical School, Boston, MA 02115, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Gyori",
+   "given": "Benjamin M",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-9114-8737",
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Haendel",
+   "given": "Melissa",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "European Bioinformatics Institute (EMBL-EBI), Hinxton CB10 1SD, UK"
+    }
+   ],
+   "family": "Harmse",
+   "given": "Henriette",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-6315-3707",
+   "affiliation": [
+    {
+     "name": "Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Harris",
+   "given": "Nomi L",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Pistoia Alliance Inc, USA"
+    }
+   ],
+   "family": "Harrow",
+   "given": "Ian",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA"
+    }
+   ],
+   "family": "Hegde",
+   "given": "Harshad B",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0003-1307-2508",
+   "affiliation": [
+    {
+     "name": "Beth Israel Deaconess Medical Center, Boston, MA 02215, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Hoyt",
+   "given": "Amelia L",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Harvard Medical School, Boston, MA 02115, USA"
+    }
+   ],
+   "family": "Hoyt",
+   "given": "Charles T",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Johns Hopkins University, Baltimore, MD 21210, USA"
+    }
+   ],
+   "family": "Jiao",
+   "given": "Dazhi",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "City University of London, London EC1V 0HB, UK"
+    },
+    {
+     "name": "University of Oslo, Oslo 0315, Norway"
+    }
+   ],
+   "family": "Jiménez-Ruiz",
+   "given": "Ernesto",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "SciBite Limited, Bio Data Innovation Centre, Wellcome Genome Campus, Hinxton, Saffron Walden CB10 1DR, UK"
+    }
+   ],
+   "family": "Jupp",
+   "given": "Simon",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Robert Bosch LLC, Sunnyvale, CA 94085, USA"
+    }
+   ],
+   "family": "Kim",
+   "given": "Hyeongsik",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Ada Health GmbH, Berlin 10178, Germany"
+    }
+   ],
+   "family": "Koehler",
+   "given": "Sebastian",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Pistoia Alliance Inc, USA"
+    }
+   ],
+   "family": "Liener",
+   "given": "Thomas",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Leiden University Medical Center, Leiden 2333 ZA, The Netherlands"
+    }
+   ],
+   "family": "Long",
+   "given": "Qinqin",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "BenchSci, 25 York St Suite 1100, Toronto, ON M5J 2V5, Canada"
+    }
+   ],
+   "family": "Malone",
+   "given": "James",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "European Bioinformatics Institute (EMBL-EBI), Hinxton CB10 1SD, UK"
+    }
+   ],
+   "family": "McLaughlin",
+   "given": "James A",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "McMurry",
+   "given": "Julie A",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA"
+    }
+   ],
+   "family": "Moxon",
+   "given": "Sierra",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-8430-6039",
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Munoz-Torres",
+   "given": "Monica C",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "European Bioinformatics Institute (EMBL-EBI), Hinxton CB10 1SD, UK"
+    }
+   ],
+   "family": "Osumi-Sutherland",
+   "given": "David",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-5139-5557",
+   "affiliation": [
+    {
+     "name": "Knocean Inc., Toronto, ON M6P 2T3, Canada"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Overton",
+   "given": "James A",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "La Jolla Institute for Immunology, 9420 Athena Circle, La Jolla, CA 92037, USA"
+    }
+   ],
+   "family": "Peters",
+   "given": "Bjoern",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "Putman",
+   "given": "Tim",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Leiden University Medical Center, Leiden 2333 ZA, The Netherlands"
+    }
+   ],
+   "family": "Queralt-Rosinach",
+   "given": "Núria",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "Shefchek",
+   "given": "Kent",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Johns Hopkins University, Baltimore, MD 21210, USA"
+    }
+   ],
+   "family": "Solbrig",
+   "given": "Harold",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-2908-3327",
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Thessen",
+   "given": "Anne",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Independent Scholar"
+    }
+   ],
+   "family": "Tudorache",
+   "given": "Tania",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "University of Colorado Anschutz Medical Campus, Aurora, CO 80217, USA"
+    }
+   ],
+   "family": "Vasilevsky",
+   "given": "Nicole",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-2502-8961",
+   "affiliation": [
+    {
+     "name": "The Steve and Cindy Rasmussen Institute for Genomic Medicine, Nationwide Children’s Hospital, Columbus, OH 43205, USA"
+    },
+    {
+     "name": "The Ohio State University College of Medicine, Columbus, OH 43210, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Wagner",
+   "given": "Alex H",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-6601-2165",
+   "affiliation": [
+    {
+     "name": "Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA"
+    }
+   ],
+   "authenticated-orcid": false,
+   "family": "Mungall",
+   "given": "Christopher J",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Database"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2022,
+    1,
+    1
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "A Simple Standard for Sharing Ontological Mappings (SSSOM)"
+ ],
+ "volume": "2022"
+}
