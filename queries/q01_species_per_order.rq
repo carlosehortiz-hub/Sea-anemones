@@ -1,0 +1,23 @@
+# title: Species per order
+# question: How many species does the paper list in each order (Table 1), and how many of them does it mark as invalid?
+# why: The basic inventory summary; the SQL version (sql/s01) must give the same numbers.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?order (COUNT(DISTINCT ?taxon) AS ?species) (COUNT(DISTINCT ?invalid) AS ?markedInvalid)
+WHERE {
+  ?taxon dwc:taxonID ?id ;
+         dwc:taxonRank "species" ;
+         dwc:order ?order .
+  OPTIONAL { ?taxon dwc:taxonomicStatus "invalid" . BIND(?taxon AS ?invalid) }
+}
+GROUP BY ?order
+ORDER BY DESC(?species) ?order

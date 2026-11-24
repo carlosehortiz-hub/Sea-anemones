@@ -1,0 +1,24 @@
+# title: Names with a WoRMS identifier but no NCBI Taxonomy entry
+# question: Which names resolve in WoRMS but are absent from NCBI Taxonomy, even through their accepted name?
+# why: A gap analysis: these taxa cannot be linked to sequence data, which is a concrete next step for the Zoantharia and Actiniaria of the region.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?name ?wormsRecord
+WHERE {
+  ?taxon dwc:taxonID ?id ; dwc:scientificName ?name ; skos:exactMatch ?wormsRecord .
+  FILTER STRSTARTS(STR(?wormsRecord), "urn:lsid:marinespecies.org:taxname:")
+  FILTER NOT EXISTS {
+    ?taxon skos:exactMatch|skos:closeMatch ?ncbi .
+    FILTER STRSTARTS(STR(?ncbi), "http://purl.obolibrary.org/obo/NCBITaxon_")
+  }
+}
+ORDER BY ?name
