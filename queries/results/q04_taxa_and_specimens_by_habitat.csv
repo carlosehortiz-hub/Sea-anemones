@@ -1,0 +1,12 @@
+envoTerm,envo,kind,taxa,specimens
+rock,http://purl.obolibrary.org/obo/ENVO_00001995,substrate,19,167
+sand,http://purl.obolibrary.org/obo/ENVO_01000017,substrate,6,47
+crevice,http://purl.obolibrary.org/obo/ENVO_01000294,habitat or zone,5,45
+sea grass bed,http://purl.obolibrary.org/obo/ENVO_01000059,habitat or zone,4,54
+mangrove swamp,http://purl.obolibrary.org/obo/ENVO_00000057,habitat or zone,2,60
+marine coral reef back reef,http://purl.obolibrary.org/obo/ENVO_01000145,habitat or zone,2,4
+marine coral reef fore reef,http://purl.obolibrary.org/obo/ENVO_01000147,habitat or zone,2,4
+cave,http://purl.obolibrary.org/obo/ENVO_00000067,habitat or zone,1,9
+coral reef,http://purl.obolibrary.org/obo/ENVO_00000150,habitat or zone,1,14
+marine coral reef crest,http://purl.obolibrary.org/obo/ENVO_01000146,habitat or zone,1,7
+mud,http://purl.obolibrary.org/obo/ENVO_01000001,substrate,1,0
