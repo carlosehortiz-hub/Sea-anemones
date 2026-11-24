@@ -1,0 +1,196 @@
+{
+  "status": "pass",
+  "rows": {
+    "source_document": 1,
+    "reference": 10,
+    "taxon": 61,
+    "taxon_name_variant": 73,
+    "locality": 71,
+    "occurrence": 212,
+    "identification": 237,
+    "distribution": 342,
+    "habitat_statement": 26,
+    "taxon_mapping": 183,
+    "worms_record": 67,
+    "habitat_annotation": 65
+  },
+  "schema_checks": 269,
+  "schema_failures": 0,
+  "rules": [
+    {
+      "id": "C01",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "occurrence.locality_id references an existing locality",
+      "failing_rows": 0
+    },
+    {
+      "id": "C02",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "identification references an existing occurrence and taxon",
+      "failing_rows": 0
+    },
+    {
+      "id": "C03",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "distribution references an existing taxon, locality and reference",
+      "failing_rows": 0
+    },
+    {
+      "id": "C04",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "taxon_name_variant, habitat_statement and taxon_mapping reference an existing taxon",
+      "failing_rows": 0
+    },
+    {
+      "id": "C05",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "a site's parent is an existing locality of level 'area'",
+      "failing_rows": 0
+    },
+    {
+      "id": "C06",
+      "severity": "critical",
+      "dimension": "uniqueness",
+      "description": "every occurrence has exactly one current identification",
+      "failing_rows": 0
+    },
+    {
+      "id": "C07",
+      "severity": "critical",
+      "dimension": "uniqueness",
+      "description": "no duplicate specimens: catalogue numbers and field codes are unique",
+      "failing_rows": 0
+    },
+    {
+      "id": "C08",
+      "severity": "critical",
+      "dimension": "uniqueness",
+      "description": "no duplicate Table 1 assertions (taxon, area, evidence, reference)",
+      "failing_rows": 0
+    },
+    {
+      "id": "C09",
+      "severity": "critical",
+      "dimension": "validity",
+      "description": "coordinates are given as a pair or not at all",
+      "failing_rows": 0
+    },
+    {
+      "id": "C10",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "new records ('N') are only set on this-survey assertions",
+      "failing_rows": 0
+    },
+    {
+      "id": "C11",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "a mapping asserts an identifier and predicate if and only if it is accepted",
+      "failing_rows": 0
+    },
+    {
+      "id": "C12",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "every taxon has exactly one mapping row per service (gaps are explicit)",
+      "failing_rows": 0
+    },
+    {
+      "id": "C13",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "WoRMS identifiers and their accepted-name pointers resolve to stored WoRMS records",
+      "failing_rows": 0
+    },
+    {
+      "id": "C14",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "habitat annotations carry an ENVO id if and only if accepted, on an existing statement",
+      "failing_rows": 0
+    },
+    {
+      "id": "W01",
+      "severity": "warning",
+      "dimension": "validity",
+      "description": "verbatim date that is not a valid calendar date",
+      "failing_rows": 1
+    },
+    {
+      "id": "W02",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "occurrence without locality ('-' in the source)",
+      "failing_rows": 2
+    },
+    {
+      "id": "W03",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "specimen whose current identification has no taxon",
+      "failing_rows": 3
+    },
+    {
+      "id": "W04",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "specimen without a MOHBR catalogue number",
+      "failing_rows": 1
+    },
+    {
+      "id": "W05",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "collecting site not linked to a Table 1 area",
+      "failing_rows": 4
+    },
+    {
+      "id": "W06",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "taxon with no accepted identifier in any service",
+      "failing_rows": 0
+    },
+    {
+      "id": "W07",
+      "severity": "warning",
+      "dimension": "completeness",
+      "description": "habitat statement with no ENVO annotation",
+      "failing_rows": 2
+    },
+    {
+      "id": "W08",
+      "severity": "warning",
+      "dimension": "consistency",
+      "description": "Table 1 '*' (this survey) in a sampled area, but no Table 2 specimen of that taxon there",
+      "failing_rows": 13
+    },
+    {
+      "id": "W09",
+      "severity": "warning",
+      "dimension": "consistency",
+      "description": "Table 2 specimen in an area, but no Table 1 '*' for that taxon and area",
+      "failing_rows": 7
+    },
+    {
+      "id": "W10",
+      "severity": "warning",
+      "dimension": "consistency",
+      "description": "Table 1 'a' (MOHBR) in an area, but no Table 3 specimen of that taxon there",
+      "failing_rows": 5
+    },
+    {
+      "id": "W11",
+      "severity": "warning",
+      "dimension": "consistency",
+      "description": "Table 3 specimen in an area, but no Table 1 'a' for that taxon and area",
+      "failing_rows": 8
+    }
+  ]
+}
