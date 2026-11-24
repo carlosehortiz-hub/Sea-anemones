@@ -38,7 +38,11 @@ class Reference:
         return (_fold(self.data["authors"][0]), self.data["year"])
 
     def render(self, versions: dict[str, str]) -> str:
-        """BMC style, as in the source: Author AB, Author CD. Title. Journal. Year;Vol:pages."""
+        """BMC style, as in the source: Author AB, Author CD. Title. Journal. Year;Vol:pages.
+
+        Journal titles use the NLM abbreviation where `journal_abbrev` is given, as the source
+        article does (e.g. "Mar Biodivers Rec").
+        """
         d = self.data
         authors = ", ".join(d["authors"])
         title = d["title"]
@@ -47,7 +51,7 @@ class Reference:
         title = title.rstrip(".")
         parts = [f"{authors.rstrip('.')}. {title}."]
         if d.get("journal"):
-            loc = f" {d['journal']}. {d['year']}"
+            loc = f" {d.get('journal_abbrev', d['journal'])}. {d['year']}"
             if d.get("volume"):
                 loc += f";{d['volume']}"
             if d.get("pages"):

@@ -325,6 +325,11 @@ Crossref record (cached in `paper/references/crossref/`). `tests/test_paper.py` 
 cited work is missing from the reference list, if a template placeholder survives, or if
 figures and tables are numbered out of order.
 
+`make paper-submission` writes the same text as a submission package to `paper/submission/`:
+`manuscript.docx` (one column, double spacing, line and page numbers, title page, figure legends
+after the references, tables at the end), a PDF preview of it, and each figure as a separate
+PDF and 600 dpi PNG. It needs pandoc, LibreOffice and Node with Playwright.
+
 ## Licence and citation
 
 The code is MIT. The derived data and graph are CC0, as are the article's data. The article

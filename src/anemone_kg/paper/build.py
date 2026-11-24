@@ -72,6 +72,15 @@ def _env(root: Path) -> jinja2.Environment:
 
 
 def render(cfg: Config) -> tuple[str, dict, CitationTracker]:
+    """The two-column review layout (paper/manuscript.pdf)."""
+    front, body, f, tracker = render_parts(cfg)
+    env = _env(cfg.root / "paper")
+    html = env.get_template("template.html.j2").render(body=body, **front)
+    return html, f, tracker
+
+
+def render_parts(cfg: Config) -> tuple[dict, str, dict, CitationTracker]:
+    """Front matter and body HTML, shared by every layout so the text never diverges."""
     root = cfg.root / "paper"
     f = collect(cfg)
     refs = load_references(root / "references.yaml")
@@ -104,8 +113,7 @@ def render(cfg: Config) -> tuple[str, dict, CitationTracker]:
     body = body.replace("<p>@@REFS@@</p>", refs_html)
     # keep "Fig. 1", "Table 2", "p. 29" on one line
     body = re.sub(r"\b(Fig\.|Figs\.|Table|Tables|p\.|pp\.) (\d)", "\\1&nbsp;\\2", body)
-    html = env.get_template("template.html.j2").render(body=body, **front)
-    return html, f, tracker
+    return front, body, f, tracker
 
 
 def _md_inline(text: str) -> str:
@@ -136,7 +144,18 @@ def build(cfg: Config, pdf: bool = True) -> Path:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="anemone_kg paper")
     p.add_argument("--no-pdf", action="store_true")
+    p.add_argument(
+        "--submission",
+        action="store_true",
+        help="journal submission files (DOCX, figures as separate files) instead of the layout",
+    )
     p.add_argument("--config", default=None)
     args = p.parse_args(argv)
-    build(load_config(args.config), pdf=not args.no_pdf)
+    cfg = load_config(args.config)
+    if args.submission:
+        from anemone_kg.paper.submission import build_submission
+
+        build_submission(cfg, pdf=not args.no_pdf)
+    else:
+        build(cfg, pdf=not args.no_pdf)
     return 0

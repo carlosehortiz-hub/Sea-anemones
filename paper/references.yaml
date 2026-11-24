@@ -8,6 +8,7 @@ gonzalezmunoz2016:
   year: 2016
   title: "Sea anemones (Cnidaria: Actiniaria, Corallimorpharia, Ceriantharia, Zoanthidea) from marine shallow-water environments in Venezuela: new records and an updated inventory"
   journal: Marine Biodiversity Records
+  journal_abbrev: Mar Biodivers Rec  # NLM Catalog abbreviation
   volume: "9"
   pages: "18"
   doi: 10.1186/s41200-016-0016-7
@@ -36,6 +37,7 @@ wieczorek2012:
   year: 2012
   title: "Darwin Core: an evolving community-developed biodiversity data standard"
   journal: PLoS ONE
+  journal_abbrev: PLoS One  # NLM Catalog abbreviation
   volume: "7"
   pages: e29715
   doi: 10.1371/journal.pone.0029715
@@ -56,6 +58,7 @@ matentzoglu2022:
   year: 2022
   title: "A Simple Standard for Sharing Ontological Mappings (SSSOM)"
   journal: Database
+  journal_abbrev: Database (Oxford)  # NLM Catalog abbreviation
   volume: "2022"
   pages: baac035
   doi: 10.1093/database/baac035
@@ -66,6 +69,7 @@ wilkinson2016:
   year: 2016
   title: "The FAIR Guiding Principles for scientific data management and stewardship"
   journal: Scientific Data
+  journal_abbrev: Sci Data  # NLM Catalog abbreviation
   volume: "3"
   pages: "160018"
   doi: 10.1038/sdata.2016.18
@@ -76,6 +80,7 @@ schoch2020:
   year: 2020
   title: "NCBI Taxonomy: a comprehensive update on curation, resources and tools"
   journal: Database
+  journal_abbrev: Database (Oxford)  # NLM Catalog abbreviation
   volume: "2020"
   pages: baaa062
   doi: 10.1093/database/baaa062
@@ -86,6 +91,7 @@ buttigieg2013:
   year: 2013
   title: "The environment ontology: contextualising biological and biomedical entities"
   journal: Journal of Biomedical Semantics
+  journal_abbrev: J Biomed Semantics  # NLM Catalog abbreviation
   volume: "4"
   pages: "43"
   doi: 10.1186/2041-1480-4-43
@@ -96,6 +102,7 @@ buttigieg2016:
   year: 2016
   title: "The environment ontology in 2016: bridging domains with increased scope, semantic density, and interoperation"
   journal: Journal of Biomedical Semantics
+  journal_abbrev: J Biomed Semantics  # NLM Catalog abbreviation
   volume: "7"
   pages: "57"
   doi: 10.1186/s13326-016-0097-6
