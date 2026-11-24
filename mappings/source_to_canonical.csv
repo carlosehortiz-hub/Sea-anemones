@@ -1,0 +1,61 @@
+source_table,source_column,target_table,target_field,dwc_term,rule_id,note
+config.yaml,source.doi,source_document,doi,,R_COPY,
+config.yaml,source.citation,source_document,bibliographic_citation,dcterms:bibliographicCitation,R_TRIM,author list taken from p. 1
+config.yaml,source.license,source_document,license,dcterms:license,R_COPY,stated on p. 1
+data/raw PDF,(file bytes),source_document,sha256,,R_COPY,fixity of the raw input
+table1_legend,code,reference,reference_code,,R_COPY,codes a-j only
+table1_legend,meaning,reference,short_citation,,R_COPY,
+table1_legend,code,reference,evidence_kind,,R_CODE_KIND,
+table1_taxa,name_text,taxon,scientific_name,dwc:scientificName,R_SPLIT_QUALIFIER,
+table1_taxa,name_text,taxon,taxon_rank,dwc:taxonRank,R_RANK_FROM_NAME,
+table1_taxa,name_text,taxon,genus,dwc:genus,R_RANK_FROM_NAME,
+table1_taxa,name_text,taxon,specific_epithet,dwc:specificEpithet,R_RANK_FROM_NAME,
+table1_taxa,name_text,taxon,taxon_id,dwc:taxonID,R_UUID5,natural key: scientific_name
+table1_taxa,verbatim_order,taxon,order,dwc:order,R_RANK_HEADING,
+table1_taxa,verbatim_family,taxon,family,dwc:family,R_RANK_HEADING,
+table1_taxa,verbatim_family,taxon,family_authorship,,R_RANK_HEADING,
+table1_taxa,row_no,taxon,table1_row,,R_COPY,
+table1_taxa,flag_invalid,taxon,flag_invalid_in_source,,R_FLAGS,
+table1_taxa,flag_doubtful,taxon,flag_doubtful_in_source,,R_FLAGS,
+table2_specimens,verbatim_species,taxon,scientific_name,dwc:scientificName,R_TYPO,via mappings/name_variants.csv
+table2_specimens,verbatim_species,taxon,order,dwc:order,R_HIGHER_FROM_T1,family-rank names only (Actiniidae sp.)
+table3_mohbr_specimens,previous_identification,taxon,scientific_name,dwc:scientificName,R_COPY,historical names kept as printed
+species_accounts,verbatim_authority,taxon,scientific_name_authorship,dwc:scientificNameAuthorship,R_ACCOUNT_JOIN,
+table1_taxa;table2_specimens;table3_mohbr_specimens;species_accounts,(name columns),taxon_name_variant,verbatim_name,dwc:verbatimIdentification,R_COPY,every distinct spelling
+table2_specimens;table3_mohbr_specimens,(name columns),taxon_name_variant,identification_qualifier,dwc:identificationQualifier,R_SPLIT_QUALIFIER,
+table1_localities,verbatim_locality,locality,locality_name,dwc:locality,R_TRIM,level = area
+table1_localities,verbatim_locality,locality,locality_id,dwc:locationID,R_UUID5,natural key: area name
+table1_localities,verbatim_locality,locality,locality_id,dwc:locationID,R_OPEN_SEA,'Open Sea Distribution' is not a locality
+table1_localities,region,locality,region,,R_COPY,
+table1_localities,sampled_in_study,locality,sampled_in_study,,R_COPY,from bold header font
+(constant),,locality,country_code,dwc:countryCode,R_CONSTANT,VE
+table2_specimens,verbatim_locality,locality,locality_name,dwc:locality,R_TRIM,level = site
+table2_specimens,national_park,locality,parent_locality_id,,R_CROSSWALK,via mappings/locality_crosswalk.csv
+table2_specimens,verbatim_state,locality,state_province,dwc:stateProvince,R_STATE,via mappings/state_names.csv
+table2_specimens,verbatim_latitude,locality,decimal_latitude,dwc:decimalLatitude,R_DMS,
+table2_specimens,verbatim_longitude,locality,decimal_longitude,dwc:decimalLongitude,R_DMS,
+table2_specimens,verbatim_latitude;verbatim_longitude,locality,verbatim_coordinates,dwc:verbatimCoordinates,R_COPY,
+table3_mohbr_specimens,verbatim_locality,locality,locality_name,dwc:locality,R_MISSING,'-' -> null
+table3_mohbr_specimens,verbatim_locality,locality,parent_locality_id,,R_CROSSWALK,via mappings/locality_crosswalk.csv
+table3_mohbr_specimens,verbatim_state,locality,state_province,dwc:stateProvince,R_STATE,
+table2_specimens,mohbr_catalog,occurrence,catalog_number,dwc:catalogNumber,R_CATALOG,
+table2_specimens,field_code,occurrence,other_catalog_numbers,dwc:otherCatalogNumbers,R_COPY,
+table2_specimens,mohbr_catalog;field_code,occurrence,occurrence_id,dwc:occurrenceID,R_UUID5,natural key: catalog number else field code
+table2_specimens,national_park,occurrence,event_date,dwc:eventDate,R_DATE_METHODS,via mappings/event_dates.csv
+(constant),,occurrence,basis_of_record,dwc:basisOfRecord,R_CONSTANT,PreservedSpecimen
+(constant),,occurrence,institution_code,dwc:institutionCode,R_CONSTANT,MOHBR
+table3_mohbr_specimens,mohbr_catalog,occurrence,catalog_number,dwc:catalogNumber,R_CATALOG,
+table3_mohbr_specimens,mohbr_catalog,occurrence,occurrence_id,dwc:occurrenceID,R_UUID5,natural key: catalog number
+table3_mohbr_specimens,verbatim_date,occurrence,event_date,dwc:eventDate,R_DATE_DMY,
+table3_mohbr_specimens,verbatim_date,occurrence,verbatim_event_date,dwc:verbatimEventDate,R_MISSING,
+table3_mohbr_specimens,verbatim_collector,occurrence,recorded_by,dwc:recordedBy,R_PERSON,
+table2_specimens,verbatim_species,identification,verbatim_name,dwc:verbatimIdentification,R_COPY,is_current = true
+table3_mohbr_specimens,current_identification,identification,taxon_id,,R_NOT_IDENTIFIED,'not identified' -> null
+table3_mohbr_specimens,previous_identification,identification,verbatim_name,dwc:verbatimIdentification,R_PREVIOUS_ID,is_current = false
+table3_mohbr_specimens,previous_identification,identification,taxon_id,,R_INFORMAL,'Actinia 1' -> null
+table1_cells,code,distribution,evidence_kind,,R_CODE_KIND,
+table1_cells,code,distribution,reference_code,,R_CODE_KIND,
+table1_cells,code,distribution,is_new_record,,R_NEW_RECORD_FOLD,
+table1_cells,locality_col_id,distribution,locality_id,,R_OPEN_SEA,
+(constant),,distribution,basis_of_record,dwc:basisOfRecord,R_CONSTANT,MaterialCitation
+species_accounts,habitat_text,habitat_statement,habitat_text,dwc:habitat,R_COPY,ENVO terms added in step 3

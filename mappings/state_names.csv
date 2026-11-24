@@ -1,0 +1,9 @@
+verbatim_state,state_province,rule_id,evidence
+Falcon,Falcón,R_STATE_SPELLING,"Table 2 omits the accent; Table 3 prints 'Falcón'"
+Falcón,Falcón,R_IDENTITY,
+Sucre,Sucre,R_IDENTITY,
+Nueva Esparta,Nueva Esparta,R_IDENTITY,
+Dependencias Federales,Dependencias Federales,R_IDENTITY,
+Miranda,Miranda,R_IDENTITY,
+Vargas,Vargas,R_IDENTITY,
+Zulia,Zulia,R_IDENTITY,

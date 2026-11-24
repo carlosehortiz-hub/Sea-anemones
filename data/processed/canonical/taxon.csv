@@ -1,0 +1,62 @@
+taxon_id,scientific_name,scientific_name_authorship,taxon_rank,genus,specific_epithet,family,family_authorship,order,name_roles,table1_row,flag_invalid_in_source,flag_doubtful_in_source,source_ref,source_page
+9164127b-3f1a-56be-a029-c5131aeb74b8,Scolanthus curacaoensis,,species,Scolanthus,curacaoensis,Edwardsiidae,"Andres, 1881",Actiniaria,table1,1,False,False,"Table 1, row 1",3
+7847e3b1-cdf6-5f6e-a613-6983e7e80342,Actinia bermudensis,,species,Actinia,bermudensis,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,2,False,False,"Table 1, row 2",3
+975444b3-0428-58da-92e5-b8298c55fdef,Actinostella flosculifera,"(Le Sueur, 1817)",species,Actinostella,flosculifera,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2|table3_current,3,False,False,"Table 1, row 3",3
+89de5d35-6ca9-5750-890f-0cf8f2d34362,Anemonia sargassensis,"Hargitt, 1908",species,Anemonia,sargassensis,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2|table3_current,4,False,False,"Table 1, row 4",3
+e1ee4a3f-ec00-560f-b329-034cc87d5859,Anthopleura cascaia,,species,Anthopleura,cascaia,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,5,True,False,"Table 1, row 5",3
+c346341a-035f-5c2b-8abf-1b0412c75a3d,Anthopleura krebsi,,species,Anthopleura,krebsi,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,6,False,False,"Table 1, row 6",3
+5c0e029d-ac6a-5dac-9607-9595ad911cdd,Anthopleura pallida,"Duchassaing & Michelotti, 1864a",species,Anthopleura,pallida,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2,7,False,False,"Table 1, row 7",3
+42d970f3-9739-5ce4-be93-5c9c09b778ad,Bunodosoma caissarum,,species,Bunodosoma,caissarum,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,8,False,True,"Table 1, row 8",3
+5d8d5e7a-c14c-51c5-9813-c42d9c7e0bd5,Bunodosoma cangicum,,species,Bunodosoma,cangicum,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,9,False,True,"Table 1, row 9",3
+4b1a0ccb-1964-58ac-af8c-ae132a680831,Bunodosoma cavernatum,"(Bosc, 1802)",species,Bunodosoma,cavernatum,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2|table3_current,10,False,False,"Table 1, row 10",3
+ccb5db1f-ec55-5f8c-9b61-75d371065e4b,Bunodosoma granuliferum,"(Le Sueur, 1817)",species,Bunodosoma,granuliferum,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2|table3_current,11,False,False,"Table 1, row 11",3
+e33cb453-fba6-54b9-87e6-6c85370c1062,Bunodosoma kuekenthali,,species,Bunodosoma,kuekenthali,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,12,False,True,"Table 1, row 12",3
+2ce7bbda-934c-5701-ba13-393ab0099466,Condylactis gigantea,"(Weinland, 1860)",species,Condylactis,gigantea,Actiniidae,"Rafinesque, 1815",Actiniaria,species_account|table1|table2|table3_current,13,False,False,"Table 1, row 13",3
+0cfaac8a-cec6-5f5a-a340-071126a3217f,Isoaulactinia stelloides,,species,Isoaulactinia,stelloides,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,14,False,False,"Table 1, row 14",3
+ff163c99-ff31-55db-9a46-fa91dc59c577,Phymactis,,genus,Phymactis,,Actiniidae,"Rafinesque, 1815",Actiniaria,table1,15,False,True,"Table 1, row 15",3
+e3e9579a-af2f-5e84-9311-fb05d352acf1,Actinoporus elegans,"Duchassaing, 1850",species,Actinoporus,elegans,Capneidae,"Gosse, 1860",Actiniaria,species_account|table1|table2|table3_current,16,False,False,"Table 1, row 16",3
+2b60f46a-55f4-5ca8-8c00-7db6896ae5cf,Homostichanthus duerdeni,,species,Homostichanthus,duerdeni,Homostichanthidae,"Carlgren, 1900",Actiniaria,table1|table3_current,17,False,False,"Table 1, row 17",3
+df74c906-6948-591e-9b14-eb52a7207d41,Phymanthus crucifer,"(Le Sueur, 1817)",species,Phymanthus,crucifer,Phymanthidae,"Andres, 1883",Actiniaria,species_account|table1|table2|table3_current,18,False,False,"Table 1, row 18",4
+0815d2ff-1fdb-5e97-a6cc-76323b9b7dd6,Stichodactyla helianthus,"(Ellis, 1768)",species,Stichodactyla,helianthus,Stichodactylidae,"Andres, 1883",Actiniaria,species_account|table1|table2|table3_current,19,False,False,"Table 1, row 19",4
+f1e54674-aa12-5b80-acae-893136f1e65a,Bartholomea annulata,"(Le Sueur, 1817)",species,Bartholomea,annulata,Aiptasiidae,"Carlgren, 1924a",Actiniaria,species_account|table1|table2|table3_current,20,False,False,"Table 1, row 20",4
+8181a567-e426-50a5-8de0-463084cc069f,Bartholomea werneri,,species,Bartholomea,werneri,Aiptasiidae,"Carlgren, 1924a",Actiniaria,table1,21,True,False,"Table 1, row 21",4
+37685caf-4451-5e20-9774-911b02b27826,Exaiptasia pallida,"(Agassiz in Verrill, 1864)",species,Exaiptasia,pallida,Aiptasiidae,"Carlgren, 1924a",Actiniaria,species_account|table1|table2|table3_current,22,False,False,"Table 1, row 22",4
+5eb69c15-0525-5eb6-a914-45f35bb6fab9,Laviactis lucida,"(Duchassaing & Michelotti, 1860)",species,Laviactis,lucida,Aiptasiidae,"Carlgren, 1924a",Actiniaria,species_account|table1|table2,23,False,False,"Table 1, row 23",4
+6a5398e8-1481-5d28-a4aa-84dff0f81d17,Lebrunia coralligens,"(Wilson, 1890)",species,Lebrunia,coralligens,Aliciidae,"Duerden, 1895",Actiniaria,species_account|table1|table2|table3_current,24,False,False,"Table 1, row 24",4
+56cdb3eb-a57a-53b2-a70d-2efc18827f05,Lebrunia neglecta,"Duchassaing & Michelotti, 1860",species,Lebrunia,neglecta,Aliciidae,"Duerden, 1895",Actiniaria,species_account|table1|table2|table3_current,25,False,False,"Table 1, row 25",4
+1332972a-e058-5c85-b8fa-1ae5626bde6d,Bunodeopsis antilliensis,"Duerden, 1897",species,Bunodeopsis,antilliensis,Boloceroididae,"Carlgren, 1924b",Actiniaria,species_account|table1|table2|table3_current,26,False,False,"Table 1, row 26",4
+cf37a2d7-1ffc-5b48-8344-21742bfb762c,Diadumene lineata,,species,Diadumene,lineata,Diadumenidae,"Stephenson, 1920",Actiniaria,table1,27,False,False,"Table 1, row 27",4
+2770a1fa-5ba3-5767-8fe5-784e4460bcf1,Calliactis tricolor,"(Le Sueur, 1817)",species,Calliactis,tricolor,Hormathiidae,"Carlgren, 1932",Actiniaria,species_account|table1|table2|table3_current,28,False,False,"Table 1, row 28",4
+309abb68-8ef6-5f62-9502-f019904f5363,Monactis vestita,,species,Monactis,vestita,Hormathiidae,"Carlgren, 1932",Actiniaria,table1,29,False,False,"Table 1, row 29",4
+1f4419df-02a5-5fb5-8385-4ff423eac5f9,Telmatactis cricoides,"(Duchassaing, 1850)",species,Telmatactis,cricoides,Isophelliidae,"Stephenson, 1935",Actiniaria,species_account|table1|table2|table3_current,30,False,False,"Table 1, row 30",4
+73262c5b-81b3-53ab-aac3-35f8be9fc82b,Telmatactis vernonia,"(Duchassaing & Michelotti, 1864a)",species,Telmatactis,vernonia,Isophelliidae,"Stephenson, 1935",Actiniaria,species_account|table1|table2,31,False,False,"Table 1, row 31",4
+0c07c6e9-5ae0-5061-882b-74e5a2af73f1,Isarachnanthus nocturnus,"(den Hartog, 1977)",species,Isarachnanthus,nocturnus,Arachnanthidae,"McMurrich, 1910",Ceriantharia,species_account|table1,32,False,False,"Table 1, row 32",4
+de6a0c53-909f-58f5-b790-07c623598f9f,Ceriantheopsis americanus,,species,Ceriantheopsis,americanus,Cerianthidae,,Ceriantharia,table1,33,False,False,"Table 1, row 33",4
+d45b32e6-cf66-5343-b945-22fc2514b358,Ceriantheomorphe brasiliensis,,species,Ceriantheomorphe,brasiliensis,Cerianthidae,,Ceriantharia,table1,34,False,False,"Table 1, row 34",5
+2d49a7f7-d89c-5a78-977b-43a308316de5,Pachycerianthus curacaoensis,,species,Pachycerianthus,curacaoensis,Cerianthidae,,Ceriantharia,table1,35,False,False,"Table 1, row 35",5
+a1ed04c8-fc95-5f19-a051-a2fd252342e7,Corynactis caribbeorum,"(den Hartog, 1980)",species,Corynactis,caribbeorum,Corallimorphidae,"Hertwig, 1882",Corallimorpharia,species_account|table1,36,False,False,"Table 1, row 36",5
+49b76621-e8e0-535b-a5d3-28cbe4418874,Discosoma carlgreni,,species,Discosoma,carlgreni,Discosomatidae,"Duchassaing & Michelotti, 1864a",Corallimorpharia,table1,37,False,False,"Table 1, row 37",5
+bcf4ae4e-abc3-5d5d-95d8-f165af731ad6,Rhodactis osculifera,,species,Rhodactis,osculifera,Discosomatidae,"Duchassaing & Michelotti, 1864a",Corallimorpharia,table1,38,False,False,"Table 1, row 38",5
+636b0290-e871-5d5c-a369-e7914eb7a322,Palythoa caribaeorum,"Duchassaing & Michelotti, 1860",species,Palythoa,caribaeorum,Sphenopidae,"Hertwig, 1882",Zoanthidea,species_account|table1|table2|table3_current,39,False,False,"Table 1, row 39",5
+529c2cf5-613a-5ae7-84a7-0a6e8b9b605d,Palythoa mammillosa,,species,Palythoa,mammillosa,Sphenopidae,"Hertwig, 1882",Zoanthidea,table1|table3_previous,40,False,True,"Table 1, row 40",5
+7fd71cb6-3b2d-5d19-9bf6-a082198ffefa,Palythoa grandis,"(Verrill, 1900)",species,Palythoa,grandis,Sphenopidae,"Hertwig, 1882",Zoanthidea,species_account|table1|table2,41,False,False,"Table 1, row 41",5
+28e6fd50-f255-5716-940d-42dd698dd179,Palythoa variabilis,,species,Palythoa,variabilis,Sphenopidae,"Hertwig, 1882",Zoanthidea,table1|table3_previous,42,False,False,"Table 1, row 42",5
+01df3b87-9d45-5c4e-ad7c-b727cb6d016e,Isaurus duchassaingi,,species,Isaurus,duchassaingi,Zoanthidae,,Zoanthidea,table1|table3_previous,43,False,False,"Table 1, row 43",5
+7fd06bc1-b3df-557f-bb62-9287acd89e26,Zoanthus proteus,,species,Zoanthus,proteus,Zoanthidae,,Zoanthidea,table1|table3_previous,44,True,False,"Table 1, row 44",5
+50a8dd88-bba3-524a-8ae8-cd8c69535f2b,Zoanthus pulchellus,"(Duchassaing & Michelotti, 1864a)",species,Zoanthus,pulchellus,Zoanthidae,,Zoanthidea,species_account|table1|table2|table3_current,45,False,False,"Table 1, row 45",5
+54d3bd24-9e75-51cf-9e62-0e4451b5ae6f,Zoanthus sociatus,"(Ellis, 1768)",species,Zoanthus,sociatus,Zoanthidae,,Zoanthidea,species_account|table1|table2|table3_current,46,False,False,"Table 1, row 46",5
+fbd546f7-55d4-57ad-b1d4-497458717778,Zoanthus solanderi,,species,Zoanthus,solanderi,Zoanthidae,,Zoanthidea,table1,47,False,False,"Table 1, row 47",5
+b6612fc4-279d-5b2f-b4c1-5631288b56d0,Epizoanthus cutressi,,species,Epizoanthus,cutressi,Epizoanthidae,"Delage & Hirouard, 1901",Zoanthidea,table1,48,False,False,"Table 1, row 48",5
+884c25a1-155d-577c-9395-73be8865a349,Parazoanthus catenularis,,species,Parazoanthus,catenularis,Parazoanthidae,"Delage & Hirouard, 1901",Zoanthidea,table1,49,False,False,"Table 1, row 49",5
+21a147f8-e651-5b9d-baa3-61a1debd3830,Parazoanthus parasiticus,"(Duchassaing & Michelotti, 1860)",species,Parazoanthus,parasiticus,Parazoanthidae,"Delage & Hirouard, 1901",Zoanthidea,species_account|table1|table2,50,False,False,"Table 1, row 50",5
+a3691e44-1c7a-5675-bd27-e6b58a581399,Parazoanthus puertoricense,,species,Parazoanthus,puertoricense,Parazoanthidae,"Delage & Hirouard, 1901",Zoanthidea,table1,51,False,False,"Table 1, row 51",6
+ac708847-2436-5d88-9ca9-ec9f1d81dab8,Parazoanthus swiftii,"(Duchassaing & Michelotti, 1860)",species,Parazoanthus,swiftii,Parazoanthidae,"Delage & Hirouard, 1901",Zoanthidea,species_account|table1|table2,52,False,False,"Table 1, row 52",6
+8353e451-95f6-5971-9eeb-fc3d2aaf9fd4,Actiniidae,,family,,,Actiniidae,,Actiniaria,table2,,False,False,"Table 2, row 13",26
+33dff09c-774f-5bf5-b70d-bb729696ee3c,Aiptasia pallida,,species,Aiptasia,pallida,,,,table3_previous,,False,False,"Table 3, row 2",29
+b1705f17-d050-5909-b3ce-0b3a1b149f14,Telmatactis rufa,,species,Telmatactis,rufa,,,,table3_previous,,False,False,"Table 3, row 3",29
+40a1d857-a976-5d89-8aaf-d7413a2269c9,Lebrunia danae,,species,Lebrunia,danae,,,,table3_previous,,False,False,"Table 3, row 13",29
+ad429527-a03c-5e8f-847e-141a8237f497,Haliplanella luciae,,species,Haliplanella,luciae,,,,table3_previous,,False,False,"Table 3, row 17",29
+9356b7e2-78b4-5149-8417-0c8b5073e6fd,Homostichantus duerdenii,,species,Homostichantus,duerdenii,,,,table3_previous,,False,False,"Table 3, row 26",29
+6f379501-f006-5984-8f37-3ef57d0a426c,Palythoa caribbeorum,,species,Palythoa,caribbeorum,,,,table3_previous,,False,False,"Table 3, row 59",30
+b660214f-6b55-5359-8f5c-15bdf5cbcc8e,Bunodosoma cavernata,,species,Bunodosoma,cavernata,,,,table3_previous,,False,False,"Table 3, row 66",31
+29c5c55c-6351-5d46-a2e1-2c294841d6d8,Phyllactis praetexta,,species,Phyllactis,praetexta,,,,table3_previous,,False,False,"Table 3, row 67",31
