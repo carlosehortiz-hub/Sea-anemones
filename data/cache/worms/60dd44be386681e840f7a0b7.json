@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 289496,
+   "authority": "(Le Sueur, 1817)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Bartholomea annulata (Le Sueur, 1817). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=289496 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Aiptasiidae",
+   "genus": "Bartholomea",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:289496",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741019,
+   "parentNameUsageID": 267257,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Bartholomea annulata",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=289496",
+   "valid_AphiaID": 289496,
+   "valid_authority": "(Le Sueur, 1817)",
+   "valid_name": "Bartholomea annulata"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:10+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Bartholomea annulata?like=false&marine_only=false"
+}

@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Isoaulactinia stelloides",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Isoaulactinia",
+  "genusKey": 2256574,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Isoaulactinia stelloides (McMurrich, 1889)",
+  "species": "Isoaulactinia stelloides",
+  "speciesKey": 2256575,
+  "status": "ACCEPTED",
+  "usageKey": 2256575
+ },
+ "retrieved_at": "2026-11-24T12:45:56+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Isoaulactinia+stelloides&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 292701,
+   "authority": "Belém & Preslercravo, 1973",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Bunodosoma cangicum Belém & Preslercravo, 1973. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=292701 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Bunodosoma",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:292701",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 292701,
+   "parentNameUsageID": 100700,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Bunodosoma cangicum",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=292701",
+   "valid_AphiaID": 292701,
+   "valid_authority": "Belém & Preslercravo, 1973",
+   "valid_name": "Bunodosoma cangicum"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:43+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Bunodosoma cangicum?like=false&marine_only=false"
+}

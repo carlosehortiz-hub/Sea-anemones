@@ -1,0 +1,30 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "1",
+   "idlist": [
+    "478384"
+   ],
+   "querytranslation": "Anthopleura krebsi[Scientific Name]",
+   "retmax": "1",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "1",
+     "explode": "N",
+     "field": "Scientific Name",
+     "term": "Anthopleura krebsi[Scientific Name]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:36+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmode=json&term=Anthopleura+krebsi%5BScientific+Name%5D"
+}

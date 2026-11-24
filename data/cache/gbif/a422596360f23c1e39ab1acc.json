@@ -1,0 +1,29 @@
+{
+ "body": {
+  "acceptedUsageKey": 10638056,
+  "canonicalName": "Aiptasia pallida",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Aiptasiidae",
+  "familyKey": 9204,
+  "genus": "Exaiptasia",
+  "genusKey": 7850140,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Aiptasia pallida (Agassiz, 1864)",
+  "species": "Exaiptasia diaphana",
+  "speciesKey": 10638056,
+  "status": "SYNONYM",
+  "usageKey": 2257270
+ },
+ "retrieved_at": "2026-11-24T12:47:40+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Aiptasia+pallida&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

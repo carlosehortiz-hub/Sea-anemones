@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "2805811": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2021/06/23 00:00",
+    "rank": "species",
+    "scientificname": "Anthopleura cascaia",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 2805811,
+    "uid": "2805811"
+   },
+   "uids": [
+    "2805811"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:34+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=2805811&retmode=json"
+}

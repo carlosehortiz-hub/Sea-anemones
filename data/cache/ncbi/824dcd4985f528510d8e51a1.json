@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "2022721": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/05/05 00:00",
+    "rank": "species",
+    "scientificname": "Bunodosoma cavernatum",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 2022721,
+    "uid": "2022721"
+   },
+   "uids": [
+    "2022721"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:47+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=2022721&retmode=json"
+}

@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Phymanthus crucifer",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Phymanthidae",
+  "familyKey": 9217,
+  "genus": "Phymanthus",
+  "genusKey": 2256133,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Phymanthus crucifer (Le Sueur, 1817)",
+  "species": "Phymanthus crucifer",
+  "speciesKey": 2257134,
+  "status": "ACCEPTED",
+  "usageKey": 2257134
+ },
+ "retrieved_at": "2026-11-24T12:46:06+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Phymanthus+crucifer&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

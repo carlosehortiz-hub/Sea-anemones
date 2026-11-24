@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283817,
+   "authority": "Den Hartog, 1977",
+   "citation": "Molodtsova, T. (2026). World List of Ceriantharia. Pachycerianthus curacaoensis Den Hartog, 1977. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283817 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Cerianthidae",
+   "genus": "Pachycerianthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283817",
+   "match_type": "exact",
+   "modified": "2012-09-14T05:57:46.323Z",
+   "order": "Ceriantharia",
+   "originalNameUsageID": 283817,
+   "parentNameUsageID": 100783,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Pachycerianthus curacaoensis",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283817",
+   "valid_AphiaID": 283817,
+   "valid_authority": "Den Hartog, 1977",
+   "valid_name": "Pachycerianthus curacaoensis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:48+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Pachycerianthus curacaoensis?like=false&marine_only=false"
+}

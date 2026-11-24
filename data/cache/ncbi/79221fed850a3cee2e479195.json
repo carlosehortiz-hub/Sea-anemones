@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1326991": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/05/13 00:00",
+    "rank": "species",
+    "scientificname": "Lebrunia coralligens",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1326991,
+    "uid": "1326991"
+   },
+   "uids": [
+    "1326991"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:22+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1326991&retmode=json"
+}

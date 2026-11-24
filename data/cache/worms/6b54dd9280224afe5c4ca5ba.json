@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 288469,
+   "authority": "(Ellis & Solander, 1786)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Palythoa mammillosa (Ellis & Solander, 1786). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=288469 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Sphenopidae",
+   "genus": "Palythoa",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:288469",
+   "match_type": "exact",
+   "modified": "2011-12-22T10:27:48.820Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 1563963,
+   "parentNameUsageID": 205785,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Palythoa mammillosa",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=288469",
+   "valid_AphiaID": 288469,
+   "valid_authority": "(Ellis & Solander, 1786)",
+   "valid_name": "Palythoa mammillosa"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:00+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Palythoa mammillosa?like=false&marine_only=false"
+}

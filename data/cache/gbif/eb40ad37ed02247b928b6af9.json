@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Condylactis gigantea",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Condylactis",
+  "genusKey": 2256740,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Condylactis gigantea (Weinland, 1860)",
+  "species": "Condylactis gigantea",
+  "speciesKey": 2256741,
+  "status": "ACCEPTED",
+  "usageKey": 2256741
+ },
+ "retrieved_at": "2026-11-24T12:45:54+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Condylactis+gigantea&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

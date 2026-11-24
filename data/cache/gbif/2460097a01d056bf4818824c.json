@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Bunodeopsis antilliensis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Boloceroididae",
+  "familyKey": 5694,
+  "genus": "Bunodeopsis",
+  "genusKey": 2256108,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Bunodeopsis antilliensis Duerden, 1897",
+  "species": "Bunodeopsis antilliensis",
+  "speciesKey": 2256116,
+  "status": "ACCEPTED",
+  "usageKey": 2256116
+ },
+ "retrieved_at": "2026-11-24T12:46:26+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Bunodeopsis+antilliensis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

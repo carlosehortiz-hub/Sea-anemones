@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Corynactis caribbeorum",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Corallimorphidae",
+  "familyKey": 8181,
+  "genus": "Corynactis",
+  "genusKey": 2256373,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Corallimorpharia",
+  "orderKey": 1242,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Corynactis caribbeorum (den Hartog, 1980)",
+  "species": "Corynactis caribbeorum",
+  "speciesKey": 6472332,
+  "status": "ACCEPTED",
+  "usageKey": 6472332
+ },
+ "retrieved_at": "2026-11-24T12:46:51+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Corynactis+caribbeorum&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

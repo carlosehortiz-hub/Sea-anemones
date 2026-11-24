@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "2652724": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/10/14 00:00",
+    "rank": "species",
+    "scientificname": "Exaiptasia diaphana",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 2652724,
+    "uid": "2652724"
+   },
+   "uids": [
+    "2652724"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:18+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=2652724&retmode=json"
+}

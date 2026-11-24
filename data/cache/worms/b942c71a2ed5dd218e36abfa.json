@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283867,
+   "authority": "(Duchassaing de Fonbressin & Michelotti, 1860)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Parazoanthus catenularis (Duchassaing de Fonbressin & Michelotti, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283867 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Parazoanthidae",
+   "genus": "Parazoanthus",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283867",
+   "match_type": "exact",
+   "modified": "2015-09-26T14:20:18.777Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100793,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Parazoanthus catenularis",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283867",
+   "valid_AphiaID": 853592,
+   "valid_authority": "Duchassaing de Fonbressin & Michelotti, 1860",
+   "valid_name": "Bergia catenularis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:24+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Parazoanthus catenularis?like=false&marine_only=false"
+}

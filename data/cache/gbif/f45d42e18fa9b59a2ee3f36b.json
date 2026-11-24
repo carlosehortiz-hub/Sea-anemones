@@ -1,0 +1,26 @@
+{
+ "body": {
+  "canonicalName": "Ceriantheopsis americana",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 98,
+  "family": "Cerianthidae",
+  "familyKey": 8173,
+  "genus": "Ceriantheopsis",
+  "genusKey": 2258554,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "FUZZY",
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Ceriantheopsis americana (Agassiz, 1864)",
+  "species": "Ceriantheopsis americana",
+  "speciesKey": 2258556,
+  "status": "ACCEPTED",
+  "usageKey": 2258556
+ },
+ "retrieved_at": "2026-11-24T12:46:44+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Ceriantheopsis+americanus&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

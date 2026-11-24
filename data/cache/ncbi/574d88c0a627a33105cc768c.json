@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "487818": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "mat anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/03/26 00:00",
+    "rank": "species",
+    "scientificname": "Zoanthus solanderi",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 487818,
+    "uid": "487818"
+   },
+   "uids": [
+    "487818"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:20+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=487818&retmode=json"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283486,
+   "authority": "(Agassiz in Verrill, 1864)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Aiptasia pallida (Agassiz in Verrill, 1864). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283486 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Aiptasiidae",
+   "genus": "Aiptasia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283486",
+   "match_type": "exact",
+   "modified": "2016-10-31T17:15:54.293Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741712,
+   "parentNameUsageID": 100718,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Aiptasia pallida",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": "new genus created by Grajales & Rodriguez 2014",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283486",
+   "valid_AphiaID": 1264073,
+   "valid_authority": "(Rapp, 1829)",
+   "valid_name": "Exaiptasia diaphana"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:39+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Aiptasia pallida?like=false&marine_only=false"
+}

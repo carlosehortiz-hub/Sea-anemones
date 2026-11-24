@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 418868,
+   "authority": "Carlgren, 1900",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Homostichanthus duerdeni Carlgren, 1900. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=418868 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Homostichanthidae",
+   "genus": "Homostichanthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:418868",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 418868,
+   "parentNameUsageID": 415483,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Homostichanthus duerdeni",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=418868",
+   "valid_AphiaID": 418868,
+   "valid_authority": "Carlgren, 1900",
+   "valid_name": "Homostichanthus duerdeni"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:02+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Homostichanthus duerdeni?like=false&marine_only=false"
+}

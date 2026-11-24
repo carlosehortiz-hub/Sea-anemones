@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 288844,
+   "authority": "Le Sueur, 1818",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Zoanthus solanderi Le Sueur, 1818. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=288844 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Zoanthidae",
+   "genus": "Zoanthus",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:288844",
+   "match_type": "exact",
+   "modified": "2018-06-14T07:03:51.580Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 288844,
+   "parentNameUsageID": 206284,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Zoanthus solanderi",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=288844",
+   "valid_AphiaID": 288844,
+   "valid_authority": "Le Sueur, 1818",
+   "valid_name": "Zoanthus solanderi"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:18+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Zoanthus solanderi?like=false&marine_only=false"
+}

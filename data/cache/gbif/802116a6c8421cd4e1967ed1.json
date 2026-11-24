@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Actinostella flosculifera",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Actinostella",
+  "genusKey": 2256971,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Actinostella flosculifera (Le Sueur, 1817)",
+  "species": "Actinostella flosculifera",
+  "speciesKey": 2256709,
+  "status": "ACCEPTED",
+  "usageKey": 2256709
+ },
+ "retrieved_at": "2026-11-24T12:45:27+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Actinostella+flosculifera&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}
