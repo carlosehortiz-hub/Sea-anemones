@@ -1,0 +1,106 @@
+@prefix akv:     <https://w3id.org/anemone-kg/vocab/> .
+@prefix dwc:     <http://rs.tdwg.org/dwc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Minimal project vocabulary. A term is here only when no reused vocabulary
+# (Darwin Core, Darwin-SW, PROV-O, DCTERMS, SKOS, SSSOM) has one; each comment
+# says which existing term was considered and why it does not fit.
+# The namespace IRI is a placeholder: it is not registered with w3id.org.
+
+<https://w3id.org/anemone-kg/vocab/>
+    a owl:Ontology ;
+    dcterms:title "anemone-kg project vocabulary"@en ;
+    dcterms:description "Terms used by the anemone-kg knowledge graph that have no equivalent in Darwin Core, Darwin-SW, PROV-O, DCTERMS, SKOS or SSSOM."@en ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    owl:versionInfo "0.1.0" .
+
+# ------------------------------------------------------------------ classes
+
+akv:HabitatStatement
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "habitat statement"@en ;
+    rdfs:comment "The Habitat paragraph of a species account: a statement about where a taxon lives, made by the authors of the source. Darwin Core places dwc:habitat on dwc:Event (one collecting event); here habitat is described per species, so it needs its own node. The text is in dwc:habitat, the ENVO terms in dwciri:habitat and dwciri:substrate."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+# --------------------------------------------------------------- properties
+
+akv:sourceLocator
+    a owl:DatatypeProperty ;
+    rdfs:domain prov:Derivation ;
+    rdfs:range xsd:string ;
+    rdfs:label "source locator"@en ;
+    rdfs:comment "Where inside the source document a derived record comes from, e.g. 'Table 2, row 25'. PROV-O has no locator property, and dcterms:bibliographicCitation describes a resource as a whole, not a position within it."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:sourcePage
+    a owl:DatatypeProperty ;
+    rdfs:domain prov:Derivation ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:label "source page"@en ;
+    rdfs:comment "Page of the source document on which the record is printed. Companion to akv:sourceLocator."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:isNewCountryRecord
+    a owl:DatatypeProperty ;
+    rdfs:domain dwc:Occurrence ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is new country record"@en ;
+    rdfs:comment "True when the source reports the occurrence as the first record of the taxon for the country of its location (Table 1 code 'N'). Darwin Core has no term for this; dwc:establishmentMeans and dwc:degreeOfEstablishment describe how an organism got there, not whether it was recorded before."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:hasDoubtfulPreviousRecords
+    a owl:DatatypeProperty ;
+    rdfs:domain dwc:Taxon ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "has doubtful previous records"@en ;
+    rdfs:comment "True when the source marks a taxon with '?' in Table 1: earlier records of it for the country are doubtful. This qualifies the records, not the name, so dwc:taxonomicStatus does not fit."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:hasAcceptedName
+    a owl:ObjectProperty ;
+    rdfs:domain dwc:Taxon ;
+    rdfs:range dwc:Taxon ;
+    rdfs:label "has accepted name"@en ;
+    rdfs:comment "Links a name record to the record of its accepted name. IRI-valued counterpart of dwc:acceptedNameUsageID: Darwin Core terms in the dwc: namespace take literal values, and dwciri: has no accepted-name term."@en ;
+    skos:closeMatch dwc:acceptedNameUsageID ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:sampledInStudy
+    a owl:DatatypeProperty ;
+    rdfs:domain dcterms:Location ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "sampled in study"@en ;
+    rdfs:comment "True for the six localities the authors sampled themselves (bold column headers in Table 1)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+# ----------------------------------------------------- evidence-kind scheme
+
+akv:evidenceKinds
+    a skos:ConceptScheme ;
+    skos:prefLabel "Evidence kinds of Table 1"@en ;
+    skos:definition "What kind of evidence a code in Table 1 of the source asserts presence on."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:ThisSurvey
+    a skos:Concept ;
+    skos:inScheme akv:evidenceKinds ;
+    skos:prefLabel "documented in this survey"@en ;
+    skos:definition "Table 1 code '*': recorded in the authors' own surveys (specimens or observations)."@en .
+
+akv:MohbrCollection
+    a skos:Concept ;
+    skos:inScheme akv:evidenceKinds ;
+    skos:prefLabel "MOHBR collection specimen"@en ;
+    skos:definition "Table 1 code 'a': a specimen in the collection of the Museo Oceanológico Hermano Benigno Román."@en .
+
+akv:Literature
+    a skos:Concept ;
+    skos:inScheme akv:evidenceKinds ;
+    skos:prefLabel "previously published record"@en ;
+    skos:definition "Table 1 codes 'b' to 'j': a record in a previously published work, cited in the legend."@en .
