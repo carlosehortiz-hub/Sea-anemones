@@ -1,0 +1,343 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix ak:      <https://w3id.org/anemone-kg/> .
+@prefix akv:     <https://w3id.org/anemone-kg/vocab/> .
+@prefix aksh:    <https://w3id.org/anemone-kg/shapes/> .
+@prefix dwc:     <http://rs.tdwg.org/dwc/terms/> .
+@prefix dwciri:  <http://rs.tdwg.org/dwc/iri/> .
+@prefix dsw:     <http://purl.org/dsw/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sssom:   <https://w3id.org/sssom/> .
+@prefix semapv:  <https://w3id.org/semapv/vocab/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# SHACL shapes for the anemone-kg graph.
+#
+# Severity policy (mirrors the data-quality stage):
+#   sh:Violation  the graph is wrong; the pipeline stops
+#   sh:Warning    the graph is right but incomplete, because the source is
+#   sh:Info       expected gaps worth counting (e.g. no catalogue number)
+#
+# Shapes check the *graph*; the Pandera rules checked the *tables*. Both exist
+# because a correct table can still be serialised into a wrong graph.
+
+aksh: sh:declare [ sh:prefix "dwc" ; sh:namespace "http://rs.tdwg.org/dwc/terms/"^^xsd:anyURI ] ,
+                 [ sh:prefix "dsw" ; sh:namespace "http://purl.org/dsw/"^^xsd:anyURI ] ,
+                 [ sh:prefix "dwciri" ; sh:namespace "http://rs.tdwg.org/dwc/iri/"^^xsd:anyURI ] ,
+                 [ sh:prefix "prov" ; sh:namespace "http://www.w3.org/ns/prov#"^^xsd:anyURI ] ,
+                 [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] .
+
+# ------------------------------------------------------------ provenance
+
+aksh:DerivationShape
+    a sh:NodeShape ;
+    sh:targetClass prov:Derivation ;
+    sh:property [
+        sh:path prov:entity ;
+        sh:hasValue <https://doi.org/10.1186/s41200-016-0016-7> ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A derivation must point to the source paper's DOI." ] ;
+    sh:property [
+        sh:path akv:sourceLocator ;
+        sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:pattern "^(Table [123]|Systematics)" ;
+        sh:message "A derivation needs exactly one locator naming a table or section of the paper." ] ;
+    sh:property [
+        sh:path akv:sourcePage ;
+        sh:datatype xsd:positiveInteger ; sh:maxCount 1 ;
+        sh:minInclusive 1 ; sh:maxInclusive 35 ;
+        sh:message "Page must be within the paper (1-35)." ] ;
+    sh:property [
+        sh:path prov:hadActivity ;
+        sh:class prov:Activity ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+aksh:DerivedFromPaper
+    a sh:NodeShape ;
+    rdfs:comment "Mixed into every record shape: traceable to the paper, with a locator."@en ;
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:hasValue <https://doi.org/10.1186/s41200-016-0016-7> ;
+        sh:message "Every record must be prov:wasDerivedFrom the source paper." ] ;
+    sh:property [
+        sh:path prov:qualifiedDerivation ;
+        sh:class prov:Derivation ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every record needs exactly one qualified derivation (locator in the paper)." ] .
+
+# ------------------------------------------------------------ occurrences
+
+aksh:OccurrenceShape
+    a sh:NodeShape ;
+    sh:targetClass dwc:Occurrence ;
+    sh:node aksh:DerivedFromPaper ;
+    sh:property [
+        sh:path dwc:occurrenceID ;
+        sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:pattern "^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" ;
+        sh:message "occurrenceID must be one UUIDv5." ] ;
+    sh:property [
+        sh:path dwc:basisOfRecord ;
+        sh:in ( "PreservedSpecimen" "MaterialCitation" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dsw:atEvent ; sh:class dwc:Event ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwciri:toTaxon ; sh:class dwc:Taxon ; sh:maxCount 1 ] ;
+    sh:or (
+        [ sh:path dwc:basisOfRecord ; sh:hasValue "PreservedSpecimen" ]
+        [ sh:path dwc:basisOfRecord ; sh:hasValue "MaterialCitation" ]
+    ) .
+
+aksh:SpecimenShape
+    a sh:NodeShape ;
+    rdfs:comment "Occurrences that are preserved specimens (Tables 2 and 3)."@en ;
+    sh:target [ a sh:SPARQLTarget ; sh:prefixes aksh: ; sh:select """
+        SELECT ?this WHERE { ?this a dwc:Occurrence ; dwc:basisOfRecord "PreservedSpecimen" . }""" ] ;
+    sh:property [
+        sh:path dsw:occurrenceOf ; sh:class dwc:Organism ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A specimen must be an occurrence of exactly one Organism." ] ;
+    sh:property [
+        sh:path dwc:institutionCode ; sh:hasValue "MOHBR" ] ;
+    sh:property [
+        sh:path dwc:catalogNumber ; sh:maxCount 1 ; sh:pattern "^I-[0-9]+$" ;
+        sh:message "MOHBR catalogue numbers look like I-1234." ] ;
+    sh:property [
+        sh:path dwc:catalogNumber ; sh:minCount 1 ; sh:severity sh:Info ;
+        sh:message "Specimen without a MOHBR catalogue number (as printed in the source)." ] ;
+    sh:property [
+        sh:path dwc:otherCatalogNumbers ; sh:maxCount 1 ; sh:pattern "^(RG|VE)-[0-9]{3}$" ] ;
+    sh:property [
+        sh:path dwciri:toTaxon ; sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "Specimen whose current identification has no taxon ('not identified')." ] .
+
+aksh:MaterialCitationShape
+    a sh:NodeShape ;
+    rdfs:comment "Table 1 assertions."@en ;
+    sh:target [ a sh:SPARQLTarget ; sh:prefixes aksh: ; sh:select """
+        SELECT ?this WHERE { ?this a dwc:Occurrence ; dwc:basisOfRecord "MaterialCitation" . }""" ] ;
+    sh:property [
+        sh:path dwc:occurrenceStatus ; sh:hasValue "present" ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwciri:toTaxon ; sh:minCount 1 ;
+        sh:message "A Table 1 assertion is always about a taxon." ] ;
+    sh:property [
+        sh:path dcterms:type ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( akv:ThisSurvey akv:MohbrCollection akv:Literature ) ] ;
+    sh:property [
+        sh:path akv:isNewCountryRecord ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:associatedReferences ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "A new country record ('N') can only be a this-survey assertion." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <https://w3id.org/anemone-kg/vocab/isNewCountryRecord> true ;
+                    <http://purl.org/dc/terms/type> ?k .
+              FILTER (?k != <https://w3id.org/anemone-kg/vocab/ThisSurvey>)
+            }""" ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Literature and MOHBR assertions must reference the cited source." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://purl.org/dc/terms/type> ?k .
+              FILTER (?k != <https://w3id.org/anemone-kg/vocab/ThisSurvey>)
+              FILTER NOT EXISTS { $this <http://purl.org/dc/terms/references> ?r }
+            }""" ] .
+
+aksh:EventShape
+    a sh:NodeShape ;
+    sh:targetClass dwc:Event ;
+    sh:property [
+        sh:path dwc:eventDate ; sh:maxCount 1 ;
+        sh:or ( [ sh:datatype xsd:date ] [ sh:datatype xsd:gYearMonth ] [ sh:datatype xsd:gYear ] ) ;
+        sh:message "eventDate must be a typed ISO date (date, year-month or year)." ] ;
+    sh:property [
+        sh:path dsw:locatedAt ; sh:class dcterms:Location ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dsw:locatedAt ; sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "Event without a location ('-' in the source, or Open Sea Distribution)." ] .
+
+# ------------------------------------------------------------ identifications
+
+aksh:IdentificationShape
+    a sh:NodeShape ;
+    sh:targetClass dwc:Identification ;
+    sh:node aksh:DerivedFromPaper ;
+    sh:property [
+        sh:path dsw:identifies ; sh:class dwc:Organism ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwciri:toTaxon ; sh:class dwc:Taxon ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:verbatimIdentification ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:identificationQualifier ; sh:maxCount 1 ; sh:in ( "cf." "sp." "sp.?" ) ] ;
+    sh:property [
+        sh:path prov:wasRevisionOf ; sh:class dwc:Identification ; sh:maxCount 1 ] .
+
+aksh:OrganismShape
+    a sh:NodeShape ;
+    sh:targetClass dwc:Organism ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "An organism must have exactly one current identification (one not revised by another)." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this (COUNT(?id) AS ?n) WHERE {
+              ?id dsw:identifies $this .
+              FILTER NOT EXISTS { ?newer prov:wasRevisionOf ?id }
+            } GROUP BY $this HAVING (COUNT(?id) != 1)""" ] .
+
+# ------------------------------------------------------------------ taxa
+
+aksh:PaperTaxonShape
+    a sh:NodeShape ;
+    rdfs:comment "Names as used in the paper (they carry a dwc:taxonID)."@en ;
+    sh:targetSubjectsOf dwc:taxonID ;
+    sh:class dwc:Taxon ;
+    sh:node aksh:DerivedFromPaper ;
+    sh:property [
+        sh:path dwc:taxonID ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:pattern "^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" ] ;
+    sh:property [
+        sh:path dwc:scientificName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:taxonRank ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "species" "genus" "family" ) ] ;
+    sh:property [
+        sh:path akv:hasDoubtfulPreviousRecords ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:scientificNameID ; sh:maxCount 1 ;
+        sh:pattern "^urn:lsid:marinespecies\\.org:taxname:[0-9]+$" ;
+        sh:message "scientificNameID must be a single WoRMS LSID." ] ;
+    sh:property [
+        sh:path skos:exactMatch ; sh:nodeKind sh:IRI ;
+        sh:pattern "^(urn:lsid:marinespecies\\.org:taxname:|https://www\\.gbif\\.org/species/|http://purl\\.obolibrary\\.org/obo/NCBITaxon_)[0-9]+$" ;
+        sh:message "Taxon links must be WoRMS LSIDs, GBIF species or NCBITaxon IRIs." ] ;
+    sh:property [
+        sh:path skos:closeMatch ; sh:nodeKind sh:IRI ;
+        sh:pattern "^(urn:lsid:marinespecies\\.org:taxname:|https://www\\.gbif\\.org/species/|http://purl\\.obolibrary\\.org/obo/NCBITaxon_)[0-9]+$" ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( skos:exactMatch skos:closeMatch ) ] ;
+        sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "Name with no external identifier in any service." ] .
+
+aksh:WormsRecordShape
+    a sh:NodeShape ;
+    sh:target [ a sh:SPARQLTarget ; sh:prefixes aksh: ; sh:select """
+        SELECT ?this WHERE { ?this a dwc:Taxon .
+          FILTER STRSTARTS(STR(?this), "urn:lsid:marinespecies.org:taxname:") }""" ] ;
+    sh:property [ sh:path dwc:scientificName ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dwc:taxonomicStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path akv:hasAcceptedName ; sh:class dwc:Taxon ; sh:maxCount 1 ;
+        sh:message "The accepted-name pointer must resolve to a WoRMS record in the graph." ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "dwc:scientificNameID of a WoRMS record must equal its own IRI." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE { $this dwc:scientificNameID ?id . FILTER (STR($this) != STR(?id)) }""" ] .
+
+# --------------------------------------------------------------- mappings
+
+aksh:MappingShape
+    a sh:NodeShape ;
+    rdfs:comment "SSSOM mapping records (owl:Axiom reification)."@en ;
+    sh:targetClass owl:Axiom ;
+    sh:property [ sh:path owl:annotatedSource ; sh:class dwc:Taxon ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path owl:annotatedProperty ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( skos:exactMatch skos:closeMatch ) ] ;
+    sh:property [ sh:path owl:annotatedTarget ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path sssom:mapping_justification ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( semapv:LexicalMatching semapv:ManualMappingCuration ) ] ;
+    sh:property [
+        sh:path sssom:confidence ; sh:datatype xsd:double ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
+    sh:property [ sh:path sssom:mapping_tool ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dcterms:created ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path prov:wasGeneratedBy ; sh:class prov:Activity ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:maxCount 1 ; sh:node aksh:ResponseShape ;
+        sh:message "Every identifier link must derive from a cached API response." ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The mapping record must describe a SKOS triple that is asserted in the graph." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/2002/07/owl#annotatedSource> ?s ;
+                    <http://www.w3.org/2002/07/owl#annotatedProperty> ?p ;
+                    <http://www.w3.org/2002/07/owl#annotatedTarget> ?o .
+              FILTER NOT EXISTS { ?s ?p ?o }
+            }""" ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The generating activity must be associated with an external service agent." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this prov:wasGeneratedBy ?act .
+              FILTER NOT EXISTS {
+                ?act prov:wasAssociatedWith ?agent .
+                FILTER (?agent != <https://w3id.org/anemone-kg/agent/anemone-kg>)
+              }
+            }""" ] .
+
+aksh:ResponseShape
+    a sh:NodeShape ;
+    sh:class prov:Entity ;
+    sh:property [ sh:path dcterms:source ; sh:datatype xsd:anyURI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# -------------------------------------------------------------- locations
+
+aksh:LocationShape
+    a sh:NodeShape ;
+    sh:targetClass dcterms:Location ;
+    sh:node aksh:DerivedFromPaper ;
+    sh:property [ sh:path dwc:locality ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dwc:countryCode ; sh:hasValue "VE" ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:decimalLatitude ; sh:datatype xsd:decimal ; sh:maxCount 1 ;
+        sh:minInclusive -90 ; sh:maxInclusive 90 ] ;
+    sh:property [
+        sh:path dwc:decimalLongitude ; sh:datatype xsd:decimal ; sh:maxCount 1 ;
+        sh:minInclusive -180 ; sh:maxInclusive 180 ] ;
+    sh:property [ sh:path dcterms:isPartOf ; sh:class dcterms:Location ] ;
+    sh:property [ sh:path akv:sampledInStudy ; sh:datatype xsd:boolean ; sh:maxCount 1 ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Latitude and longitude must be given together." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              { $this dwc:decimalLatitude ?x FILTER NOT EXISTS { $this dwc:decimalLongitude ?y } }
+              UNION
+              { $this dwc:decimalLongitude ?y FILTER NOT EXISTS { $this dwc:decimalLatitude ?x } }
+            }""" ] .
+
+# --------------------------------------------------------------- habitats
+
+aksh:HabitatStatementShape
+    a sh:NodeShape ;
+    sh:targetClass akv:HabitatStatement ;
+    sh:node aksh:DerivedFromPaper ;
+    sh:property [ sh:path dcterms:subject ; sh:class dwc:Taxon ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:habitat ; sh:datatype rdf:langString ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( dwciri:habitat dwciri:substrate ) ] ;
+        sh:nodeKind sh:IRI ; sh:pattern "^http://purl\\.obolibrary\\.org/obo/ENVO_[0-9]{8}$" ;
+        sh:message "Habitat and substrate values must be ENVO classes." ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( dwciri:habitat dwciri:substrate ) ] ;
+        sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "Habitat statement with no ENVO term." ] .
