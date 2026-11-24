@@ -24,6 +24,7 @@ dev = [
     "ruff>=0.7",
     "responses>=0.25",
     "pytest-cov>=7.1.0",
+    "pyoxigraph==0.5.13",
 ]
 
 [project.scripts]

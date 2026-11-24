@@ -1,0 +1,29 @@
+# Local SPARQL endpoint for the knowledge graph.
+#   docker compose up -d oxigraph          # Oxigraph on http://localhost:7878 (UI + /query)
+#   docker compose run --rm load           # PUT data/processed/anemone_kg.ttl into it
+#   docker compose run --rm check          # run queries/*.rq there, compare with rdflib
+services:
+  oxigraph:
+    # Official image (org.opencontainers.image.source = github.com/oxigraph/oxigraph),
+    # same version as the pyoxigraph engine used in the tests.
+    image: oxigraph/oxigraph:0.5.13
+    command: ["serve", "--location", "/data", "--bind", "0.0.0.0:7878"]
+    ports:
+      - "7878:7878"
+    volumes:
+      - oxigraph-data:/data
+
+  load:
+    build: .
+    command: ["endpoint", "load", "--url", "http://oxigraph:7878"]
+    depends_on: [oxigraph]
+    profiles: [tools]
+
+  check:
+    build: .
+    command: ["endpoint", "check", "--url", "http://oxigraph:7878"]
+    depends_on: [oxigraph]
+    profiles: [tools]
+
+volumes:
+  oxigraph-data:
