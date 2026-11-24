@@ -1,0 +1,41 @@
+# title: New records by locality
+# question: Which sampled localities produced new records for Venezuela, and how many taxa did the authors document at each?
+# why: Answers "localities with most new records" with context: new records are rare (code N), so the survey effort per locality is shown alongside.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+# Note: written with two subqueries; rdflib's GROUP_CONCAT fails on unbound values
+# inside OPTIONAL, which the SPARQL 1.1 spec says should be skipped.
+SELECT ?locality ?taxaDocumented (COALESCE(?n, 0) AS ?newRecords) ?newRecordTaxa
+WHERE {
+  {
+    SELECT ?area (COUNT(DISTINCT ?taxon) AS ?taxaDocumented)
+    WHERE {
+      ?area akv:sampledInStudy true .
+      ?rec dcterms:type akv:ThisSurvey ;
+           dsw:atEvent/dsw:locatedAt ?area ;
+           dwciri:toTaxon ?taxon .
+    }
+    GROUP BY ?area
+  }
+  OPTIONAL {
+    SELECT ?area (COUNT(DISTINCT ?rec) AS ?n)
+           (GROUP_CONCAT(DISTINCT ?name; separator=", ") AS ?newRecordTaxa)
+    WHERE {
+      ?rec akv:isNewCountryRecord true ;
+           dsw:atEvent/dsw:locatedAt ?area ;
+           dwciri:toTaxon/dwc:scientificName ?name .
+    }
+    GROUP BY ?area
+  }
+  ?area dwc:locality ?locality .
+}
+ORDER BY DESC(?newRecords) DESC(?taxaDocumented)

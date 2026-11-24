@@ -1,0 +1,25 @@
+# title: Taxa and specimens by habitat (ENVO)
+# question: For each ENVO habitat, zone or substrate in the species accounts, how many taxa live there and how many specimens of those taxa were examined?
+# why: Habitat is described per species in the paper, so specimens are counted through their taxon - the query says so rather than pretending habitat was recorded per specimen.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov:    <http://www.w3.org/ns/prov#>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sssom:   <https://w3id.org/sssom/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?envoTerm ?envo ?kind (COUNT(DISTINCT ?taxon) AS ?taxa) (COUNT(DISTINCT ?specimen) AS ?specimens)
+WHERE {
+  { ?h dwciri:habitat ?envo . BIND("habitat or zone" AS ?kind) }
+  UNION
+  { ?h dwciri:substrate ?envo . BIND("substrate" AS ?kind) }
+  ?h dcterms:subject ?taxon .
+  ?envo rdfs:label ?envoTerm .
+  OPTIONAL { ?specimen dwciri:toTaxon ?taxon ; dwc:basisOfRecord "PreservedSpecimen" . }
+}
+GROUP BY ?envoTerm ?envo ?kind
+ORDER BY DESC(?taxa) ?envoTerm
