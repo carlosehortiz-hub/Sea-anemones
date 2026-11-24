@@ -23,6 +23,7 @@ dev = [
     "pytest>=8.3",
     "ruff>=0.7",
     "responses>=0.25",
+    "pytest-cov>=7.1.0",
 ]
 
 [project.scripts]
@@ -48,3 +49,13 @@ allowed-confusables = ["’", "”", "–"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+markers = ["e2e: runs the whole pipeline end to end (about 30 s)"]
+filterwarnings = ["ignore:ConjunctiveGraph is deprecated:DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["anemone_kg"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 90
