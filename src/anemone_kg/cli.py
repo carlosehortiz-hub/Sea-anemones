@@ -11,16 +11,30 @@ from anemone_kg.logs import setup_logging
 
 log = logging.getLogger("anemone_kg")
 
-# Stages are registered in pipeline order. Each takes the Config and returns None.
+# Pipeline order is declared here, once. It must not depend on module import
+# order: ruff sorts imports alphabetically, which once ran 'canonicalize'
+# before 'extract' (see tests/test_cli.py).
+PIPELINE = ("extract", "canonicalize", "resolve", "validate")
+
 STAGES: dict[str, Callable[[Config], None]] = {}
 
 
 def stage(name: str) -> Callable[[Callable[[Config], None]], Callable[[Config], None]]:
+    if name not in PIPELINE:
+        raise ValueError(f"stage {name!r} is not declared in PIPELINE")
+
     def register(fn: Callable[[Config], None]) -> Callable[[Config], None]:
         STAGES[name] = fn
         return fn
 
     return register
+
+
+def ordered_stages() -> list[str]:
+    missing = [s for s in PIPELINE if s not in STAGES]
+    if missing:
+        raise RuntimeError(f"declared stages without an implementation: {missing}")
+    return list(PIPELINE)
 
 
 def _load_stages() -> None:
@@ -34,7 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--log-level", default="INFO")
     sub = p.add_subparsers(dest="command", required=True)
     run = sub.add_parser("run", help="run one pipeline stage, or 'all'")
-    run.add_argument("stage", choices=[*STAGES, "all"])
+    run.add_argument("stage", choices=[*PIPELINE, "all"])
     return p
 
 
@@ -42,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     setup_logging(args.log_level)
     cfg = load_config(args.config)
-    todo = list(STAGES) if args.stage == "all" else [args.stage]
+    todo = ordered_stages() if args.stage == "all" else [args.stage]
     for name in todo:
         log.info("=== stage: %s ===", name)
         STAGES[name](cfg)
