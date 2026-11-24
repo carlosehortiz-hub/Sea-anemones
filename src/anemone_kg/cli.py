@@ -52,6 +52,9 @@ def build_parser() -> argparse.ArgumentParser:
     ep = sub.add_parser("endpoint", help="load the graph into a SPARQL endpoint / check queries")
     ep.add_argument("action", choices=["load", "check"])
     ep.add_argument("--url", default="http://localhost:7878")
+    pa = sub.add_parser("paper", help="build the manuscript (HTML and PDF)")
+    pa.add_argument("--no-pdf", action="store_true")
+    pa.add_argument("--submission", action="store_true", help="journal submission files (DOCX)")
     return p
 
 
@@ -63,6 +66,13 @@ def main(argv: list[str] | None = None) -> int:
 
         extra = ["--config", args.config] if args.config else []
         return endpoint.main([args.action, "--url", args.url, *extra])
+    if args.command == "paper":
+        from anemone_kg.paper import build as paper
+
+        extra = ["--config", args.config] if args.config else []
+        flags = ["--no-pdf"] if args.no_pdf else []
+        flags += ["--submission"] if args.submission else []
+        return paper.main(flags + extra)
     cfg = load_config(args.config)
     todo = ordered_stages() if args.stage == "all" else [args.stage]
     for name in todo:

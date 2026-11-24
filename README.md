@@ -315,6 +315,21 @@ tests/               unit, data, graph, SHACL, query and end-to-end tests
   follow Darwin Core.
 - Re-run resolution periodically and report taxonomic changes as a diff of the mappings.
 
+## Manuscript
+
+[`paper/manuscript.pdf`](paper/manuscript.pdf) describes the pipeline and its findings as a
+research article in the format of *Marine Biodiversity Records*. It is a manuscript, not peer
+reviewed. It is generated, not typed: `make paper` reads every number from the pipeline
+reports, draws the figures from the same data, and checks each DOI reference against its
+Crossref record (cached in `paper/references/crossref/`). `tests/test_paper.py` fails if a
+cited work is missing from the reference list, if a template placeholder survives, or if
+figures and tables are numbered out of order.
+
+`make paper-submission` writes the same text as a submission package to `paper/submission/`:
+`manuscript.docx` (one column, double spacing, line and page numbers, title page, figure legends
+after the references, tables at the end), a PDF preview of it, and each figure as a separate
+PDF and 600 dpi PNG. It needs pandoc, LibreOffice and Node with Playwright.
+
 ## Licence and citation
 
 The code is MIT. The derived data and graph are CC0, as are the article's data. The article

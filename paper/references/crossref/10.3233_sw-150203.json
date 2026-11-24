@@ -1,0 +1,54 @@
+{
+ "DOI": "10.3233/sw-150203",
+ "author": [
+  {
+   "affiliation": [
+    {
+     "name": "Department of Biological Sciences, PMB 351634, Vanderbilt University, Nashville, TN 37146, USA"
+    }
+   ],
+   "family": "Baskauf",
+   "given": "Steven J.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Arnold Arboretum of Harvard University, 1300 Centre St., Boston 02131, USA. E-mail: cw@camwebb.info"
+    }
+   ],
+   "family": "Webb",
+   "given": "Campbell O.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Semantic Web"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2016,
+    10,
+    11
+   ]
+  ]
+ },
+ "page": "629-643",
+ "title": [
+  "Darwin-SW: Darwin Core-based terms for expressing biodiversity data as RDF"
+ ],
+ "volume": "7"
+}

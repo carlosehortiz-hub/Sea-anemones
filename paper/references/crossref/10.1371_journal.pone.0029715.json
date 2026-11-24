@@ -1,0 +1,118 @@
+{
+ "DOI": "10.1371/journal.pone.0029715",
+ "author": [
+  {
+   "affiliation": [],
+   "family": "Wieczorek",
+   "given": "John",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [],
+   "family": "Bloom",
+   "given": "David",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Guralnick",
+   "given": "Robert",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Blum",
+   "given": "Stan",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Döring",
+   "given": "Markus",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Giovanni",
+   "given": "Renato",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Robertson",
+   "given": "Tim",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Vieglais",
+   "given": "David",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "PLoS ONE"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2012,
+    1,
+    6
+   ]
+  ]
+ },
+ "page": "e29715",
+ "title": [
+  "Darwin Core: An Evolving Community-Developed Biodiversity Data Standard"
+ ],
+ "volume": "7"
+}

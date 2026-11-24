@@ -1,0 +1,93 @@
+{
+ "DOI": "10.1186/2041-1480-4-43",
+ "author": [
+  {
+   "affiliation": [],
+   "family": "Buttigieg",
+   "given": "Pier Luigi",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [],
+   "family": "Morrison",
+   "given": "Norman",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Smith",
+   "given": "Barry",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Mungall",
+   "given": "Christopher J",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Lewis",
+   "given": "Suzanna E",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "name": "the ENVO Consortium",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Journal of Biomedical Semantics"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2013,
+    12,
+    11
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "The environment ontology: contextualising biological and biomedical entities"
+ ],
+ "volume": "4"
+}
