@@ -8,6 +8,10 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      # Identifier resolution is served from the committed cache (data/cache/);
+      # CI never calls WoRMS/GBIF/NCBI/OLS, so outputs are reproducible.
+      ANEMONE_KG_OFFLINE: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
@@ -21,3 +25,7 @@ jobs:
           uv run ruff format --check .
       - name: Test
         run: uv run pytest
+      - name: Pipeline (offline)
+        run: uv run python -m anemone_kg run all
+      - name: Outputs are up to date with the code
+        run: git diff --exit-code -- data/ reports/
