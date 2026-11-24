@@ -26,6 +26,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "pyoxigraph" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "responses" },
@@ -48,6 +49,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "pyoxigraph", specifier = "==0.5.13" },
     { name = "pytest", specifier = ">=8.3" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "responses", specifier = ">=0.25" },

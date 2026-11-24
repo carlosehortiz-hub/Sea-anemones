@@ -49,12 +49,20 @@ def build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="command", required=True)
     run = sub.add_parser("run", help="run one pipeline stage, or 'all'")
     run.add_argument("stage", choices=[*PIPELINE, "all"])
+    ep = sub.add_parser("endpoint", help="load the graph into a SPARQL endpoint / check queries")
+    ep.add_argument("action", choices=["load", "check"])
+    ep.add_argument("--url", default="http://localhost:7878")
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     setup_logging(args.log_level)
+    if args.command == "endpoint":
+        from anemone_kg import endpoint
+
+        extra = ["--config", args.config] if args.config else []
+        return endpoint.main([args.action, "--url", args.url, *extra])
     cfg = load_config(args.config)
     todo = ordered_stages() if args.stage == "all" else [args.stage]
     for name in todo:
