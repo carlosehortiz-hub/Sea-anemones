@@ -1,0 +1,26 @@
+{
+ "body": {
+  "canonicalName": "Pachycerianthus curacaoensis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Cerianthidae",
+  "familyKey": 8173,
+  "genus": "Pachycerianthus",
+  "genusKey": 2258599,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Pachycerianthus curacaoensis Den Hartog, 1977",
+  "species": "Pachycerianthus curacaoensis",
+  "speciesKey": 2258601,
+  "status": "ACCEPTED",
+  "usageKey": 2258601
+ },
+ "retrieved_at": "2026-11-24T12:46:48+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Pachycerianthus+curacaoensis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

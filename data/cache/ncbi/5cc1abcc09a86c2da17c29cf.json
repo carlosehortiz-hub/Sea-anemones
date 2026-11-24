@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "2608291": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "mat anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/10/14 00:00",
+    "rank": "species",
+    "scientificname": "Umimayanthus parasiticus",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 2608291,
+    "uid": "2608291"
+   },
+   "uids": [
+    "2608291"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:30+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=2608291&retmode=json"
+}

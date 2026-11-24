@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Anthopleura pallida",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Anthopleura",
+  "genusKey": 2256813,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Anthopleura pallida Duchassaing & Michelotti, 1864",
+  "species": "Anthopleura pallida",
+  "speciesKey": 9626338,
+  "status": "ACCEPTED",
+  "usageKey": 9626338
+ },
+ "retrieved_at": "2026-11-24T12:45:38+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Anthopleura+pallida&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283343,
+   "authority": "Corrêa, 1973",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Anthopleura cascaia Corrêa, 1973. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283343 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Anthopleura",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283343",
+   "match_type": "exact",
+   "modified": "2026-03-14T18:08:23.430Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100696,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Anthopleura cascaia",
+   "status": "nomen nudum",
+   "taxonRankID": 220,
+   "unacceptreason": "name unavailable according to ICZN Article 11.1: no description published",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283343",
+   "valid_AphiaID": 1873438,
+   "valid_authority": "Durán-Fuentes, González-Muñoz, Vassallo-Avalos, Delgado, Daly, Stampar, 2025",
+   "valid_name": "Anthopleura correae"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:31+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Anthopleura cascaia?like=false&marine_only=false"
+}

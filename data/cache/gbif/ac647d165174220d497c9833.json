@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Rhodactis osculifera",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Discosomidae",
+  "familyKey": 4283414,
+  "genus": "Rhodactis",
+  "genusKey": 2257197,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Corallimorpharia",
+  "orderKey": 1242,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Rhodactis osculifera (Le Sueur, 1817)",
+  "species": "Rhodactis osculifera",
+  "speciesKey": 6472327,
+  "status": "ACCEPTED",
+  "usageKey": 6472327
+ },
+ "retrieved_at": "2026-11-24T12:46:56+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Rhodactis+osculifera&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

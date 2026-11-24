@@ -1,0 +1,26 @@
+{
+ "body": {
+  "canonicalName": "Phymactis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 99,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Phymactis",
+  "genusKey": 2256765,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "GENUS",
+  "scientificName": "Phymactis Milne Edwards, 1857",
+  "status": "ACCEPTED",
+  "usageKey": 2256765
+ },
+ "retrieved_at": "2026-11-24T12:45:58+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Phymactis&phylum=Cnidaria&rank=GENUS&verbose=false"
+}

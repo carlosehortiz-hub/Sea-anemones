@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 288456,
+   "authority": "Duchassaing & Michelotti, 1860",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Palythoa caribaeorum Duchassaing & Michelotti, 1860. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=288456 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Sphenopidae",
+   "genus": "Palythoa",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:288456",
+   "match_type": "exact",
+   "modified": "2019-03-05T22:41:21.403Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 288456,
+   "parentNameUsageID": 205785,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Palythoa caribaeorum",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=288456",
+   "valid_AphiaID": 288456,
+   "valid_authority": "Duchassaing & Michelotti, 1860",
+   "valid_name": "Palythoa caribaeorum"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:57+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Palythoa caribaeorum?like=false&marine_only=false"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283872,
+   "authority": "(Duchassaing de Fonbressin & Michelotti, 1860)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Parazoanthus swiftii (Duchassaing de Fonbressin & Michelotti, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283872 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Parazoanthidae",
+   "genus": "Parazoanthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283872",
+   "match_type": "exact",
+   "modified": "2015-05-15T06:02:39.570Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 1564736,
+   "parentNameUsageID": 100793,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Parazoanthus swiftii",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283872",
+   "valid_AphiaID": 283872,
+   "valid_authority": "(Duchassaing de Fonbressin & Michelotti, 1860)",
+   "valid_name": "Parazoanthus swiftii"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:35+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Parazoanthus swiftii?like=false&marine_only=false"
+}

@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1048506": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "tube anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2011/07/22 00:00",
+    "rank": "species",
+    "scientificname": "Ceriantheomorphe brasiliensis",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1048506,
+    "uid": "1048506"
+   },
+   "uids": [
+    "1048506"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:47+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1048506&retmode=json"
+}

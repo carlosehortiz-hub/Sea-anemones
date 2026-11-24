@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Stichodactyla helianthus",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Stichodactylidae",
+  "familyKey": 9220,
+  "genus": "Stichodactyla",
+  "genusKey": 2256991,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Stichodactyla helianthus (Ellis, 1768)",
+  "species": "Stichodactyla helianthus",
+  "speciesKey": 2256994,
+  "status": "ACCEPTED",
+  "usageKey": 2256994
+ },
+ "retrieved_at": "2026-11-24T12:46:08+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Stichodactyla+helianthus&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

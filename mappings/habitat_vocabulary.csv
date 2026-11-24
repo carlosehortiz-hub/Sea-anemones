@@ -1,0 +1,14 @@
+phrase_regex,envo_label,kind,note
+seagrass(?:es)? meadows?,sea grass bed,habitat,"'seagrass(es) meadows' in the accounts; ENVO label is 'sea grass bed'"
+coral reefs?,coral reef,habitat,includes 'coral reef lagoons' (ENVO has no reef-lagoon class)
+reef[’']s crest,marine coral reef crest,zone,
+fore-reef,marine coral reef fore reef,zone,
+back-reef,marine coral reef back reef,zone,
+mangroves? (?:zones|roots),mangrove swamp,habitat,'mangrove roots' read as the mangrove habitat the roots belong to
+"\brock(?:s|y patches)?\b",rock,substrate,attachment substrate; includes 'coral rocks'
+"\bsand\b|sandy (?:patches|shores|substratum)",sand,substrate,
+crevices?,crevice,habitat,
+"\bcaves?\b",cave,habitat,
+"\bmud\b",mud,substrate,
+intertidal zones?,intertidal zone,zone,both occurrences are negated in the text ('but not intertidal zones')
+coral rubble,coral rubble,substrate,no ENVO class expected; kept so the gap is reported

@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Telmatactis cricoides",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Andvakiidae",
+  "familyKey": 4339241,
+  "genus": "Telmatactis",
+  "genusKey": 2255786,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Telmatactis cricoides (Duchassaing, 1850)",
+  "species": "Telmatactis cricoides",
+  "speciesKey": 2255846,
+  "status": "ACCEPTED",
+  "usageKey": 2255846
+ },
+ "retrieved_at": "2026-11-24T12:46:35+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Telmatactis+cricoides&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

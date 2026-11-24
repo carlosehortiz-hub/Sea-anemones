@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 289830,
+   "authority": "(Watzl, 1922)",
+   "citation": "Daly, M.; Fautin, D.G. (2013). World List of Corallimorpharia. Discosoma carlgreni (Watzl, 1922). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=289830 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Discosomidae",
+   "genus": "Discosoma",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:289830",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Corallimorpharia",
+   "originalNameUsageID": 854297,
+   "parentNameUsageID": 267394,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Discosoma carlgreni",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=289830",
+   "valid_AphiaID": 289830,
+   "valid_authority": "(Watzl, 1922)",
+   "valid_name": "Discosoma carlgreni"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:52+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Discosoma carlgreni?like=false&marine_only=false"
+}

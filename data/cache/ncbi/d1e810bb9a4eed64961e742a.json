@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "328570": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "mat anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2006/01/11 00:00",
+    "rank": "species",
+    "scientificname": "Parazoanthus swiftii",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 328570,
+    "uid": "328570"
+   },
+   "uids": [
+    "328570"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:36+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=328570&retmode=json"
+}

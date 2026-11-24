@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Anemonia sargassensis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Anemonia",
+  "genusKey": 2256131,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Anemonia sargassensis Hargitt, 1908",
+  "species": "Anemonia sargassensis",
+  "speciesKey": 2256642,
+  "status": "ACCEPTED",
+  "usageKey": 2256642
+ },
+ "retrieved_at": "2026-11-24T12:45:30+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Anemonia+sargassensis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

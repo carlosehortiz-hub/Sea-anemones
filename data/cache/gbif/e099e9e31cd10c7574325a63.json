@@ -1,0 +1,26 @@
+{
+ "body": {
+  "canonicalName": "Isarachnanthus nocturnus",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Arachnactidae",
+  "familyKey": 8161,
+  "genus": "Isarachnanthus",
+  "genusKey": 2258487,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Isarachnanthus nocturnus (Hartog, 1977)",
+  "species": "Isarachnanthus nocturnus",
+  "speciesKey": 6472068,
+  "status": "ACCEPTED",
+  "usageKey": 6472068
+ },
+ "retrieved_at": "2026-11-24T12:46:40+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Isarachnanthus+nocturnus&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

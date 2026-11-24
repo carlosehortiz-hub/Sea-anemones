@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "6123": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/04/23 00:00",
+    "rank": "species",
+    "scientificname": "Stichodactyla helianthus",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 6123,
+    "uid": "6123"
+   },
+   "uids": [
+    "6123"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:09+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=6123&retmode=json"
+}

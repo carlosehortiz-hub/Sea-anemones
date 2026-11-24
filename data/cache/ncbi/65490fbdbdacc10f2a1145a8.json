@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "31165": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/03/26 00:00",
+    "rank": "species",
+    "scientificname": "Bunodosoma caissarum",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 31165,
+    "uid": "31165"
+   },
+   "uids": [
+    "31165"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:45:42+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=31165&retmode=json"
+}

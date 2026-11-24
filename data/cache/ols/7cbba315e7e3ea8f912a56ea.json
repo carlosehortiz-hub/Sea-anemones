@@ -1,0 +1,26 @@
+{
+ "body": {
+  "facet_counts": {
+   "facet_fields": {
+    "isDefiningOntology": [],
+    "isObsolete": [],
+    "ontologyId": [],
+    "ontologyIri": [],
+    "ontologyPreferredPrefix": [],
+    "type": []
+   }
+  },
+  "response": {
+   "docs": [],
+   "numFound": 0,
+   "start": 0
+  },
+  "responseHeader": {
+   "QTime": 0,
+   "status": 0
+  }
+ },
+ "retrieved_at": "2026-11-24T12:48:03+00:00",
+ "status_code": 200,
+ "url": "https://www.ebi.ac.uk/ols4/api/search?exact=true&fieldList=iri%2Clabel%2Cobo_id&ontology=envo&q=coral+rubble&queryFields=label&rows=5"
+}

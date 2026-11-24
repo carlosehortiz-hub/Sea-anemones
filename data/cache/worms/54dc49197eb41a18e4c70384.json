@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283419,
+   "authority": "(Weinland, 1860)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Condylactis gigantea (Weinland, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283419 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Condylactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283419",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741503,
+   "parentNameUsageID": 100701,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Condylactis gigantea",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283419",
+   "valid_AphiaID": 283419,
+   "valid_authority": "(Weinland, 1860)",
+   "valid_name": "Condylactis gigantea"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:53+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Condylactis gigantea?like=false&marine_only=false"
+}

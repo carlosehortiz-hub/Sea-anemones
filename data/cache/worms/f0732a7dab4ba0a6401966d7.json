@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 456765,
+   "authority": "(Le Sueur, 1817)",
+   "citation": "Daly, M.; Fautin, D.G. (2013). World List of Corallimorpharia. Rhodactis osculifera (Le Sueur, 1817). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=456765 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Discosomidae",
+   "genus": "Rhodactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:456765",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Corallimorpharia",
+   "originalNameUsageID": 855067,
+   "parentNameUsageID": 267806,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Rhodactis osculifera",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=456765",
+   "valid_AphiaID": 456765,
+   "valid_authority": "(Le Sueur, 1817)",
+   "valid_name": "Rhodactis osculifera"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:55+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Rhodactis osculifera?like=false&marine_only=false"
+}

@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "338257": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2023/03/28 00:00",
+    "rank": "species",
+    "scientificname": "Lebrunia neglecta",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 338257,
+    "uid": "338257"
+   },
+   "uids": [
+    "338257"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:25+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=338257&retmode=json"
+}

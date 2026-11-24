@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 581448,
+   "authority": "West, 1979",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Epizoanthus cutressi West, 1979. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=581448 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Epizoanthidae",
+   "genus": "Epizoanthus",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:581448",
+   "match_type": "exact",
+   "modified": "2015-08-07T05:03:10.207Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 581448,
+   "parentNameUsageID": 100790,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Epizoanthus cutressi",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=581448",
+   "valid_AphiaID": 853594,
+   "valid_authority": "(West, 1979)",
+   "valid_name": "Bergia cutressi"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:20+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Epizoanthus cutressi?like=false&marine_only=false"
+}

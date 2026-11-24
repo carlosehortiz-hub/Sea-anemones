@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "518606": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "mat anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/09/30 00:00",
+    "rank": "species",
+    "scientificname": "Bergia cutressi",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 518606,
+    "uid": "518606"
+   },
+   "uids": [
+    "518606"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:47:23+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=518606&retmode=json"
+}

@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 290216,
+   "authority": "(McMurrich, 1889)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Isoaulactinia stelloides (McMurrich, 1889). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=290216 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Isoaulactinia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:290216",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741627,
+   "parentNameUsageID": 267518,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Isoaulactinia stelloides",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=290216",
+   "valid_AphiaID": 290216,
+   "valid_authority": "(McMurrich, 1889)",
+   "valid_name": "Isoaulactinia stelloides"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:56+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Isoaulactinia stelloides?like=false&marine_only=false"
+}

@@ -30,3 +30,12 @@ resolution:
   request_timeout_s: 30
   min_interval_s: 0.5          # politeness delay between live API calls
   offline: false               # true -> cache only; a miss is reported, never guessed
+                               # (env ANEMONE_KG_OFFLINE=1 overrides; CI uses it)
+  # Prefix map for external identifiers (written to the SSSOM header and used in RDF).
+  curie_map:
+    worms: "urn:lsid:marinespecies.org:taxname:"
+    gbif: "https://www.gbif.org/species/"
+    NCBITaxon: "http://purl.obolibrary.org/obo/NCBITaxon_"
+    ENVO: "http://purl.obolibrary.org/obo/ENVO_"
+    skos: "http://www.w3.org/2004/02/skos/core#"
+    semapv: "https://w3id.org/semapv/vocab/"

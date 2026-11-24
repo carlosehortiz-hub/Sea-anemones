@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Palythoa caribbea",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 98,
+  "family": "Sphenopidae",
+  "familyKey": 3365,
+  "genus": "Palythoa",
+  "genusKey": 2257986,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "FUZZY",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Palythoa caribbea",
+  "species": "Palythoa caribbea",
+  "speciesKey": 5711857,
+  "status": "ACCEPTED",
+  "usageKey": 5711857
+ },
+ "retrieved_at": "2026-11-24T12:47:52+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Palythoa+caribbeorum&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}
