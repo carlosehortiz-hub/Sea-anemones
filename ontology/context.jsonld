@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "ak": "https://w3id.org/anemone-kg/",
+    "akv": "https://w3id.org/anemone-kg/vocab/",
+    "dwc": "http://rs.tdwg.org/dwc/terms/",
+    "dwciri": "http://rs.tdwg.org/dwc/iri/",
+    "dsw": "http://purl.org/dsw/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sssom": "https://w3id.org/sssom/",
+    "semapv": "https://w3id.org/semapv/vocab/",
+    "ENVO": "http://purl.obolibrary.org/obo/ENVO_",
+    "NCBITaxon": "http://purl.obolibrary.org/obo/NCBITaxon_",
+    "gbif": "https://www.gbif.org/species/",
+    "worms": "urn:lsid:marinespecies.org:taxname:",
+    "@version": 1.1
+  }
+}

@@ -22,8 +22,9 @@ paths:
   queries: queries
 
 namespace:
-  base: "https://w3id.org/anemone-kg/"   # placeholder PID base; not yet registered
+  base: "https://w3id.org/anemone-kg/"         # instances; placeholder, not registered
   prefix: "ak"
+  vocab: "https://w3id.org/anemone-kg/vocab/"  # project terms (ontology/akv.ttl)
 
 resolution:
   user_agent: "anemone-kg/0.1 (research pipeline)"
