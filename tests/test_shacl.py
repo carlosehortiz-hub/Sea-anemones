@@ -156,3 +156,21 @@ def test_each_injected_fault_is_a_violation(broken, broken_results, fault):
     node = str(faults[fault])
     hits = [r for r in broken_results[1] if r["severity"] == "Violation" and r["focus"] == node]
     assert hits, f"{fault}: no violation reported on {node}"
+
+
+def test_report_markdown_is_deterministic(cfg, monkeypatch, tmp_path):
+    """Bug: blank-node property paths were printed with random ids, so CI's
+    stale-output check failed on reports/shacl_report.md."""
+    from anemone_kg.stages import shacl as stage
+
+    monkeypatch.setattr(
+        type(cfg),
+        "path",
+        lambda self, key: tmp_path if key == "reports" else self.root / self.raw["paths"][key],
+    )
+    stage.shacl(cfg)
+    first = (tmp_path / "shacl_report.md").read_text()
+    stage.shacl(cfg)
+    assert first == (tmp_path / "shacl_report.md").read_text()
+    assert r"dwciri:habitat \| dwciri:substrate" in first  # escaped for the table
+    assert "<n" not in first  # no blank-node ids
