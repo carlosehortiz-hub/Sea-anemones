@@ -1,6 +1,6 @@
-national_park,event_date,evidence
-Morrocoy,2012-11,"Methods p.25: 'Sampling was conducted in November 2012 in four marine reserves'"
-Mochima,2012-11,"Methods p.25, same sentence"
-Los Roques,2012-11,"Methods p.25, same sentence"
-La Restinga,2012-11,"Methods p.25, same sentence"
-Isla Cubagua,,"Methods p.25: 'Additionally, we include observations and collections made in Isla de Cubagua' - no date given"
+national_park,event_date,evidence,reviewed
+Morrocoy,2012-11,Methods p.25: 'Sampling was conducted in November 2012 in four marine reserves',author 2026-11-24
+Mochima,2012-11,"Methods p.25, same sentence",author 2026-11-24
+Los Roques,2012-11,"Methods p.25, same sentence",author 2026-11-24
+La Restinga,2012-11,"Methods p.25, same sentence",author 2026-11-24
+Isla Cubagua,,"Methods p.25: 'Additionally, we include observations and collections made in Isla de Cubagua' - no date given",author 2026-11-24
