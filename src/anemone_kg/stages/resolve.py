@@ -35,8 +35,13 @@ def make_http(cfg: Config) -> CachedHttp:
 
 def load_overrides(path: Path) -> dict[tuple[str, str], Override]:
     df = pd.read_csv(path, dtype=str, keep_default_na=False)
+    bad = set(df.decision) - {"accept", "reject"}
+    if bad:
+        raise ValueError(f"{path.name}: unknown decisions {bad}")
     return {
-        (r.subject_label, r.object_id): Override(r.service, r.object_id, r.decision, r.evidence)
+        (r.subject_label, r.object_id): Override(
+            r.service, r.object_id, r.decision, r.evidence, r.predicate_id or None
+        )
         for r in df.itertuples()
     }
 
@@ -62,6 +67,9 @@ def resolve_all(cfg: Config, http: CachedHttp) -> dict[str, pd.DataFrame]:
             resolver.gbif(t.taxon_id, t.scientific_name, t.taxon_rank),
             resolver.ncbi(t.taxon_id, t.scientific_name, t.taxon_rank, accepted_name),
         ]
+    unused = set(resolver.overrides) - resolver.used_overrides
+    if unused:
+        raise ValueError(f"override rows never applied (stale or mistyped): {sorted(unused)}")
     mappings = pd.DataFrame([r.as_row() for r in rows])
     mappings.insert(0, "mapping_id", [f"{r.subject_id}:{r.object_source}" for r in rows])
     worms = pd.DataFrame([asdict(r) for r in resolver.worms_records.values()])
