@@ -79,3 +79,32 @@ jobs:
             reports/
             data/processed/anemone_kg.ttl
             data/processed/anemone_kg.jsonld
+
+  docker-endpoint:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the pipeline image
+        run: docker build -t anemone-kg .
+      - name: Run the whole pipeline inside the image
+        run: docker run --name akrun anemone-kg
+      - name: Container outputs are identical to the committed ones
+        run: |
+          for d in data/interim data/processed reports queries/results; do
+            rm -rf "$d" && docker cp "akrun:/app/$d" "$d"
+          done
+          git diff --exit-code -- data/ reports/ queries/results/
+      - name: Start Oxigraph (official image, same version as pyoxigraph)
+        run: |
+          docker network create aknet
+          docker run -d --name oxigraph --network aknet oxigraph/oxigraph:0.5.13 \
+            serve --location /data --bind 0.0.0.0:7878
+          for i in $(seq 1 30); do
+            docker run --rm --network aknet curlimages/curl:8.11.1 -sf http://oxigraph:7878/ >/dev/null && break
+            sleep 1
+          done
+      - name: Load the graph through the Graph Store Protocol
+        run: docker run --rm --network aknet anemone-kg endpoint load --url http://oxigraph:7878
+      - name: Every SPARQL query gives the same rows on Oxigraph as on rdflib
+        run: docker run --rm --network aknet anemone-kg endpoint check --url http://oxigraph:7878

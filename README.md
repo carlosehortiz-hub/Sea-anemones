@@ -240,6 +240,32 @@ network call is made; this is what CI does.
 directory and requires every output to be byte-identical to the committed one. CI does the same
 and fails on stale outputs.
 
+## SPARQL endpoint and Docker
+
+The graph can also be served from a SPARQL endpoint,
+[Oxigraph](https://github.com/oxigraph/oxigraph), through the standard W3C protocols:
+
+```bash
+make endpoint-up      # Oxigraph 0.5.13 on http://localhost:7878 (web UI + /query)
+make endpoint-load    # PUT anemone_kg.ttl via the SPARQL 1.1 Graph Store Protocol
+make endpoint-check   # POST every queries/*.rq via the SPARQL 1.1 Protocol, compare with rdflib
+```
+
+```bash
+curl -s -X POST http://localhost:7878/query \
+  -H 'Content-Type: application/sparql-query' -H 'Accept: text/csv' \
+  --data-binary @queries/q03_accepted_name_differs.rq
+```
+
+**The queries are portable SPARQL.** All 8 return the same rows on Oxigraph as on rdflib.
+This is tested in-process with `pyoxigraph`, the same engine, in `tests/test_endpoint.py`,
+and against the real server in the `docker-endpoint` CI job.
+
+The `Dockerfile` packages the whole pipeline. `docker run --rm anemone-kg` rebuilds every
+output offline, and CI checks that the container's outputs are byte-identical to the committed
+ones. `docker-compose.yml` runs Oxigraph together with the `load` and `check` steps
+(`docker compose run --rm load`).
+
 ## Repository layout
 
 ```
@@ -284,7 +310,7 @@ tests/               unit, data, graph, SHACL, query and end-to-end tests
 - **LLM-assisted mapping with validation.** Let a model propose phrase → ENVO and
   name → identifier candidates. Accept them only through the same curated-override file and
   the same Pandera and SHACL gates, so the model can propose but never assert.
-- Register the w3id namespace, and serve the graph through a SPARQL endpoint (Oxigraph).
+- Register the w3id namespace, so the `ak:` IRIs dereference to the Oxigraph endpoint.
 - Publish the occurrences as a Darwin Core Archive to GBIF, since the canonical tables already
   follow Darwin Core.
 - Re-run resolution periodically and report taxonomic changes as a diff of the mappings.
