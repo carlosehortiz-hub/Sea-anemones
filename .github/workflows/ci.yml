@@ -5,27 +5,77 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Identifier resolution is served from the committed cache (data/cache/):
+  # CI never calls WoRMS, GBIF, NCBI or OLS, so every run is reproducible.
+  ANEMONE_KG_OFFLINE: "1"
+  UV_PYTHON: "3.12"
+
 jobs:
-  check:
+  lint:
     runs-on: ubuntu-latest
-    env:
-      # Identifier resolution is served from the committed cache (data/cache/);
-      # CI never calls WoRMS/GBIF/NCBI/OLS, so outputs are reproducible.
-      ANEMONE_KG_OFFLINE: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      - name: ruff check
+        run: uv run ruff check .
+      - name: ruff format
+        run: uv run ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      - name: pytest (unit, data, graph, SHACL, queries, end-to-end) with coverage
+        run: uv run pytest --cov --cov-report=term --cov-report=xml
+      - uses: actions/upload-artifact@v4
         with:
-          python-version: "3.12"
-      - name: Install
-        run: uv sync --locked
-      - name: Lint
+          name: coverage
+          path: coverage.xml
+
+  pipeline:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      # One step per stage, so a failure names the stage that broke.
+      - name: 1 extract (PDF -> verbatim tables)
+        run: uv run python -m anemone_kg run extract
+      - name: 2 canonicalize (LinkML / Darwin Core tables)
+        run: uv run python -m anemone_kg run canonicalize
+      - name: 3 resolve (WoRMS, GBIF, NCBI, ENVO - from cache)
+        run: uv run python -m anemone_kg run resolve
+      - name: 4 validate (Pandera + cross-table rules; fails on critical)
+        run: uv run python -m anemone_kg run validate
+      - name: 5 build (RDF -> Turtle, JSON-LD)
+        run: uv run python -m anemone_kg run build
+      - name: 6 shacl (pySHACL; fails on violations)
+        run: uv run python -m anemone_kg run shacl
+      - name: 7 query (SPARQL + DuckDB SQL)
+        run: uv run python -m anemone_kg run query
+      - name: Committed outputs are up to date with the code
+        run: git diff --exit-code -- data/ reports/ queries/results/
+      - name: Summary
+        if: always()
         run: |
-          uv run ruff check .
-          uv run ruff format --check .
-      - name: Test
-        run: uv run pytest
-      - name: Pipeline (offline)
-        run: uv run python -m anemone_kg run all
-      - name: Outputs are up to date with the code
-        run: git diff --exit-code -- data/ reports/
+          {
+            echo "## Data quality"; sed -n '1,12p' reports/data_quality.md
+            echo; echo "## SHACL"; sed -n '1,12p' reports/shacl_report.md
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-and-graph
+          path: |
+            reports/
+            data/processed/anemone_kg.ttl
+            data/processed/anemone_kg.jsonld
