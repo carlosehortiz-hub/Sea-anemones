@@ -4,14 +4,14 @@
 
 | service | accepted | candidate | ambiguous | unresolved |
 |---|---:|---:|---:|---:|
-| worms | 57 | 3 | 1 | 0 |
-| gbif | 56 | 4 | 0 | 1 |
+| worms | 61 | 0 | 0 | 0 |
+| gbif | 59 | 0 | 0 | 2 |
 | ncbi | 44 | 0 | 0 | 17 |
 
 ## Match types (accepted rows)
 
-- worms: exact_accepted 44, exact_synonym 13
-- gbif: exact_accepted 46, exact_synonym 10
+- worms: exact_accepted 45, exact_synonym 13, fuzzy 3
+- gbif: exact_accepted 46, exact_synonym 10, fuzzy 3
 - ncbi: exact_accepted 34, via_accepted_name 10
 
 ## Names whose WoRMS accepted name differs from the paper (13)
@@ -32,18 +32,10 @@
 | Haliplanella luciae | worms:100873 (unaccepted) | Diadumene lineata (worms:395099) |
 | Bunodosoma cavernata | worms:283411 (unaccepted) | Bunodosoma cavernatum (worms:592952) |
 
-## Needs attention (26 rows) - nothing here was guessed
+## Needs attention (19 rows) - nothing here was guessed
 
 | name | service | status | candidate | confidence | comment |
 |---|---|---|---|---:|---|
-| Ceriantheomorphe brasiliensis | worms | ambiguous |  |  | homonyms in Cnidaria: AphiaID 1665452, 289584; no authority printed in the paper |
-| Bunodosoma cavernata | gbif | candidate | Bunodosoma cavernatum (Bosc, 1802) (gbif:6472214) | 0.99 | GBIF fuzzy match; needs curation |
-| Ceriantheopsis americanus | worms | candidate | Ceriantheopsis americana (Agassiz in Verrill, 1864) (worms:158282) | 0.50 | WoRMS match_type near_2; needs curation |
-| Ceriantheopsis americanus | gbif | candidate | Ceriantheopsis americana (Agassiz, 1864) (gbif:2258556) | 0.98 | GBIF fuzzy match; needs curation |
-| Homostichantus duerdenii | worms | candidate | Homostichanthus duerdeni Carlgren, 1900 (worms:418868) | 0.80 | WoRMS match_type phonetic; needs curation |
-| Homostichantus duerdenii | gbif | candidate | Homostichanthus duerdeni Carlgren, 1900 (gbif:2257002) | 0.91 | GBIF fuzzy match; needs curation |
-| Palythoa caribbeorum | worms | candidate | Palythoa caribaeorum Duchassaing & Michelotti, 1860 (worms:288456) | 0.80 | WoRMS match_type phonetic; needs curation |
-| Palythoa caribbeorum | gbif | candidate | Palythoa caribbea (gbif:5711857) | 0.98 | GBIF fuzzy match; needs curation |
 | Actinoporus elegans | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Anemonia sargassensis | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Anthopleura cascaia | gbif | unresolved |  |  | GBIF matchType HIGHERRANK, rank GENUS |
@@ -56,6 +48,7 @@
 | Isoaulactinia stelloides | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Monactis vestita | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Pachycerianthus curacaoensis | ncbi | unresolved |  |  | not in NCBI Taxonomy |
+| Palythoa caribbeorum | gbif | unresolved |  | 0.98 | rejected by curator: GBIF fuzzy match is Palythoa caribbea, a different species. |
 | Palythoa caribbeorum | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Palythoa mammillosa | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Phyllactis praetexta | ncbi | unresolved |  |  | not in NCBI Taxonomy |

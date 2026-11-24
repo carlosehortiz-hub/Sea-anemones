@@ -108,6 +108,10 @@ class WormsRecord:
     mapping_date: str
     cache_key: str
 
+    @property
+    def label(self) -> str:
+        return f"{self.scientific_name} {self.scientific_name_authorship or ''}".strip()
+
     @classmethod
     def from_json(cls, r: dict, resp: CachedResponse) -> WormsRecord:
         return cls(
@@ -134,6 +138,15 @@ class Override:
     object_id: str
     decision: str  # accept | reject
     evidence: str
+    predicate_id: str | None = None  # skos:exactMatch for orthographic variants
+
+
+@dataclass(frozen=True)
+class Curation:
+    status: str
+    predicate_id: str | None
+    justification: str
+    comment: str
 
 
 @dataclass
@@ -141,6 +154,21 @@ class TaxonResolver:
     http: CachedHttp
     overrides: dict[tuple[str, str], Override] = field(default_factory=dict)
     worms_records: dict[int, WormsRecord] = field(default_factory=dict)
+    used_overrides: set[tuple[str, str]] = field(default_factory=set)
+
+    def _curate(self, subject: str, object_id: str, default_comment: str) -> Curation:
+        """Apply a curator decision, if any, to a candidate or ambiguous match."""
+        ov = self.overrides.get((subject, object_id))
+        if ov is None:
+            return Curation("candidate", None, LEXICAL, default_comment)
+        self.used_overrides.add((subject, object_id))
+        if ov.decision == "accept":
+            return Curation(
+                "accepted", ov.predicate_id or CLOSE, CURATED, f"accepted by curator: {ov.evidence}"
+            )
+        if ov.decision == "reject":
+            return Curation("unresolved", None, CURATED, f"rejected by curator: {ov.evidence}")
+        raise ValueError(f"unknown override decision {ov.decision!r} for {subject}")
 
     # ---------------------------------------------------------------- WoRMS
     def _worms_get(self, path: str, params: dict | None = None) -> CachedResponse:
@@ -187,6 +215,27 @@ class TaxonResolver:
                 note = f"; homonym resolved by authority in paper ({authority}); not {others}"
                 hits = same
         if len(hits) > 1:
+            picked = [h for h in hits if (name, f"worms:{h['AphiaID']}") in self.overrides]
+            if len(picked) == 1:
+                cur = self._curate(name, f"worms:{picked[0]['AphiaID']}", "")
+                wr = self._store(picked[0], resp)
+                self._ensure_valid(wr)
+                return TaxonMapping(
+                    **base,
+                    predicate_id=cur.predicate_id,
+                    object_id=f"worms:{wr.aphia_id}" if cur.status == "accepted" else None,
+                    object_label=wr.label,
+                    match_type="exact_accepted"
+                    if wr.taxonomic_status == "accepted"
+                    else "exact_other",
+                    status=cur.status,
+                    confidence=1.0 if cur.status == "accepted" else None,
+                    mapping_justification=cur.justification,
+                    mapping_tool=resp.url,
+                    mapping_date=resp.retrieved_at,
+                    cache_key=resp.cache_key,
+                    comment=f"homonyms {', '.join(str(h['AphiaID']) for h in hits)}; {cur.comment}",
+                )
             ids = ", ".join(str(h["AphiaID"]) for h in hits)
             return TaxonMapping(
                 **base,
@@ -217,7 +266,7 @@ class TaxonResolver:
                 **base,
                 predicate_id=EXACT,
                 object_id=f"worms:{wr.aphia_id}",
-                object_label=f"{wr.scientific_name} {wr.scientific_name_authorship or ''}".strip(),
+                object_label=wr.label,
                 match_type=mt,
                 status="accepted",
                 confidence=1.0,
@@ -259,19 +308,19 @@ class TaxonResolver:
         c = cands[0]
         wr = self._store(c, resp)
         object_id = f"worms:{wr.aphia_id}"
-        ov = self.overrides.get((base["subject_label"], object_id))
-        status, just = "candidate", LEXICAL
-        comment = f"WoRMS match_type {c.get('match_type')}; needs curation"
-        if ov and ov.decision == "accept":
-            status, just, comment = "accepted", CURATED, f"accepted by curator: {ov.evidence}"
+        cur = self._curate(
+            base["subject_label"],
+            object_id,
+            f"WoRMS match_type {c.get('match_type')}; needs curation",
+        )
+        status, just, comment = cur.status, cur.justification, cur.comment
+        if status == "accepted":
             self._ensure_valid(wr)
-        elif ov and ov.decision == "reject":
-            status, comment = "unresolved", f"candidate rejected by curator: {ov.evidence}"
         return TaxonMapping(
             **base,
-            predicate_id=CLOSE if status == "accepted" else None,
+            predicate_id=cur.predicate_id,
             object_id=object_id if status != "unresolved" else None,
-            object_label=f"{wr.scientific_name} {wr.scientific_name_authorship or ''}".strip(),
+            object_label=wr.label,
             match_type="fuzzy",
             status=status,
             confidence=WORMS_FUZZY_CONFIDENCE.get(c.get("match_type"), 0.1),
@@ -315,16 +364,17 @@ class TaxonResolver:
                 **common,
             )
         if mt == "FUZZY" and ok_rank:
+            cur = self._curate(name, f"gbif:{key}", "GBIF fuzzy match; needs curation")
             return TaxonMapping(
                 **base,
-                predicate_id=None,
-                object_id=f"gbif:{key}",
+                predicate_id=cur.predicate_id,
+                object_id=f"gbif:{key}" if cur.status != "unresolved" else None,
                 object_label=b.get("scientificName"),
                 match_type="fuzzy",
-                status="candidate",
+                status=cur.status,
                 confidence=b.get("confidence", 0) / 100,
-                mapping_justification=LEXICAL,
-                comment="GBIF fuzzy match; needs curation",
+                mapping_justification=cur.justification,
+                comment=cur.comment,
                 **common,
             )
         return self._unresolved(

@@ -278,3 +278,49 @@ def test_habitat_label_mismatch_is_unresolved(http):
     )
     t = EnvoLookup(http).term("coral rubble")
     assert t.status == "unresolved" and t.envo_id is None
+
+
+@responses.activate
+def test_curator_picks_one_homonym_with_explicit_predicate(http):
+    responses.get(by_name("C b"), json=[rec(1, "C b", "A, 1919"), rec(2, "C b", "B, 1931")])
+    ov = {
+        ("C b", "worms:1"): Override(
+            "worms", "worms:1", "accept", "both point to 1", "skos:exactMatch"
+        )
+    }
+    r = TaxonResolver(http, ov)
+    m = r.worms("t", "C b", "species", None)
+    assert (m.status, m.object_id, m.predicate_id) == ("accepted", "worms:1", "skos:exactMatch")
+    assert r.used_overrides == {("C b", "worms:1")}
+
+
+@responses.activate
+def test_curator_rejects_gbif_fuzzy(http):
+    responses.get(
+        GBIF,
+        json={
+            "matchType": "FUZZY",
+            "usageKey": 9,
+            "rank": "SPECIES",
+            "phylum": "Cnidaria",
+            "scientificName": "Palythoa caribbea",
+            "confidence": 98,
+        },
+    )
+    ov = {("Palythoa caribbeorum", "gbif:9"): Override("gbif", "gbif:9", "reject", "other sp.")}
+    m = TaxonResolver(http, ov).gbif("t", "Palythoa caribbeorum", "species")
+    assert m.status == "unresolved" and m.object_id is None and m.predicate_id is None
+
+
+def test_stale_override_fails_the_stage(tmp_path, monkeypatch):
+    """An override that no longer matches anything must not be silently ignored."""
+    from anemone_kg.config import load_config
+    from anemone_kg.stages import resolve as stage
+
+    cfg = load_config()
+    real = stage.load_overrides(cfg.path("mappings") / "resolution_overrides.csv")
+    real[("Nonexistent name", "worms:1")] = Override("worms", "worms:1", "accept", "x")
+    monkeypatch.setattr(stage, "load_overrides", lambda _: real)
+    monkeypatch.setenv("ANEMONE_KG_OFFLINE", "1")
+    with pytest.raises(ValueError, match="never applied"):
+        stage.resolve_all(cfg, stage.make_http(cfg))

@@ -80,7 +80,26 @@ def test_known_resolutions(built):
     assert 1264073 in w.index  # the accepted name exists as its own record
     zs = m.loc[("Zoanthus sociatus", "worms")]
     assert zs.object_id == "worms:288843" and "authority" in zs.comment
-    assert m.loc[("Ceriantheomorphe brasiliensis", "worms")].status == "ambiguous"
+    cb = m.loc[("Ceriantheomorphe brasiliensis", "worms")]
+    assert (cb.status, cb.object_id) == ("accepted", "worms:1665452")
+    assert cb.mapping_justification == "semapv:ManualMappingCuration"
+
+
+def test_curated_rows_follow_overrides(built):
+    cfg = load_config()
+    ov = pd.read_csv(cfg.path("mappings") / "resolution_overrides.csv")
+    m = built[0]["taxon_mapping"].set_index(["subject_label", "object_source"])
+    for r in ov.itertuples():
+        row = m.loc[(r.subject_label, r.service)]
+        assert row.mapping_justification == "semapv:ManualMappingCuration"
+        if r.decision == "accept":
+            assert (row.status, row.object_id, row.predicate_id) == (
+                "accepted",
+                r.object_id,
+                r.predicate_id,
+            )
+        else:
+            assert row.status == "unresolved" and pd.isna(row.object_id)
 
 
 def test_habitat_annotations(built):
