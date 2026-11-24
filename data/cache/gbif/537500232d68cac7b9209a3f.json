@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Diadumene lineata",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Diadumenidae",
+  "familyKey": 5129,
+  "genus": "Diadumene",
+  "genusKey": 2255865,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Diadumene lineata (Verrill, 1869)",
+  "species": "Diadumene lineata",
+  "speciesKey": 4283395,
+  "status": "ACCEPTED",
+  "usageKey": 4283395
+ },
+ "retrieved_at": "2026-11-24T12:46:28+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Diadumene+lineata&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

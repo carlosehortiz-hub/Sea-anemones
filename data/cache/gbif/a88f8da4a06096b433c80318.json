@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Palythoa mammillosa",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Sphenopidae",
+  "familyKey": 3365,
+  "genus": "Palythoa",
+  "genusKey": 2257986,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Palythoa mammillosa (Ellis & Solander, 1786)",
+  "species": "Palythoa mammillosa",
+  "speciesKey": 5184377,
+  "status": "ACCEPTED",
+  "usageKey": 5184377
+ },
+ "retrieved_at": "2026-11-24T12:47:00+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Palythoa+mammillosa&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

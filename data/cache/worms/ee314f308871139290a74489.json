@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 288485,
+   "authority": "(Duerden, 1898)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Palythoa variabilis (Duerden, 1898). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=288485 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Sphenopidae",
+   "genus": "Palythoa",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:288485",
+   "match_type": "exact",
+   "modified": "2011-12-22T10:27:48.820Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 205785,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Palythoa variabilis",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=288485",
+   "valid_AphiaID": 288485,
+   "valid_authority": "(Duerden, 1898)",
+   "valid_name": "Palythoa variabilis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:04+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Palythoa variabilis?like=false&marine_only=false"
+}

@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Phyllactis praetexta",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Phyllactis",
+  "genusKey": 2256702,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Phyllactis praetexta (Couthouy, 1846)",
+  "species": "Phyllactis praetexta",
+  "speciesKey": 5184128,
+  "status": "ACCEPTED",
+  "usageKey": 5184128
+ },
+ "retrieved_at": "2026-11-24T12:47:57+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Phyllactis+praetexta&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

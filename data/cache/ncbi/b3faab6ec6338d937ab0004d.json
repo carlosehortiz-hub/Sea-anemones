@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "2751898": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "coral anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/07/10 00:00",
+    "rank": "species",
+    "scientificname": "Rhodactis osculifera",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 2751898,
+    "uid": "2751898"
+   },
+   "uids": [
+    "2751898"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:57+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=2751898&retmode=json"
+}

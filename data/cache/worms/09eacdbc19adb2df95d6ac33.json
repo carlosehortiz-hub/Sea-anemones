@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 288461,
+   "authority": "(Verrill, 1900)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Palythoa grandis (Verrill, 1900). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=288461 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Sphenopidae",
+   "genus": "Palythoa",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:288461",
+   "match_type": "exact",
+   "modified": "2011-12-22T10:27:48.820Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": 418870,
+   "parentNameUsageID": 205785,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Palythoa grandis",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=288461",
+   "valid_AphiaID": 288461,
+   "valid_authority": "(Verrill, 1900)",
+   "valid_name": "Palythoa grandis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:02+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Palythoa grandis?like=false&marine_only=false"
+}

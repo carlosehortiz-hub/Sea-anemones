@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Scolanthus curacaoensis",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Edwardsiidae",
+  "familyKey": 5130,
+  "genus": "Scolanthus",
+  "genusKey": 2255962,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Scolanthus curacaoensis (Pax, 1924)",
+  "species": "Scolanthus curacaoensis",
+  "speciesKey": 4339268,
+  "status": "ACCEPTED",
+  "usageKey": 4339268
+ },
+ "retrieved_at": "2026-11-24T12:45:23+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Scolanthus+curacaoensis&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

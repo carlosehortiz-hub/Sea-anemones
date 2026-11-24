@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 395099,
+   "authority": "(Verrill, 1869)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Diadumene lineata (Verrill, 1869). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=395099 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Diadumenidae",
+   "genus": "Diadumene",
+   "isBrackish": 1,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:395099",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 854808,
+   "parentNameUsageID": 100728,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Diadumene lineata",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=395099",
+   "valid_AphiaID": 395099,
+   "valid_authority": "(Verrill, 1869)",
+   "valid_name": "Diadumene lineata"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:28+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Diadumene lineata?like=false&marine_only=false"
+}

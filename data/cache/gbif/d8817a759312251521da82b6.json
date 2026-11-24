@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Bartholomea werneri",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Aiptasiidae",
+  "familyKey": 9204,
+  "genus": "Bartholomea",
+  "genusKey": 2257247,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Bartholomea werneri Watzl, 1922",
+  "species": "Bartholomea werneri",
+  "speciesKey": 2257250,
+  "status": "ACCEPTED",
+  "usageKey": 2257250
+ },
+ "retrieved_at": "2026-11-24T12:46:13+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Bartholomea+werneri&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

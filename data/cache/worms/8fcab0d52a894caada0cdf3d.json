@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 290278,
+   "authority": "(Duchassaing & Michelotti, 1860)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Lebrunia danae (Duchassaing & Michelotti, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=290278 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Aliciidae",
+   "genus": "Lebrunia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:290278",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741465,
+   "parentNameUsageID": 267545,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Lebrunia danae",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=290278",
+   "valid_AphiaID": 742298,
+   "valid_authority": "Duchassaing & Michelotti, 1860",
+   "valid_name": "Lebrunia neglecta"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:43+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Lebrunia danae?like=false&marine_only=false"
+}

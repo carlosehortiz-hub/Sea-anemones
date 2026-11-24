@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 290753,
+   "authority": "(Couthouy in Dana, 1846)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Phyllactis praetexta (Couthouy in Dana, 1846). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=290753 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Phyllactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:290753",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741645,
+   "parentNameUsageID": 267737,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Phyllactis praetexta",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=290753",
+   "valid_AphiaID": 290753,
+   "valid_authority": "(Couthouy in Dana, 1846)",
+   "valid_name": "Phyllactis praetexta"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:56+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Phyllactis praetexta?like=false&marine_only=false"
+}

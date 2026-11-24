@@ -1,0 +1,54 @@
+{
+ "body": {
+  "facet_counts": {
+   "facet_fields": {
+    "isDefiningOntology": [
+     "true",
+     "1"
+    ],
+    "isObsolete": [
+     "false",
+     "1"
+    ],
+    "ontologyId": [
+     "micro",
+     "1",
+     "gold",
+     "1",
+     "envo",
+     "1"
+    ],
+    "ontologyIri": [
+     "http://purl.obolibrary.org/obo/envo.owl",
+     "1"
+    ],
+    "ontologyPreferredPrefix": [
+     "ENVO",
+     "1"
+    ],
+    "type": [
+     "class",
+     "1"
+    ]
+   }
+  },
+  "response": {
+   "docs": [
+    {
+     "iri": "http://purl.obolibrary.org/obo/ENVO_00000316",
+     "label": "intertidal zone",
+     "obo_id": "ENVO:00000316"
+    }
+   ],
+   "numFound": 1,
+   "start": 0
+  },
+  "responseHeader": {
+   "QTime": 0,
+   "status": 0
+  }
+ },
+ "retrieved_at": "2026-11-24T12:48:07+00:00",
+ "status_code": 200,
+ "url": "https://www.ebi.ac.uk/ols4/api/search?exact=true&fieldList=iri%2Clabel%2Cobo_id&ontology=envo&q=intertidal+zone&queryFields=label&rows=5"
+}

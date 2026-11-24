@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Lebrunia neglecta",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Aliciidae",
+  "familyKey": 5690,
+  "genus": "Lebrunia",
+  "genusKey": 2257200,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Lebrunia neglecta Duchassaing & Michelotti, 1860",
+  "species": "Lebrunia neglecta",
+  "speciesKey": 5184207,
+  "status": "ACCEPTED",
+  "usageKey": 5184207
+ },
+ "retrieved_at": "2026-11-24T12:46:24+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Lebrunia+neglecta&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "1143180": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "sea anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2026/01/05 00:00",
+    "rank": "species",
+    "scientificname": "Telmatactis cricoides",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 1143180,
+    "uid": "1143180"
+   },
+   "uids": [
+    "1143180"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-24T12:46:36+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=1143180&retmode=json"
+}

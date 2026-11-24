@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283871,
+   "authority": "(Duchassaing de Fonbressin & Michelotti, 1860)",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Parazoanthus parasiticus (Duchassaing de Fonbressin & Michelotti, 1860). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283871 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Parazoanthidae",
+   "genus": "Parazoanthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283871",
+   "match_type": "exact",
+   "modified": "2015-05-15T06:02:39.570Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100793,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Parazoanthus parasiticus",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": "Moved to genus Umimayanthus",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283871",
+   "valid_AphiaID": 847839,
+   "valid_authority": "(Duchassaing de Fonbressin & Michelotti, 1860)",
+   "valid_name": "Umimayanthus parasiticus"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:27+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Parazoanthus parasiticus?like=false&marine_only=false"
+}

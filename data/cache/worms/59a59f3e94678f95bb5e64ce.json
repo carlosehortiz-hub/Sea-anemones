@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 101056,
+   "authority": "Andres, 1884",
+   "citation": "Reimer, J.D.; Sinniger, F. (2026). World List of Zoantharia. Isaurus duchassaingi Andres, 1884. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=101056 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Zoanthidae",
+   "genus": "Isaurus",
+   "isBrackish": 0,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:101056",
+   "match_type": "exact",
+   "modified": "2011-10-04T13:36:00.560Z",
+   "order": "Zoantharia",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100794,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Isaurus duchassaingi",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": "synonym",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=101056",
+   "valid_AphiaID": 101058,
+   "valid_authority": "Gray, 1828",
+   "valid_name": "Isaurus tuberculatus"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:47:07+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Isaurus duchassaingi?like=false&marine_only=false"
+}

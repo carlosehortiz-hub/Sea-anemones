@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283557,
+   "authority": "(Pax, 1924)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Scolanthus curacaoensis (Pax, 1924). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283557 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Edwardsiidae",
+   "genus": "Scolanthus",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283557",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 856008,
+   "parentNameUsageID": 100736,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Scolanthus curacaoensis",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283557",
+   "valid_AphiaID": 283557,
+   "valid_authority": "(Pax, 1924)",
+   "valid_name": "Scolanthus curacaoensis"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:22+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Scolanthus curacaoensis?like=false&marine_only=false"
+}

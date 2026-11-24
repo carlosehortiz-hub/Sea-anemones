@@ -1,0 +1,26 @@
+{
+ "body": {
+  "canonicalName": "Anthopleura",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 97,
+  "family": "Actiniidae",
+  "familyKey": 5688,
+  "genus": "Anthopleura",
+  "genusKey": 2256813,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "HIGHERRANK",
+  "order": "Actiniaria",
+  "orderKey": 705,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "GENUS",
+  "scientificName": "Anthopleura Duchassaing de Fonbressin & Michelotti, 1860",
+  "status": "ACCEPTED",
+  "usageKey": 2256813
+ },
+ "retrieved_at": "2026-11-24T12:45:33+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Anthopleura+cascaia&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

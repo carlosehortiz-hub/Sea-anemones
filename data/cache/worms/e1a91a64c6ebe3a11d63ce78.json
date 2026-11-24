@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 290277,
+   "authority": "(Wilson, 1890)",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Lebrunia coralligens (Wilson, 1890). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=290277 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Aliciidae",
+   "genus": "Lebrunia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:290277",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741464,
+   "parentNameUsageID": 267545,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Lebrunia coralligens",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=290277",
+   "valid_AphiaID": 290277,
+   "valid_authority": "(Wilson, 1890)",
+   "valid_name": "Lebrunia coralligens"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:46:21+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Lebrunia coralligens?like=false&marine_only=false"
+}

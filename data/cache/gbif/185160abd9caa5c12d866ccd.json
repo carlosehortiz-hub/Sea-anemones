@@ -1,0 +1,28 @@
+{
+ "body": {
+  "canonicalName": "Parazoanthus swiftii",
+  "class": "Anthozoa",
+  "classKey": 206,
+  "confidence": 100,
+  "family": "Parazoanthidae",
+  "familyKey": 5182,
+  "genus": "Parazoanthus",
+  "genusKey": 2258027,
+  "kingdom": "Animalia",
+  "kingdomKey": 1,
+  "matchType": "EXACT",
+  "order": "Zoantharia",
+  "orderKey": 1433,
+  "phylum": "Cnidaria",
+  "phylumKey": 43,
+  "rank": "SPECIES",
+  "scientificName": "Parazoanthus swiftii (Duchassaing de Fonbressin & Michelotti, 1860)",
+  "species": "Parazoanthus swiftii",
+  "speciesKey": 2258028,
+  "status": "ACCEPTED",
+  "usageKey": 2258028
+ },
+ "retrieved_at": "2026-11-24T12:47:35+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/species/match?name=Parazoanthus+swiftii&phylum=Cnidaria&rank=SPECIES&verbose=false"
+}

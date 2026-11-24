@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 283359,
+   "authority": "Duchassaing & Michelotti, 1860",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Anthopleura krebsi Duchassaing & Michelotti, 1860. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=283359 on 2026-11-24",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Anthopleura",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:283359",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 283359,
+   "parentNameUsageID": 100696,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Anthopleura krebsi",
+   "status": "accepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=283359",
+   "valid_AphiaID": 283359,
+   "valid_authority": "Duchassaing & Michelotti, 1860",
+   "valid_name": "Anthopleura krebsi"
+  }
+ ],
+ "retrieved_at": "2026-11-24T12:45:35+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaRecordsByName/Anthopleura krebsi?like=false&marine_only=false"
+}
