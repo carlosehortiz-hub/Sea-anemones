@@ -14,7 +14,7 @@ log = logging.getLogger("anemone_kg")
 # Pipeline order is declared here, once. It must not depend on module import
 # order: ruff sorts imports alphabetically, which once ran 'canonicalize'
 # before 'extract' (see tests/test_cli.py).
-PIPELINE = ("extract", "canonicalize", "resolve", "validate")
+PIPELINE = ("extract", "canonicalize", "resolve", "validate", "build")
 
 STAGES: dict[str, Callable[[Config], None]] = {}
 
