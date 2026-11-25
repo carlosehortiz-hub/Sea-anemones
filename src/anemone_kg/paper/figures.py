@@ -21,6 +21,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 BLUE, ORANGE, AQUA, GREY = "#2a78d6", "#eb6834", "#1baf7a", "#b9b8b3"
+VIOLET, YELLOW = "#7a4fc4", "#f0c53c"
 INK, INK2, RULE = "#0b0b0b", "#52514e", "#d9d8d3"
 FONT = "Liberation Sans"
 
@@ -305,32 +306,32 @@ def resolution_svg(f: dict, path: Path) -> None:
 
 
 def evidence_svg(f: dict, path: Path) -> None:
-    """Fig. 4: Table 1 cells by best evidence tier, per region and by sampling (query q07)."""
+    """Fig. 4: Table 1 cells by best evidence tier, per region and visited or not (query q07)."""
     rows = pd.DataFrame(f["q"]["q07"])
+    from anemone_kg.dq.crosstable import BEST_TIER as L
+
     kinds = [
-        (
-            "specimen listed, identification confirmed",
-            "specimen, identification confirmed",
-            BLUE,
-            "white",
-        ),
-        ("survey/museum code, no confirmed specimen", "code, no confirmed specimen", AQUA, INK),
-        ("literature only: other or several sources", "literature only: other", GREY, INK),
-        ("literature only: Agudo (1987) alone", "literature only: Agudo (1987)", ORANGE, INK),
+        (L["specimen"], "specimen from the area", BLUE, "white"),
+        (L["survey_code"], "survey code, species vouchered elsewhere", AQUA, INK),
+        (L["museum_code"], "museum code, no matching specimen", VIOLET, "white"),
+        (L["survey_never"], "survey code, species never vouchered", YELLOW, INK),
+        (L["lit_other"], "literature only: other", GREY, INK),
+        (L["lit_agudo"], "literature only: Agudo (1987)", ORANGE, INK),
     ]
     regions = ["West Coast", "Central Coast", "East Coast", "Oceanic Islands"]
     n_areas = sum(f["cells"]["areas_per_region"].values())
     groups = [(r, rows[rows.region == r]) for r in regions] + [
-        ("sampled areas", rows[rows.sampled]),
-        ("areas not sampled", rows[~rows.sampled]),
+        ("visited", rows[rows.visited]),
+        ("not visited", rows[~rows.visited]),
     ]
     labels = [f"{r} ({f['cells']['areas_per_region'][r]} areas)" for r in regions] + [
-        f"sampled ({f['cells']['sampled_areas']} areas)",
-        f"not sampled ({n_areas - f['cells']['sampled_areas']} areas)",
+        f"visited ({f['cells']['visited_areas']} areas)",
+        f"not visited ({n_areas - f['cells']['visited_areas']} areas)",
     ]
     ypos = [7, 6, 5, 4, 2, 1]
-    fig, ax = plt.subplots(figsize=(6.6, 2.9), dpi=150)
+    fig, ax = plt.subplots(figsize=(6.6, 3.2), dpi=150)
     left = [0] * len(groups)
+    last_small: dict[float, float] = {}
     for key, label, col, tcol in kinds:
         vals = [int(g.loc[g.best == key, "cells"].sum()) for _, g in groups]
         ax.barh(
@@ -356,15 +357,10 @@ def evidence_svg(f: dict, path: Path) -> None:
                     fontweight="bold",
                 )
             elif v:
-                ax.text(
-                    lft + v / 2,
-                    yi + 0.42,
-                    str(v),
-                    ha="center",
-                    va="bottom",
-                    fontsize=6.4,
-                    color=INK2,
-                )
+                # small segments: label above the bar, pushed right so neighbours never overlap
+                x = max(lft + v / 2, last_small.get(yi, -99) + 4.5)
+                last_small[yi] = x
+                ax.text(x, yi + 0.42, str(v), ha="center", va="bottom", fontsize=6.4, color=INK2)
         left = [a + b for a, b in zip(left, vals, strict=True)]
     for yi, (_, g), total in zip(ypos, groups, left, strict=True):
         lo = int(g.loc[g.best.str.startswith("literature"), "cells"].sum())
@@ -385,11 +381,11 @@ def evidence_svg(f: dict, path: Path) -> None:
     ax.set_xlabel("taxon \u00d7 area cells of Table 1 (printed name \u00d7 area), by best evidence")
     _finish(ax)
     ax.legend(
-        ncol=2,
+        ncol=3,
         frameon=False,
         loc="lower center",
         bbox_to_anchor=(0.42, 1.0),
-        fontsize=7.0,
+        fontsize=6.6,
         handlelength=1.2,
     )
     fig.tight_layout()

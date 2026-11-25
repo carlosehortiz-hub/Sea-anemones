@@ -191,3 +191,52 @@ def test_parser_raises_on_an_unexpected_column_count(cfg, monkeypatch):
     tables = _patched_words(monkeypatch, drop_header)
     with pytest.raises(tables.ExtractionError):
         tables.extract_fixed_table(cfg.pdf, tables.TABLE3)
+
+
+def test_rendered_check_finds_a_code_erased_from_the_page(cfg, monkeypatch):
+    """Round 3 (R4): the earlier controls edited the extraction CSV, which tests the
+    comparison, not the instrument. Here the raster itself loses the faintest code."""
+    from anemone_kg.audit import rendered
+
+    cells = rendered.cell_rectangles(cfg.pdf)
+    occ = pd.read_csv(cfg.path("interim") / "table1_cells.csv")
+    first = occ.iloc[0]
+    box = cells[
+        (cells.row_no == first.row_no) & (cells.locality_col_id == first.locality_col_id)
+    ].iloc[0]
+    scale = rendered.DPI / 72
+    real = rendered._render
+
+    def erased(pdf, page, out):
+        img = real(pdf, page, out).copy()
+        if page == box.page:
+            img[
+                int(box.y0 * scale) : int(box.y1 * scale), int(box.x0 * scale) : int(box.x1 * scale)
+            ] = 255
+        return img
+
+    monkeypatch.setattr(rendered, "_render", erased)
+    r = rendered.ink_census(cfg.pdf, cfg.path("interim"))
+    assert [(d["row_no"], d["locality_col_id"]) for d in r["code_without_ink"]] == [
+        (first.row_no, first.locality_col_id)
+    ]
+
+
+def test_table3_agrees_with_the_articles_prose(cfg):
+    """An independent reading of the current-identification column: the Results list each
+    species with its number of MOHBR specimens. The sentence says 22 species but lists 19."""
+    from anemone_kg.audit.prose import compare
+
+    r = compare(cfg.pdf, cfg.path("interim"))
+    assert not r["disagreements"]
+    assert (r["species_listed"], r["specimens_listed"], r["species_claimed"]) == (19, 81, 22)
+
+
+def test_prose_check_detects_a_changed_identification(cfg, tmp_path):
+    from anemone_kg.audit.prose import compare
+
+    t3 = pd.read_csv(cfg.path("interim") / "table3_mohbr_specimens.csv", dtype=str)
+    i = t3.index[t3.current_identification == "Anemonia sargassensis"][0]
+    t3.loc[i, "current_identification"] = "Condylactis gigantea"
+    t3.to_csv(tmp_path / "table3_mohbr_specimens.csv", index=False)
+    assert len(compare(cfg.pdf, tmp_path)["disagreements"]) == 2

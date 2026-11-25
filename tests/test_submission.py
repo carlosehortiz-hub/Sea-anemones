@@ -73,7 +73,7 @@ def test_docx_layout(docx_xml):
     assert PAGEBREAK not in doc
     assert doc.count("<w:pageBreakBefore/>") >= 7  # abstract, body, figures, tables, 4 tables
     assert 'w:line="480"' in styles and "<w:color " not in styles
-    assert doc.count("<w:tbl>") == 5
+    assert doc.count("<w:tbl>") == 6
 
 
 def test_docx_is_reproducible(cfg, sub, docx_xml, tmp_path):

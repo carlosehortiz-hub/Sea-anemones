@@ -3,22 +3,26 @@ count,derivation
 27 localities vs 26 areas,"27 Table 1 columns = 26 areas + 1 'Open Sea Distribution' column, which is not a place (its 2 assertions have no location)"
 45 sites,41 linked to a Table 1 area + 4 unlinked (W05): 3 links the curator rejected + 1 site with no Table 1 column
 33 crosswalk rows,5 Table 2 park names + 24 Table 3 localities linked + 1 with no column + 3 rejected
-71 curated rows,4 name variants + 8 state names + 33 locality crosswalk + 5 event dates + 8 resolution overrides + 13 habitat vocabulary
+87 curated rows,4 name variants + 8 state names + 33 locality crosswalk + 5 event dates + 8 resolution overrides + 13 habitat vocabulary + 16 taxonomic acts
 128 taxon nodes,61 name usages + 67 WoRMS records (59 matched by a name + 8 accepted names only)
 963 qualified derivations,554 dwc:Occurrence + 237 dwc:Identification + 75 dcterms:Location + 61 dwc:Taxon + 26 akv:HabitatStatement + 9 dcterms:BibliographicResource + 1 prov:Entity
 344 codes vs 342 assertions,2 'N' codes qualify a survey code and are folded into it; 342 - 2 open-sea = 340 assertions with an area
 263 occupied cells vs 261 cells with an area,263 - 2 open-sea cells
 9 SHACL warnings + 1 info,"results per focus node: 4 events without location (W02: 2 specimens; 2 open-sea assertions), 3 'not identified' (W03), 2 habitat statements (W07), 1 specimen without catalogue number (Info; W04). The other warning rules (W01, W05, W08-W11) have no SHACL counterpart"
-46 warning rows,W01 1 + W02 2 + W03 3 + W04 1 + W05 4 + W07 2 + W08 13 + W09 7 + W10 5 + W11 8
-398 cached API responses,"253 for name and habitat resolution + 145 for the coverage and release analyses added in revision; by service: gbif 62, ncbi 219, ols 14, worms 103"
+69 warning rows,W01 1 + W12 23 + W02 2 + W03 3 + W04 1 + W05 4 + W07 2 + W08 13 + W09 7 + W10 5 + W11 8
+388 cached API responses,"255 for name and habitat resolution + 133 for the coverage and release analyses added in revision; by service: gbif 66, ncbi 208, ols 14, worms 100"
 75 dcterms:Location vs 71 locality rows,"71 localities (26 areas + 45 sites) + 4 region nodes (the article's own grouping of its Table 1 columns); areas per region: Central Coast 4, East Coast 13, Oceanic Islands 5, West Coast 4"
 45 sites by table,17 collecting sites of Table 2 + 28 localities of Table 3
 22 uncertain links,"Table 3 crosswalk rows that are neither an exact name nor a printed park name: 19 name-in-area or spelling-variant links (of the 24 linked, 5 are exact) + 3 links the curator rejected"
 "1,612 specimen fields",128 rows x 8 fields (Table 2) + 84 rows x 7 fields (Table 3); 1 field is blank in the source and agrees when both readings find it blank
-5 event-date rows,"4 dated sampled areas (November 2012) + 1 row for Isla de Cubagua, left undated (information from the curator, not from the article)"
+5 event-date rows,"4 visited areas dated November 2012 in the Methods + 1 row for Isla de Cubagua, left undated because the source states no date; Chichiriviche de la Costa has neither a date row nor a Table 2 specimen"
 59 WoRMS records matched by 61 names,two pairs of names share a record: Palythoa caribaeorum / Palythoa caribbeorum; Homostichanthus duerdeni / Homostichantus duerdenii (a misspelling and its correct form)
 65 habitat phrase matches,"49 annotated + 2 negated + 14 'coral rubble' (one per account; no ENVO class). Biotic substrates are not in the phrase vocabulary, so they are not counted here"
-15 unvouchered survey codes vs W08 = 13; 10 untraced museum codes vs W10 = 5,"W08 and W10 compare only areas from which the specimen table has specimens: 2 survey codes lie in areas with no Table 2 specimen, and 8 museum codes in areas with no Table 3 specimen. The 5 W10 rows are 1 reidentified, 2 unconfirmed, 2 untraced museum codes"
-43 discrepant cells vs 33 W08-W11 rows,"cells merge both directions for one accepted name and area, and include areas the specimen tables do not cover; rows count each direction separately and only in covered areas"
-554 occurrences,"212 specimens (PreservedSpecimen) + 342 Table 1 assertions (MaterialCitation), of which 84 are linked to their specimen by dwc:associatedOccurrences; the two classes are not to be counted together"
+15 survey codes without a specimen from the area vs W08 = 13; 14 museum codes without a matching specimen vs W10 = 5,W08 and W10 compare only areas from which the matching table has a currently identified specimen: 2 survey codes and 9 museum codes lie in other areas (15 - 2 = 13; 14 - 9 = 5)
+40 discrepant cells vs 33 W08-W11 rows,"cells merge both directions for one accepted name and area, and include areas the specimen tables do not cover; rows count each direction separately and only in covered areas. A further 3 cells (Actiniidae sp. of the specimen tables) have no Table 1 row and are not comparable"
+40 cells = 5 + 1 + 9 + 25,explained by the article (re-identified or not identified) + possibly explained by a same-family specimen identified above species level in the table the missing specimen would be in + differing only in the code + unexplained
+27% of cells on a specimen from the area,"by link scenario: all unlinked 20.3%, accepted unlinked 20.3%, as curated 26.8%, rejected linked 28.7%, all linked 28.7%"
+9 Table 3 specimens outside the comparison,"no locality ('-'), a locality with no Table 1 column, or a rejected link: they are compared with no Table 1 area in either direction"
+554 occurrences,"212 specimens (PreservedSpecimen) + 342 Table 1 assertions (56 MaterialCitation for museum codes, 286 Occurrence for the others), of which 88 cite the specimen they rest on (akv:citesSpecimen); the two classes are not to be counted together"
+23 dates published as year-month,"Table 3 dates printed with day 01: 23 of 80 parseable dates, against about 3 expected if days were uniform"
 three different sets of four,4 misspelt names in Table 2 (name variants); 4 WoRMS links accepted after curation; 4 spelling-only rows of Table 4

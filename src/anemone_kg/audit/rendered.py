@@ -135,7 +135,20 @@ def ink_census(pdf: Path, interim: Path) -> dict:
         "separated": bool(
             cells.loc[cells.has_code, "ink"].min() > cells.loc[~cells.has_code, "ink"].max()
         ),
+        "_margin": _margin(cells),
     }
+
+
+def _margin(cells: pd.DataFrame) -> tuple[int, str, int]:
+    occ = cells[cells.has_code]
+    faint = occ.loc[occ.ink.idxmin()] if len(occ) else None
+    where = f"row {faint.row_no} {faint.locality_col_id}" if faint is not None else "-"
+    empty = cells.loc[~cells.has_code, "ink"]
+    return (
+        int(faint.ink) if faint is not None else 0,
+        where,
+        int(empty.max()) if len(empty) else 0,
+    )
 
 
 def renderer_version() -> str:

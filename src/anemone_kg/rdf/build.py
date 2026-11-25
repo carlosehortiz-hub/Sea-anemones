@@ -25,7 +25,12 @@ import pandas as pd
 from rdflib import RDF, XSD, BNode, Graph, Literal, Namespace, URIRef
 
 from anemone_kg import __version__
-from anemone_kg.dq.crosstable import evidence_tiers, supporting_specimens
+from anemone_kg.dq.crosstable import (
+    IDENTIFICATION_CHANGE,
+    evidence_tiers,
+    identification_changes,
+    supporting_specimens,
+)
 from anemone_kg.rdf.vocab import Registry
 
 DOI_IRI = "https://doi.org/{doi}"
@@ -51,6 +56,9 @@ EVIDENCE = {
 }
 
 
+WORMS_STATUS = {"accepted": "accepted", "unaccepted": "synonym"}
+
+
 class UnregisteredTermError(ValueError):
     """The builder tried to emit a term that is not in model/terms.yaml."""
 
@@ -67,21 +75,44 @@ def _genus(name) -> str:
 
 
 def mapping_method(r) -> str:
-    """How a mapping was made, in words (exported as sssom:comment and in the SSSOM table)."""
+    """How a mapping was made, in words (the first part of the SSSOM comment, rdfs:comment)."""
+    curated = r.mapping_justification == "semapv:ManualMappingCuration"
     if r.match_type == "via_accepted_name":
         cross = _genus(r.subject_label) != _genus(r.object_label)
         return (
-            "NCBI fallback: the NCBI node carrying the WoRMS accepted name "
-            f"({r.object_label}), matched under the NCBI scientific-name class; no "
-            "circumscription claim; crosses a genus change: " + ("yes" if cross else "no")
+            "NCBI fallback by chaining: article name -> WoRMS accepted name -> the NCBI node "
+            f"carrying that name ({r.object_label}), queried in the NCBI scientific-name class; "
+            "no circumscription claim; crosses a genus change: " + ("yes" if cross else "no")
+        )
+    if curated and r.match_type == "fuzzy":
+        return (
+            "curated orthographic or gender variant of the record's name (skos:closeMatch, so "
+            "that no transitive closure equates records of one service; evidence follows)"
+        )
+    if curated:
+        return (
+            "curated link to one of several homonymous records: the article prints no "
+            "authority, so the usage cannot be identified (skos:closeMatch; evidence follows)"
         )
     if r.match_type == "fuzzy":
-        return "fuzzy candidate accepted by the curator (see rdfs:comment for the evidence)"
+        return "fuzzy candidate accepted by the curator (evidence follows)"
     if isinstance(r.comment, str) and "resolved by authority" in r.comment:
         return "exact name; WoRMS homonym resolved by the authority printed in the article"
     if r.match_type == "exact_synonym":
         return "exact name of an unaccepted record (synonym or variant) in the service"
+    if r.object_source == "ncbi":
+        return "exact name, unique in NCBI Taxonomy at the same rank ([Scientific Name] class)"
     return "exact name, unique within Cnidaria at the same rank"
+
+
+def mapping_comment(r) -> str:
+    """SSSOM ``comment`` (slot_uri rdfs:comment): the method, then the curator's evidence."""
+    ev = r.comment if isinstance(r.comment, str) and r.comment else None
+    return mapping_method(r) + (f". Evidence: {ev}" if ev else "")
+
+
+def mapping_tool(source: str) -> str:
+    return f"anemone-kg resolve, {SERVICE_INFO[source][0]} client"
 
 
 def _slug(text: str) -> str:
@@ -191,7 +222,7 @@ class GraphBuilder:
             ds,
             "dcterms:title",
             Literal(
-                "Sea anemones of shallow-water Venezuela: knowledge graph derived from "
+                "Coastal sea anemones of Venezuela: knowledge graph derived from "
                 "González-Muñoz et al. (2016)",
                 lang="en",
             ),
@@ -219,8 +250,13 @@ class GraphBuilder:
             # A name usage: the name as used in the article, not a concept.
             self.add(s, "dwc:nameAccordingTo", Literal("González-Muñoz et al. (2016)"))
             if bool(r.flag_invalid_in_source):
-                # '†' in Table 1: "species currently considered as invalid" (legend, p. 6)
-                self.add(s, "dwc:taxonomicStatus", Literal("invalid"))
+                # '†' in Table 1: "species currently considered as invalid" (legend, p. 6).
+                # Not a GBIF TaxonomicStatus value, so it is a remark, not a status.
+                self.add(
+                    s,
+                    "dwc:taxonRemarks",
+                    Literal("Marked † in Table 1: 'species currently considered as invalid'"),
+                )
             self.add(s, "akv:hasDoubtfulPreviousRecords", Literal(bool(r.flag_doubtful_in_source)))
             self.derived(s, r.source_ref, r.source_page, "canonicalize")
 
@@ -232,7 +268,14 @@ class GraphBuilder:
             self.add(s, "dwc:scientificName", Literal(r.scientific_name))
             self.add(s, "dwc:scientificNameAuthorship", r.scientific_name_authorship)
             self.add(s, "dwc:scientificNameID", Literal(r.lsid))
-            self.add(s, "dwc:taxonomicStatus", Literal(r.taxonomic_status))
+            # WoRMS statuses mapped to the GBIF TaxonomicStatus vocabulary where one fits
+            status = str(r.taxonomic_status)
+            if status in WORMS_STATUS:
+                self.add(s, "dwc:taxonomicStatus", Literal(WORMS_STATUS[status]))
+            elif status == "nomen nudum":
+                self.add(s, "dwc:nomenclaturalStatus", Literal("nomen nudum"))
+            else:
+                self.add(s, "dwc:taxonRemarks", Literal(f"WoRMS status: {status}"))
             self.add(
                 s,
                 "dwc:nameAccordingTo",
@@ -257,7 +300,8 @@ class GraphBuilder:
             subj = self.iri("taxon", r.subject_id)
             obj = self.object_iri(r.object_id)
             self.add(subj, r.predicate_id, obj)  # the plain SKOS link
-            if r.object_source == "worms":
+            if r.object_source == "worms" and r.predicate_id == "skos:exactMatch":
+                # only an identical name gets the record's LSID as its scientificNameID
                 self.add(subj, "dwc:scientificNameID", Literal(str(obj)))
             else:
                 self.add(obj, "rdfs:label", r.object_label)
@@ -267,8 +311,6 @@ class GraphBuilder:
             self.add(ax, "owl:annotatedProperty", self.t(r.predicate_id))
             self.add(ax, "owl:annotatedTarget", obj)
             self.add(ax, "sssom:mapping_justification", self.t(r.mapping_justification))
-            method = mapping_method(r)
-            self.add(ax, "sssom:comment", Literal(method))
             if r.match_type == "fuzzy":
                 # A fuzzy score orders candidates; it is not a probability that the accepted
                 # mapping is right (that rests on the curator's evidence, in rdfs:comment).
@@ -276,11 +318,14 @@ class GraphBuilder:
                     ax, "sssom:similarity_score", Literal(float(r.confidence), datatype=XSD.double)
                 )
                 self.add(ax, "sssom:similarity_measure", Literal(SIMILARITY[r.object_source]))
-            # Exact and accepted-name matches carry no confidence: the method (sssom:comment)
-            # says how the link was made, and a constant 1 would claim more than a lexical match.
-            self.add(ax, "sssom:mapping_tool", Literal(r.mapping_tool))
-            self.add(ax, "dcterms:created", Literal(r.mapping_date, datatype=XSD.dateTime))
-            self.add(ax, "rdfs:comment", r.comment)
+            # Exact and accepted-name matches carry no confidence: the comment says how the
+            # link was made, and a constant 1 would claim more than a lexical match. The
+            # method goes in rdfs:comment, SSSOM's slot_uri for `comment`, so that an SSSOM
+            # parser keeps it; the request URL stays in the provenance of the response.
+            self.add(ax, "sssom:mapping_tool", Literal(mapping_tool(r.object_source)))
+            self.add(ax, "sssom:mapping_tool_version", Literal(__version__))
+            self.add(ax, "dcterms:created", Literal(str(r.mapping_date)[:10], datatype=XSD.date))
+            self.add(ax, "rdfs:comment", Literal(mapping_comment(r)))
             self.add(ax, "prov:wasGeneratedBy", self.iri("activity", f"resolve-{r.object_source}"))
             self.response(ax, r.cache_key, r.mapping_tool, r.mapping_date)
 
@@ -327,6 +372,11 @@ class GraphBuilder:
                     Literal(f"{r.decimal_longitude:.6f}", datatype=XSD.decimal),
                 )
             self.add(s, "dwc:verbatimCoordinates", r.verbatim_coordinates)
+            if _present(r.decimal_latitude):
+                # Table 2 prints DMS to 0.01 arc-second and states no datum; no uncertainty is
+                # recorded, and none is invented here.
+                self.add(s, "dwc:geodeticDatum", Literal("not recorded"))
+                self.add(s, "dwc:coordinatePrecision", Literal("0.000003", datatype=XSD.decimal))
             if _present(r.sampled_in_study):
                 self.add(s, "akv:sampledInStudy", Literal(bool(r.sampled_in_study)))
             if _present(r.parent_locality_id):
@@ -344,8 +394,10 @@ class GraphBuilder:
             v, datatype=XSD.date if len(v) == 10 else XSD.gYearMonth if len(v) == 7 else XSD.gYear
         )
 
-    def specimens(self, occ: pd.DataFrame, ident: pd.DataFrame) -> None:
+    def specimens(self, occ: pd.DataFrame, ident: pd.DataFrame, changes: dict) -> None:
         cur_taxon = ident[ident.is_current].set_index("occurrence_id").taxon_id
+        prev_name = ident[~ident.is_current].set_index("occurrence_id").verbatim_name
+        museum = set(occ[occ.record_source == "table3"].occurrence_id)
         for r in occ.itertuples():
             s = self.iri("occurrence", r.occurrence_id)
             ev = self.iri("event", r.occurrence_id)
@@ -358,6 +410,8 @@ class GraphBuilder:
             self.add(s, "dwc:otherCatalogNumbers", r.other_catalog_numbers)
             self.add(s, "dwc:recordedBy", r.recorded_by)
             self.add(s, "dwc:occurrenceRemarks", r.occurrence_remarks)
+            if r.occurrence_id in prev_name.index:
+                self.add(s, "dwc:previousIdentifications", Literal(prev_name[r.occurrence_id]))
             self.add(
                 s,
                 "rdfs:label",
@@ -391,6 +445,25 @@ class GraphBuilder:
             self.add(s, "dwc:verbatimIdentification", Literal(r.verbatim_name))
             self.add(s, "dwc:identificationQualifier", r.identification_qualifier)
             self.add(s, "dwc:identificationRemarks", r.identification_remarks)
+            why = changes.get(r.occurrence_id)
+            if why and not r.is_current:
+                self.add(
+                    s,
+                    "dwc:identificationRemarks",
+                    Literal(
+                        f"Previous identification; change: {why} ({IDENTIFICATION_CHANGE[why]})"
+                    ),
+                )
+            if r.is_current and r.occurrence_id in museum:
+                self.add(
+                    s,
+                    "dwc:identificationVerificationStatus",
+                    Literal(
+                        "unverified: could not be corroborated"
+                        if why == "unverified"
+                        else "examined by the source authors (external morphology)"
+                    ),
+                )
             self.add(
                 s,
                 "rdfs:label",
@@ -415,9 +488,24 @@ class GraphBuilder:
             self.derived(s, f"{r.source_ref}, code '{r.reference_code}'", r.source_page, "extract")
 
     def distribution(
-        self, d: pd.DataFrame, refs: pd.DataFrame, tiers: pd.Series, support: dict
+        self,
+        d: pd.DataFrame,
+        refs: pd.DataFrame,
+        tiers: pd.Series,
+        support: dict,
+        occ: pd.DataFrame,
     ) -> None:
         cites = dict(zip(refs.reference_code, refs.short_citation, strict=True))
+        label = {
+            o: f"{i}:{c}" if _present(c) else f"field code {f}"
+            for o, i, c, f in zip(
+                occ.occurrence_id,
+                occ.institution_code,
+                occ.catalog_number,
+                occ.other_catalog_numbers,
+                strict=True,
+            )
+        }
         for r in d.itertuples():
             s = self.iri("distribution", r.distribution_id)
             ev = self.iri("event", r.distribution_id)
@@ -428,10 +516,18 @@ class GraphBuilder:
             self.add(s, "dwciri:toTaxon", self.iri("taxon", r.taxon_id))
             self.add(s, "dcterms:type", self.t(f"akv:{EVIDENCE[r.evidence_kind]}"))
             self.add(s, "akv:evidenceTier", self.t(f"akv:{tiers[r.distribution_id]}"))
-            if support.get(r.distribution_id):
+            for oid in support.get(r.distribution_id, []):
                 # the specimen occurrence(s) behind this assertion; avoids double counting
+                self.add(s, "akv:citesSpecimen", self.iri("occurrence", oid))
+            if support.get(r.distribution_id):
                 self.add(
-                    s, "dwc:associatedOccurrences", Literal(" | ".join(support[r.distribution_id]))
+                    s,
+                    "dwc:associatedOccurrences",
+                    Literal(
+                        " | ".join(
+                            f"(cited specimen) {label[o]}" for o in support[r.distribution_id]
+                        )
+                    ),
                 )
             if _present(r.reference_code):
                 self.add(s, "dcterms:references", self.iri("reference", r.reference_code))
@@ -479,13 +575,15 @@ def build_graph(
     b.worms_records(tables["worms_record"])
     b.mappings(m)
     b.locations(tables["locality"])
-    b.specimens(tables["occurrence"], tables["identification"])
+    occ = tables["occurrence"]
+    b.specimens(occ, tables["identification"], identification_changes(tables))
     b.references(tables["reference"])
     b.distribution(
         tables["distribution"],
         tables["reference"],
         evidence_tiers(tables),
         supporting_specimens(tables),
+        occ,
     )
     b.habitats(tables["habitat_statement"], tables["habitat_annotation"])
     if vocab is not None:  # project vocabulary travels with the data

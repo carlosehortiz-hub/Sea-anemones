@@ -8,7 +8,7 @@
 [] a sh:ValidationReport ;
     sh:conforms true ;
     sh:result [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/occurrence/59843dea-418c-5e2c-b895-456f0489fa82> ;
+            sh:focusNode <https://w3id.org/anemone-kg/occurrence/5a21f3aa-528c-5d29-bb56-ea31d0246465> ;
             sh:resultMessage "Specimen without a MOHBR catalogue number (as printed in the source)." ;
             sh:resultPath dwc:catalogNumber ;
             sh:resultSeverity sh:Info ;
@@ -18,19 +18,33 @@
                     sh:path dwc:catalogNumber ;
                     sh:severity sh:Info ] ],
         [ a sh:ValidationResult ;
+            sh:focusNode <https://w3id.org/anemone-kg/occurrence/83bb828c-b06c-5bc1-b188-1881567e80ce> ;
+            sh:resultMessage "Specimen whose current identification has no taxon ('not identified')." ;
+            sh:resultPath dwciri:toTaxon ;
+            sh:resultSeverity sh:Warning ;
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:cb369deb06db2f9725d55eab491c17bdda8ade298f3644b4c77397d3fbe0f6160ec ],
+        [ a sh:ValidationResult ;
             sh:focusNode <https://w3id.org/anemone-kg/event/1f849e46-170d-577c-9025-af280c60795f> ;
             sh:resultMessage "Event without a location ('-' in the source, or Open Sea Distribution)." ;
             sh:resultPath dsw:locatedAt ;
             sh:resultSeverity sh:Warning ;
             sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb2d92fa418d533e8701826c9de7247cd2f01511bab54761e7ca50df02df8066295 ],
+            sh:sourceShape _:cb302c1461d07292bb470377745995e37695f84964b87c07bcd67cc5c7a92091a98 ],
         [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/event/62664db1-4f89-559a-bdcf-862c89b86f8c> ;
+            sh:focusNode <https://w3id.org/anemone-kg/occurrence/c89af4d4-a855-5c01-aa25-f44df80ceaa0> ;
+            sh:resultMessage "Specimen whose current identification has no taxon ('not identified')." ;
+            sh:resultPath dwciri:toTaxon ;
+            sh:resultSeverity sh:Warning ;
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:cb369deb06db2f9725d55eab491c17bdda8ade298f3644b4c77397d3fbe0f6160ec ],
+        [ a sh:ValidationResult ;
+            sh:focusNode <https://w3id.org/anemone-kg/event/fc85bf9a-3dbc-5d41-ad07-e43244730e47> ;
             sh:resultMessage "Event without a location ('-' in the source, or Open Sea Distribution)." ;
             sh:resultPath dsw:locatedAt ;
             sh:resultSeverity sh:Warning ;
             sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb2d92fa418d533e8701826c9de7247cd2f01511bab54761e7ca50df02df8066295 ],
+            sh:sourceShape _:cb302c1461d07292bb470377745995e37695f84964b87c07bcd67cc5c7a92091a98 ],
         [ a sh:ValidationResult ;
             sh:focusNode <https://w3id.org/anemone-kg/habitat/c9425cba-ff74-5fc4-b74b-18eda2659a5a> ;
             sh:resultMessage "Habitat statement with no ENVO term." ;
@@ -44,21 +58,7 @@
             sh:resultPath dsw:locatedAt ;
             sh:resultSeverity sh:Warning ;
             sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb2d92fa418d533e8701826c9de7247cd2f01511bab54761e7ca50df02df8066295 ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/occurrence/92f0bb70-11be-5769-b947-dc4f43bb9a51> ;
-            sh:resultMessage "Specimen whose current identification has no taxon ('not identified')." ;
-            sh:resultPath dwciri:toTaxon ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb364d24376089b5c14f2e2f3d913f591939ca98b0bcf87f2492a837aadbb66ed82 ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/occurrence/c2db172b-6f05-5e97-af75-f408a267794b> ;
-            sh:resultMessage "Specimen whose current identification has no taxon ('not identified')." ;
-            sh:resultPath dwciri:toTaxon ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb364d24376089b5c14f2e2f3d913f591939ca98b0bcf87f2492a837aadbb66ed82 ],
+            sh:sourceShape _:cb302c1461d07292bb470377745995e37695f84964b87c07bcd67cc5c7a92091a98 ],
         [ a sh:ValidationResult ;
             sh:focusNode <https://w3id.org/anemone-kg/habitat/a0c61a95-d204-54a9-be6b-5f99672d12fe> ;
             sh:resultMessage "Habitat statement with no ENVO term." ;
@@ -67,19 +67,19 @@
             sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
             sh:sourceShape _:cb31db015e69ce986e65ebd5ba28c74d55bc6d164e4c422db1fc31ba036eb476f88 ],
         [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/event/9322a71a-cd77-5600-b657-9a7bb9ee8be2> ;
-            sh:resultMessage "Event without a location ('-' in the source, or Open Sea Distribution)." ;
-            sh:resultPath dsw:locatedAt ;
-            sh:resultSeverity sh:Warning ;
-            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb2d92fa418d533e8701826c9de7247cd2f01511bab54761e7ca50df02df8066295 ],
-        [ a sh:ValidationResult ;
-            sh:focusNode <https://w3id.org/anemone-kg/occurrence/8eeefb68-1c8b-5a15-9b86-7c445281e5a6> ;
+            sh:focusNode <https://w3id.org/anemone-kg/occurrence/742cae0d-8b72-5221-ad6c-38d151a31910> ;
             sh:resultMessage "Specimen whose current identification has no taxon ('not identified')." ;
             sh:resultPath dwciri:toTaxon ;
             sh:resultSeverity sh:Warning ;
             sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
-            sh:sourceShape _:cb364d24376089b5c14f2e2f3d913f591939ca98b0bcf87f2492a837aadbb66ed82 ] .
+            sh:sourceShape _:cb369deb06db2f9725d55eab491c17bdda8ade298f3644b4c77397d3fbe0f6160ec ],
+        [ a sh:ValidationResult ;
+            sh:focusNode <https://w3id.org/anemone-kg/event/b7a92360-d427-5c4c-81c1-56c91fbd4e1d> ;
+            sh:resultMessage "Event without a location ('-' in the source, or Open Sea Distribution)." ;
+            sh:resultPath dsw:locatedAt ;
+            sh:resultSeverity sh:Warning ;
+            sh:sourceConstraintComponent sh:MinCountConstraintComponent ;
+            sh:sourceShape _:cb302c1461d07292bb470377745995e37695f84964b87c07bcd67cc5c7a92091a98 ] .
 
 _:cb15143a2611a10f9bd09c6db1199db1480b23283e3fd65e526d33527416fdd7f45 rdf:first dwciri:habitat ;
     rdf:rest ( dwciri:substrate ) .
@@ -96,12 +96,12 @@ _:cb31db015e69ce986e65ebd5ba28c74d55bc6d164e4c422db1fc31ba036eb476f88 sh:message
 
 _:cbb6141c9b441383e356ba35822c9138a9cb4f5bdd7be5ae2de7fa23caa34edd5d sh:alternativePath _:cb1811d1adee69bd395c2d9dcf0d762474fca45ad683c38b419e3321042b0ea5228 .
 
-_:cb364d24376089b5c14f2e2f3d913f591939ca98b0bcf87f2492a837aadbb66ed82 sh:message "Specimen whose current identification has no taxon ('not identified')." ;
+_:cb369deb06db2f9725d55eab491c17bdda8ade298f3644b4c77397d3fbe0f6160ec sh:message "Specimen whose current identification has no taxon ('not identified')." ;
     sh:minCount 1 ;
     sh:path dwciri:toTaxon ;
     sh:severity sh:Warning .
 
-_:cb2d92fa418d533e8701826c9de7247cd2f01511bab54761e7ca50df02df8066295 sh:message "Event without a location ('-' in the source, or Open Sea Distribution)." ;
+_:cb302c1461d07292bb470377745995e37695f84964b87c07bcd67cc5c7a92091a98 sh:message "Event without a location ('-' in the source, or Open Sea Distribution)." ;
     sh:minCount 1 ;
     sh:path dsw:locatedAt ;
     sh:severity sh:Warning .

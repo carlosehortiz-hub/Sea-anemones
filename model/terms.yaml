@@ -48,11 +48,11 @@ terms:
 
   # ------------------------------------------------- Darwin Core (literals)
   - {term: dwc:occurrenceID, kind: property, use: "Stable occurrence identifier (UUIDv5)"}
-  - {term: dwc:basisOfRecord, kind: property, use: "PreservedSpecimen | MaterialCitation"}
+  - {term: dwc:basisOfRecord, kind: property, use: "PreservedSpecimen | MaterialCitation ('a' codes) | Occurrence (other Table 1 codes)"}
   - {term: dwc:catalogNumber, kind: property, use: "MOHBR catalogue number"}
   - {term: dwc:otherCatalogNumbers, kind: property, use: "Field code (RG-/VE-)"}
   - {term: dwc:institutionCode, kind: property, use: "MOHBR"}
-  - {term: dwc:associatedOccurrences, kind: property, use: "Table 1 assertion -> its specimen occurrenceID(s)"}
+  - {term: dwc:associatedOccurrences, kind: property, use: "Table 1 assertion -> '(cited specimen) MOHBR:I-...' for each specimen it rests on"}
   - {term: dwc:occurrenceRemarks, kind: property, use: "Remarks kept from canonicalisation"}
   - {term: dwc:occurrenceStatus, kind: property, use: "'present' on Table 1 assertions"}
   - {term: dwc:associatedReferences, kind: property, use: "Short citation of the work behind a Table 1 code"}
@@ -66,6 +66,8 @@ terms:
   - {term: dwc:decimalLatitude, kind: property, use: "Only where Table 2 prints coordinates"}
   - {term: dwc:decimalLongitude, kind: property, use: "Only where Table 2 prints coordinates"}
   - {term: dwc:verbatimCoordinates, kind: property, use: "Coordinates as printed"}
+  - {term: dwc:geodeticDatum, kind: property, use: "'not recorded' - the source states no datum"}
+  - {term: dwc:coordinatePrecision, kind: property, use: "Precision of the printed coordinates (0.01 arc-second)"}
   - {term: dwc:taxonID, kind: property, use: "Stable taxon identifier (UUIDv5)"}
   - {term: dwc:scientificName, kind: property, use: "Name as used in the paper / WoRMS name"}
   - {term: dwc:scientificNameAuthorship, kind: property, use: "Authority"}
@@ -75,13 +77,17 @@ terms:
   - {term: dwc:specificEpithet, kind: property, use: "Epithet"}
   - {term: dwc:family, kind: property, use: "Family as printed in the paper"}
   - {term: dwc:order, kind: property, use: "Order as printed in the paper"}
-  - {term: dwc:taxonomicStatus, kind: property, use: "WoRMS status; 'invalid' for names marked with a dagger in Table 1"}
+  - {term: dwc:taxonomicStatus, kind: property, use: "GBIF TaxonomicStatus value mapped from WoRMS (accepted | synonym)"}
+  - {term: dwc:nomenclaturalStatus, kind: property, use: "nomen nudum (WoRMS)"}
+  - {term: dwc:taxonRemarks, kind: property, use: "Dagger in Table 1; WoRMS status where it is not a TaxonomicStatus value"}
   - {term: dwc:nameAccordingTo, kind: property, use: "Whose taxonomic opinion a status reflects"}
   - {term: dwc:acceptedNameUsageID, kind: property, use: "LSID of the accepted name (literal)"}
   - {term: dwc:acceptedNameUsage, kind: property, use: "Accepted name (literal)"}
   - {term: dwc:verbatimIdentification, kind: property, use: "Identification as printed"}
   - {term: dwc:identificationQualifier, kind: property, use: "cf. | sp. | sp.?"}
-  - {term: dwc:identificationRemarks, kind: property, use: "e.g. superseded / not corroborated"}
+  - {term: dwc:identificationRemarks, kind: property, use: "Coded reason for a changed identification"}
+  - {term: dwc:identificationVerificationStatus, kind: property, use: "e.g. 'unverified: could not be corroborated'"}
+  - {term: dwc:previousIdentifications, kind: property, use: "Table 3 previous identification on the occurrence"}
   - {term: dwc:recordedBy, kind: property, use: "Collectors as printed, '|'-separated"}
   - {term: dwc:habitat, kind: property, use: "Habitat paragraph text"}
 
@@ -121,26 +127,26 @@ terms:
   - {term: prov:wasRevisionOf, kind: property, use: "Current identification -> the superseded one"}
 
   # ------------------------------------------------------- SKOS and SSSOM
-  - {term: skos:exactMatch, kind: property, use: "Taxon -> external taxon (exact or curated orthographic variant)"}
-  - {term: skos:closeMatch, kind: property, use: "Taxon -> NCBI taxon found via the WoRMS accepted name"}
+  - {term: skos:exactMatch, kind: property, use: "Taxon -> external record with the identical name"}
+  - {term: skos:closeMatch, kind: property, use: "Taxon -> NCBI node via the accepted name; curated spelling/gender variants; unidentifiable homonyms"}
   - {term: skos:prefLabel, kind: property, use: "Labels of concepts"}
   - {term: skos:definition, kind: property, use: "Definitions of concepts"}
   - {term: skos:inScheme, kind: property, use: "Concept -> scheme"}
   - {term: owl:annotatedSource, kind: property, use: "SSSOM subject_id"}
   - {term: owl:annotatedProperty, kind: property, use: "SSSOM predicate_id"}
   - {term: owl:annotatedTarget, kind: property, use: "SSSOM object_id"}
-  - {term: sssom:mapping_justification, kind: property, use: "semapv:LexicalMatching | semapv:ManualMappingCuration"}
-  - {term: sssom:confidence, kind: property, use: "Match confidence (exact and accepted-name matches)"}
+  - {term: sssom:mapping_justification, kind: property, use: "semapv:LexicalMatching | semapv:ManualMappingCuration | semapv:MappingChaining"}
   - {term: sssom:similarity_score, kind: property, use: "Fuzzy-match score; orders candidates only"}
   - {term: sssom:similarity_measure, kind: property, use: "What the similarity score measures"}
-  - {term: sssom:mapping_tool, kind: property, use: "Request URL used"}
-  - {term: sssom:comment, kind: property, use: "How the mapping was made (method)"}
+  - {term: sssom:mapping_tool, kind: property, use: "Pipeline client that made the mapping"}
+  - {term: sssom:mapping_tool_version, kind: property, use: "Pipeline version"}
   - {term: semapv:LexicalMatching, kind: individual, use: "Justification value"}
+  - {term: semapv:MappingChaining, kind: individual, use: "Justification of the NCBI fallback (name -> WoRMS accepted name -> NCBI)"}
   - {term: semapv:ManualMappingCuration, kind: individual, use: "Justification value"}
 
   # ---------------------------------------------------------------- misc
   - {term: rdfs:label, kind: property, use: "Human-readable labels"}
-  - {term: rdfs:comment, kind: property, use: "Comments; SSSOM comment"}
+  - {term: rdfs:comment, kind: property, use: "Comments; SSSOM comment (method, then evidence)"}
   - {term: rdfs:seeAlso, kind: property, use: "WoRMS record -> web page"}
 
   # ------------------------------------------------ project terms (ak.ttl)
@@ -155,6 +161,7 @@ terms:
   - {term: akv:MohbrCollection, kind: individual, use: "Table 1 code 'a'"}
   - {term: akv:Literature, kind: individual, use: "Table 1 codes 'b'-'j'"}
   - {term: akv:evidenceTier, kind: property, use: "Table 1 assertion -> evidence tier (derived)"}
+  - {term: akv:citesSpecimen, kind: property, use: "Table 1 assertion -> the specimen occurrence it rests on (IRI)"}
   - {term: akv:evidenceTiers, kind: individual, use: "Concept scheme"}
   - {term: akv:SurveyVouchered, kind: individual, use: "Evidence tier: survey record, vouchered"}
   - {term: akv:SurveyVoucheredQualified, kind: individual, use: "Evidence tier: survey record, voucher identified with qualifier"}

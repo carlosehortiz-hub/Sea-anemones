@@ -1,213 +1,213 @@
 occurrence_id,basis_of_record,record_source,institution_code,catalog_number,other_catalog_numbers,locality_id,event_date,verbatim_event_date,recorded_by,occurrence_remarks,source_ref,source_page
-2ab53398-feca-5d3d-960f-0862c9f29f2f,PreservedSpecimen,table2,MOHBR,I-1576,RG-001,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 1",26
-c44ea678-43d5-5e03-a2cb-502b7f45f11c,PreservedSpecimen,table2,MOHBR,I-1577,RG-002,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 2",26
-5d9b3fc5-e3e1-5348-a8c0-2ed65d6637c7,PreservedSpecimen,table2,MOHBR,I-1578,RG-003,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 3",26
-150c539e-8e68-583f-9ed0-5464e104d5d5,PreservedSpecimen,table2,MOHBR,I-1579,RG-004,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 4",26
-c171051a-7039-5d72-aceb-ce13c56bd616,PreservedSpecimen,table2,MOHBR,I-1580,RG-005,d8f17f62-5f6c-50df-af12-11f099ad467f,2012-11,,,,"Table 2, row 5",26
-89c4a5ce-ceea-5e53-a196-7a8c730cb97f,PreservedSpecimen,table2,MOHBR,I-1581,RG-006,29b261ed-d42e-5cd9-8d97-cf978d629cbf,2012-11,,,,"Table 2, row 6",26
-178d7f09-e995-5653-8790-6f52a6862af3,PreservedSpecimen,table2,MOHBR,I-1582,RG-007,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 7",26
-d826adef-ac1d-524a-9114-2c639e20a61e,PreservedSpecimen,table2,MOHBR,I-1583,RG-008,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 8",26
-eeb46cab-fae0-5d28-b39c-7ba7b1b03d32,PreservedSpecimen,table2,MOHBR,I-1584,RG-009,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 9",26
-fc3a38f3-3dc3-54a4-97a6-642e6f5c9c75,PreservedSpecimen,table2,MOHBR,I-1585,RG-010,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 10",26
-aebc6062-1652-58a1-9f9f-c39217ad78cd,PreservedSpecimen,table2,MOHBR,I-1586,RG-011,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 11",26
-d20cd7f7-a8d5-5748-8dba-a7ae653d1284,PreservedSpecimen,table2,MOHBR,I-1587,RG-012,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 12",26
-fdef7de2-8a13-526c-8841-f677b343edd1,PreservedSpecimen,table2,MOHBR,I-1588,RG-013,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 13",26
-fd36820b-aab3-5f5a-b6c0-e547fe28e532,PreservedSpecimen,table2,MOHBR,I-1589,RG-014,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 14",26
-df4658eb-69c3-510b-90a6-319fcf75f660,PreservedSpecimen,table2,MOHBR,I-1590,RG-015,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 15",26
-6b2f1b61-27b0-59eb-84ed-bded8f0319f5,PreservedSpecimen,table2,MOHBR,I-1591,RG-016,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 16",26
-17c3cde4-cc48-5002-bfda-23ebf0b20a3c,PreservedSpecimen,table2,MOHBR,I-1592,RG-017,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 17",26
-6ee5fae1-3272-5927-884d-3ab375901f7c,PreservedSpecimen,table2,MOHBR,I-1593,RG-018,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 18",26
-e3dc8067-53ec-532b-b0d4-735f589367e8,PreservedSpecimen,table2,MOHBR,I-1594,RG-019,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 19",26
-8d7aaa51-f89f-5ebe-a345-3313f2e3de6b,PreservedSpecimen,table2,MOHBR,I-1595,RG-020,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 20",26
-97a58b56-13a7-5490-8641-fd21c35caad2,PreservedSpecimen,table2,MOHBR,I-1596,RG-021,89ffab08-4320-5603-9f80-ca5230ff2678,2012-11,,,,"Table 2, row 21",26
-c16f9232-15ec-5190-858c-ed83d8bc0ec0,PreservedSpecimen,table2,MOHBR,I-1597,RG-022,89ffab08-4320-5603-9f80-ca5230ff2678,2012-11,,,,"Table 2, row 22",26
-b5e88cba-471c-5c66-9662-5d485dc8710e,PreservedSpecimen,table2,MOHBR,I-1598,RG-023,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 23",26
-b712764f-38e4-50de-9790-eda2bbd59874,PreservedSpecimen,table2,MOHBR,I-1599,RG-024,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 24",26
-b727bd67-1afc-52ac-a792-8c55cde964f4,PreservedSpecimen,table2,MOHBR,I-1600,RG-025,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 25",26
-893563cb-309e-5f5c-934b-6a35ea55bc9e,PreservedSpecimen,table2,MOHBR,I-1601,RG-026,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 26",26
-c995cc18-5dba-57a6-bc2a-325c113a13c4,PreservedSpecimen,table2,MOHBR,I-1602,RG-027,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 27",26
-d4c081a1-791e-5215-9d85-080d73626419,PreservedSpecimen,table2,MOHBR,I-1603,RG-030,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 28",26
-ba96d2f7-794e-5b37-b82e-f197b4c47c16,PreservedSpecimen,table2,MOHBR,I-1604,RG-031,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 29",26
-dc11356f-33c3-5e24-a70e-602110898e69,PreservedSpecimen,table2,MOHBR,I-1605,RG-032,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 30",26
-250d113e-4d87-5329-9ee1-8a5ee1ed6c02,PreservedSpecimen,table2,MOHBR,I-1606,RG-033,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 31",26
-ab233a1c-d939-56f7-9725-442592cf4521,PreservedSpecimen,table2,MOHBR,I-1607,RG-034,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 32",26
-68e0d3d0-f12a-51a3-9dc9-ae7079cbf72b,PreservedSpecimen,table2,MOHBR,I-1608,RG-035,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 33",26
-0772ee22-979d-5aa8-a6e5-a13e3f26f7ba,PreservedSpecimen,table2,MOHBR,I-1609,RG-036,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 34",26
-72921948-025d-5de4-bca5-4554484fc01f,PreservedSpecimen,table2,MOHBR,I-1610,RG-037,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 35",26
-5e19251e-2410-59de-b6fb-e0960b77940e,PreservedSpecimen,table2,MOHBR,I-1611,RG-038,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 36",26
-e16ea60e-3c22-5847-9859-a4e7c3bb559c,PreservedSpecimen,table2,MOHBR,I-1612,RG-039,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 37",26
-dc6d1571-9292-561b-8cbb-ff04e515e410,PreservedSpecimen,table2,MOHBR,I-1613,RG-040,202d2040-18b0-56f8-b100-8056313c3993,2012-11,,,,"Table 2, row 38",26
-59843dea-418c-5e2c-b895-456f0489fa82,PreservedSpecimen,table2,MOHBR,,RG-041,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,MOHBR catalogue number given as 'In progress' in the source,"Table 2, row 39",26
-52503205-14fa-560a-a1bf-eab599e193ac,PreservedSpecimen,table2,MOHBR,I-1614,RG-042,ba7586d0-a611-52ad-aec3-4b6b9c46f0e3,2012-11,,,,"Table 2, row 40",26
-2885348d-a677-58af-ba26-6e51429f633e,PreservedSpecimen,table2,MOHBR,I-1615,RG-043,ba7586d0-a611-52ad-aec3-4b6b9c46f0e3,2012-11,,,,"Table 2, row 41",26
-2a592b83-a2ee-5e2d-95c9-86ab518b5d1f,PreservedSpecimen,table2,MOHBR,I-1616,VE-003,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 42",26
-7fa10061-1de2-501e-ab69-6666cf084953,PreservedSpecimen,table2,MOHBR,I-1617,VE-004,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 43",27
-06f99818-a09a-5b2c-bb24-1f36496f6e52,PreservedSpecimen,table2,MOHBR,I-1618,VE-005,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 44",27
-bfaadb58-6045-5c1c-b4a1-1eb8fca9c13a,PreservedSpecimen,table2,MOHBR,I-1619,VE-007,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 45",27
-f05cd02e-d0f1-54e9-b808-46f0a821990a,PreservedSpecimen,table2,MOHBR,I-1620,VE-008,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 46",27
-83c9ea9f-d6ff-5b6d-a1d7-e6100e6f677c,PreservedSpecimen,table2,MOHBR,I-1621,VE-010,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 47",27
-d0211731-6a3d-510a-a15c-d6cc10fe5c60,PreservedSpecimen,table2,MOHBR,I-1622,VE-012,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 48",27
-e0603438-7e27-5727-b7a7-c213fba87406,PreservedSpecimen,table2,MOHBR,I-1623,VE-013,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 49",27
-88659966-aabf-59ab-84ed-a651c320ebdf,PreservedSpecimen,table2,MOHBR,I-1624,VE-015,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 50",27
-87fa2c13-454b-5f56-afa7-6aee9582c428,PreservedSpecimen,table2,MOHBR,I-1625,VE-016,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 51",27
-9a99c038-18c9-50d3-a644-570885c4ca93,PreservedSpecimen,table2,MOHBR,I-1626,VE-017,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 52",27
-b65bae8c-c5c0-5c83-a6ee-e14be752676a,PreservedSpecimen,table2,MOHBR,I-1627,VE-018,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 53",27
-732a5613-5287-5580-93a0-fb60920e5de1,PreservedSpecimen,table2,MOHBR,I-1628,VE-019,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 54",27
-5a17cf71-590e-51b1-84da-8d39a971d9b2,PreservedSpecimen,table2,MOHBR,I-1629,VE-045,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 55",27
-668c75e2-11f8-5e29-b061-9b3da5f1f64b,PreservedSpecimen,table2,MOHBR,I-1630,VE-046,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 56",27
-7cc1f133-62ad-5d6f-8f06-ea1d306f5882,PreservedSpecimen,table2,MOHBR,I-1631,VE-047,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 57",27
-ea9132cb-737b-536c-b6a1-351b64fb9d87,PreservedSpecimen,table2,MOHBR,I-1632,VE-049,07d8f211-327f-5274-85aa-dc2ebac47e0e,2012-11,,,,"Table 2, row 58",27
-8417d016-1867-5b7a-8f31-b540028e7f3b,PreservedSpecimen,table2,MOHBR,I-1633,VE-050,375f447d-7629-5866-9fda-4a067458fccd,2012-11,,,,"Table 2, row 59",27
-2052d1c9-c1f8-5501-8560-8575d6d75811,PreservedSpecimen,table2,MOHBR,I-1634,VE-052,375f447d-7629-5866-9fda-4a067458fccd,2012-11,,,,"Table 2, row 60",27
-04500aa1-bb9c-5ab2-95f9-4805f016a58b,PreservedSpecimen,table2,MOHBR,I-1635,VE-053,b3bee32d-108e-5714-b52c-6f2241713175,2012-11,,,,"Table 2, row 61",27
-cdf6052d-8ef0-5be2-91d7-ded0a58ecdf3,PreservedSpecimen,table2,MOHBR,I-1636,VE-054,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 62",27
-3ea34097-2eda-51d7-9dab-f0c180f556ad,PreservedSpecimen,table2,MOHBR,I-1637,VE-055,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 63",27
-642580b7-0b55-5c0e-bfc4-8b9aa19d0169,PreservedSpecimen,table2,MOHBR,I-1638,VE-056,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 64",27
-e5126e81-a23f-5255-8547-0b2243ec755f,PreservedSpecimen,table2,MOHBR,I-1639,VE-057,c006db98-a188-52f6-a195-93991d2da269,2012-11,,,,"Table 2, row 65",27
-036397dc-b480-5667-a74c-085b1e63ae28,PreservedSpecimen,table2,MOHBR,I-1640,VE-064,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 66",27
-1759eb11-b5a2-57d7-a3e0-f23491c7fddd,PreservedSpecimen,table2,MOHBR,I-1641,VE-065,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 67",27
-f4661cb0-8900-52a4-a0fa-aea8f45c4679,PreservedSpecimen,table2,MOHBR,I-1642,VE-066,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 68",27
-0d2de864-1e26-5cf0-b4f9-591c8f84dd03,PreservedSpecimen,table2,MOHBR,I-1643,VE-067,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 69",27
-efb508fd-441f-54e3-866e-56827f31877c,PreservedSpecimen,table2,MOHBR,I-1644,VE-069,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 70",27
-e90a32ff-f77e-5baa-809d-79e56f25298e,PreservedSpecimen,table2,MOHBR,I-1645,VE-072,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 71",27
-afee9040-a859-5082-b617-8b0c26092872,PreservedSpecimen,table2,MOHBR,I-1646,VE-073,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 72",27
-170a773f-8e1b-5a38-8e08-6db31a47942d,PreservedSpecimen,table2,MOHBR,I-1647,VE-074,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 73",27
-01cf552d-5e5f-57fb-95bf-df3b1841f574,PreservedSpecimen,table2,MOHBR,I-1648,VE-075,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 74",27
-781bac8b-0eee-51b7-9fce-39222cd0261c,PreservedSpecimen,table2,MOHBR,I-1649,VE-076,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 75",27
-db166729-1ad6-5bd7-9046-fb9bbc7acc05,PreservedSpecimen,table2,MOHBR,I-1650,VE-077,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 76",27
-0e33c5d1-a478-5a1d-b8de-ebdf6431c2da,PreservedSpecimen,table2,MOHBR,I-1651,VE-078,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 77",27
-239c57bd-19e7-590f-abc8-2aa5c7f94ccc,PreservedSpecimen,table2,MOHBR,I-1652,VE-079,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 78",27
-a7aa940b-c20f-5928-8dfa-b69ef2afd6b7,PreservedSpecimen,table2,MOHBR,I-1653,VE-080,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 79",27
-9df5bc90-992a-58cb-8c6e-c0ef8f1e6af2,PreservedSpecimen,table2,MOHBR,I-1654,VE-081,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 80",27
-403c5ae9-bdb2-5c1e-9978-ca7444ea378c,PreservedSpecimen,table2,MOHBR,I-1655,VE-082,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 81",27
-3281380d-00c6-50ae-a9c4-207de501b013,PreservedSpecimen,table2,MOHBR,I-1656,VE-085,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 82",27
-129b797a-7884-5d43-b660-c50ddec5cf87,PreservedSpecimen,table2,MOHBR,I-1657,VE-086,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 83",27
-ff734969-753a-5633-b0a3-b2da3545656b,PreservedSpecimen,table2,MOHBR,I-1658,VE-089,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 84",27
-3eb1b5b3-96bb-5042-9bc8-782a4a6cb32c,PreservedSpecimen,table2,MOHBR,I-1659,VE-090,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 85",27
-f48bddc8-03ac-5050-ba29-8a58a0a906f9,PreservedSpecimen,table2,MOHBR,I-1660,VE-091,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 86",27
-cf3f84b3-1b06-59d6-b12f-b51112bef16f,PreservedSpecimen,table2,MOHBR,I-1661,VE-100,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 87",27
-3d03731c-9f42-58e2-b14d-ca01e362fb02,PreservedSpecimen,table2,MOHBR,I-1662,VE-111,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 88",28
-90cce12a-65ec-5e63-85be-bb0d52eb659a,PreservedSpecimen,table2,MOHBR,I-1663,VE-114,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 89",28
-b34cbfc3-4b7d-5896-8629-ffb8c7405193,PreservedSpecimen,table2,MOHBR,I-1664,VE-115,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 90",28
-3f26911d-d928-5053-add8-a9b6e9620586,PreservedSpecimen,table2,MOHBR,I-1665,VE-116,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 91",28
-94c58932-1676-5f38-8040-bae5943ed599,PreservedSpecimen,table2,MOHBR,I-1666,VE-117,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 92",28
-f1915f6f-e699-54f4-9717-efdeb8345361,PreservedSpecimen,table2,MOHBR,I-1667,VE-118,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 93",28
-9c58710d-8e81-52bc-bee3-19d7c595afc8,PreservedSpecimen,table2,MOHBR,I-1668,VE-119,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 94",28
-a507a540-bd24-5061-9051-7087c82d9286,PreservedSpecimen,table2,MOHBR,I-1669,VE-120,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 95",28
-01a436fa-0d7a-5307-b428-e3af40809421,PreservedSpecimen,table2,MOHBR,I-1670,VE-121,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 96",28
-2d9abdd4-cfdf-51e7-95ce-4e3df9364ddf,PreservedSpecimen,table2,MOHBR,I-1671,VE-123,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 97",28
-2e2186b5-74a0-5d97-a907-7d90c2fd11c0,PreservedSpecimen,table2,MOHBR,I-1672,VE-124,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 98",28
-d511ff47-35d2-585d-a0d7-72c88ac3da47,PreservedSpecimen,table2,MOHBR,I-1673,VE-125,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 99",28
-2b385a25-db52-57bc-a941-4df6b235f738,PreservedSpecimen,table2,MOHBR,I-1674,VE-126,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 100",28
-1936267b-c35d-5330-9f93-09a41997d982,PreservedSpecimen,table2,MOHBR,I-1675,VE-127,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 101",28
-84269a3b-8fc2-5743-b2cd-0ac400072622,PreservedSpecimen,table2,MOHBR,I-1676,VE-128,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 102",28
-56513415-e9ee-50d0-808b-888be09ea7ea,PreservedSpecimen,table2,MOHBR,I-1677,VE-130,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 103",28
-58bc10d1-5620-59f8-ac94-b7c14b422da0,PreservedSpecimen,table2,MOHBR,I-1678,VE-132,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 104",28
-f923de76-6bb9-565a-b0c4-2ed6412cd0df,PreservedSpecimen,table2,MOHBR,I-1679,VE-134,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 105",28
-f8328d42-8a54-59bc-8357-0efa7e15b056,PreservedSpecimen,table2,MOHBR,I-1680,VE-135,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 106",28
-a5b6eb81-69d0-5788-b5f3-285b91ab5efa,PreservedSpecimen,table2,MOHBR,I-1681,VE-136,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 107",28
-d4aa768b-a7a8-5bed-9cb5-29dd67185360,PreservedSpecimen,table2,MOHBR,I-1682,VE-137,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 108",28
-a717683e-f6cb-51e7-80df-b0bb577603d5,PreservedSpecimen,table2,MOHBR,I-1683,VE-138,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 109",28
-ab035f80-9598-51ad-958d-67a12c578426,PreservedSpecimen,table2,MOHBR,I-1684,VE-139,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 110",28
-2be436ff-7476-5d7b-91d8-495b7b65e735,PreservedSpecimen,table2,MOHBR,I-1685,VE-140,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 111",28
-6c8fbba5-98e0-56e4-b743-3de63a15abfe,PreservedSpecimen,table2,MOHBR,I-1686,VE-141,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 112",28
-805093a6-63d4-5828-984d-44837a08eaa4,PreservedSpecimen,table2,MOHBR,I-1687,VE-142,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 113",28
-188a8874-3484-5716-9237-f4b829ed45a0,PreservedSpecimen,table2,MOHBR,I-1688,VE-143,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 114",28
-15850d2f-a9e7-5316-8867-f80c5f20f2ff,PreservedSpecimen,table2,MOHBR,I-1689,VE-144,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 115",28
-5bb51a58-48bc-5492-8dae-b8e4cb5855e0,PreservedSpecimen,table2,MOHBR,I-1690,VE-145,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 116",28
-07603190-f627-528c-967a-78424c9ebfe1,PreservedSpecimen,table2,MOHBR,I-1691,VE-149,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 117",28
-df02ef80-bd3e-5d06-a8f7-00d935708201,PreservedSpecimen,table2,MOHBR,I-1692,VE-150,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 118",28
-4ccd01f8-e0cf-5b4e-b597-520f8fd34261,PreservedSpecimen,table2,MOHBR,I-1693,VE-153,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 119",28
-244def14-c45c-53ae-8d1c-9c0a34382215,PreservedSpecimen,table2,MOHBR,I-1694,VE-155,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 120",28
-d1d35c26-c7fb-53f4-b7a0-268ccf873fe7,PreservedSpecimen,table2,MOHBR,I-1695,VE-164,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 121",28
-84f14a1a-a0df-5fad-a77a-4fc3596fe4ec,PreservedSpecimen,table2,MOHBR,I-1696,VE-165,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 122",28
-5c9f21f4-9172-5284-9b22-7676e606a842,PreservedSpecimen,table2,MOHBR,I-1697,VE-166,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 123",28
-bce55a8b-6053-5f84-b99f-44016bb6394b,PreservedSpecimen,table2,MOHBR,I-1698,VE-167,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 124",28
-44614cd2-8a9f-50d9-a1ee-222274b6b8ef,PreservedSpecimen,table2,MOHBR,I-1699,VE-168,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 125",28
-fe463b79-e53e-58bb-ac64-d1668389314a,PreservedSpecimen,table2,MOHBR,I-1700,VE-169,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 126",28
-76fd2086-b07b-5360-a861-fcb26f31d5ac,PreservedSpecimen,table2,MOHBR,I-1701,VE-170,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 127",28
-67a49513-9a61-5250-bef2-92c8bd886ce6,PreservedSpecimen,table2,MOHBR,I-1702,VE-171,07d8f211-327f-5274-85aa-dc2ebac47e0e,2012-11,,,,"Table 2, row 128",28
-99d3e494-4379-530e-b633-27ba80eaab0b,PreservedSpecimen,table3,MOHBR,I-546,,002c97d0-913d-5442-83e9-45276209901d,1995-02-23,23/02/1995,"Gutiérrez, J.",,"Table 3, row 1",29
-9da3f077-66af-5641-96fe-618bff1d5cca,PreservedSpecimen,table3,MOHBR,I-547,,002c97d0-913d-5442-83e9-45276209901d,1995-02-16,16/02/1995,"Gutiérrez, J.",,"Table 3, row 2",29
-3f20efd3-4197-597e-8786-63f660d7934e,PreservedSpecimen,table3,MOHBR,I-881,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08-01,01/08/1987,"Verginelli, R.",,"Table 3, row 3",29
-8007bbdd-8f77-511e-a214-3e07fd69f725,PreservedSpecimen,table3,MOHBR,I-882,,4f6f253b-a304-50fb-a7b5-1b0ce1ff45aa,1988-10-01,01/10/1988,"Sole, G.",,"Table 3, row 4",29
-a7d36257-f7e2-5f17-bfd1-46e42f3f568d,PreservedSpecimen,table3,MOHBR,I-883,,a2d47646-bed5-5b3e-83bd-110a5900c068,1986-06-26,26/06/1986,"Piñango, H.",,"Table 3, row 5",29
-4147a4e1-629b-51cb-b1c8-688f508ed284,PreservedSpecimen,table3,MOHBR,I-884,,a2d47646-bed5-5b3e-83bd-110a5900c068,1986-06-26,26/06/1986,"Piñango, H.",,"Table 3, row 6",29
-b83af44e-d589-5ea1-9ce9-7561bb37f096,PreservedSpecimen,table3,MOHBR,I-885,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10-01,01/10/1984,"Agudo, I.",,"Table 3, row 7",29
-fe993c41-f6e2-5d89-941e-1dce29449d79,PreservedSpecimen,table3,MOHBR,I-886,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-07-01,01/07/1987,"Verginelli, R.",,"Table 3, row 8",29
-6ca4f283-12d7-598a-b0d4-621ad65e1cf7,PreservedSpecimen,table3,MOHBR,I-887,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-03-12,12/03/1985,,,"Table 3, row 9",29
-30039adb-2786-5975-9651-72cd1bd8e5a1,PreservedSpecimen,table3,MOHBR,I-888,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05-01,01/05/1986,"Verginelli, R.",,"Table 3, row 10",29
-36e84e96-9ce7-5cd6-bab2-70e1429425de,PreservedSpecimen,table3,MOHBR,I-889,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 11",29
-59ef9896-2e48-5fa5-b36b-efb243a11fe4,PreservedSpecimen,table3,MOHBR,I-891,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-03-14,14/03/1985,,,"Table 3, row 12",29
-22a48d96-2d79-5ba3-82c5-fb820036cc56,PreservedSpecimen,table3,MOHBR,I-892,,0ccda41b-23a1-59d3-b946-c2a011213ce0,1986-11-12,12/11/1986,"Agudo, I.",,"Table 3, row 13",29
-d6b579e0-3648-530f-ab33-b82a3480d98b,PreservedSpecimen,table3,MOHBR,I-893,,778391e6-5315-54be-bafb-c068c993ff33,1984-08-09,09/08/1984,"Agudo, I.",,"Table 3, row 14",29
-4722b67d-ff58-5184-95ad-1eec45b15630,PreservedSpecimen,table3,MOHBR,I-894,,8e47676a-ccad-542a-bbc3-434ae29b4055,1984-11-30,30/11/1984,"Agudo, I.",,"Table 3, row 15",29
-7e334088-239c-5754-9371-a145d553489f,PreservedSpecimen,table3,MOHBR,I-895,,00aa3167-84b2-59eb-9a62-1e1f9f2a6f35,1985-03-07,07/03/1985,"Agudo, I.",,"Table 3, row 16",29
-92f0bb70-11be-5769-b947-dc4f43bb9a51,PreservedSpecimen,table3,MOHBR,I-896,,00aa3167-84b2-59eb-9a62-1e1f9f2a6f35,1980-03-21,21/03/1980,"Verginelli, R.",,"Table 3, row 17",29
-f156f743-84ed-5c76-8797-79a0a76c319f,PreservedSpecimen,table3,MOHBR,I-897,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05-01,01/05/1986,"Verginelli, R.",,"Table 3, row 18",29
-dd11ad22-cb71-59d2-891a-e4ce3afcc958,PreservedSpecimen,table3,MOHBR,I-898,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 19",29
-4d2e8fd5-de40-577e-b828-bfe3dfa56d7a,PreservedSpecimen,table3,MOHBR,I-899,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08-01,01/08/1987,"Verginelli, R.",,"Table 3, row 20",29
-09619a03-f245-5bb6-80bd-20e47f8ee7c3,PreservedSpecimen,table3,MOHBR,I-900,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10-01,01/10/1984,"Agudo, I. | Blondell, S.",,"Table 3, row 21",29
-d9c668a5-b817-510a-81e5-717ef1786434,PreservedSpecimen,table3,MOHBR,I-901,,4ea6529c-e2c0-5880-afb2-1593d378130a,1988-06-21,21/06/1988,,,"Table 3, row 22",29
-d89449e7-3859-53f3-a885-c0564e625bb9,PreservedSpecimen,table3,MOHBR,I-904,,150a19a7-6931-5948-b81d-9ad5327c27af,1981-08-01,01/08/1981,"Gil, R.",,"Table 3, row 23",29
-94dab96b-b7dc-5d2d-8bfb-3dd8880b9cbc,PreservedSpecimen,table3,MOHBR,I-905,,63eb23f9-3171-564c-a86f-d1577ef454b1,1981-10-01,01/10/1981,"Blondell, S. | Agudo, I.",,"Table 3, row 24",29
-1030432d-564d-5073-94eb-cc97fac2b204,PreservedSpecimen,table3,MOHBR,I-906,,f89327c1-ec0e-50f9-ab80-876b3a346f6b,1982-06-18,18/06/1982,"Agudo, I.",,"Table 3, row 25",29
-ccae3254-c9c3-5b89-80dc-897acefea801,PreservedSpecimen,table3,MOHBR,I-907,,0701fdab-1972-5eff-ae77-777c3b74b5b9,1985-03-13,13/03/1985,,,"Table 3, row 26",29
-d19968e8-e86c-5cae-a50b-a43fbb933467,PreservedSpecimen,table3,MOHBR,I-908,,486532ad-8c74-5be2-bb20-75b9e86efab9,1985-02-06,06/02/1985,"López, I. | Martelo, M.",,"Table 3, row 27",29
-df803b57-bb1c-5683-9a67-2e3ca3737415,PreservedSpecimen,table3,MOHBR,I-909,,150a19a7-6931-5948-b81d-9ad5327c27af,1982-06-10,10/06/1982,"Quijano, N.",,"Table 3, row 28",29
-091aaf86-a72d-56f7-bded-0b45f7f76c8d,PreservedSpecimen,table3,MOHBR,I-911,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 29",30
-ef4f3eae-af94-5381-92f2-70fab1eec974,PreservedSpecimen,table3,MOHBR,I-912,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 30",30
-17a49241-72d7-5573-969f-a4ee2da24de9,PreservedSpecimen,table3,MOHBR,I-913,,a2d47646-bed5-5b3e-83bd-110a5900c068,,,"Agudo, I.",,"Table 3, row 31",30
-f4526ab6-c1d5-5b09-b664-812065d49108,PreservedSpecimen,table3,MOHBR,I-914,,20f66c72-15c4-5c2b-a6c9-9eef034661cf,1985-03-15,15/03/1985,,,"Table 3, row 32",30
-227977ff-65a2-54e1-94fb-cff73a60b2b2,PreservedSpecimen,table3,MOHBR,I-915,,cf41cf7d-0ee3-5664-8178-cfdfe745727f,1985-03-16,16/03/1985,,,"Table 3, row 33",30
-fdaf1bf3-ed24-510d-a48e-ebba8773c1db,PreservedSpecimen,table3,MOHBR,I-916,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 34",30
-aa29ad0b-32ac-5aa4-bc1c-9ec1f1fd64f1,PreservedSpecimen,table3,MOHBR,I-917,,4f6f253b-a304-50fb-a7b5-1b0ce1ff45aa,1988-10-01,01/10/1988,,,"Table 3, row 35",30
-c7ae6a2b-3f77-5142-bace-ce1ffc046581,PreservedSpecimen,table3,MOHBR,I-918,,778391e6-5315-54be-bafb-c068c993ff33,1985-03-01,01/03/1985,"Agudo, I. | Blondell, S.",,"Table 3, row 36",30
-2bb0ae83-db6a-5de1-a202-9bd2f10d9e62,PreservedSpecimen,table3,MOHBR,I-920,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-12,12/03/1985,,,"Table 3, row 37",30
-08396183-788a-5902-a796-48c516ff83b3,PreservedSpecimen,table3,MOHBR,I-921,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 38",30
-c6697556-3afd-5c20-8a5f-097033ee343a,PreservedSpecimen,table3,MOHBR,I-923,,0701fdab-1972-5eff-ae77-777c3b74b5b9,1985-03-12,12/03/1985,,,"Table 3, row 39",30
-ccbea398-c236-5e98-ab8f-e60a3d9312ef,PreservedSpecimen,table3,MOHBR,I-925,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 40",30
-083b39fb-233d-575d-8a8b-372d44869980,PreservedSpecimen,table3,MOHBR,I-929,,a6f0f134-2a4f-58ab-9f9f-f2ae4f41900d,,,"Verginelli, R. | Agudo, I.",,"Table 3, row 41",30
-efa29eb5-430d-5fd7-ac93-eebb1dbc69a0,PreservedSpecimen,table3,MOHBR,I-930,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 42",30
-a80b637e-d2c7-5383-93b5-980afbb475ac,PreservedSpecimen,table3,MOHBR,I-934,,778391e6-5315-54be-bafb-c068c993ff33,1988-03-01,01/03/1988,"Agudo, I. | Blondell, S.",,"Table 3, row 43",30
-b5a2fb27-2a67-5112-8a3a-90a41672d9e7,PreservedSpecimen,table3,MOHBR,I-935,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 44",30
-401e9d6f-5e56-540f-b1bc-9ae85e22025e,PreservedSpecimen,table3,MOHBR,I-936,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 45",30
-e6b152e4-5175-5b8f-947d-e07bcc59ec6e,PreservedSpecimen,table3,MOHBR,I-938,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 46",30
-9322a71a-cd77-5600-b657-9a7bb9ee8be2,PreservedSpecimen,table3,MOHBR,I-939,,,,,,,"Table 3, row 47",30
-62664db1-4f89-559a-bdcf-862c89b86f8c,PreservedSpecimen,table3,MOHBR,I-942,,,1953-03-01,01/03/1953,,,"Table 3, row 48",30
-1eed4387-93a9-5589-82e3-5789b7ba4628,PreservedSpecimen,table3,MOHBR,I-943,,cf41cf7d-0ee3-5664-8178-cfdfe745727f,1985-03-15,15/03/1985,,,"Table 3, row 49",30
-8040bc59-a07e-5485-9377-1d57233159dc,PreservedSpecimen,table3,MOHBR,I-944,,150a19a7-6931-5948-b81d-9ad5327c27af,1981-08-01,01/08/1981,"Gil, R.",,"Table 3, row 50",30
-378a9890-cb17-5919-b95c-f85fb268d9b2,PreservedSpecimen,table3,MOHBR,I-945,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05-01,01/05/1986,"Verginelli, R.",,"Table 3, row 51",30
-286224e5-660d-5fe8-b785-0ab28c1bf912,PreservedSpecimen,table3,MOHBR,I-946,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10-01,01/10/1984,"Agudo, I.",,"Table 3, row 52",30
-09be2a15-c0b6-558a-8732-2e5177700d2c,PreservedSpecimen,table3,MOHBR,I-949,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08-01,01/08/1987,"Verginelli, R.",,"Table 3, row 53",30
-07e2bf7d-84d2-50f7-af93-512c93d3b1aa,PreservedSpecimen,table3,MOHBR,I-950,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08-01,01/08/1987,"Verginelli, R.",,"Table 3, row 54",30
-e67b66b9-adff-54ca-8d95-195173066e9a,PreservedSpecimen,table3,MOHBR,I-953,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-05-14,14/05/1985,"Agudo, I.",,"Table 3, row 55",30
-c2db172b-6f05-5e97-af75-f408a267794b,PreservedSpecimen,table3,MOHBR,I-954,,778391e6-5315-54be-bafb-c068c993ff33,1984-08-04,04/08/1984,"Agudo, I.",,"Table 3, row 56",30
-8eeefb68-1c8b-5a15-9b86-7c445281e5a6,PreservedSpecimen,table3,MOHBR,I-955,,43361228-41d3-5f04-94d1-27f6fad0ca87,1988-10-01,01/10/1988,"Verginelli, R.",,"Table 3, row 57",30
-8d79fe3a-d1f2-59b0-9ec3-1062d7d0ac24,PreservedSpecimen,table3,MOHBR,I-956,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05-01,01/05/1986,"Verginelli, R.",,"Table 3, row 58",30
-be0d8514-b645-563a-9e78-de7f0a3e261e,PreservedSpecimen,table3,MOHBR,I-957,,6dbd2cf4-4656-55fb-ac57-7fa97733dcae,1989-07-01,01/07/1989,"Agudo, I.",,"Table 3, row 59",30
-29afa7ef-3d2f-5733-9e7c-fa17c3aa7cfc,PreservedSpecimen,table3,MOHBR,I-961,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08-01,01/08/1987,"Verginelli, R.",,"Table 3, row 60",31
-0108695f-1ef5-553c-9363-9cd616fa2f38,PreservedSpecimen,table3,MOHBR,I-978,,83d203d4-4e1f-5399-8906-517772237068,1954-04-19,19/04/1954,,,"Table 3, row 61",31
-ce49662d-4a3c-598c-9e6c-0127d2e374a3,PreservedSpecimen,table3,MOHBR,I-994,,1d876d77-0ca2-56ae-975d-2bc06aa784b0,1973-03-25,25/03/1973,"García, C.",,"Table 3, row 62",31
-b09a8442-3894-5af1-a856-1236aa35e518,PreservedSpecimen,table3,MOHBR,I-1151,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2002-11-14,14/11/2002,"Capelo, J.",,"Table 3, row 63",31
-082d1007-183b-5e70-b54d-b148b95601dc,PreservedSpecimen,table3,MOHBR,I-1152,,002c97d0-913d-5442-83e9-45276209901d,1989-02-23,23/02/1989,"Velásquez, Y.",,"Table 3, row 64",31
-759533a3-8756-5029-8a17-058e1b663944,PreservedSpecimen,table3,MOHBR,I-1155,,356adf40-948a-5a2b-8986-a77c67e772f9,1988-03-13,13/03/1988,,,"Table 3, row 65",31
-9f9a2161-f30e-5033-a031-bf3aac54c406,PreservedSpecimen,table3,MOHBR,I-1192,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 66",31
-616cf641-c1cb-5945-ae27-395de83eafab,PreservedSpecimen,table3,MOHBR,I-1193,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 67",31
-3e8cc1af-1d18-581f-a876-17b3b1f25dae,PreservedSpecimen,table3,MOHBR,I-1194,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 68",31
-60d4f0bb-bf6a-5274-bbfb-6ce1bc853ff5,PreservedSpecimen,table3,MOHBR,I-1197,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-27,27/06/2012,"Carrasquel, M.",,"Table 3, row 69",31
-0ecffe39-73f0-53b4-bb0f-e1c0bb1814a6,PreservedSpecimen,table3,MOHBR,I-1198,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-05-24,24/05/2012,"Carrasquel, M.",,"Table 3, row 70",31
-12c4ce14-be9c-52fd-a0af-0cd6d4e42089,PreservedSpecimen,table3,MOHBR,I-1199,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-03-25,25/03/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 71",31
-9bae8ea8-1561-52ca-bf04-02fd6ecccce4,PreservedSpecimen,table3,MOHBR,I-1200,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2009-03-30,30/03/2009,"Carrasquel, M.",,"Table 3, row 72",31
-32d243ae-3ece-54b8-9914-276b7eed1218,PreservedSpecimen,table3,MOHBR,I-1201,,2652e9a6-344f-54fb-8a3c-2b349ab63453,,31/04/2012,"Carrasquel, M.",verbatimEventDate impossible calendar date,"Table 3, row 73",31
-f5b9541e-b804-54d9-8f47-12a66a52030e,PreservedSpecimen,table3,MOHBR,I-1204,,bf813c8c-f682-5ff4-80db-864edfccacb6,2012-06-28,28/06/2012,"López, R.",,"Table 3, row 74",31
-2ed32ae2-0760-591d-b775-2b215d28a973,PreservedSpecimen,table3,MOHBR,I-1205,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-07,07/06/2012,"Carrasquel, M.",,"Table 3, row 75",31
-0ba6cbe8-928b-5eed-b8cf-51bb87c43859,PreservedSpecimen,table3,MOHBR,I-1206,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-27,27/06/2012,"Carrasquel, M.",,"Table 3, row 76",31
-41ac4a4f-c495-5988-b926-30d4b044071a,PreservedSpecimen,table3,MOHBR,I-1207,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 77",31
-605f96e4-c765-5cdf-ad4c-9faf1caa05a1,PreservedSpecimen,table3,MOHBR,I-1208,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 78",31
-3292e2cc-5c6d-5396-9cf0-82e52932a49a,PreservedSpecimen,table3,MOHBR,I-1209,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 79",31
-e750472b-d050-5337-938e-15938554ba80,PreservedSpecimen,table3,MOHBR,I-1210,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 80",31
-45fd23de-688a-528f-9fbc-55a12701abeb,PreservedSpecimen,table3,MOHBR,I-1211,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 81",31
-30ee0cef-d36c-51c6-8c46-98bf7555d932,PreservedSpecimen,table3,MOHBR,I-1212,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 82",31
-42d60580-6162-5efc-9e19-7feb9d736989,PreservedSpecimen,table3,MOHBR,I-1213,,002c97d0-913d-5442-83e9-45276209901d,1989-02-23,23/02/1989,"Velásquez, Y.",,"Table 3, row 83",31
-c6485d52-6202-5f4c-b191-ea13e4ecc01b,PreservedSpecimen,table3,MOHBR,I-1214,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 84",31
+e9347c50-78a0-505c-9376-6799182553e1,PreservedSpecimen,table2,MOHBR,I-1576,RG-001,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 1",26
+0a0134de-853e-54d7-9881-020b6546d97a,PreservedSpecimen,table2,MOHBR,I-1577,RG-002,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 2",26
+637845af-c8ca-53f3-b494-0692244116bc,PreservedSpecimen,table2,MOHBR,I-1578,RG-003,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 3",26
+6dacce53-a1c9-533c-aff7-ffb35b615737,PreservedSpecimen,table2,MOHBR,I-1579,RG-004,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 4",26
+e7a34619-0257-5068-8a45-608d65a668b7,PreservedSpecimen,table2,MOHBR,I-1580,RG-005,d8f17f62-5f6c-50df-af12-11f099ad467f,2012-11,,,,"Table 2, row 5",26
+c7a48cf7-ddf6-57ce-870d-f0090366d60c,PreservedSpecimen,table2,MOHBR,I-1581,RG-006,29b261ed-d42e-5cd9-8d97-cf978d629cbf,2012-11,,,,"Table 2, row 6",26
+b851ab02-e009-5941-a21d-df8ff99e8da9,PreservedSpecimen,table2,MOHBR,I-1582,RG-007,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 7",26
+33fcf359-1e8f-5adf-a628-946915b8cecc,PreservedSpecimen,table2,MOHBR,I-1583,RG-008,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 8",26
+282b7837-d450-5cdb-a55e-8500df460a02,PreservedSpecimen,table2,MOHBR,I-1584,RG-009,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 9",26
+d9a4663b-b267-5d14-9fe4-375b54a98726,PreservedSpecimen,table2,MOHBR,I-1585,RG-010,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 10",26
+ed964a8d-29cf-5366-a8dd-020a12db3f9f,PreservedSpecimen,table2,MOHBR,I-1586,RG-011,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 11",26
+c88ac323-4768-5b36-9fbf-437211dcc4b7,PreservedSpecimen,table2,MOHBR,I-1587,RG-012,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 12",26
+4241d534-cf4b-51da-8cd6-ea80241f7d7f,PreservedSpecimen,table2,MOHBR,I-1588,RG-013,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 13",26
+90ea0f65-4bb0-528e-a916-86837ef20362,PreservedSpecimen,table2,MOHBR,I-1589,RG-014,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 14",26
+f3fbe96e-d769-518f-9df9-f66f69081b90,PreservedSpecimen,table2,MOHBR,I-1590,RG-015,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 15",26
+05209497-984f-5f58-897a-e3d52a771532,PreservedSpecimen,table2,MOHBR,I-1591,RG-016,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 16",26
+beee69b1-6e19-56a5-ab75-3caeb19d51bc,PreservedSpecimen,table2,MOHBR,I-1592,RG-017,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 17",26
+e2a3455a-38c5-5e0a-a623-ba966ba70875,PreservedSpecimen,table2,MOHBR,I-1593,RG-018,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 18",26
+e9a36f2e-2692-511f-908e-1d113d990c90,PreservedSpecimen,table2,MOHBR,I-1594,RG-019,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 19",26
+ab15cc1a-2337-5bd5-a514-d6c38ab18e3b,PreservedSpecimen,table2,MOHBR,I-1595,RG-020,fd1a9731-8bc3-5fb1-8b9b-0178cce33e97,2012-11,,,,"Table 2, row 20",26
+0a0ef378-518f-5df7-8d57-7e5701ee8a6c,PreservedSpecimen,table2,MOHBR,I-1596,RG-021,89ffab08-4320-5603-9f80-ca5230ff2678,2012-11,,,,"Table 2, row 21",26
+c977ff0b-6e62-54c6-bb78-648cf39c5481,PreservedSpecimen,table2,MOHBR,I-1597,RG-022,89ffab08-4320-5603-9f80-ca5230ff2678,2012-11,,,,"Table 2, row 22",26
+2eca321e-496a-5618-9057-f1e06d6fd7ec,PreservedSpecimen,table2,MOHBR,I-1598,RG-023,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 23",26
+20a79cf2-1f66-5b35-b8b5-228aab38fcfa,PreservedSpecimen,table2,MOHBR,I-1599,RG-024,1f529fa4-fb0c-5036-afef-75c04c1e2c9c,2012-11,,,,"Table 2, row 24",26
+96904961-6626-52f2-bbaa-4cf243456689,PreservedSpecimen,table2,MOHBR,I-1600,RG-025,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 25",26
+f307868a-c458-58ac-ab71-c10ee8485d37,PreservedSpecimen,table2,MOHBR,I-1601,RG-026,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 26",26
+f87e6feb-7c67-5354-91ba-f339836070e9,PreservedSpecimen,table2,MOHBR,I-1602,RG-027,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 27",26
+29047d0c-e9ee-5795-b0ea-569687a96ea0,PreservedSpecimen,table2,MOHBR,I-1603,RG-030,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 28",26
+84605947-d825-5c31-8514-8653fa635819,PreservedSpecimen,table2,MOHBR,I-1604,RG-031,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 29",26
+29a1f617-192f-5e4c-8994-c5ed044a9e98,PreservedSpecimen,table2,MOHBR,I-1605,RG-032,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 30",26
+b050f98c-0884-50b3-8aca-6430ae2a1988,PreservedSpecimen,table2,MOHBR,I-1606,RG-033,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 31",26
+14c13349-b3a7-50bf-9bb7-3d3d27d654b9,PreservedSpecimen,table2,MOHBR,I-1607,RG-034,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 32",26
+62571f8e-dbf1-579b-8e96-8e7924562661,PreservedSpecimen,table2,MOHBR,I-1608,RG-035,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 33",26
+b5c64ef3-0347-58e1-8807-6fd448a31418,PreservedSpecimen,table2,MOHBR,I-1609,RG-036,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 34",26
+13c9ebf3-0b7b-5b1b-bebf-b61c9aa519d5,PreservedSpecimen,table2,MOHBR,I-1610,RG-037,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 35",26
+e9f1efb4-8651-5bf4-a81b-78e592cad447,PreservedSpecimen,table2,MOHBR,I-1611,RG-038,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 36",26
+4a3befec-a0a2-5cf5-99e6-a3752220e3db,PreservedSpecimen,table2,MOHBR,I-1612,RG-039,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 37",26
+8a96fb4c-0a1a-5049-a73f-0dd9adb2475e,PreservedSpecimen,table2,MOHBR,I-1613,RG-040,202d2040-18b0-56f8-b100-8056313c3993,2012-11,,,,"Table 2, row 38",26
+5a21f3aa-528c-5d29-bb56-ea31d0246465,PreservedSpecimen,table2,MOHBR,,RG-041,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,MOHBR catalogue number given as 'In progress' in the source,"Table 2, row 39",26
+da69ba87-c308-5c39-96d8-0222c624de05,PreservedSpecimen,table2,MOHBR,I-1614,RG-042,ba7586d0-a611-52ad-aec3-4b6b9c46f0e3,2012-11,,,,"Table 2, row 40",26
+c09dc569-dfab-55a9-96bc-fb8b08eda543,PreservedSpecimen,table2,MOHBR,I-1615,RG-043,ba7586d0-a611-52ad-aec3-4b6b9c46f0e3,2012-11,,,,"Table 2, row 41",26
+f35e6835-8f99-5859-a7e5-29557ef45e1e,PreservedSpecimen,table2,MOHBR,I-1616,VE-003,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 42",26
+9cb78510-39c1-52c2-9a2a-b5ef5c5325be,PreservedSpecimen,table2,MOHBR,I-1617,VE-004,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 43",27
+cfca14d0-6e46-503c-b56a-bcd13b5812a9,PreservedSpecimen,table2,MOHBR,I-1618,VE-005,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 44",27
+54037aac-6cfb-5397-81d2-1b226f3de6e9,PreservedSpecimen,table2,MOHBR,I-1619,VE-007,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 45",27
+da53c259-34b5-5174-8694-6cb72118205d,PreservedSpecimen,table2,MOHBR,I-1620,VE-008,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 46",27
+09fc79fe-4345-5c65-8015-ff10583824ef,PreservedSpecimen,table2,MOHBR,I-1621,VE-010,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 47",27
+9a3ed6da-6059-521b-ad03-ab4a84be0dba,PreservedSpecimen,table2,MOHBR,I-1622,VE-012,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 48",27
+408eaee4-7eff-504d-8705-e3de3103cae8,PreservedSpecimen,table2,MOHBR,I-1623,VE-013,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 49",27
+1b48c6d5-ba41-5051-b0a1-c0efd329e28c,PreservedSpecimen,table2,MOHBR,I-1624,VE-015,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 50",27
+620ea062-cbce-54d7-8f6f-9e2c7833cd92,PreservedSpecimen,table2,MOHBR,I-1625,VE-016,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 51",27
+053acb41-dc25-50a7-8466-f1ec33261d87,PreservedSpecimen,table2,MOHBR,I-1626,VE-017,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 52",27
+e525a32c-328d-5abc-98de-092b64227ba5,PreservedSpecimen,table2,MOHBR,I-1627,VE-018,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 53",27
+f4bc301f-dc42-5f47-803c-a8a9eec56319,PreservedSpecimen,table2,MOHBR,I-1628,VE-019,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 54",27
+eab8d1f0-5875-53fd-b233-e247988dab6d,PreservedSpecimen,table2,MOHBR,I-1629,VE-045,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 55",27
+11f8fe5f-f61c-5208-9a6b-77df3b0bd4eb,PreservedSpecimen,table2,MOHBR,I-1630,VE-046,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 56",27
+647fc986-7553-5bee-9f56-3b0bf884e8f3,PreservedSpecimen,table2,MOHBR,I-1631,VE-047,35ced857-6672-53f7-b20c-aa7cd00eb639,2012-11,,,,"Table 2, row 57",27
+ffcbd0f0-4d14-5bd3-9605-c1912123f93e,PreservedSpecimen,table2,MOHBR,I-1632,VE-049,07d8f211-327f-5274-85aa-dc2ebac47e0e,2012-11,,,,"Table 2, row 58",27
+2018bc04-4efe-5d1f-bb8f-c5487b7cd76c,PreservedSpecimen,table2,MOHBR,I-1633,VE-050,375f447d-7629-5866-9fda-4a067458fccd,2012-11,,,,"Table 2, row 59",27
+7f50e96f-a9fc-5c99-8b60-fb94f4a96684,PreservedSpecimen,table2,MOHBR,I-1634,VE-052,375f447d-7629-5866-9fda-4a067458fccd,2012-11,,,,"Table 2, row 60",27
+1074ef98-a24c-5c86-8759-51178ac30c3e,PreservedSpecimen,table2,MOHBR,I-1635,VE-053,b3bee32d-108e-5714-b52c-6f2241713175,2012-11,,,,"Table 2, row 61",27
+5b5729a0-ac8c-5db2-9743-ad7726d4113b,PreservedSpecimen,table2,MOHBR,I-1636,VE-054,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 62",27
+21a3e418-3a42-546e-9d9c-3a21c0963639,PreservedSpecimen,table2,MOHBR,I-1637,VE-055,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 63",27
+5cb61637-775c-50ba-af28-66861bda7c35,PreservedSpecimen,table2,MOHBR,I-1638,VE-056,02384a85-6b3b-5a7f-8658-8de5cda49f99,2012-11,,,,"Table 2, row 64",27
+3cb2a96f-a4da-5845-bf75-1e9398415050,PreservedSpecimen,table2,MOHBR,I-1639,VE-057,c006db98-a188-52f6-a195-93991d2da269,2012-11,,,,"Table 2, row 65",27
+290cf31b-3443-5c73-9e1a-d7d933da8d20,PreservedSpecimen,table2,MOHBR,I-1640,VE-064,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 66",27
+91fa734e-d3ec-521f-8225-dea726323d8a,PreservedSpecimen,table2,MOHBR,I-1641,VE-065,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 67",27
+d5e68fe0-ef24-5079-aec2-497b71166a78,PreservedSpecimen,table2,MOHBR,I-1642,VE-066,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 68",27
+7a608657-1fab-5e44-858f-ed440f3ab57c,PreservedSpecimen,table2,MOHBR,I-1643,VE-067,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 69",27
+6d533d5e-9a27-55ba-b89e-f53b90c840aa,PreservedSpecimen,table2,MOHBR,I-1644,VE-069,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 70",27
+bb644046-0007-56bd-8a8a-eb6ef8814cfe,PreservedSpecimen,table2,MOHBR,I-1645,VE-072,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 71",27
+70a01f47-1b73-5082-9192-36d1b61ad697,PreservedSpecimen,table2,MOHBR,I-1646,VE-073,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 72",27
+a639ef63-42f8-585c-b169-a62c7a6787d4,PreservedSpecimen,table2,MOHBR,I-1647,VE-074,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 73",27
+fb46f9c7-bee1-5eb2-8aff-d49eb39a83fa,PreservedSpecimen,table2,MOHBR,I-1648,VE-075,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 74",27
+29bf3632-fba6-5b85-82a3-704e9f0cb12b,PreservedSpecimen,table2,MOHBR,I-1649,VE-076,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 75",27
+41c80a91-f2bf-5ffa-ac2c-dce5eb91e84f,PreservedSpecimen,table2,MOHBR,I-1650,VE-077,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 76",27
+c9379073-491c-5ec3-9d1c-485ba66c227c,PreservedSpecimen,table2,MOHBR,I-1651,VE-078,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 77",27
+7bf5ff45-9740-57ab-bb0f-ce904d44f119,PreservedSpecimen,table2,MOHBR,I-1652,VE-079,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 78",27
+caa755b3-bfb8-544a-a2ad-a0954dcb8f51,PreservedSpecimen,table2,MOHBR,I-1653,VE-080,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 79",27
+4a02175a-8641-558c-bf80-0a384dc8698f,PreservedSpecimen,table2,MOHBR,I-1654,VE-081,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 80",27
+8ef4a8b1-611c-59e5-a11f-bf3a27254bf4,PreservedSpecimen,table2,MOHBR,I-1655,VE-082,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 81",27
+02e8197e-19f9-543d-adf6-67a80d168b76,PreservedSpecimen,table2,MOHBR,I-1656,VE-085,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 82",27
+f56d0a4f-914b-5cc7-8d2f-67618207c920,PreservedSpecimen,table2,MOHBR,I-1657,VE-086,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 83",27
+e6d2113f-a554-5bcd-bb38-5e13c1b7b940,PreservedSpecimen,table2,MOHBR,I-1658,VE-089,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 84",27
+f68adecb-4dc8-57b7-bea1-4570550cf607,PreservedSpecimen,table2,MOHBR,I-1659,VE-090,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 85",27
+b737b380-cec0-58ec-b155-0b30c2f1e7ef,PreservedSpecimen,table2,MOHBR,I-1660,VE-091,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 86",27
+1f41d904-2492-5b4c-bdec-45ecc041e082,PreservedSpecimen,table2,MOHBR,I-1661,VE-100,dd7b8b3d-98ee-5476-807b-9357986b8bdd,,,,,"Table 2, row 87",27
+c0eb1192-4a65-5c63-ad20-89a4b9a32298,PreservedSpecimen,table2,MOHBR,I-1662,VE-111,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 88",28
+09f8f8f2-19b0-5d10-aed3-0fd7f54eeaf5,PreservedSpecimen,table2,MOHBR,I-1663,VE-114,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 89",28
+f3338412-3248-5369-9a35-a57487a28628,PreservedSpecimen,table2,MOHBR,I-1664,VE-115,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 90",28
+a318b4d9-1990-58d9-a8b9-93af0aae0c0f,PreservedSpecimen,table2,MOHBR,I-1665,VE-116,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 91",28
+bbe5f33e-9568-56e1-a832-b8f0f691ed53,PreservedSpecimen,table2,MOHBR,I-1666,VE-117,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 92",28
+3bddd4ff-4248-50aa-9ef4-5960826bf126,PreservedSpecimen,table2,MOHBR,I-1667,VE-118,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 93",28
+4eff7d72-dea8-5ed5-8916-b398e68979af,PreservedSpecimen,table2,MOHBR,I-1668,VE-119,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 94",28
+ffdd47da-abf7-59c6-a3e9-5bed45a00d1f,PreservedSpecimen,table2,MOHBR,I-1669,VE-120,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 95",28
+7679c554-4ed5-5271-8f1f-a5942c789ae0,PreservedSpecimen,table2,MOHBR,I-1670,VE-121,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 96",28
+4b6a2d5c-1027-50a5-a950-909fb78c7cc7,PreservedSpecimen,table2,MOHBR,I-1671,VE-123,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 97",28
+6f3afb2b-5af6-522e-ae02-fe35e7f5e455,PreservedSpecimen,table2,MOHBR,I-1672,VE-124,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 98",28
+6499dc9f-89c3-55ee-a154-bcda3b555436,PreservedSpecimen,table2,MOHBR,I-1673,VE-125,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 99",28
+d68eb344-5119-5f9c-83c1-561b4155f9c4,PreservedSpecimen,table2,MOHBR,I-1674,VE-126,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 100",28
+0a79394e-9bf8-55ae-813b-1f2d1642139e,PreservedSpecimen,table2,MOHBR,I-1675,VE-127,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 101",28
+dfa716df-ba1d-5294-8a1f-40594d9f032d,PreservedSpecimen,table2,MOHBR,I-1676,VE-128,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 102",28
+9baffd94-aea6-5abc-81df-fb89fe45d8b8,PreservedSpecimen,table2,MOHBR,I-1677,VE-130,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 103",28
+3ebfa02e-d05b-599c-88ee-955cacbdea17,PreservedSpecimen,table2,MOHBR,I-1678,VE-132,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 104",28
+57b4506e-53f2-539a-ba31-13ee7bd4376c,PreservedSpecimen,table2,MOHBR,I-1679,VE-134,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 105",28
+d1426b62-dca2-566c-8aa7-1627eda8c3fe,PreservedSpecimen,table2,MOHBR,I-1680,VE-135,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 106",28
+0abbafac-be30-5381-b45e-2d64602622ba,PreservedSpecimen,table2,MOHBR,I-1681,VE-136,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 107",28
+de2fa20d-c6ac-5679-8858-9dc038a110d7,PreservedSpecimen,table2,MOHBR,I-1682,VE-137,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 108",28
+1dd5f6c4-fb1e-5acd-9909-1ee5d450a8ec,PreservedSpecimen,table2,MOHBR,I-1683,VE-138,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 109",28
+6f8395e9-8c74-5446-bb5b-67524c8bab3e,PreservedSpecimen,table2,MOHBR,I-1684,VE-139,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 110",28
+5c8ea354-1d39-53ad-94b9-1a24fbbc94cc,PreservedSpecimen,table2,MOHBR,I-1685,VE-140,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 111",28
+0752633f-077e-52ba-ae5d-4e8757d8f093,PreservedSpecimen,table2,MOHBR,I-1686,VE-141,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 112",28
+b47e62fc-832d-5843-935b-efb3b4beab29,PreservedSpecimen,table2,MOHBR,I-1687,VE-142,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 113",28
+9546ab6b-7b12-587d-8087-25112e936447,PreservedSpecimen,table2,MOHBR,I-1688,VE-143,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 114",28
+bb26ba6b-0d06-5437-87fa-ce7ba01985d7,PreservedSpecimen,table2,MOHBR,I-1689,VE-144,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 115",28
+1db9fc16-b42a-5e91-a17a-5c8c9f90e8c0,PreservedSpecimen,table2,MOHBR,I-1690,VE-145,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 116",28
+28af9d10-1427-5577-ae15-082613686196,PreservedSpecimen,table2,MOHBR,I-1691,VE-149,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 117",28
+610b2e2d-dc05-5a72-8ff1-14c7f49d6656,PreservedSpecimen,table2,MOHBR,I-1692,VE-150,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 118",28
+e96ff900-77e7-501a-9a17-babd30d153ff,PreservedSpecimen,table2,MOHBR,I-1693,VE-153,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 119",28
+122cab31-42d9-5132-b539-f1895c3ed60b,PreservedSpecimen,table2,MOHBR,I-1694,VE-155,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 120",28
+c3fd4dde-b90e-57c6-a332-cec290f26fe1,PreservedSpecimen,table2,MOHBR,I-1695,VE-164,d511a036-dd6e-5791-b6dd-0f00e4ecca94,,,,,"Table 2, row 121",28
+e875711b-5aab-5113-847a-372c9d3c72d0,PreservedSpecimen,table2,MOHBR,I-1696,VE-165,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 122",28
+0690162a-5a6c-50a2-a636-f534bce8f55e,PreservedSpecimen,table2,MOHBR,I-1697,VE-166,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 123",28
+66725e33-0261-570a-97d7-41e3a1b83006,PreservedSpecimen,table2,MOHBR,I-1698,VE-167,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 124",28
+03283572-601a-5565-bf64-71f6a94dfeac,PreservedSpecimen,table2,MOHBR,I-1699,VE-168,3e40120f-446d-5d12-b39f-8c5d5f9d5222,2012-11,,,,"Table 2, row 125",28
+1e9213a9-817b-5f4e-95c5-6962b2a66283,PreservedSpecimen,table2,MOHBR,I-1700,VE-169,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 126",28
+e1a91ab4-597c-5409-b6a6-e2c6eb63dbc5,PreservedSpecimen,table2,MOHBR,I-1701,VE-170,120faba9-f773-5e37-a774-c8ce5c192cd4,2012-11,,,,"Table 2, row 127",28
+a52e1b61-1904-52b9-ad8b-ef5e1c43c224,PreservedSpecimen,table2,MOHBR,I-1702,VE-171,07d8f211-327f-5274-85aa-dc2ebac47e0e,2012-11,,,,"Table 2, row 128",28
+9b44f191-3ebd-5987-87c9-8c97f13d7e8d,PreservedSpecimen,table3,MOHBR,I-546,,002c97d0-913d-5442-83e9-45276209901d,1995-02-23,23/02/1995,"Gutiérrez, J.",,"Table 3, row 1",29
+e8ee3e56-5aec-5527-b94e-f59f9697da2a,PreservedSpecimen,table3,MOHBR,I-547,,002c97d0-913d-5442-83e9-45276209901d,1995-02-16,16/02/1995,"Gutiérrez, J.",,"Table 3, row 2",29
+05d1a749-770b-5079-aef7-373f75fee950,PreservedSpecimen,table3,MOHBR,I-881,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08,01/08/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 3",29
+e6caa420-93d8-5b2e-a740-ac91775c3c64,PreservedSpecimen,table3,MOHBR,I-882,,4f6f253b-a304-50fb-a7b5-1b0ce1ff45aa,1988-10,01/10/1988,"Sole, G.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 4",29
+05d93926-d7ab-5dec-b59b-238c7bdc5bb8,PreservedSpecimen,table3,MOHBR,I-883,,a2d47646-bed5-5b3e-83bd-110a5900c068,1986-06-26,26/06/1986,"Piñango, H.",,"Table 3, row 5",29
+3dfc52df-cc22-5f31-a784-7a32d16fbbdf,PreservedSpecimen,table3,MOHBR,I-884,,a2d47646-bed5-5b3e-83bd-110a5900c068,1986-06-26,26/06/1986,"Piñango, H.",,"Table 3, row 6",29
+423a1a5a-8841-580a-a1c7-abdff5b6353c,PreservedSpecimen,table3,MOHBR,I-885,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10,01/10/1984,"Agudo, I.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 7",29
+23756be1-84ed-54c1-a9f6-70d2d1b63d2d,PreservedSpecimen,table3,MOHBR,I-886,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-07,01/07/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 8",29
+6185e1b4-a743-5139-8e08-6ec043cd5510,PreservedSpecimen,table3,MOHBR,I-887,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-03-12,12/03/1985,,,"Table 3, row 9",29
+b75ac144-70bf-55ca-a93b-55fbd02bcc9e,PreservedSpecimen,table3,MOHBR,I-888,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05,01/05/1986,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 10",29
+8474cdc0-c3d2-5695-8a0f-fbdd95e57e01,PreservedSpecimen,table3,MOHBR,I-889,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 11",29
+6284c873-3f43-5329-a460-dff47317fcfd,PreservedSpecimen,table3,MOHBR,I-891,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-03-14,14/03/1985,,,"Table 3, row 12",29
+a7124730-f3c2-5450-bdf0-39e852289f20,PreservedSpecimen,table3,MOHBR,I-892,,0ccda41b-23a1-59d3-b946-c2a011213ce0,1986-11-12,12/11/1986,"Agudo, I.",,"Table 3, row 13",29
+c3b4af6e-a9b1-500f-aea6-004e918e5275,PreservedSpecimen,table3,MOHBR,I-893,,778391e6-5315-54be-bafb-c068c993ff33,1984-08-09,09/08/1984,"Agudo, I.",,"Table 3, row 14",29
+de245f0f-5b39-5cf7-b972-e49e45fb3d20,PreservedSpecimen,table3,MOHBR,I-894,,8e47676a-ccad-542a-bbc3-434ae29b4055,1984-11-30,30/11/1984,"Agudo, I.",,"Table 3, row 15",29
+e79e276b-477d-5934-bd65-ef2038ba2590,PreservedSpecimen,table3,MOHBR,I-895,,00aa3167-84b2-59eb-9a62-1e1f9f2a6f35,1985-03-07,07/03/1985,"Agudo, I.",,"Table 3, row 16",29
+83bb828c-b06c-5bc1-b188-1881567e80ce,PreservedSpecimen,table3,MOHBR,I-896,,00aa3167-84b2-59eb-9a62-1e1f9f2a6f35,1980-03-21,21/03/1980,"Verginelli, R.",,"Table 3, row 17",29
+6330402f-ba57-5632-b67e-431125d8f336,PreservedSpecimen,table3,MOHBR,I-897,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05,01/05/1986,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 18",29
+901e7a4e-3df2-5678-b991-ed15b629b427,PreservedSpecimen,table3,MOHBR,I-898,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 19",29
+e59c8947-adef-56cc-b682-44f0f0edb46c,PreservedSpecimen,table3,MOHBR,I-899,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08,01/08/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 20",29
+f76bcf4b-4fec-57e1-a087-3c2d1c636e84,PreservedSpecimen,table3,MOHBR,I-900,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10,01/10/1984,"Agudo, I. | Blondell, S.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 21",29
+b0fe2bd8-406a-588d-91cb-d920a9a2b61c,PreservedSpecimen,table3,MOHBR,I-901,,4ea6529c-e2c0-5880-afb2-1593d378130a,1988-06-21,21/06/1988,,,"Table 3, row 22",29
+af3c4ebd-bc57-566f-a96c-64a3cf08d27c,PreservedSpecimen,table3,MOHBR,I-904,,150a19a7-6931-5948-b81d-9ad5327c27af,1981-08,01/08/1981,"Gil, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 23",29
+7ea0aee2-5bf2-575b-abd6-776436319963,PreservedSpecimen,table3,MOHBR,I-905,,63eb23f9-3171-564c-a86f-d1577ef454b1,1981-10,01/10/1981,"Blondell, S. | Agudo, I.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 24",29
+3cc8e1d1-fa9d-56a1-8b3d-0cfdc5ffcf0d,PreservedSpecimen,table3,MOHBR,I-906,,f89327c1-ec0e-50f9-ab80-876b3a346f6b,1982-06-18,18/06/1982,"Agudo, I.",,"Table 3, row 25",29
+c068ee1d-b264-5b00-97a2-89932313be43,PreservedSpecimen,table3,MOHBR,I-907,,0701fdab-1972-5eff-ae77-777c3b74b5b9,1985-03-13,13/03/1985,,,"Table 3, row 26",29
+76f38c7c-0d9c-5f8b-8e5c-ecf3c645efe0,PreservedSpecimen,table3,MOHBR,I-908,,486532ad-8c74-5be2-bb20-75b9e86efab9,1985-02-06,06/02/1985,"López, I. | Martelo, M.",,"Table 3, row 27",29
+d2453c0b-b246-56cf-bdf6-14e03d30c214,PreservedSpecimen,table3,MOHBR,I-909,,150a19a7-6931-5948-b81d-9ad5327c27af,1982-06-10,10/06/1982,"Quijano, N.",,"Table 3, row 28",29
+37d53b53-5c03-511e-adc4-0d30e1c1f38e,PreservedSpecimen,table3,MOHBR,I-911,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 29",30
+20d20364-fc8f-569a-bb75-ac1d0364964e,PreservedSpecimen,table3,MOHBR,I-912,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 30",30
+9fbf9984-32d0-5038-9a6a-437972a64555,PreservedSpecimen,table3,MOHBR,I-913,,a2d47646-bed5-5b3e-83bd-110a5900c068,,,"Agudo, I.",,"Table 3, row 31",30
+ad31832c-3c8e-51d1-a2e3-293fee5cde76,PreservedSpecimen,table3,MOHBR,I-914,,20f66c72-15c4-5c2b-a6c9-9eef034661cf,1985-03-15,15/03/1985,,,"Table 3, row 32",30
+50b578cd-c1e2-5f27-9fc6-84ac7ca40086,PreservedSpecimen,table3,MOHBR,I-915,,cf41cf7d-0ee3-5664-8178-cfdfe745727f,1985-03-16,16/03/1985,,,"Table 3, row 33",30
+27fb65dd-fee1-5b09-aeac-2ba2c79adc35,PreservedSpecimen,table3,MOHBR,I-916,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 34",30
+e8d522fe-e21d-5812-a7d1-388f267b4a95,PreservedSpecimen,table3,MOHBR,I-917,,4f6f253b-a304-50fb-a7b5-1b0ce1ff45aa,1988-10,01/10/1988,,"eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 35",30
+585457fb-82c3-5fee-bb6b-6ee687f9d5c3,PreservedSpecimen,table3,MOHBR,I-918,,778391e6-5315-54be-bafb-c068c993ff33,1985-03,01/03/1985,"Agudo, I. | Blondell, S.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 36",30
+5cbd11e3-8630-5f23-aef6-94bc07319756,PreservedSpecimen,table3,MOHBR,I-920,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-12,12/03/1985,,,"Table 3, row 37",30
+f7708ecb-c98b-5c2e-8f87-ec736f15df8f,PreservedSpecimen,table3,MOHBR,I-921,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 38",30
+a77748ae-d7de-5bbd-aca8-aa1e8279480d,PreservedSpecimen,table3,MOHBR,I-923,,0701fdab-1972-5eff-ae77-777c3b74b5b9,1985-03-12,12/03/1985,,,"Table 3, row 39",30
+369e3bdc-96da-5657-8e5c-dc53afd36e71,PreservedSpecimen,table3,MOHBR,I-925,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 40",30
+84cd34f0-89ae-501b-b5bb-9396db736dec,PreservedSpecimen,table3,MOHBR,I-929,,a6f0f134-2a4f-58ab-9f9f-f2ae4f41900d,,,"Verginelli, R. | Agudo, I.",,"Table 3, row 41",30
+d2fd95a4-1fc8-5898-94c3-c88ad0828fdf,PreservedSpecimen,table3,MOHBR,I-930,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 42",30
+0306e15f-9fef-547e-baa5-c957fe24a9ba,PreservedSpecimen,table3,MOHBR,I-934,,778391e6-5315-54be-bafb-c068c993ff33,1988-03,01/03/1988,"Agudo, I. | Blondell, S.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 43",30
+dade0794-780e-5a8d-8c6d-348ecb2167cd,PreservedSpecimen,table3,MOHBR,I-935,,e2ba0674-50b5-59e8-9d0f-8581271a1cf2,1985-03-12,12/03/1985,,,"Table 3, row 44",30
+3d58922d-9fd9-5ce3-854e-8ddb634b9b18,PreservedSpecimen,table3,MOHBR,I-936,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-14,14/03/1985,,,"Table 3, row 45",30
+cd8589e2-1bd4-584d-b17f-6952e19f4429,PreservedSpecimen,table3,MOHBR,I-938,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 46",30
+fc85bf9a-3dbc-5d41-ad07-e43244730e47,PreservedSpecimen,table3,MOHBR,I-939,,,,,,,"Table 3, row 47",30
+b7a92360-d427-5c4c-81c1-56c91fbd4e1d,PreservedSpecimen,table3,MOHBR,I-942,,,1953-03,01/03/1953,,"eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 48",30
+55b5709e-86b4-5eed-b9d9-9b41a90e0cf2,PreservedSpecimen,table3,MOHBR,I-943,,cf41cf7d-0ee3-5664-8178-cfdfe745727f,1985-03-15,15/03/1985,,,"Table 3, row 49",30
+ef60f0fe-602a-5f4b-b21f-c54289a4c360,PreservedSpecimen,table3,MOHBR,I-944,,150a19a7-6931-5948-b81d-9ad5327c27af,1981-08,01/08/1981,"Gil, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 50",30
+e1d34a2c-dfc5-5daa-bf4f-f00bc906077a,PreservedSpecimen,table3,MOHBR,I-945,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05,01/05/1986,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 51",30
+5e34d4f1-41e0-5a0b-9923-469970a62c51,PreservedSpecimen,table3,MOHBR,I-946,,63eb23f9-3171-564c-a86f-d1577ef454b1,1984-10,01/10/1984,"Agudo, I.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 52",30
+f4daf005-63e2-5623-9cea-9b6e92a9ee5f,PreservedSpecimen,table3,MOHBR,I-949,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08,01/08/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 53",30
+c1c8a27e-13c3-5cb6-bd5f-e7d09f38e554,PreservedSpecimen,table3,MOHBR,I-950,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08,01/08/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 54",30
+cf387fdd-07d8-51c9-b3ba-378b1a424008,PreservedSpecimen,table3,MOHBR,I-953,,95cba7ee-05e4-55a6-95c5-6f8de92e8d37,1985-05-14,14/05/1985,"Agudo, I.",,"Table 3, row 55",30
+c89af4d4-a855-5c01-aa25-f44df80ceaa0,PreservedSpecimen,table3,MOHBR,I-954,,778391e6-5315-54be-bafb-c068c993ff33,1984-08-04,04/08/1984,"Agudo, I.",,"Table 3, row 56",30
+742cae0d-8b72-5221-ad6c-38d151a31910,PreservedSpecimen,table3,MOHBR,I-955,,43361228-41d3-5f04-94d1-27f6fad0ca87,1988-10,01/10/1988,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 57",30
+acb251d9-435c-5018-b422-35fe35c8d031,PreservedSpecimen,table3,MOHBR,I-956,,e304488d-4b49-5d1d-bd42-08c76ad44abd,1986-05,01/05/1986,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 58",30
+4742df0a-a1ed-5cba-9a01-ee5b8c581b57,PreservedSpecimen,table3,MOHBR,I-957,,6dbd2cf4-4656-55fb-ac57-7fa97733dcae,1989-07,01/07/1989,"Agudo, I.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 59",30
+7c4af9c2-90be-5c78-bc4d-2dc5b4a03034,PreservedSpecimen,table3,MOHBR,I-961,,a2d47646-bed5-5b3e-83bd-110a5900c068,1987-08,01/08/1987,"Verginelli, R.","eventDate: day given as 01, published as year-month (the day looks defaulted)","Table 3, row 60",31
+aabca341-a2e5-572d-935f-90dd836d1d31,PreservedSpecimen,table3,MOHBR,I-978,,83d203d4-4e1f-5399-8906-517772237068,1954-04-19,19/04/1954,,,"Table 3, row 61",31
+ac3b8287-34b6-5193-9852-f5350ace1e46,PreservedSpecimen,table3,MOHBR,I-994,,1d876d77-0ca2-56ae-975d-2bc06aa784b0,1973-03-25,25/03/1973,"García, C.",,"Table 3, row 62",31
+81ab6d14-1090-563b-b36e-7fd44b48eb92,PreservedSpecimen,table3,MOHBR,I-1151,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2002-11-14,14/11/2002,"Capelo, J.",,"Table 3, row 63",31
+b2ae796f-eac2-57aa-9cd3-d7b9ce4588fc,PreservedSpecimen,table3,MOHBR,I-1152,,002c97d0-913d-5442-83e9-45276209901d,1989-02-23,23/02/1989,"Velásquez, Y.",,"Table 3, row 64",31
+d6dd436e-adad-52c5-b218-9aad11a19901,PreservedSpecimen,table3,MOHBR,I-1155,,356adf40-948a-5a2b-8986-a77c67e772f9,1988-03-13,13/03/1988,,,"Table 3, row 65",31
+2f6d8ffa-3b10-5d9a-b73d-f4cf4760346f,PreservedSpecimen,table3,MOHBR,I-1192,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 66",31
+2ba7da37-488b-5ea1-82bd-1e2a5368eb95,PreservedSpecimen,table3,MOHBR,I-1193,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 67",31
+56cd086e-8cc5-5d55-be0d-8f1dc12bf544,PreservedSpecimen,table3,MOHBR,I-1194,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2011-01-20,20/01/2011,"Carrasquel, M. | Velásquez, M.",,"Table 3, row 68",31
+fea45ce4-8bf7-5df1-9da9-344bfb05b4b3,PreservedSpecimen,table3,MOHBR,I-1197,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-27,27/06/2012,"Carrasquel, M.",,"Table 3, row 69",31
+dce22745-5e45-5397-90a0-fe71a2174d52,PreservedSpecimen,table3,MOHBR,I-1198,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-05-24,24/05/2012,"Carrasquel, M.",,"Table 3, row 70",31
+ec7412d7-93d0-5d72-8a85-b410205fa73e,PreservedSpecimen,table3,MOHBR,I-1199,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-03-25,25/03/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 71",31
+c52a9242-ff2e-5f0a-a722-6b3fdda81255,PreservedSpecimen,table3,MOHBR,I-1200,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2009-03-30,30/03/2009,"Carrasquel, M.",,"Table 3, row 72",31
+39bae07d-1d0c-5618-9d27-b80e2328587b,PreservedSpecimen,table3,MOHBR,I-1201,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012,31/04/2012,"Carrasquel, M.",eventDate: impossible calendar date; published as year only,"Table 3, row 73",31
+78e67446-42c3-52ff-b52b-28b79503d7be,PreservedSpecimen,table3,MOHBR,I-1204,,bf813c8c-f682-5ff4-80db-864edfccacb6,2012-06-28,28/06/2012,"López, R.",,"Table 3, row 74",31
+fcb5dd1f-be00-52f2-b703-317840cec082,PreservedSpecimen,table3,MOHBR,I-1205,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-07,07/06/2012,"Carrasquel, M.",,"Table 3, row 75",31
+6ddc6a3b-93f6-55d7-8284-2d1140c28064,PreservedSpecimen,table3,MOHBR,I-1206,,2652e9a6-344f-54fb-8a3c-2b349ab63453,2012-06-27,27/06/2012,"Carrasquel, M.",,"Table 3, row 76",31
+5763e60c-41b4-5a4e-8788-aa7491a5b31b,PreservedSpecimen,table3,MOHBR,I-1207,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 77",31
+5acbab0b-be8b-54df-9017-8481c3831e97,PreservedSpecimen,table3,MOHBR,I-1208,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 78",31
+a4d6bccf-c40d-5b07-8392-aacf32f48c33,PreservedSpecimen,table3,MOHBR,I-1209,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 79",31
+9e8ade46-9fea-5752-8056-65f0dbe1258c,PreservedSpecimen,table3,MOHBR,I-1210,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 80",31
+9fe3873c-5e47-5860-9e8d-7f54c5b5f860,PreservedSpecimen,table3,MOHBR,I-1211,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 81",31
+ed8836c7-6138-5972-9919-aa8576e13ef7,PreservedSpecimen,table3,MOHBR,I-1212,,e8b3e3c7-b84e-51b9-ba35-84798ef21f54,2012-07-24,24/07/2012,"Carrasquel, M. | Méndez, E.",,"Table 3, row 82",31
+21ad5245-9e78-511e-8951-13f78f0a2e95,PreservedSpecimen,table3,MOHBR,I-1213,,002c97d0-913d-5442-83e9-45276209901d,1989-02-23,23/02/1989,"Velásquez, Y.",,"Table 3, row 83",31
+d023eeda-2ec4-589e-8df8-7a57aa27f37f,PreservedSpecimen,table3,MOHBR,I-1214,,9741474e-15fc-51ca-8fad-87281186bee0,1985-03-13,13/03/1985,,,"Table 3, row 84",31

@@ -1,0 +1,106 @@
+{
+ "DOI": "10.1007/s12526-025-01585-2",
+ "author": [
+  {
+   "ORCID": "https://orcid.org/0000-0001-6018-8699",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "Durán-Fuentes",
+   "given": "Jeferson A.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-9509-0269",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "González-Muñoz",
+   "given": "Ricardo",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0003-4756-3460",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "Vassallo-Avalos",
+   "given": "Aurora",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-7874-0293",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "Delgado",
+   "given": "Alonso",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0001-6182-0369",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "Daly",
+   "given": "Marymegan",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "ORCID": "https://orcid.org/0000-0002-9782-1619",
+   "affiliation": [],
+   "authenticated-orcid": false,
+   "family": "Stampar",
+   "given": "Sérgio N.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Marine Biodiversity"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2025,
+    11,
+    22
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "Revisiting Anthopleura cascaia (nomen nudum): Description of Anthopleura correae sp. nov. and the taxonomic challenges of a variable lineage (Anthozoa, Actiniaria)"
+ ],
+ "volume": "55"
+}

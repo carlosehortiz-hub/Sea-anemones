@@ -150,11 +150,39 @@ def test_qualifiers_are_split_not_lost(built):
     assert t.loc["Actiniidae", "order"] == "Actiniaria"
 
 
-def test_impossible_date_is_null_with_verbatim_kept(built):
+def test_impossible_date_keeps_its_year_with_verbatim_kept(built):
     occ = built[0]["occurrence"].set_index("catalog_number")
     row = occ.loc["I-1201"]
-    assert pd.isna(row["event_date"]) and row["verbatim_event_date"] == "31/04/2012"
+    assert row["event_date"] == "2012" and row["verbatim_event_date"] == "31/04/2012"
     assert "impossible" in row["occurrence_remarks"]
+
+
+def test_day_01_dates_are_published_as_year_month(built):
+    """Bug once (round 3): 23 of 80 Table 3 dates fall on day 01 (about 3 expected), the
+    pattern of a defaulted day, and were published at day precision, inventing the day."""
+    occ = built[0]["occurrence"]
+    t3 = occ[occ.record_source == "table3"]
+    day01 = t3[t3.verbatim_event_date.fillna("").str.startswith("01/")]
+    assert len(day01) == 23
+    assert day01.event_date.str.len().eq(7).all()
+    assert day01.occurrence_remarks.str.contains("day given as 01").all()
+
+
+def test_specimens_are_keyed_on_the_catalogue_number(built):
+    """Round 3: a lot must keep its identifier wherever it is cited, so collected specimens
+    are keyed on MOHBR + catalogue number (not the field code), in a namespace that does not
+    depend on the source DOI."""
+    from anemone_kg.canonical.rules import SPECIMEN_NAMESPACE, mint_id
+
+    occ = built[0]["occurrence"]
+    rg1 = occ[occ.other_catalog_numbers == "RG-001"].iloc[0]
+    assert rg1.occurrence_id == mint_id(
+        SPECIMEN_NAMESPACE, "occurrence", f"MOHBR:{rg1.catalog_number}"
+    )
+    no_number = occ[(occ.record_source == "table2") & occ.catalog_number.isna()].iloc[0]
+    assert no_number.occurrence_id == mint_id(
+        SPECIMEN_NAMESPACE, "occurrence", f"field:{no_number.other_catalog_numbers}"
+    )
 
 
 def test_open_sea_has_no_locality(built):

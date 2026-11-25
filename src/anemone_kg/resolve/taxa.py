@@ -49,6 +49,9 @@ WORMS_FUZZY_CONFIDENCE = {"phonetic": 0.8, "near_1": 0.7, "near_2": 0.5, "near_3
 EXACT = "skos:exactMatch"
 CLOSE = "skos:closeMatch"
 LEXICAL = "semapv:LexicalMatching"
+# The NCBI fallback goes article name -> WoRMS accepted name -> NCBI node: a chain, not a
+# lexical match of the two ends (round 3, R5).
+CHAINING = "semapv:MappingChaining"
 CURATED = "semapv:ManualMappingCuration"
 
 
@@ -446,7 +449,7 @@ class TaxonResolver:
                     match_type=mt,
                     status="accepted",
                     confidence=1.0,
-                    mapping_justification=LEXICAL,
+                    mapping_justification=CHAINING if pred == CLOSE else LEXICAL,
                     mapping_tool=summ.url,
                     mapping_date=summ.retrieved_at,
                     cache_key=summ.cache_key,

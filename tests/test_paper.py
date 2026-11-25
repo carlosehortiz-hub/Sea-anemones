@@ -99,7 +99,7 @@ def test_preprint_layout_is_complete_and_unbranded(cfg, rendered):
     layout, _, _ = rendered
     assert not re.search(r"\{\{|\{%|@@|\bNone\b|\bnan\b", html)
     assert html.count('class="figure') == layout.count('class="figure') == 4
-    assert html.count('class="table-block') == layout.count('class="table-block') == 7  # 5 + S1, S2
+    assert html.count('class="table-block') == layout.count('class="table-block') == 8  # 6 + S1, S2
     assert 'class="banner"' in layout and 'class="banner"' not in html
     assert "column-count" not in (cfg.root / "paper" / "preprint.css").read_text()
     assert "not peer reviewed" in html

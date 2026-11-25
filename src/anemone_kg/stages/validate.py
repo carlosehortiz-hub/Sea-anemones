@@ -14,7 +14,7 @@ import logging
 import pandas as pd
 import pandera.pandas as pa
 
-from anemone_kg.audit import rendered, second_reading
+from anemone_kg.audit import prose, rendered, second_reading
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
 from anemone_kg.dq import crosstable
@@ -204,36 +204,44 @@ def validate(cfg: Config) -> None:
     crosswalk = pd.read_csv(cfg.path("mappings") / "locality_crosswalk.csv")
     disc = crosstable.discrepancies(tables, crosswalk)
     scen = crosstable.scenario_counts(tables, crosswalk)
+    conc = crosstable.rejected_link_concordance(tables, crosswalk)
     cells = crosstable.cell_support(tables)
     cells_acc = crosstable.cell_support(tables, by="accepted")
     (reports / "cross_table_review.md").write_text(
-        crosstable.to_markdown(disc, scen, cells), encoding="utf-8"
+        crosstable.to_markdown(disc, scen, cells, conc), encoding="utf-8"
     )
     disc.to_csv(reports / "cross_table_review.csv", index=False)
-    resid = disc[~disc.explained & ~disc.code_level_only]
+    comp = disc[disc.comparable]
+    resid = comp[comp.unexplained]
     tiers = crosstable.evidence_tiers(tables)
     xtab = crosstable.tier_rule_crosstab(tables)
+    s3 = crosstable._specimens(tables, "table3")
     summary["cross_table"] = {
-        "cells": len(disc),
-        "explained": int(disc.explained.sum()),
-        "code_level_only": int(disc.code_level_only.sum()),
-        "unexplained": len(resid),
-        "link_dependent": int(disc.link_dependent.sum()),
+        "cells": len(comp),
+        "not_comparable": int((~disc.comparable).sum()),
+        **{k: int(comp[k].sum()) for k in crosstable.CLASSES},
+        "link_dependent": int(comp.link_dependent.sum()),
         "unexplained_link_dependent": int(resid.link_dependent.sum()),
-        "by_kind": {k: int(disc[k].sum()) for k in crosstable.KINDS},
+        "by_kind": {k: int(comp[k].sum()) for k in crosstable.KINDS},
         "unexplained_by_kind": {k: int(resid[k].sum()) for k in crosstable.KINDS},
-        "by_cause": {k: int(disc[k].sum()) for k in crosstable.CAUSES},
-        "area_without_specimens": int(disc.area_without_specimens.sum()),
+        "by_cause": {k: int(comp[k].sum()) for k in crosstable.CAUSES},
+        "survey_vouchered_elsewhere": int(comp.vouchered_elsewhere.sum()),
+        "area_without_specimens": int(comp.area_without_specimens.sum()),
         "scenarios": scen.set_index("scenario").to_dict(orient="index"),
         "uncertain_links": scen.attrs["uncertain_links"],
+        "rejected_link_concordance": conc.to_dict(orient="records"),
+        "table3_without_area": int(s3.area_id.isna().sum()),
         "name_level_cells": crosstable.name_level_count(tables),
         "tiers": tiers.value_counts().sort_index().to_dict(),
         "tier_rule_crosstab": xtab.to_dict(orient="records"),
         "table1_cells": len(cells),
         "best_tier": cells.best_tier.value_counts().sort_index().to_dict(),
         "best_tier_by_region": pd.crosstab(cells.region, cells.best_tier).to_dict(orient="index"),
-        "best_tier_by_sampled": pd.crosstab(cells.sampled, cells.best_tier)
-        .rename(index={True: "sampled", False: "not sampled"})
+        "best_tier_by_visited": pd.crosstab(cells.visited, cells.best_tier)
+        .rename(index={True: "visited", False: "not visited"})
+        .to_dict(orient="index"),
+        "region_by_visited": pd.crosstab(cells.region, cells.visited)
+        .rename(columns={True: "visited", False: "not visited"})
         .to_dict(orient="index"),
         "cell_support": cells.support.value_counts().sort_index().to_dict(),
         "accepted_cells": len(cells_acc),
@@ -246,7 +254,14 @@ def validate(cfg: Config) -> None:
         rendered.renderer_version(),
     )
     ink = rendered.ink_census(cfg.pdf, cfg.path("interim"))
+    # pixel counts depend on the rasteriser build: logged, not written to committed reports
+    log.info(
+        "[validate] rendered check: faintest occupied cell %d dark px (%s), darkest empty "
+        "cell %d dark px",
+        *ink.pop("_margin"),
+    )
     census["rendered"] = ink
+    census["prose"] = prose.compare(cfg.pdf, cfg.path("interim"))
     (reports / "extraction_audit.md").write_text(
         second_reading.to_markdown(census, ink), encoding="utf-8"
     )
@@ -257,6 +272,7 @@ def validate(cfg: Config) -> None:
         second_reading.n_disagreements(census)
         + len(ink["ink_without_code"])
         + len(ink["code_without_ink"])
+        + len(census["prose"]["disagreements"])
     )
     log.info("[validate] extraction census: %d disagreements", n_census)
     summary["extraction_census"] = {
@@ -267,6 +283,9 @@ def validate(cfg: Config) -> None:
     summary["extraction_census"]["disagreements"] = n_census
     summary["extraction_census"]["rendered"] = {
         k: v for k, v in ink.items() if not isinstance(v, list)
+    }
+    summary["extraction_census"]["prose"] = {
+        k: v for k, v in census["prose"].items() if not isinstance(v, list)
     }
     if n_census:
         summary["status"] = "fail"

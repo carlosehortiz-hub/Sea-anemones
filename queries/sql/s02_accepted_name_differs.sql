@@ -3,7 +3,9 @@
 -- why: The relational path needs three joins (taxon -> mapping -> record -> accepted record);
 --      in the graph it is a two-hop path. Same answer, required by tests/test_queries.py.
 SELECT t.scientific_name   AS name_in_paper,
-       w.taxonomic_status  AS worms_status,
+       -- the graph maps WoRMS 'unaccepted' to the GBIF TaxonomicStatus value 'synonym'
+       CASE w.taxonomic_status WHEN 'unaccepted' THEN 'synonym'
+            ELSE w.taxonomic_status END AS worms_status,
        a.scientific_name   AS accepted_name,
        a.lsid              AS accepted_record
 FROM taxon t

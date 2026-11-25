@@ -47,6 +47,7 @@ table2_specimens,national_park,occurrence,event_date,dwc:eventDate,R_DATE_METHOD
 table3_mohbr_specimens,mohbr_catalog,occurrence,catalog_number,dwc:catalogNumber,R_CATALOG,
 table3_mohbr_specimens,mohbr_catalog,occurrence,occurrence_id,dwc:occurrenceID,R_UUID5,natural key: catalog number
 table3_mohbr_specimens,verbatim_date,occurrence,event_date,dwc:eventDate,R_DATE_DMY,
+table3_mohbr_specimens,verbatim_date,occurrence,event_date,dwc:eventDate,R_DATE_PRECISION,"day 01 -> year-month; impossible date -> year"
 table3_mohbr_specimens,verbatim_date,occurrence,verbatim_event_date,dwc:verbatimEventDate,R_MISSING,
 table3_mohbr_specimens,verbatim_collector,occurrence,recorded_by,dwc:recordedBy,R_PERSON,
 table2_specimens,verbatim_species,identification,verbatim_name,dwc:verbatimIdentification,R_COPY,is_current = true

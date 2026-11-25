@@ -32,8 +32,9 @@
 | `R_CATALOG` | 1 | MOHBR catalogue number; non-identifier text ('In progress') -> null + remark. |
 | `R_CODE_KIND` | 342 | Table 1 code -> evidence kind and cited reference (legend). |
 | `R_CROSSWALK` | 45 | Site -> Table 1 area via mappings/locality_crosswalk.csv (accepted rows only). |
-| `R_DATE_DMY` | 85 | dd/mm/yyyy -> ISO 8601; impossible calendar dates -> null, verbatim kept. |
+| `R_DATE_DMY` | 84 | dd/mm/yyyy -> ISO 8601; impossible calendar dates flagged, verbatim kept. |
 | `R_DATE_METHODS` | 128 | Event date stated in Methods per park, from mappings/event_dates.csv. |
+| `R_DATE_PRECISION` | 24 | Day 01 in Table 3 -> year-month (the day looks defaulted); an impossible date -> year only. Verbatim date always kept. |
 | `R_DMS` | 256 | Degrees-minutes-seconds -> decimal degrees, 6 dp; W and S negative. |
 | `R_FLAGS` | 52 | Table 1 marks after a name: dagger -> flag_invalid, '?' -> flag_doubtful. |
 | `R_HIGHER_FROM_T1` | 1 | Order of a family-rank name, from the Table 1 order listing that family. |
@@ -67,16 +68,39 @@
 | `R_TYPO` | Table 2, row 123 | 'Callactis tricolor' -> 'Calliactis tricolor' |
 | `R_CROSSWALK` | Table 3, row 1 | no accepted area for 'Laguna de Punta de Piedras, Isla Margarita' (table3) |
 | `R_INFORMAL` | Table 3, row 1 | 'Actinia 1' is not a scientific name |
+| `R_DATE_PRECISION` | Table 3, row 3 | '01/08/1987': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 4 | '01/10/1988': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 7 | '01/10/1984': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 8 | '01/07/1987': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 10 | '01/05/1986': day given as 01, published as year-month (the day looks defaulted) |
 | `R_NOT_IDENTIFIED` | Table 3, row 17 | previous: 'Haliplanella luciae' |
+| `R_DATE_PRECISION` | Table 3, row 18 | '01/05/1986': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 20 | '01/08/1987': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 21 | '01/10/1984': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 23 | '01/08/1981': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 24 | '01/10/1981': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 35 | '01/10/1988': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 36 | '01/03/1985': day given as 01, published as year-month (the day looks defaulted) |
 | `R_CROSSWALK` | Table 3, row 41 | no accepted area for 'Golfo de Cariaco' (table3) |
+| `R_DATE_PRECISION` | Table 3, row 43 | '01/03/1988': day given as 01, published as year-month (the day looks defaulted) |
 | `R_MISSING` | Table 3, row 47 | locality not recorded ('-') |
 | `R_MISSING` | Table 3, row 48 | locality not recorded ('-') |
+| `R_DATE_PRECISION` | Table 3, row 48 | '01/03/1953': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 50 | '01/08/1981': day given as 01, published as year-month (the day looks defaulted) |
 | `R_PERSON` | Table 3, row 50 | 'Gil. R.' -> 'Gil, R.' |
+| `R_DATE_PRECISION` | Table 3, row 51 | '01/05/1986': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 52 | '01/10/1984': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 53 | '01/08/1987': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 54 | '01/08/1987': day given as 01, published as year-month (the day looks defaulted) |
 | `R_PERSON` | Table 3, row 56 | 'Agudo. I.' -> 'Agudo, I.' |
 | `R_NOT_IDENTIFIED` | Table 3, row 56 | previous: 'Palythoa variabilis' |
+| `R_DATE_PRECISION` | Table 3, row 57 | '01/10/1988': day given as 01, published as year-month (the day looks defaulted) |
 | `R_NOT_IDENTIFIED` | Table 3, row 57 | previous: 'Isaurus duchassaingi' |
+| `R_DATE_PRECISION` | Table 3, row 58 | '01/05/1986': day given as 01, published as year-month (the day looks defaulted) |
 | `R_CROSSWALK` | Table 3, row 59 | no accepted area for 'Ensenada Penetepe, Golfo de Cariaco' (table3) |
-| `R_DATE_DMY` | Table 3, row 73 | '31/04/2012': impossible calendar date |
+| `R_DATE_PRECISION` | Table 3, row 59 | '01/07/1989': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 60 | '01/08/1987': day given as 01, published as year-month (the day looks defaulted) |
+| `R_DATE_PRECISION` | Table 3, row 73 | '31/04/2012': impossible calendar date; published as year only |
 
 ## Crosswalk rows not applied
 

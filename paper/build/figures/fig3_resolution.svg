@@ -237,8 +237,8 @@ z
    </g>
    <g id="patch_11">
     <path d="M 249.672733 98.626768 
-L 302.572067 98.626768 
-L 302.572067 83.23724 
+L 318.441867 98.626768 
+L 318.441867 83.23724 
 L 249.672733 83.23724 
 z
 " clip-path="url(#p9b26fb5ef3)" style="fill: #1baf7a; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
@@ -260,10 +260,10 @@ z
 " clip-path="url(#p9b26fb5ef3)" style="fill: #b9b8b3; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
-    <path d="M 302.572067 98.626768 
+    <path d="M 318.441867 98.626768 
 L 392.500933 98.626768 
 L 392.500933 83.23724 
-L 302.572067 83.23724 
+L 318.441867 83.23724 
 z
 " clip-path="url(#p9b26fb5ef3)" style="fill: #b9b8b3; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
@@ -288,16 +288,16 @@ L 466.56 102.144375
     <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #0b0b0b" x="373.986167" y="65.391621" transform="rotate(-0 373.986167 65.391621)">3</text>
    </g>
    <g id="text_17">
-    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #0b0b0b" x="276.1224" y="92.872922" transform="rotate(-0 276.1224 92.872922)">10</text>
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #0b0b0b" x="284.0573" y="92.872922" transform="rotate(-0 284.0573 92.872922)">13</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #0b0b0b" x="347.5365" y="92.872922" transform="rotate(-0 347.5365 92.872922)">17</text>
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans'; text-anchor: middle; fill: #0b0b0b" x="355.4714" y="92.872922" transform="rotate(-0 355.4714 92.872922)">14</text>
    </g>
    <g id="text_19">
     <text style="font-size: 7px; font-family: 'Liberation Sans'; text-anchor: start; fill: #52514e" x="396.73288" y="65.262227" transform="rotate(-0 396.73288 65.262227)">2 not resolved</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 7px; font-family: 'Liberation Sans'; fill: #52514e" transform="translate(396.73288 88.934201)">3 of 17 under</text>
+    <text style="font-size: 7px; font-family: 'Liberation Sans'; fill: #52514e" transform="translate(396.73288 88.934201)">1 of 14 under</text>
     <text style="font-size: 7px; font-family: 'Liberation Sans'; fill: #52514e" transform="translate(396.73288 96.552854)">another name class</text>
    </g>
    <g id="legend_1">

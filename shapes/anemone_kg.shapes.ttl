@@ -30,7 +30,9 @@ aksh: sh:declare [ sh:prefix "dwc" ; sh:namespace "http://rs.tdwg.org/dwc/terms/
                  [ sh:prefix "dwciri" ; sh:namespace "http://rs.tdwg.org/dwc/iri/"^^xsd:anyURI ] ,
                  [ sh:prefix "prov" ; sh:namespace "http://www.w3.org/ns/prov#"^^xsd:anyURI ] ,
                  [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] ,
-                 [ sh:prefix "akv" ; sh:namespace "https://w3id.org/anemone-kg/vocab/"^^xsd:anyURI ] .
+                 [ sh:prefix "akv" ; sh:namespace "https://w3id.org/anemone-kg/vocab/"^^xsd:anyURI ] ,
+                 [ sh:prefix "skos" ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] ,
+                 [ sh:prefix "dcterms" ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] .
 
 # ------------------------------------------------------------ provenance
 
@@ -81,15 +83,12 @@ aksh:OccurrenceShape
         sh:message "occurrenceID must be one UUIDv5." ] ;
     sh:property [
         sh:path dwc:basisOfRecord ;
-        sh:in ( "PreservedSpecimen" "MaterialCitation" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+        sh:in ( "PreservedSpecimen" "MaterialCitation" "Occurrence" ) ;
+        sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [
         sh:path dsw:atEvent ; sh:class dwc:Event ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [
-        sh:path dwciri:toTaxon ; sh:class dwc:Taxon ; sh:maxCount 1 ] ;
-    sh:or (
-        [ sh:path dwc:basisOfRecord ; sh:hasValue "PreservedSpecimen" ]
-        [ sh:path dwc:basisOfRecord ; sh:hasValue "MaterialCitation" ]
-    ) .
+        sh:path dwciri:toTaxon ; sh:class dwc:Taxon ; sh:maxCount 1 ] .
 
 aksh:SpecimenShape
     a sh:NodeShape ;
@@ -113,11 +112,35 @@ aksh:SpecimenShape
         sh:path dwciri:toTaxon ; sh:minCount 1 ; sh:severity sh:Warning ;
         sh:message "Specimen whose current identification has no taxon ('not identified')." ] .
 
-aksh:MaterialCitationShape
+aksh:AssertionShape
     a sh:NodeShape ;
-    rdfs:comment "Table 1 assertions."@en ;
+    rdfs:comment "Table 1 assertions: MaterialCitation for museum codes ('a'), Occurrence otherwise."@en ;
     sh:target [ a sh:SPARQLTarget ; sh:prefixes aksh: ; sh:select """
-        SELECT ?this WHERE { ?this a dwc:Occurrence ; dwc:basisOfRecord "MaterialCitation" . }""" ] ;
+        SELECT ?this WHERE { ?this a dwc:Occurrence ; dcterms:type ?k . }""" ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "basisOfRecord must be MaterialCitation for a museum code ('a') and Occurrence otherwise." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://purl.org/dc/terms/type> ?k ;
+                    <http://rs.tdwg.org/dwc/terms/basisOfRecord> ?b .
+              FILTER ((?k = akv:MohbrCollection) != (?b = "MaterialCitation"))
+            }""" ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "An assertion traced to a specimen must cite it (akv:citesSpecimen), so that no organism is counted twice." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <https://w3id.org/anemone-kg/vocab/evidenceTier> ?t .
+              FILTER (?t IN (akv:SurveyVouchered, akv:SurveyVoucheredQualified, akv:MuseumConfirmed,
+                             akv:MuseumReidentified, akv:MuseumUnconfirmed))
+              FILTER NOT EXISTS { $this <https://w3id.org/anemone-kg/vocab/citesSpecimen> ?o }
+            }""" ] ;
+    sh:property [
+        sh:path akv:citesSpecimen ; sh:class dwc:Occurrence ;
+        sh:message "akv:citesSpecimen must point to a specimen occurrence in the graph." ] ;
     sh:property [
         sh:path dwc:occurrenceStatus ; sh:hasValue "present" ; sh:maxCount 1 ] ;
     sh:property [
@@ -256,7 +279,9 @@ aksh:WormsRecordShape
         SELECT ?this WHERE { ?this a dwc:Taxon .
           FILTER STRSTARTS(STR(?this), "urn:lsid:marinespecies.org:taxname:") }""" ] ;
     sh:property [ sh:path dwc:scientificName ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path dwc:taxonomicStatus ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path dwc:taxonomicStatus ; sh:maxCount 1 ; sh:in ( "accepted" "synonym" ) ;
+        sh:message "taxonomicStatus takes GBIF TaxonomicStatus values; other WoRMS statuses go to taxonRemarks or nomenclaturalStatus." ] ;
     sh:property [
         sh:path akv:hasAcceptedName ; sh:class dwc:Taxon ; sh:maxCount 1 ;
         sh:message "The accepted-name pointer must resolve to a WoRMS record in the graph." ] ;
@@ -280,18 +305,28 @@ aksh:MappingShape
     sh:property [ sh:path owl:annotatedTarget ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [
         sh:path sssom:mapping_justification ; sh:minCount 1 ; sh:maxCount 1 ;
-        sh:in ( semapv:LexicalMatching semapv:ManualMappingCuration ) ] ;
-    sh:property [
-        sh:path sssom:confidence ; sh:datatype xsd:double ; sh:maxCount 1 ;
-        sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
+        sh:in ( semapv:LexicalMatching semapv:ManualMappingCuration semapv:MappingChaining ) ] ;
     sh:property [
         sh:path sssom:similarity_score ; sh:datatype xsd:double ; sh:maxCount 1 ;
         sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
     sh:property [
-        sh:path sssom:comment ; sh:minCount 1 ; sh:maxCount 1 ;
-        sh:message "Every mapping records how it was made." ] ;
+        sh:path rdfs:comment ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every mapping records how it was made (SSSOM comment, slot_uri rdfs:comment)." ] ;
     sh:property [ sh:path sssom:mapping_tool ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path dcterms:created ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sssom:mapping_tool_version ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dcterms:created ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The skos:exactMatch closure must not equate two records of one service." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://www.w3.org/2002/07/owl#annotatedTarget> ?o .
+              ?o (skos:exactMatch|^skos:exactMatch)+ ?o2 .
+              FILTER (?o2 != ?o)
+              BIND (REPLACE(STR(?o), "[0-9]+$", "") AS ?ns)
+              FILTER (STRSTARTS(STR(?o2), ?ns) && REGEX(STR(?o2), "[0-9]+$"))
+            }""" ] ;
     sh:property [
         sh:path prov:wasGeneratedBy ; sh:class prov:Activity ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [

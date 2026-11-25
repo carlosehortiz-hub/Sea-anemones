@@ -5,8 +5,8 @@
 | check family | checks | failing |
 |---|---:|---:|
 | Column-level (Pandera, generated from LinkML) | 269 | 0 values |
-| Cross-table critical rules | 15 | 0 |
-| Cross-table warnings | 11 | 10 rules, 46 rows |
+| Cross-table critical rules | 16 | 0 |
+| Cross-table warnings | 12 | 11 rules, 69 rows |
 
 Critical failures stop the pipeline before RDF generation. Warnings are reported with their rows and never altered.
 
@@ -30,13 +30,15 @@ Critical failures stop the pipeline before RDF generation. Warnings are reported
 | C14 | critical | consistency | habitat annotations carry an ENVO id if and only if accepted, on an existing statement | 0 |
 | C15 | critical | validity | coordinates fall inside Venezuela's coast and islands (west longitude, north latitude) | 0 |
 | W01 | warning | validity | verbatim date that is not a valid calendar date | 1 |
+| W12 | warning | precision | date printed with day 01, published as year-month (the day looks defaulted) | 23 |
+| C16 | critical | consistency | catalogue numbers in sequence: Table 3 strictly ascending by row, Table 2 consecutive by row apart from rows without a number (a mis-keyed digit that stays unique breaks it) | 0 |
 | W02 | warning | completeness | occurrence without locality ('-' in the source) | 2 |
 | W03 | warning | completeness | specimen whose current identification has no taxon | 3 |
 | W04 | warning | completeness | specimen without a MOHBR catalogue number | 1 |
 | W05 | warning | completeness | collecting site not linked to a Table 1 area | 4 |
 | W06 | warning | completeness | taxon with no accepted identifier in any service | 0 |
 | W07 | warning | completeness | habitat statement with no ENVO annotation | 2 |
-| W08 | warning | consistency | Table 1 '*' (this survey) in a sampled area, but no Table 2 specimen of that taxon there | 13 |
+| W08 | warning | consistency | Table 1 '*' (this survey) in an area with Table 2 specimens, but no Table 2 specimen of that taxon there | 13 |
 | W09 | warning | consistency | Table 2 specimen in an area, but no Table 1 '*' for that taxon and area | 7 |
 | W10 | warning | consistency | Table 1 'a' (MOHBR) in an area, but no Table 3 specimen of that taxon there | 5 |
 | W11 | warning | consistency | Table 3 specimen in an area, but no Table 1 'a' for that taxon and area | 8 |
@@ -48,6 +50,34 @@ Critical failures stop the pipeline before RDF generation. Warnings are reported
 | source_ref      | locality                              | verbatim_event_date   | catalog_number   |
 |:----------------|:--------------------------------------|:----------------------|:-----------------|
 | Table 3, row 73 | Laguna de La Restinga, Isla Margarita | 31/04/2012            | I-1201           |
+
+### W12 - date printed with day 01, published as year-month (the day looks defaulted) (23)
+
+| source_ref      | locality                            | verbatim_event_date   | catalog_number   |
+|:----------------|:------------------------------------|:----------------------|:-----------------|
+| Table 3, row 3  | Isla La Blanquilla                  | 01/08/1987            | I-881            |
+| Table 3, row 4  | Isla de Aves                        | 01/10/1988            | I-882            |
+| Table 3, row 7  | Cayo Pescadores, Morrocoy           | 01/10/1984            | I-885            |
+| Table 3, row 8  | Isla La Blanquilla                  | 01/07/1987            | I-886            |
+| Table 3, row 10 | Isla La Tortuga                     | 01/05/1986            | I-888            |
+| Table 3, row 18 | Isla La Tortuga                     | 01/05/1986            | I-897            |
+| Table 3, row 20 | Isla La Blanquilla                  | 01/08/1987            | I-899            |
+| Table 3, row 21 | Cayo Pescadores, Morrocoy           | 01/10/1984            | I-900            |
+| Table 3, row 23 | Los Totumos                         | 01/08/1981            | I-904            |
+| Table 3, row 24 | Cayo Pescadores, Morrocoy           | 01/10/1981            | I-905            |
+| Table 3, row 35 | Isla de Aves                        | 01/10/1988            | I-917            |
+| Table 3, row 36 | Cayo Sombrero, Morrocoy             | 01/03/1985            | I-918            |
+| Table 3, row 43 | Cayo Sombrero, Morrocoy             | 01/03/1988            | I-934            |
+| Table 3, row 48 | <NA>                                | 01/03/1953            | I-942            |
+| Table 3, row 50 | Los Totumos                         | 01/08/1981            | I-944            |
+| Table 3, row 51 | Isla La Tortuga                     | 01/05/1986            | I-945            |
+| Table 3, row 52 | Cayo Pescadores, Morrocoy           | 01/10/1984            | I-946            |
+| Table 3, row 53 | Isla La Blanquilla                  | 01/08/1987            | I-949            |
+| Table 3, row 54 | Isla La Blanquilla                  | 01/08/1987            | I-950            |
+| Table 3, row 57 | Laguna de Chacopata                 | 01/10/1988            | I-955            |
+| Table 3, row 58 | Isla La Tortuga                     | 01/05/1986            | I-956            |
+| Table 3, row 59 | Ensenada Penetepe, Golfo de Cariaco | 01/07/1989            | I-957            |
+| Table 3, row 60 | Isla La Blanquilla                  | 01/08/1987            | I-961            |
 
 ### W02 - occurrence without locality ('-' in the source) (2)
 
@@ -86,7 +116,7 @@ Critical failures stop the pipeline before RDF generation. Warnings are reported
 | Systematics, account of Bunodeopsis antilliensis, Habitat | Bunodeopsis antilliensis |
 | Systematics, account of Calliactis tricolor, Habitat      | Calliactis tricolor      |
 
-### W08 - Table 1 '*' (this survey) in a sampled area, but no Table 2 specimen of that taxon there (13)
+### W08 - Table 1 '*' (this survey) in an area with Table 2 specimens, but no Table 2 specimen of that taxon there (13)
 
 | source_ref                                                                    | taxon                     | locality                                  |
 |:------------------------------------------------------------------------------|:--------------------------|:------------------------------------------|
@@ -160,11 +190,11 @@ Optional fields: a gap here is information about the source, not an error.
 | locality           | sampled_in_study           |     71 |         26 |  36.6 |
 | locality           | parent_locality_id         |     71 |         41 |  57.7 |
 | locality           | state_province             |     71 |         44 |  62   |
-| occurrence         | occurrence_remarks         |    212 |          2 |   0.9 |
+| occurrence         | occurrence_remarks         |    212 |         25 |  11.8 |
 | occurrence         | recorded_by                |    212 |         58 |  27.4 |
 | occurrence         | verbatim_event_date        |    212 |         81 |  38.2 |
 | occurrence         | other_catalog_numbers      |    212 |        128 |  60.4 |
-| occurrence         | event_date                 |    212 |        139 |  65.6 |
+| occurrence         | event_date                 |    212 |        140 |  66   |
 | occurrence         | locality_id                |    212 |        210 |  99.1 |
 | occurrence         | catalog_number             |    212 |        211 |  99.5 |
 | taxon              | scientific_name_authorship |     61 |         26 |  42.6 |
@@ -174,9 +204,9 @@ Optional fields: a gap here is information about the source, not an error.
 | taxon              | order                      |     61 |         53 |  86.9 |
 | taxon              | specific_epithet           |     61 |         59 |  96.7 |
 | taxon              | genus                      |     61 |         60 |  98.4 |
-| taxon_mapping      | predicate_id               |    183 |        164 |  89.6 |
-| taxon_mapping      | object_id                  |    183 |        164 |  89.6 |
-| taxon_mapping      | object_label               |    183 |        165 |  90.2 |
-| taxon_mapping      | confidence                 |    183 |        165 |  90.2 |
+| taxon_mapping      | predicate_id               |    183 |        167 |  91.3 |
+| taxon_mapping      | object_id                  |    183 |        167 |  91.3 |
+| taxon_mapping      | object_label               |    183 |        168 |  91.8 |
+| taxon_mapping      | confidence                 |    183 |        168 |  91.8 |
 | taxon_name_variant | identification_qualifier   |     73 |          3 |   4.1 |
 | worms_record       | unaccept_reason            |     67 |          5 |   7.5 |

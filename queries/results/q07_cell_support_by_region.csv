@@ -1,25 +1,25 @@
-region,sampled,best,cells
+region,visited,best,cells
 Central Coast,False,literature only: Agudo (1987) alone,34
 Central Coast,False,literature only: other or several sources,1
-Central Coast,False,"specimen listed, identification confirmed",9
-Central Coast,False,"survey/museum code, no confirmed specimen",1
-Central Coast,True,"survey/museum code, no confirmed specimen",2
+Central Coast,False,museum code without a matching specimen,1
+Central Coast,False,"specimen listed, unqualified identification by the authors",9
+Central Coast,True,survey code; the species is never vouchered,2
 East Coast,False,literature only: Agudo (1987) alone,79
 East Coast,False,literature only: other or several sources,1
-East Coast,False,"specimen listed, identification confirmed",6
-East Coast,False,"survey/museum code, no confirmed specimen",9
+East Coast,False,museum code without a matching specimen,9
+East Coast,False,"specimen listed, unqualified identification by the authors",6
 East Coast,True,literature only: Agudo (1987) alone,11
 East Coast,True,literature only: other or several sources,1
-East Coast,True,"specimen listed, identification confirmed",27
-East Coast,True,"survey/museum code, no confirmed specimen",4
+East Coast,True,"specimen listed, unqualified identification by the authors",27
+East Coast,True,survey code; the species is vouchered from another area,4
 Oceanic Islands,False,literature only: Agudo (1987) alone,2
-Oceanic Islands,False,"specimen listed, identification confirmed",7
-Oceanic Islands,False,"survey/museum code, no confirmed specimen",1
+Oceanic Islands,False,museum code without a matching specimen,1
+Oceanic Islands,False,"specimen listed, unqualified identification by the authors",7
 Oceanic Islands,True,literature only: Agudo (1987) alone,10
-Oceanic Islands,True,"specimen listed, identification confirmed",8
-Oceanic Islands,True,"survey/museum code, no confirmed specimen",6
+Oceanic Islands,True,"specimen listed, unqualified identification by the authors",8
+Oceanic Islands,True,survey code; the species is vouchered from another area,6
 West Coast,False,literature only: Agudo (1987) alone,7
 West Coast,False,literature only: other or several sources,6
 West Coast,True,literature only: Agudo (1987) alone,13
-West Coast,True,"specimen listed, identification confirmed",13
-West Coast,True,"survey/museum code, no confirmed specimen",3
+West Coast,True,museum code without a matching specimen,3
+West Coast,True,"specimen listed, unqualified identification by the authors",13

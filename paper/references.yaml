@@ -40,6 +40,7 @@ montenegro2015:
   journal_abbrev: Syst Biodivers  # NLM Catalog abbreviation
   volume: "14"
   pages: "63–73"
+  note: published online 21 December 2015; volume 14 is dated 2016
   doi: 10.1080/14772000.2015.1101028
   cite_as: Montenegro et al. 2015
 
@@ -78,12 +79,11 @@ swain2015:
 iczn2017:
   authors: [International Commission on Zoological Nomenclature]
   year: 2017
-  title: "Opinion 2404 (Case 3633) — Dysactis pallida Agassiz in Verrill, 1864 (currently Aiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): precedence over Aiptasia diaphana (Rapp, 1829)"
-  note: title abridged
+  title: "Opinion 2404 (Case 3633) — Dysactis pallida Agassiz in Verrill, 1864 (currently Aiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): precedence over Aiptasia diaphana (Rapp, 1829), Aiptasia tagetes (Duchassaing de Fombressin & Michelotti, 1864), Aiptasia mimosa (Duchassaing de Fombressin & Michelotti, 1864) and Aiptasia inula (Duchassaing de Fombressin & Michelotti, 1864) not approved"
   journal: Bulletin of Zoological Nomenclature
   journal_abbrev: Bull Zool Nomencl
   volume: "74"
-  pages: "130"
+  pages: "130–132"
   doi: 10.21805/bzn.v74.a034
   cite_as: ICZN 2017
 
@@ -97,6 +97,38 @@ iczn2023:
   pages: "105–106"
   doi: 10.21805/bzn.v80.a029
   cite_as: ICZN 2023
+
+iczn2019:
+  authors: [Grajales A, Rodríguez E]
+  year: 2019
+  title: "Case 3790 – Proposed review of Opinion 2404 and reconsideration of Case 3633: Dysactis pallida Agassiz in Verrill, 1864 (currently Exaiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): proposed precedence over Exaiptasia diaphana (Rapp, 1829)"
+  journal: Bulletin of Zoological Nomenclature
+  journal_abbrev: Bull Zool Nomencl
+  volume: "76"
+  pages: "127"
+  doi: 10.21805/bzn.v76.a036
+  cite_as: Grajales & Rodríguez 2019
+
+duranfuentes2025:
+  authors: [Durán-Fuentes JA, González-Muñoz R, Vassallo-Avalos A, Delgado A, Daly M, Stampar SN]
+  year: 2025
+  title: "Revisiting Anthopleura cascaia (nomen nudum): description of Anthopleura correae sp. nov. and the taxonomic challenges of a variable lineage (Anthozoa, Actiniaria)"
+  journal: Marine Biodiversity
+  journal_abbrev: Mar Biodivers
+  volume: "55"
+  doi: 10.1007/s12526-025-01585-2
+  cite_as: Durán-Fuentes et al. 2025
+
+spalding2007:
+  authors: [Spalding MD, Fox HE, Allen GR, Davidson N, Ferdaña ZA, Finlayson M, Halpern BS, Jorge MA, Lombana A, Lourie SA, Martin KD, McManus E, Molnar J, Recchia CA, Robertson J]
+  year: 2007
+  title: "Marine Ecoregions of the World: a bioregionalization of coastal and shelf areas"
+  journal: BioScience
+  journal_abbrev: BioScience
+  volume: "57"
+  pages: "573–583"
+  doi: 10.1641/B570707
+  cite_as: Spalding et al. 2007
 
 wieczorek2012:
   authors: [Wieczorek J, Bloom D, Guralnick R, Blum S, Döring M, Giovanni R, Robertson T, Vieglais D]

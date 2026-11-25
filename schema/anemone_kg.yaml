@@ -35,7 +35,8 @@ enums:
     description: Darwin Core basisOfRecord controlled values used here.
     permissible_values:
       PreservedSpecimen: {meaning: dwc:PreservedSpecimen}
-      MaterialCitation: {meaning: dwc:MaterialCitation}
+      MaterialCitation: {meaning: dwc:MaterialCitation, description: "Table 1 code 'a' (cited museum material)"}
+      Occurrence: {meaning: dwc:Occurrence, description: "Other Table 1 codes: presence asserted, material not cited"}
   RecordSourceEnum:
     permissible_values:
       table2: {description: "Appendix 1: specimens collected in this study"}
@@ -44,7 +45,7 @@ enums:
     description: What a Table 1 code asserts.
     permissible_values:
       this_survey: {description: "code '*': documented in the authors' surveys"}
-      mohbr_collection: {description: "code 'a': specimen in the MOHBR collection"}
+      mohbr_collection: {description: "code 'a': previous record, MOHBR specimen re-examined by the authors"}
       literature: {description: "codes 'b'-'j': previously published record"}
   LocalityLevelEnum:
     permissible_values:
@@ -229,7 +230,7 @@ slots:
   mapping_justification:
     slot_uri: sssom:mapping_justification
     required: true
-    pattern: "^semapv:(LexicalMatching|ManualMappingCuration)$"
+    pattern: "^semapv:(LexicalMatching|ManualMappingCuration|MappingChaining)$"
   mapping_tool: {slot_uri: sssom:mapping_tool, required: true, description: The request URL.}
   mapping_date: {slot_uri: sssom:mapping_date, description: Retrieval time of the cached response.}
   cache_key: {description: "File under data/cache/ holding the raw response."}
@@ -359,7 +360,8 @@ classes:
   Distribution:
     description: >-
       One Table 1 assertion - taxon present in an area according to one source.
-      Rendered as a dwc:Occurrence with basisOfRecord MaterialCitation in RDF.
+      Rendered as a dwc:Occurrence with basisOfRecord MaterialCitation (code 'a') or
+      Occurrence (other codes) in RDF.
     slots:
       - distribution_id
       - taxon_id

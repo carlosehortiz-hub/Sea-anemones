@@ -1,0 +1,40 @@
+{
+ "body": {
+  "count": 1,
+  "endOfRecords": true,
+  "facets": [],
+  "limit": 20,
+  "offset": 0,
+  "results": [
+   {
+    "active": true,
+    "alternativeCodes": [],
+    "city": "Isla de Margarita",
+    "code": "MOBR",
+    "contentTypes": [],
+    "country": "VE",
+    "department": "Dpto. Biología Marina, Museo Oceanológico Hermano Benigno Román, Ficoteca",
+    "descriptorMatches": [],
+    "displayOnNHCPortal": true,
+    "geographicCoverage": "Caribbean Basin and western Atlantic region",
+    "highlights": [],
+    "institutionCode": "MOBR",
+    "institutionKey": "3497ce4f-d640-4dba-907b-6a0f610fdae3",
+    "institutionName": "Estación de Investigaciones Marinas de Margarita, Fundación La Salle de Ciencias Naturales",
+    "key": "7ed74c56-f903-4c5e-9a0c-638ef10d60f5",
+    "mailingCity": "Isla de Margarita",
+    "mailingCountry": "VE",
+    "name": "Herbarium - Estación de Investigaciones Marinas de Margarita, Fundación La Salle de Ciencias Naturales",
+    "numberSpecimens": 16972,
+    "occurrenceCount": 0,
+    "personalCollection": false,
+    "preservationTypes": [],
+    "taxonomicCoverage": "Marine algae",
+    "typeSpecimenCount": 0
+   }
+  ]
+ },
+ "retrieved_at": "2026-11-25T20:43:11+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/grscicoll/collection/search?limit=20&q=Hermano+Benigno"
+}

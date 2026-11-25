@@ -36,6 +36,10 @@ def test_every_registered_term_exists_in_its_vocabulary(cfg, reg):
         "skos:exactMatches",  # typo in a closed W3C namespace
         "prov:wasDerivedBy",  # plausible but non-existent PROV term
         "akv:undefinedTerm",  # project term without a definition
+        # SSSOM slots whose IRI is not in the sssom: namespace (round 3: sssom:comment passed
+        # because only slot names were checked; its IRI is rdfs:comment)
+        "sssom:comment",
+        "sssom:mapping_date",
     ],
 )
 def test_checker_rejects_terms_that_do_not_exist(cfg, reg, bad):

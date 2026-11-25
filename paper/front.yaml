@@ -1,7 +1,7 @@
 # Front matter. Jinja placeholders are filled from the same facts as the body.
 title: >-
   From a PDF inventory to a schema-validated knowledge graph: a reproducible, standards-based
-  pipeline for the shallow-water sea anemones sensu lato of Venezuela
+  pipeline for the coastal sea anemones sensu lato of Venezuela
 short_title: Sea anemones of Venezuela as a knowledge graph
 running_head: "Hernández-Ortíz. Sea anemones of Venezuela as a knowledge graph"
 authors: "Carlos E. Hernández-Ortíz<sup>1*</sup>"
@@ -15,35 +15,42 @@ keywords: >-
 abstract:
   background: >-
     Regional species inventories are usually published as PDF tables, which machines cannot
-    read and whose taxonomy is fixed at publication. We asked whether such an inventory can be made machine-actionable without
-    altering what its authors published, and how far its records can be trusted. The test case was the inventory of shallow-water sea anemones sensu
-    lato (Actiniaria, Corallimorpharia, Ceriantharia, Zoantharia) of Venezuela
+    read and whose taxonomy is fixed at publication. We asked whether such an inventory can be
+    made machine-actionable without altering what its authors published, and how far its
+    records can be trusted. The test case was the inventory of "shallow-water" sea anemones
+    sensu lato (Actiniaria, Corallimorpharia, Ceriantharia, Zoantharia) of Venezuela
     (González-Muñoz et al. 2016), of which the present author is a co-author.
   results: >-
     A Python pipeline extracted from the PDF the {{ f.src.t1_taxa }} names and
     {{ f.src.t1_codes }} evidence codes of the distribution table, {{ f.src.t2 }} collected and
     {{ f.src.t3 }} museum specimens and {{ f.src.accounts }} species accounts. A second automated
-    extraction agreed on every cell and field, and a check of the rendered pages found ink in
-    exactly the {{ f.census.table1.cells_agree }} occupied cells of {{ f.census.rendered.cells | thousands }}.
-    Names were resolved against WoRMS ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF
-    ({{ f.res.gbif.accepted }}/{{ f.res.n_taxa }}) and NCBI Taxonomy
-    ({{ f.res.ncbi.accepted - f.res.ncbi.via_accepted }} exact, {{ f.res.ncbi.via_accepted }}
-    through the accepted name; accessed {{ f.res.date_first | longdate }}).
-    {{ f.q.q03.valid_changed | Words }} names the article uses as valid have another accepted name.
-    Comparing the article's tables per taxon × area cell found {{ f.xt.cells }} discrepancies:
-    {{ f.xt.explained }} are explained by re-identified, unconfirmed or coarse identifications,
-    {{ f.xt.code_level_only }} differ only in the code, and {{ f.xt.unexplained }} remain, of
-    which {{ f.xt.unexplained_by_kind.survey_code_no_voucher }} are survey records without a
-    voucher, which the legend does not require, and {{ f.xt.unexplained_link_dependent }} depend
-    on curated locality links. Of the {{ f.cells.n }} cells, {{ f.cells.specimen }}
-    ({{ f.cells.pct_specimen }}%) rest on a specimen whose identification the article confirms,
+    extraction agreed on every cell and field, a check of the rendered pages found ink in
+    exactly the {{ f.census.table1.cells_agree }} occupied cells of
+    {{ f.census.rendered.cells | thousands }}, and the specimen counts printed in the article's
+    prose matched its museum table. Names were resolved against WoRMS
+    ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF ({{ f.res.gbif.accepted }}/{{ f.res.n_taxa }})
+    and NCBI Taxonomy ({{ f.res.ncbi.accepted }}/{{ f.res.n_taxa }}, {{ f.res.ncbi.via_accepted }}
+    of them only through the accepted name; accessed {{ f.res.date_first | longdate }}).
+    {{ f.q.q03.n | Words }} names have another accepted name today; for {{ f.q.q03.after | words }} of
+    them the act that fixes it postdates the article. Comparing the article's tables per taxon × area cell found
+    {{ f.xt.cells }} comparable discrepancies: {{ f.xt.explained }} are explained by
+    re-identified or unverified specimens, {{ f.xt.possible }} possibly by a coarse
+    identification, {{ f.xt.code_level_only }} differ only in the code, and
+    {{ f.xt.unexplained }} remain, of which {{ f.xt.unexplained_by_kind.survey_code_no_voucher }}
+    are survey records without a specimen from the area (which the legend does not require)
+    and {{ f.xt.unexplained_link_dependent }} depend on three locality links the curator
+    rejected. Of the {{ f.cells.n }} cells, {{ f.cells.specimen }} ({{ f.cells.pct_specimen }}%;
+    {{ f.cells.scenario_share.all_unlinked | round | int }}–{{ f.cells.scenario_share.all_linked | round | int }}%
+    across linking choices) rest on a specimen from the area,
     {{ f.cells.lit_only }} ({{ f.cells.pct_lit_only }}%) on literature only, and
     {{ f.cells.agudo_alone }} ({{ f.cells.pct_agudo_alone }}%) on one 1987 monograph alone. The
     graph ({{ f.canon.occurrence }} specimens and {{ f.canon.distribution }} matrix assertions,
-    kept apart) has no SHACL violation, and the build is deterministic given its API cache.
+    kept apart and linked) has no SHACL violation, and the build is deterministic given its
+    API cache.
   conclusions: >-
     Community standards (Darwin Core, PROV-O, SKOS, SSSOM, SHACL), explicit curation and
     data-quality checks written as code turn a published inventory into auditable data
     while keeping the original record intact. The conversion also grades the evidence behind
-    each record. The layers after extraction are expected to transfer to
-    other inventories; extraction has to be rebuilt for each layout.
+    each record: the result is a literature-based checklist with graded evidence, not a basis
+    for distribution models. The layers after extraction are expected to transfer to other
+    inventories; extraction has to be rebuilt for each layout.

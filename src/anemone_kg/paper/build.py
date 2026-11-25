@@ -65,6 +65,7 @@ def _env(root: Path) -> jinja2.Environment:
         keep_trailing_newline=True,
     )
     env.filters["thousands"] = lambda n: f"{int(n):,}"
+    env.filters["italic"] = lambda s: f"*{s}*"
     env.filters["longdate"] = lambda s: date.fromisoformat(s).strftime("%-d %B %Y")
     words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
     env.filters["words"] = lambda n: words[int(n)] if 0 <= int(n) <= 10 else f"{int(n):,}"

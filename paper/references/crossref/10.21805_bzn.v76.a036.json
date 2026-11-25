@@ -1,0 +1,54 @@
+{
+ "DOI": "10.21805/bzn.v76.a036",
+ "author": [
+  {
+   "affiliation": [
+    {
+     "name": "Division of Invertebrate Zoology, American Museum of Natural History, Central Park West at 79th Street, New York, NY 10024, U.S.A. (agrajales@amnh.org)"
+    }
+   ],
+   "family": "Grajales",
+   "given": "Alejandro",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Division of Invertebrate Zoology, American Museum of Natural History, Central Park West at 79th Street, New York, NY 10024, U.S.A (erodriguez@amnh.org)"
+    }
+   ],
+   "family": "Rodríguez",
+   "given": "Estefanía",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "The Bulletin of Zoological Nomenclature"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2019,
+    8,
+    30
+   ]
+  ]
+ },
+ "page": "127",
+ "title": [
+  "Case 3790 – Proposed review of Opinion 2404 and reconsideration of Case 3633: Dysactis pallida Agassiz in Verrill, 1864 (currently Exaiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): proposed precedence over Exaiptasia diaphana (Rapp, 1829)"
+ ],
+ "volume": "76"
+}

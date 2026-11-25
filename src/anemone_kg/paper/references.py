@@ -9,6 +9,7 @@ version actually used) or works cited through the source paper.
 
 from __future__ import annotations
 
+import html
 import json
 import re
 import unicodedata
@@ -121,7 +122,9 @@ def verify(refs: dict[str, Reference], records: dict[str, dict]) -> list[str]:
         d = refs[key].data
 
         def norm(s: str) -> str:
-            return re.sub(r"[^a-z0-9]+", " ", _fold(re.sub(r"<[^>]+>", "", s))).strip()
+            # Crossref titles carry HTML: tags and entities (&amp;) are removed before comparing
+            plain = html.unescape(re.sub(r"<[^>]+>", "", s))
+            return re.sub(r"[^a-z0-9]+", " ", _fold(plain)).strip()
 
         cr_title = norm((rec.get("title") or [""])[0])
         if (

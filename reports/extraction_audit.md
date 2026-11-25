@@ -21,7 +21,7 @@ The census found no disagreement at its first run; no parser was changed to reac
 
 ## Rendered-image check of Table 1
 
-Pages rasterised with Poppler pdftoppm at 150 dpi (glyphs and vector paths). Each cell rectangle (row band x column band) is tested for ink; no text is read.
+Pages rasterised with Poppler pdftoppm at 150 dpi (glyphs and vector paths). Each cell rectangle (row band x column band) is tested for ink; no glyph inside a cell is read. The rectangles come from text-layer positions (printed row numbers and column headers) shared with the second extraction. The check sees a code missing from an empty cell, not one missing from a cell that holds another code, and not the identity of a code.
 
 | cells | with a code and ink | empty and no ink | ink without a code | code without ink |
 |---:|---:|---:|---:|---:|
@@ -29,7 +29,11 @@ Pages rasterised with Poppler pdftoppm at 150 dpi (glyphs and vector paths). Eac
 
 Every occupied cell has more ink than any empty cell: yes.
 
-Engine versions are written to the run log, not to this report, so that the committed report does not depend on the Poppler build.
+Engine versions and the ink margin (faintest occupied cell, darkest empty cell) are written to the run log, not to this report, so that the committed report does not depend on the Poppler build.
+
+## Table 3 against the article's own prose
+
+The Results list 19 species with their number of MOHBR specimens (81 specimens); the extracted current identifications of Table 3 give 81. 19 of 19 species agree. The same sentence states 22 species while listing 19.
 
 ## Disagreements
 

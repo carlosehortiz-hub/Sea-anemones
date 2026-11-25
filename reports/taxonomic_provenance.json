@@ -33,8 +33,49 @@
       "cache_key": "ncbi/ba7661886ab530ca06ef022a.json"
     }
   },
+  "collection_search": {
+    "GBIF datasets": {
+      "query": "Hermano Benigno",
+      "hits": 1,
+      "titles": [
+        "Afrotropical ground beetles of Macrocheilus Hope, 1838 (Coleoptera, Carabidae) description of four new species and faunistic notes"
+      ],
+      "cache_key": "gbif/932d4d0ec18faedf4d51ffa3.json"
+    },
+    "GBIF datasets (MOHBR)": {
+      "query": "MOHBR",
+      "hits": 12,
+      "titles": [
+        "Brachythecium wangianum (Brachytheciaceae, Bryophyta), a new species from Northern China and Southern Russia",
+        "Fungi and Lichens, Outer Hebrides",
+        "Insects Outer Hebrides",
+        "Invasive Non-Native Species, Outer Hebrides",
+        "Invertebrates (except insects), Outer Hebrides",
+        "Non-vascular Plants and Chromists Outer Hebrides",
+        "Otter (Lutra lutra), Outer Hebrides",
+        "Outer Hebrides Insect Records from Literature",
+        "Phenology Survey Outer Hebrides",
+        "University of Alabama Herbarium"
+      ],
+      "cache_key": "gbif/2caa6a0a448ae9aba8268178.json"
+    },
+    "GRSciColl institutions": {
+      "query": "Hermano Benigno",
+      "hits": 0,
+      "titles": [],
+      "cache_key": "gbif/33650723b0e02cf915e29b4a.json"
+    },
+    "GRSciColl collections": {
+      "query": "Hermano Benigno",
+      "hits": 1,
+      "titles": [
+        "Herbarium - Estaci\u00f3n de Investigaciones Marinas de Margarita, Fundaci\u00f3n La Salle de Ciencias Naturales"
+      ],
+      "cache_key": "gbif/6c32a1463383a672cbc19872.json"
+    }
+  },
   "cached_responses": {
-    "resolution": 253,
-    "coverage_and_releases": 145
+    "resolution": 255,
+    "coverage_and_releases": 133
   }
 }

@@ -17,7 +17,8 @@ WHERE {
   ?taxon dwc:taxonID ?id ;
          dwc:taxonRank "species" ;
          dwc:order ?order .
-  OPTIONAL { ?taxon dwc:taxonomicStatus "invalid" . BIND(?taxon AS ?invalid) }
+  # '†' in Table 1 is kept as a remark ("Marked † in Table 1 ..."), not as a taxonomic status
+  OPTIONAL { ?taxon dwc:taxonRemarks ?r . FILTER STRSTARTS(?r, "Marked †") BIND(?taxon AS ?invalid) }
 }
 GROUP BY ?order
 ORDER BY DESC(?species) ?order

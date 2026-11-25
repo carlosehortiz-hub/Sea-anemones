@@ -10,10 +10,11 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+from anemone_kg import __version__
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
 from anemone_kg.logs import log_counts
-from anemone_kg.rdf.build import SIMILARITY, mapping_method
+from anemone_kg.rdf.build import SIMILARITY, mapping_comment, mapping_tool
 from anemone_kg.resolve import coverage
 from anemone_kg.resolve.habitats import EnvoLookup, annotate
 from anemone_kg.resolve.http import CachedHttp
@@ -64,7 +65,12 @@ def resolve_all(cfg: Config, http: CachedHttp) -> dict[str, pd.DataFrame]:
         accepted_name = None
         if w.status == "accepted" and w.object_id:
             rec = resolver.worms_records[int(w.object_id.split(":")[1])]
-            accepted_name = rec.valid_name if rec.valid_name != rec.scientific_name else None
+            # Compare with the *article's* spelling: a curated orthographic variant matches an
+            # accepted WoRMS record whose name differs from the article's, and NCBI must then
+            # be asked for the accepted spelling too (bug once, round 3: the comparison was
+            # with the WoRMS record's own name, so Palythoa caribbeorum was never retried as
+            # P. caribaeorum, which NCBI has).
+            accepted_name = rec.valid_name if rec.valid_name != t.scientific_name else None
         rows += [
             w,
             resolver.gbif(t.taxon_id, t.scientific_name, t.taxon_rank),
@@ -98,28 +104,41 @@ def write_sssom(df: pd.DataFrame, path: Path, cfg: Config) -> None:
         "subject_id",
         "subject_label",
         "predicate_id",
+        "predicate_modifier",
         "object_id",
         "object_label",
         "mapping_justification",
-        "confidence",
         "similarity_score",
         "similarity_measure",
         "mapping_tool",
+        "mapping_tool_version",
         "mapping_date",
         "comment",
     ]
-    acc = df[df.status == "accepted"].copy()
+    # Asserted links, then what SSSOM can say about the others: a rejected candidate as a
+    # negated mapping (predicate_modifier Not), a name with no record as sssom:NoTermFound.
+    acc = df[df.status.isin(["accepted", "rejected", "unresolved"])].copy()
+    rej = acc.status == "rejected"
+    unres = acc.status == "unresolved"
+    acc["predicate_modifier"] = None
+    acc.loc[rej, "predicate_modifier"] = "Not"
+    acc.loc[rej & acc.predicate_id.isna(), "predicate_id"] = "skos:exactMatch"
+    acc.loc[unres, "predicate_id"] = "skos:exactMatch"
+    acc.loc[unres, "object_id"] = "sssom:NoTermFound"
+    acc = acc[acc.object_id.notna()]
     acc["subject_id"] = "ak:taxon/" + acc["subject_id"]
     # Fuzzy scores order candidates; they are not confidence in the accepted mapping.
     fuzzy = acc.match_type == "fuzzy"
     acc["similarity_score"] = acc.confidence.where(fuzzy)
     acc["similarity_measure"] = acc.object_source.map(SIMILARITY).where(fuzzy)
     # Exact and accepted-name matches carry no confidence; the comment says how they were made.
-    acc["confidence"] = None
     acc["comment"] = [
-        mapping_method(row) + (f"; {row.comment}" if isinstance(row.comment, str) else "")
+        mapping_comment(row) if row.status == "accepted" else row.comment
         for row in acc.itertuples()
     ]
+    acc["mapping_tool"] = acc.object_source.map(mapping_tool)
+    acc["mapping_tool_version"] = __version__
+    acc["mapping_date"] = acc.mapping_date.astype(str).str[:10].where(acc.mapping_date.notna())
     header = "".join(f"#{line}\n" for line in yaml.safe_dump(meta, sort_keys=False).splitlines())
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(header + acc[cols].to_csv(sep="\t", index=False), encoding="utf-8")
@@ -242,6 +261,7 @@ def resolve(cfg: Config) -> None:
     cov = coverage.ncbi_coverage(http, taxa, tables["taxon_mapping"], worms)
     rel = coverage.releases(http)
     vouchers = coverage.voucher_search(http)
+    collections = coverage.collection_search(http)
     reports = cfg.path("reports")
     changes.to_csv(reports / "taxonomic_changes.csv", index=False)
     cov.to_csv(reports / "ncbi_coverage.csv", index=False)
@@ -253,6 +273,7 @@ def resolve(cfg: Config) -> None:
             {
                 "releases": rel,
                 "voucher_search": vouchers,
+                "collection_search": collections,
                 "cached_responses": {
                     "resolution": len(used_resolution),
                     "coverage_and_releases": len(http.used - used_resolution),
