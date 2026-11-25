@@ -72,6 +72,7 @@ class CachedHttp:
         self.session.headers.update({"User-Agent": user_agent, "Accept": "application/json"})
         self._last_call = 0.0
         self.stats = {"hit": 0, "miss": 0, "network": 0}
+        self.used: set[str] = set()  # cache keys served, so callers can attribute them
 
     def _path(self, service: str, url: str) -> Path:
         digest = hashlib.sha256(url.encode("utf-8")).hexdigest()[:24]
@@ -84,6 +85,7 @@ class CachedHttp:
         if path.exists():
             self.stats["hit"] += 1
             rec = json.loads(path.read_text(encoding="utf-8"))
+            self.used.add(key)
             return CachedResponse(url, rec["status_code"], rec["body"], rec["retrieved_at"], key)
         self.stats["miss"] += 1
         if self.offline:
@@ -99,7 +101,12 @@ class CachedHttp:
         if resp.status_code not in (200, 204, 404):
             # Do not cache server errors or throttling: they say nothing about the name.
             resp.raise_for_status()
-        body = resp.json() if resp.status_code == 200 and resp.content else None
+        # NCBI E-utilities can return raw control characters inside JSON strings.
+        body = (
+            json.loads(resp.text, strict=False)
+            if resp.status_code == 200 and resp.content
+            else None
+        )
         retrieved_at = datetime.now(UTC).replace(microsecond=0).isoformat()
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(
@@ -117,6 +124,7 @@ class CachedHttp:
             + "\n",
             encoding="utf-8",
         )
+        self.used.add(key)
         return CachedResponse(url, resp.status_code, body, retrieved_at, key)
 
     def _get_with_retry(self, url: str, attempts: int = 4) -> requests.Response:

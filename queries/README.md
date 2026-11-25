@@ -15,7 +15,7 @@ Run them all with `python -m anemone_kg run query` (or `make run`). Results are 
 | `q04_taxa_and_specimens_by_habitat.rq` | Taxa and specimens by ENVO habitat, zone or substrate |
 | `q05_provenance_of_a_record.rq` | Where a record comes from in the paper, and how each of its identifiers was resolved |
 | `q06_reidentified_specimens.rq` | Re-identified MOHBR specimens: label → 2016 identification → accepted name today |
-| `q07_records_by_region_and_evidence.rq` | Table 1 records per coastal region by kind of evidence |
+| `q07_cell_support_by_region.rq` | Table 1 taxon x area cells per region by kind of support (first-hand, literature, Agudo 1987 alone) |
 | `q08_taxa_missing_from_ncbi.rq` | Names found in WoRMS but missing from NCBI Taxonomy |
 
 ## SQL (DuckDB over `data/processed/canonical/*.csv`)

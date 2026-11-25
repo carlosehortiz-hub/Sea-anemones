@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 856538,
+   "authority": "Verrill, 1900",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Phellia rufa rufa Verrill, 1900. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=856538 on 2026-11-25",
+   "class": "Hexacorallia",
+   "family": "Phelliidae",
+   "genus": "Phellia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:856538",
+   "match_type": "exact",
+   "modified": "2015-10-12T08:46:02.533Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 854913,
+   "phylum": "Cnidaria",
+   "rank": "Subspecies",
+   "scientificname": "Phellia rufa rufa",
+   "status": "unaccepted",
+   "taxonRankID": 230,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=856538",
+   "valid_AphiaID": 283689,
+   "valid_authority": "(Verrill, 1900)",
+   "valid_name": "Telmatactis rufa"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:02:54+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSynonymsByAphiaID/283689"
+}

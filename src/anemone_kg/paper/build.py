@@ -91,7 +91,13 @@ def render_parts(cfg: Config) -> tuple[dict, str, dict, CitationTracker]:
         raise ValueError("references do not match Crossref: " + "; ".join(problems))
     tracker = CitationTracker(refs)
     env = _env(root)
-    ctx = {"f": f, "cite": tracker.cite, "citet": tracker.citet, "references": "@@REFS@@"}
+    ctx = {
+        "f": f,
+        "cite": tracker.cite,
+        "citet": tracker.citet,
+        "references": "@@REFS@@",
+        "appendix": appendix_md(f),
+    }
 
     front = yaml.safe_load((root / "front.yaml").read_text(encoding="utf-8"))
 
@@ -115,6 +121,45 @@ def render_parts(cfg: Config) -> tuple[dict, str, dict, CitationTracker]:
     # keep "Fig. 1", "Table 2", "p. 29" on one line
     body = re.sub(r"\b(Fig\.|Figs\.|Table|Tables|p\.|pp\.) (\d)", "\\1&nbsp;\\2", body)
     return front, body, f, tracker
+
+
+def _cell(v) -> str:
+    return str(v).replace("|", "\\|").replace("\n", " ") if v == v and v is not None else ""
+
+
+def appendix_md(f: dict) -> str:
+    """Tables S1 and S2 for the layouts; the submission sends them as additional files."""
+    from anemone_kg.dq.crosstable import CAUSES
+
+    s1 = [
+        '<div class="table-block wide" markdown="1">',
+        '<p class="caption"><b>Table S1</b> Reconciliation of counts that cannot be rebuilt '
+        "from the text alone (Additional file 1), generated from the pipeline outputs.</p>",
+        "",
+        "| Count | Derivation |",
+        "|---|---|",
+        *[f"| {_cell(r['count'])} | {_cell(r['derivation'])} |" for r in f["recon"]],
+        "",
+        "</div>",
+    ]
+    s2 = [
+        '<div class="table-block wide" markdown="1">',
+        f'<p class="caption"><b>Table S2</b> The {f["xt"]["rows"]} cross-table differences '
+        "(Additional file 2): rule, locator, taxon, area, cause and evidence. <i>Link</i>: the "
+        "flag rests on a curated site-to-area link that is not an exact name.</p>",
+        "",
+        "| Rule | Locator | Taxon | Area | Cause | Evidence | Link |",
+        "|---|---|---|---|---|---|---|",
+        *[
+            f"| {r['rule']} | {_cell(r['source_ref']).split(', code')[0]} | *{_cell(r['taxon'])}* "
+            f"| {_cell(r['area'])} | {CAUSES[r['cause']]} | {_cell(r['evidence'])} | "
+            f"{'yes' if r['rests_on_curated_link'] else ''} |"
+            for r in f["xt"]["rows_list"]
+        ],
+        "",
+        "</div>",
+    ]
+    return "\n".join(['<h2 class="appendix">Appendix</h2>', "", *s1, "", *s2, ""])
 
 
 def _md_inline(text: str) -> str:

@@ -137,14 +137,20 @@ not**, so gaps are explicit ([`docs/identifier_resolution.md`](docs/identifier_r
   *Palythoa caribbeorum* to *P. caribbea*, a different species, shows why.
 - Habitat text is mapped to ENVO through a curated phrase → label vocabulary. IRIs come from
   EBI OLS by exact label only, and negated phrases ("but not intertidal zones") are not annotated.
-- **All 253 API responses are cached in `data/cache/` and committed.** CI runs offline, and each
+- **All 398 API responses are cached in `data/cache/` and committed** (253 for resolution, 145 for the coverage and release analyses). CI runs offline, and each
   mapping cites the response it came from.
+- Mappings are **name-level**: `skos:exactMatch` for an exact or curated name, `skos:closeMatch` for NCBI
+  through the WoRMS accepted name. No concept equivalence is asserted. Fuzzy scores are exported as
+  SSSOM `similarity_score`, not as confidence. Each curated spelling variant records its ICZN case.
+- [`reports/taxonomic_provenance.md`](reports/taxonomic_provenance.md) adds the WoRMS act (source and year)
+  behind each name change, an NCBI retry under all name classes and synonyms, INSDC record counts,
+  and the release of each service.
 
 | service | accepted | unresolved |
 |---|---:|---:|
 | WoRMS | 61 / 61 | 0 |
 | GBIF | 59 / 61 | 2: a *nomen nudum*, and the rejected fuzzy match |
-| NCBI Taxonomy | 44 / 61 | 17 names absent from NCBI |
+| NCBI Taxonomy | 44 / 61 | 17 names absent from NCBI (44 = 34 exact + 10 via the WoRMS accepted name) |
 
 ## Data quality
 
@@ -153,17 +159,28 @@ The checks are code, and critical failures stop the pipeline before any RDF is w
 
 - **269 column-level checks** are generated from the LinkML schema as Pandera schemas, covering
   dtype, required, unique, pattern, enum and range.
-- **14 critical cross-table rules**: referential integrity, no duplicate specimens, exactly one
-  current identification per specimen, coordinate pairs, consistency of the new-record flags and
-  of the mappings.
+- **15 critical cross-table rules**: referential integrity, no duplicate specimens, exactly one
+  current identification per specimen, coordinate pairs inside Venezuela, consistency of the
+  new-record flags and of the mappings.
 - **11 warnings** cover completeness and **cross-source consistency** between Table 1 and the
   specimen tables.
 
-**Result: PASS, with 0 critical failures and 46 warning rows.** Every critical rule is tested
-against an injected fault. The cross-source warnings reveal inconsistencies inside the paper
-itself. For example, Table 1 keeps code `a` for *Homostichanthus duerdeni* at Playa Azul,
-although the only MOHBR specimen from there (Table 3, row 26) is now identified as
-*Actinoporus elegans*.
+**Result: PASS, with 0 critical failures and 46 warning rows.** Every rule, critical or
+warning, has a positive control: a test injects a fault and requires the rule to report it.
+
+- **Extraction census** ([`reports/extraction_audit.md`](reports/extraction_audit.md)): every cell
+  of Table 1 and every field of Tables 2 and 3 is read a second time with another PDF engine
+  (Poppler) and parser. Agreement: 263/263 cells, 344/344 codes,
+  1,611 specimen fields, 0 disagreements. A disagreement stops the pipeline.
+- **Cross-table review** ([`reports/cross_table_review.md`](reports/cross_table_review.md)): each of
+  the 33 W08-W11 rows gets a cause. 14 are explained (coarse identification, another code,
+  re-identification, unconfirmed identification) and 19 differ as printed. No row shows the
+  signature of a column shift, and the counts are re-run with every uncertain site link
+  unlinked and linked. For example, Table 1 keeps code `a` for *Homostichanthus duerdeni* at
+  Playa Azul, although the only MOHBR specimen from there with that previous name (Table 3,
+  row 26) is now identified as *Actinoporus elegans*.
+- **Evidence tiers**: every Table 1 assertion is graded (survey vouchered or not, museum record
+  traced to Table 3 or not, literature) and carries `akv:evidenceTier` in the graph.
 
 ## SHACL validation
 
@@ -172,10 +189,12 @@ required properties, cardinalities, datatypes, identifier formats and provenance
 SHACL-SPARQL for rules that a path cannot express, such as one current identification per
 organism, latitude/longitude pairs, and every mapping record matching an asserted SKOS triple.
 
-**Result: the graph conforms. 20,242 triples were checked, with 0 violations, 9 warnings and 1 info**
-([`reports/shacl_report.md`](reports/shacl_report.md)). These are the same source gaps the
-data-quality stage reports. The tests inject 12 independent faults, and each is reported as a
-violation on the right node.
+**Result: 20,678 triples were checked, with 0 violations, 9 warnings and 1 info**
+([`reports/shacl_report.md`](reports/shacl_report.md)). The pipeline gate is "no Violation"
+(pySHACL `allow_warnings=True`); under the SHACL Recommendation `sh:conforms` is false whenever
+any result is reported, and the report says so. The warnings are source gaps the data-quality
+stage also reports. The tests inject 16 independent faults that together cover every node
+shape, and each is reported as a violation on the right node.
 
 ## Example query results
 
@@ -216,9 +235,9 @@ Excerpt:
 
 Each link records the request URL and the retrieval time.
 
-**Records by region and evidence** (`q07`): in every coastal region, presence records
-taken from earlier literature outnumber the authors' own survey records. On the East Coast
-the figures are 117 against 29.
+**What the distribution rests on** (`q07`): of the 261 taxon × area cells of Table 1,
+165 (63%) are supported by literature only, and 156 (60%) by Agudo (1987) alone, a
+monograph cited by the paper and not consulted here. The unit is the cell, not the code.
 
 ## How to run
 
@@ -295,11 +314,16 @@ tests/               unit, data, graph, SHACL, query and end-to-end tests
 
 - **One paper.** Nothing here supports ecological conclusions beyond what the paper reports.
   Table 1 also aggregates earlier literature that was not re-examined.
+- **Curation by a co-author.** All curated decisions were made by a co-author of the source
+  paper and have not been audited independently; they are published for that purpose.
+- **Fitness for use.** No area is georeferenced, literature records are undated and depth is not
+  recorded, so the graph is not suitable as it stands for distribution models or red-list
+  area estimates. The evidence tiers say which records rest on examined specimens.
 - **Habitat is per species, not per record**, because that is how the paper reports it. ENVO
   coverage is limited by ENVO itself: *coral rubble* has no class, and biotic substrates
   (sponges, hermit-crab shells) are not mapped.
-- **Confidence values for WoRMS fuzzy matches are a fixed heuristic scale without an external
-  source.** They only order candidates for review.
+- **Fuzzy-match scores are a heuristic**, exported as SSSOM similarity scores, not confidence.
+  They only ordered candidates for review.
 - **Coordinates exist only where Table 2 prints them.** No locality was geocoded, and the
   geodetic datum is not stated in the paper.
 - **The `ak:`/`akv:` namespaces are placeholders**, not registered with w3id.org, so the IRIs do
@@ -308,7 +332,10 @@ tests/               unit, data, graph, SHACL, query and end-to-end tests
   `data/cache/`. Refreshing is deliberate: delete the cache entries and rerun, and the
   differences show up in the diff.
 - The extraction parser is tuned to this paper's layout. It raises on anything unexpected
-  rather than guessing, but a different paper needs its own column and row rules.
+  rather than guessing, but a different paper needs its own column and row rules. The layers
+  after extraction (canonical model, resolution, data quality, graph) are what transfers.
+- **Determinism, not validity.** Byte-identical rebuilds hold for the same PDF, cache and
+  lockfile (CI on Linux). Re-resolving against the live services gives a newer snapshot.
 
 ## Next steps
 
@@ -344,5 +371,7 @@ PDF and 600 dpi PNG. It needs pandoc, LibreOffice and Node with Playwright.
 
 ## Licence and citation
 
-The code is MIT. The derived data and graph are CC0, as are the article's data. The article
+The code is MIT. The derived data and graph are CC0, as are the article's data. The cached API
+responses in `data/cache/` keep their providers' terms (WoRMS and the GBIF Backbone are CC BY 4.0)
+and are not covered by the CC0 dedication. The article
 itself is CC BY 4.0, so please cite González-Muñoz et al. (2016) when using the data.

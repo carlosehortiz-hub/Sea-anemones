@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "doi": "10.21805/bzn.v76.a036",
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Grajales, A.; Rodríguez, E. (2019). Case 3790 – Proposed review of Opinion 2404 and reconsideration of Case 3633: Dysactis pallida Agassiz in Verrill, 1864 (currently Exaiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): proposed precedence over Exaiptasia diaphana (Rapp, 1829). The Bulletin of Zoological Nomenclature. 76(1): 127.",
+   "source_id": 391797,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=391797",
+   "use": "additional source"
+  },
+  {
+   "doi": "10.21805/bzn.v74.a034",
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "ICZN. (2017). Opinion 2404 (Case 3633) — Dysactis pallida Agassiz in Verrill, 1864 (currently Aiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): precedence over Aiptasia diaphana (Rapp, 1829), Aiptasia tagetes (Duchassaing de Fombressin & Michelotti, 1864), Aiptasia mimosa (Duchassaing de Fombressin & Michelotti, 1864) and Aiptasia inula (Duchassaing de Fombressin & Michelotti, 1864) not approved. The Bulletin of Zoological Nomenclature. 74: 130-132.",
+   "source_id": 302522,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=302522",
+   "use": "source of synonymy"
+  },
+  {
+   "doi": "10.11646/zootaxa.3826.1.2",
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Grajales, A.; Rodríguez, E. (2014). Morphological revision of the genus Aiptasia and the family Aiptasiidae (Cnidaria, Actiniaria, Metridioidea). Zootaxa. 3826(1): 55-100.",
+   "source_id": 259088,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=259088",
+   "use": "new combination reference"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:00:17+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSourcesByAphiaID/888637"
+}

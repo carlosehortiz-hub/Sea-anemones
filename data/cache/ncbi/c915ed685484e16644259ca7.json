@@ -1,0 +1,49 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "141",
+   "idlist": [
+    "2955786777",
+    "2954825306",
+    "2954825305",
+    "2788848620",
+    "2788848614",
+    "2678184180",
+    "2678184179",
+    "2515334125",
+    "2553042872",
+    "2552213703",
+    "2552153727",
+    "2552153725",
+    "2552153721",
+    "2552153719",
+    "2524642206",
+    "2207883749",
+    "2207883743",
+    "2500499925",
+    "2459384448",
+    "2459384442"
+   ],
+   "querytranslation": "txid504656[Organism:exp]",
+   "retmax": "20",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "141",
+     "explode": "Y",
+     "field": "Organism",
+     "term": "txid504656[Organism:exp]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:59+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&retmax=20&retmode=json&term=txid504656%5BOrganism%3Aexp%5D"
+}

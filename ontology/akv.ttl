@@ -104,3 +104,49 @@ akv:Literature
     skos:inScheme akv:evidenceKinds ;
     skos:prefLabel "previously published record"@en ;
     skos:definition "Table 1 codes 'b' to 'j': a record in a previously published work, cited in the legend."@en .
+
+# ----------------------------------------------------- evidence-tier scheme
+
+akv:evidenceTier
+    a owl:ObjectProperty ;
+    rdfs:domain dwc:Occurrence ;
+    rdfs:range skos:Concept ;
+    rdfs:label "evidence tier"@en ;
+    rdfs:comment "How directly a Table 1 assertion can be traced to examined material. Derived by the pipeline from the cross-table comparison (anemone_kg.dq.crosstable.evidence_tiers), not stated by the source. It is not dwc:identificationVerificationStatus: it grades the presence record, not an identification."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:evidenceTiers
+    a skos:ConceptScheme ;
+    skos:prefLabel "Evidence tiers of Table 1 assertions"@en ;
+    skos:definition "Graded traceability of a presence assertion to examined material, for fitness-for-use decisions."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
+akv:SurveyVouchered
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "survey record, vouchered"@en ;
+    skos:definition "Code '*' with a specimen of the same taxon (by WoRMS accepted name) from the same area in Table 2 (Appendix 1)."@en .
+
+akv:SurveyUnvouchered
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "survey record, no voucher"@en ;
+    skos:definition "Code '*' without such a specimen in Table 2. It may rest on an observation or a photograph; the article does not say."@en .
+
+akv:MuseumTraced
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "museum record, traced"@en ;
+    skos:definition "Code 'a' with a specimen of the same taxon from the same area in Table 3 (Appendix 2), under its current or previous identification."@en .
+
+akv:MuseumUntraced
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "museum record, not traced"@en ;
+    skos:definition "Code 'a' without such a specimen in Table 3, although the legend refers code 'a' to Appendix 2."@en .
+
+akv:LiteratureRecord
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "literature record"@en ;
+    skos:definition "Codes 'b'-'j': a record in an earlier publication, cited by the article and not consulted here; whether it rests on a voucher is unknown."@en .

@@ -1,0 +1,31 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "2",
+   "idlist": [
+    "1326993",
+    "59173"
+   ],
+   "querytranslation": "Phyllactis[Scientific Name]",
+   "retmax": "2",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "2",
+     "explode": "N",
+     "field": "Scientific Name",
+     "term": "Phyllactis[Scientific Name]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:46+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Phyllactis%5BScientific+Name%5D"
+}

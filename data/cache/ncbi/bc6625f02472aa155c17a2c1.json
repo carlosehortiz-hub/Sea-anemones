@@ -1,0 +1,31 @@
+{
+ "body": {
+  "header": {
+   "type": "esummary",
+   "version": "0.3"
+  },
+  "result": {
+   "37515": {
+    "akataxid": "",
+    "commonname": "",
+    "division": "tube anemones",
+    "genbankdivision": "Invertebrates",
+    "genus": "",
+    "modificationdate": "2020/04/23 00:00",
+    "rank": "species",
+    "scientificname": "Ceriantheopsis americana",
+    "species": "",
+    "status": "active",
+    "subsp": "",
+    "taxid": 37515,
+    "uid": "37515"
+   },
+   "uids": [
+    "37515"
+   ]
+  }
+ },
+ "retrieved_at": "2026-11-25T13:03:34+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=37515&retmode=json"
+}

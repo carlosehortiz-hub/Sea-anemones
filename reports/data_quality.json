@@ -116,6 +116,13 @@
       "failing_rows": 0
     },
     {
+      "id": "C15",
+      "severity": "critical",
+      "dimension": "validity",
+      "description": "coordinates fall inside Venezuela's coast and islands (west longitude, north latitude)",
+      "failing_rows": 0
+    },
+    {
       "id": "W01",
       "severity": "warning",
       "dimension": "validity",
@@ -192,5 +199,108 @@
       "description": "Table 3 specimen in an area, but no Table 1 'a' for that taxon and area",
       "failing_rows": 8
     }
-  ]
+  ],
+  "cross_table": {
+    "rows": 33,
+    "by_cause": {
+      "above_species": 4,
+      "as_printed": 19,
+      "other_code": 6,
+      "reidentified": 2,
+      "unconfirmed": 2
+    },
+    "by_rule_cause": {
+      "W08:above_species": 1,
+      "W08:as_printed": 12,
+      "W09:above_species": 3,
+      "W09:as_printed": 2,
+      "W09:other_code": 2,
+      "W10:as_printed": 2,
+      "W10:reidentified": 1,
+      "W10:unconfirmed": 2,
+      "W11:as_printed": 3,
+      "W11:other_code": 4,
+      "W11:reidentified": 1
+    },
+    "rests_on_curated_link": 10,
+    "shift_pairs": 0,
+    "sensitivity": {
+      "all_unlinked": {
+        "W08": 13,
+        "W09": 7,
+        "W10": 0,
+        "W11": 3
+      },
+      "as_curated": {
+        "W08": 13,
+        "W09": 7,
+        "W10": 5,
+        "W11": 8
+      },
+      "all_linked": {
+        "W08": 13,
+        "W09": 7,
+        "W10": 6,
+        "W11": 9
+      }
+    },
+    "uncertain_links": 22,
+    "cells": 261,
+    "cell_support": {
+      "first-hand and literature": 51,
+      "first-hand only": 45,
+      "literature only: Agudo (1987) alone": 156,
+      "literature only: other or several sources": 9
+    },
+    "cell_support_by_region": {
+      "Central Coast": {
+        "first-hand and literature": 4,
+        "first-hand only": 8,
+        "literature only: Agudo (1987) alone": 34,
+        "literature only: other or several sources": 1
+      },
+      "East Coast": {
+        "first-hand and literature": 23,
+        "first-hand only": 23,
+        "literature only: Agudo (1987) alone": 90,
+        "literature only: other or several sources": 2
+      },
+      "Oceanic Islands": {
+        "first-hand and literature": 10,
+        "first-hand only": 12,
+        "literature only: Agudo (1987) alone": 12,
+        "literature only: other or several sources": 0
+      },
+      "West Coast": {
+        "first-hand and literature": 14,
+        "first-hand only": 2,
+        "literature only: Agudo (1987) alone": 20,
+        "literature only: other or several sources": 6
+      }
+    }
+  },
+  "extraction_census": {
+    "table1": {
+      "codes_first": 344,
+      "codes_second": 344,
+      "codes_agree": 344,
+      "cells_first": 263,
+      "cells_second": 263,
+      "cells_union": 263,
+      "cells_agree": 263
+    },
+    "table2": {
+      "rows": 128,
+      "rows_second": 128,
+      "fields_checked": 1024,
+      "fields_agree": 1024
+    },
+    "table3": {
+      "rows": 84,
+      "rows_second": 84,
+      "fields_checked": 587,
+      "fields_agree": 587
+    },
+    "disagreements": 0
+  }
 }

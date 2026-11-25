@@ -1,0 +1,28 @@
+{
+  "engine_first": "pdfplumber (pdfminer.six)",
+  "engine_second": "Poppler pdftotext -bbox",
+  "table1": {
+    "codes_first": 344,
+    "codes_second": 344,
+    "codes_agree": 344,
+    "cells_first": 263,
+    "cells_second": 263,
+    "cells_union": 263,
+    "cells_agree": 263,
+    "disagreements": []
+  },
+  "table2": {
+    "rows": 128,
+    "rows_second": 128,
+    "fields_checked": 1024,
+    "fields_agree": 1024,
+    "disagreements": []
+  },
+  "table3": {
+    "rows": 84,
+    "rows_second": 84,
+    "fields_checked": 587,
+    "fields_agree": 587,
+    "disagreements": []
+  }
+}

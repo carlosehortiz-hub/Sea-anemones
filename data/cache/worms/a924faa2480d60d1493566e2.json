@@ -1,0 +1,77 @@
+{
+ "body": [
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Fautin, Daphne G. (2013). Hexacorallians of the World. ",
+   "source_id": 494,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=494",
+   "use": "additional source"
+  },
+  {
+   "doi": "10.11606/issn.2526-3366.bzbm.1973.121340",
+   "fulltext": null,
+   "link": null,
+   "page": "458",
+   "reference": "Corrêa, D. D. (1973). Sobre anêmonas-do-mar (Actiniaria) do Brasil. Boletim de Zoologia e Biologia Marinha, N.S., (30): 457-468",
+   "source_id": 418864,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=418864",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "34, 36, 38-40",
+   "reference": "Zamponi, M. O.; Belém, M. J. D.; Schlenz, E.; Acuña, F. H. (1998). Distribution and some ecological aspects of Corallimorpharia and Actiniaria from shallow waters of the South American Atlantic coasts. Physis (Buenos Aires), 55, 31-45",
+   "source_id": 419347,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=419347",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "49, 50, 67, 74-78, 86",
+   "reference": "Corrêa, D. D. (1964). Corallimorpharia e Actiniaria do Atlantico Oeste Tropical. Universidade de São Paulo (Dissertation). São Paulo., pp. 139.",
+   "source_id": 420428,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=420428",
+   "use": "additional source"
+  },
+  {
+   "doi": "10.1007/s12526-025-01585-2",
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Durán-Fuentes, J. A.; González-Muñoz, R.; Vassallo-Avalos, A.; Delgado, A.; Daly, M.; Stampar, S. N. (2025). Revisiting Anthopleura cascaia (nomen nudum): Description of Anthopleura correae sp. nov. and the taxonomic challenges of a variable lineage (Anthozoa, Actiniaria). Marine Biodiversity. 55(6).",
+   "source_id": 560106,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=560106",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "den Hartog, J. C. & van der Land, J. (2000-2007). As a contribution to UNESCO-IOC Register of Marine Organisms. ",
+   "source_id": 124430,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=124430",
+   "use": "basis of record"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Fautin, Daphne G. (2013). Hexacorallians of the World. ",
+   "source_id": 494,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=494",
+   "use": "context source (Hexacorallia)"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:00:17+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSourcesByAphiaID/283343"
+}

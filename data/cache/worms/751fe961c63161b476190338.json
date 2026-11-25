@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 741518,
+   "authority": "Gravier, 1918",
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Paractis vestita Gravier, 1918. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=741518 on 2026-11-25",
+   "class": "Hexacorallia",
+   "family": null,
+   "genus": "Paractis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:741518",
+   "match_type": "exact",
+   "modified": "2015-10-13T10:34:41.473Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": 741518,
+   "parentNameUsageID": 182846,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Paractis vestita",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": "original binomen",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=741518",
+   "valid_AphiaID": 100955,
+   "valid_authority": "(Gravier, 1918)",
+   "valid_name": "Monactis vestita"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:02:26+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSynonymsByAphiaID/100955"
+}

@@ -25,6 +25,7 @@ import pandas as pd
 from rdflib import RDF, XSD, BNode, Graph, Literal, Namespace, URIRef
 
 from anemone_kg import __version__
+from anemone_kg.dq.crosstable import evidence_tiers
 from anemone_kg.rdf.vocab import Registry
 
 DOI_IRI = "https://doi.org/{doi}"
@@ -52,6 +53,13 @@ EVIDENCE = {
 
 class UnregisteredTermError(ValueError):
     """The builder tried to emit a term that is not in model/terms.yaml."""
+
+
+SIMILARITY = {
+    "worms": "WoRMS fuzzy match type on a project ordinal scale (phonetic 0.8, near_1 0.7, "
+    "near_2 0.5, near_3 0.3); orders candidates only, not calibrated",
+    "gbif": "GBIF species/match confidence scaled to 0-1; not calibrated",
+}
 
 
 def _slug(text: str) -> str:
@@ -186,9 +194,11 @@ class GraphBuilder:
             self.add(s, "dwc:specificEpithet", r.specific_epithet)
             self.add(s, "dwc:family", r.family)
             self.add(s, "dwc:order", r.order)
+            # A name usage: the name as used in the article, not a concept.
+            self.add(s, "dwc:nameAccordingTo", Literal("González-Muñoz et al. (2016)"))
             if bool(r.flag_invalid_in_source):
+                # '†' in Table 1: "species currently considered as invalid" (legend, p. 6)
                 self.add(s, "dwc:taxonomicStatus", Literal("invalid"))
-                self.add(s, "dwc:nameAccordingTo", Literal("González-Muñoz et al. (2016)"))
             self.add(s, "akv:hasDoubtfulPreviousRecords", Literal(bool(r.flag_doubtful_in_source)))
             self.derived(s, r.source_ref, r.source_page, "canonicalize")
 
@@ -201,7 +211,11 @@ class GraphBuilder:
             self.add(s, "dwc:scientificNameAuthorship", r.scientific_name_authorship)
             self.add(s, "dwc:scientificNameID", Literal(r.lsid))
             self.add(s, "dwc:taxonomicStatus", Literal(r.taxonomic_status))
-            self.add(s, "dwc:nameAccordingTo", Literal("World Register of Marine Species"))
+            self.add(
+                s,
+                "dwc:nameAccordingTo",
+                Literal(f"World Register of Marine Species (accessed {str(r.mapping_date)[:10]})"),
+            )
             self.add(s, "dwc:taxonRank", Literal(str(r.worms_rank).lower()))
             self.add(s, "dwc:family", r.family)
             self.add(s, "dwc:order", r.order)
@@ -231,7 +245,15 @@ class GraphBuilder:
             self.add(ax, "owl:annotatedProperty", self.t(r.predicate_id))
             self.add(ax, "owl:annotatedTarget", obj)
             self.add(ax, "sssom:mapping_justification", self.t(r.mapping_justification))
-            self.add(ax, "sssom:confidence", Literal(float(r.confidence), datatype=XSD.double))
+            if r.match_type == "fuzzy":
+                # A fuzzy score orders candidates; it is not a probability that the accepted
+                # mapping is right (that rests on the curator's evidence, in rdfs:comment).
+                self.add(
+                    ax, "sssom:similarity_score", Literal(float(r.confidence), datatype=XSD.double)
+                )
+                self.add(ax, "sssom:similarity_measure", Literal(SIMILARITY[r.object_source]))
+            else:
+                self.add(ax, "sssom:confidence", Literal(float(r.confidence), datatype=XSD.double))
             self.add(ax, "sssom:mapping_tool", Literal(r.mapping_tool))
             self.add(ax, "dcterms:created", Literal(r.mapping_date, datatype=XSD.dateTime))
             self.add(ax, "rdfs:comment", r.comment)
@@ -368,7 +390,7 @@ class GraphBuilder:
             self.add(s, "dcterms:bibliographicCitation", Literal(r.short_citation))
             self.derived(s, f"{r.source_ref}, code '{r.reference_code}'", r.source_page, "extract")
 
-    def distribution(self, d: pd.DataFrame, refs: pd.DataFrame) -> None:
+    def distribution(self, d: pd.DataFrame, refs: pd.DataFrame, tiers: pd.Series) -> None:
         cites = dict(zip(refs.reference_code, refs.short_citation, strict=True))
         for r in d.itertuples():
             s = self.iri("distribution", r.distribution_id)
@@ -379,6 +401,7 @@ class GraphBuilder:
             self.add(s, "dwc:occurrenceStatus", Literal("present"))
             self.add(s, "dwciri:toTaxon", self.iri("taxon", r.taxon_id))
             self.add(s, "dcterms:type", self.t(f"akv:{EVIDENCE[r.evidence_kind]}"))
+            self.add(s, "akv:evidenceTier", self.t(f"akv:{tiers[r.distribution_id]}"))
             if _present(r.reference_code):
                 self.add(s, "dcterms:references", self.iri("reference", r.reference_code))
                 self.add(s, "dwc:associatedReferences", Literal(cites[r.reference_code]))
@@ -427,7 +450,7 @@ def build_graph(
     b.locations(tables["locality"])
     b.specimens(tables["occurrence"], tables["identification"])
     b.references(tables["reference"])
-    b.distribution(tables["distribution"], tables["reference"])
+    b.distribution(tables["distribution"], tables["reference"], evidence_tiers(tables))
     b.habitats(tables["habitat_statement"], tables["habitat_annotation"])
     if vocab is not None:  # project vocabulary travels with the data
         b.g += vocab

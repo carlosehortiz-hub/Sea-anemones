@@ -1,0 +1,14 @@
+count,derivation
+61 names vs 52 Table 1 taxa,52 Table 1 names + 1 family-level name in Table 2 + 8 previous identifications in Table 3
+27 localities vs 26 areas,"27 Table 1 columns = 26 areas + 1 'Open Sea Distribution' column, which is not a place (its 2 assertions have no location)"
+45 sites,41 linked to a Table 1 area + 4 unlinked (W05): 3 links the curator rejected + 1 site with no Table 1 column
+33 crosswalk rows,5 Table 2 park names + 24 Table 3 localities linked + 1 with no column + 3 rejected
+71 curated rows,4 name variants + 8 state names + 33 locality crosswalk + 5 event dates + 8 resolution overrides + 13 habitat vocabulary
+128 taxon nodes,61 name usages + 67 WoRMS records (59 matched by a name + 8 accepted names only)
+963 qualified derivations,554 dwc:Occurrence + 237 dwc:Identification + 75 dcterms:Location + 61 dwc:Taxon + 26 akv:HabitatStatement + 9 dcterms:BibliographicResource + 1 prov:Entity
+344 codes vs 342 assertions,2 'N' codes qualify a survey code and are folded into it; 342 - 2 open-sea = 340 assertions with an area
+263 occupied cells vs 261 cells with an area,263 - 2 open-sea cells
+9 SHACL warnings + 1 info,"results per focus node: 4 events without location (W02: 2 specimens; 2 open-sea assertions), 3 'not identified' (W03), 2 habitat statements (W07), 1 specimen without catalogue number (Info; W04). The other warning rules (W01, W05, W08-W11) have no SHACL counterpart"
+46 warning rows,W01 1 + W02 2 + W03 3 + W04 1 + W05 4 + W07 2 + W08 13 + W09 7 + W10 5 + W11 8
+398 cached API responses,"253 for name and habitat resolution + 145 for the coverage and release analyses added in revision; by service: gbif 62, ncbi 219, ols 14, worms 103"
+three different sets of four,4 misspelt names in Table 2 (name variants); 4 WoRMS links accepted after curation; 4 spelling-only rows of Table 4

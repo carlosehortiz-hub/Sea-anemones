@@ -32,6 +32,17 @@ grajales2014:
   doi: 10.11646/zootaxa.3826.1.2
   cite_as: Grajales & Rodríguez 2014
 
+montenegro2015:
+  authors: [Montenegro J, Low MEY, Reimer JD]
+  year: 2015
+  title: "The resurrection of the genus Bergia (Anthozoa, Zoantharia, Parazoanthidae)"
+  journal: Systematics and Biodiversity
+  journal_abbrev: Syst Biodivers  # NLM Catalog abbreviation
+  volume: "14"
+  pages: "63–73"
+  doi: 10.1080/14772000.2015.1101028
+  cite_as: Montenegro et al. 2015
+
 wieczorek2012:
   authors: [Wieczorek J, Bloom D, Guralnick R, Blum S, Döring M, Giovanni R, Robertson T, Vieglais D]
   year: 2012

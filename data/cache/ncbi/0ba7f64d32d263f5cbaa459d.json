@@ -1,0 +1,30 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "1",
+   "idlist": [
+    "37514"
+   ],
+   "querytranslation": "Ceriantheopsis[Scientific Name]",
+   "retmax": "1",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "1",
+     "explode": "N",
+     "field": "Scientific Name",
+     "term": "Ceriantheopsis[Scientific Name]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:10+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Ceriantheopsis%5BScientific+Name%5D"
+}

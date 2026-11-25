@@ -44,8 +44,9 @@ def first(g, s=None, p=None, o=None):
 
 def test_real_graph_conforms_with_expected_warnings(data, shapes):
     conforms, report = validate_graph(data, shapes)
-    assert conforms
+    assert conforms  # pySHACL with allow_warnings=True: no Violation
     res = results(report, data)
+    assert res  # so sh:conforms in the strict sense of SHACL section 3.6 is false
     assert not [r for r in res if r["severity"] == "Violation"]
     # same counts as the data-quality warnings W02+Open Sea, W03, W07, W04
     msgs = [r["message"] for r in res]
@@ -120,7 +121,55 @@ def broken(data):
     d = next(iter(sorted(g.subjects(AKV.sourcePage, None))))
     g.set((d, AKV.sourcePage, Literal(99, datatype=XSD.positiveInteger)))
     faults["page_out_of_range"] = d
+    # 13. occurrence identifier that is not a UUIDv5 (OccurrenceShape)
+    occ = specimens[3]
+    g.set((occ, DWC.occurrenceID, Literal("specimen-4")))
+    faults["bad_occurrence_id"] = occ
+    # 14. identification qualifier outside the open-nomenclature list (IdentificationShape)
+    ident = next(iter(sorted(g.subjects(RDF.type, DWC.Identification))))
+    g.set((ident, DWC.identificationQualifier, Literal("aff. maybe")))
+    faults["bad_qualifier"] = ident
+    # 15. cached response without retrieval time (ResponseShape, via MappingShape)
+    ax = axioms[2]
+    resp = g.value(ax, PROV.wasDerivedFrom)
+    g.remove((resp, PROV.generatedAtTime, None))
+    faults["response_without_time"] = ax
+    # 16. evidence tier that contradicts the evidence kind (MaterialCitationShape)
+    lit2 = sorted(g.subjects(rdflib.URIRef("http://purl.org/dc/terms/type"), AKV.Literature))[1]
+    g.set((lit2, AKV.evidenceTier, AKV.SurveyVouchered))
+    faults["tier_contradicts_kind"] = lit2
     return g, faults
+
+
+# Which node shape each fault exercises: every node shape must have a positive control.
+FAULT_SHAPE = {
+    "no_provenance": "DerivedFromPaper",
+    "bad_catalog": "SpecimenShape",
+    "two_current_ids": "OrganismShape",
+    "lat_without_lon": "LocationShape",
+    "confidence": "MappingShape",
+    "mapping_without_triple": "MappingShape",
+    "new_record_literature": "MaterialCitationShape",
+    "dangling_accepted_name": "WormsRecordShape",
+    "bad_exact_match": "PaperTaxonShape",
+    "untyped_date": "EventShape",
+    "non_envo_habitat": "HabitatStatementShape",
+    "page_out_of_range": "DerivationShape",
+    "bad_occurrence_id": "OccurrenceShape",
+    "bad_qualifier": "IdentificationShape",
+    "response_without_time": "ResponseShape",
+    "tier_contradicts_kind": "MaterialCitationShape",
+}
+
+
+def test_every_node_shape_has_a_positive_control(shapes):
+    """Review finding: 14 shapes but 12 faults, so two shapes (in fact three: Occurrence,
+    Identification, Response) were never shown to fire."""
+    declared = {
+        str(s).rsplit("/", 1)[-1].rsplit("#", 1)[-1]
+        for s in shapes.subjects(RDF.type, rdflib.URIRef("http://www.w3.org/ns/shacl#NodeShape"))
+    }
+    assert declared == set(FAULT_SHAPE.values())
 
 
 @pytest.fixture(scope="module")
@@ -149,6 +198,10 @@ def test_broken_graph_does_not_conform(broken_results):
         "untyped_date",
         "non_envo_habitat",
         "page_out_of_range",
+        "bad_occurrence_id",
+        "bad_qualifier",
+        "response_without_time",
+        "tier_contradicts_kind",
     ],
 )
 def test_each_injected_fault_is_a_violation(broken, broken_results, fault):

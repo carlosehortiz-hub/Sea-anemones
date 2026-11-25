@@ -224,6 +224,26 @@ def _c14(t):
     )
 
 
+# Venezuela's coast and islands, Isla de Aves included (15.67 N): a generous box that still
+# catches a dropped minus sign, swapped latitude/longitude or a degree typo.
+VE_LAT = (0.5, 16.0)
+VE_LON = (-73.5, -59.5)
+
+
+@rule(
+    "C15",
+    "critical",
+    "validity",
+    "coordinates fall inside Venezuela's coast and islands (west longitude, north latitude)",
+)
+def _c15(t):
+    loc = t["locality"]
+    has = loc.decimal_latitude.notna()
+    lat, lon = loc.decimal_latitude, loc.decimal_longitude
+    inside = lat.between(*VE_LAT) & lon.between(*VE_LON)
+    return loc[has & ~inside]
+
+
 # ----------------------------------------------------------------- warnings
 @rule("W01", "warning", "validity", "verbatim date that is not a valid calendar date")
 def _w01(t):

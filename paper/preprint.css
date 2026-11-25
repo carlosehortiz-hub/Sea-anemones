@@ -76,3 +76,6 @@ th[style*="right"], td[style*="right"] { font-variant-numeric: tabular-nums; }
 /* ---- references ---- */
 .refs { font-size: 9pt; line-height: 1.4; }
 .body .refs p { padding-left: 5mm; text-indent: -5mm; margin: 0 0 1.6mm; }
+
+td, th { text-align: left; hyphens: none; }
+.body h2.appendix { break-before: page; }

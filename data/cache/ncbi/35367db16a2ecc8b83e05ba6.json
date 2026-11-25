@@ -1,0 +1,34 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "0",
+   "errorlist": {
+    "fieldsnotfound": [],
+    "phrasesnotfound": [
+     "Polythoa",
+     "Monothoa",
+     "caraibeorum[All Names]"
+    ]
+   },
+   "idlist": [],
+   "querytranslation": "Polythoa[All Names] AND (Monothoa[All Names]) AND caraibeorum[All Names]",
+   "retmax": "0",
+   "retstart": "0",
+   "translationset": [],
+   "warninglist": {
+    "outputmessages": [
+     "No items found."
+    ],
+    "phrasesignored": [],
+    "quotedphrasesnotfound": []
+   }
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:33+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Polythoa+%28Monothoa%29+caraibeorum%5BAll+Names%5D"
+}

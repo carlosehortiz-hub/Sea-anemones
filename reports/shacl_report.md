@@ -1,6 +1,8 @@
 # SHACL validation report
 
-**Conforms: yes** - 20242 data triples validated against 14 node shapes (pySHACL, advanced mode for SPARQL targets and constraints, no inference).
+**Violations: 0** - 20678 data triples validated against 14 node shapes (pySHACL, `advanced=True` for SPARQL targets and constraints, `inference='none'`, `allow_warnings=True`).
+
+`sh:conforms` under the SHACL Recommendation (section 3.6): **false** - it is false whenever the report holds any result, whatever its severity. The pipeline gate is weaker on purpose: with `allow_warnings=True` pySHACL returns conforms only if there is no Violation (here: true), and only Violations stop the run.
 
 | severity | results |
 |---|---:|
