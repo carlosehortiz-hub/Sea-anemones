@@ -266,6 +266,14 @@ output offline, and CI checks that the container's outputs are byte-identical to
 ones. `docker-compose.yml` runs Oxigraph together with the `load` and `check` steps
 (`docker compose run --rm load`).
 
+## Tooling
+
+Python 3.12 with [uv](https://docs.astral.sh/uv/) (locked environment), ruff, pytest and GitHub
+Actions; pdfplumber, LinkML, Pandera, RDFLib, pySHACL, DuckDB and Oxigraph for the pipeline;
+pandoc and Playwright for the manuscript. Claude Code was used as a coding assistant under the
+author's direction; curation decisions and results were reviewed by the author, as stated in
+the manuscript's Methods.
+
 ## Repository layout
 
 ```
