@@ -7,7 +7,7 @@ import re
 import pytest
 
 from anemone_kg.config import load_config
-from anemone_kg.paper.build import render
+from anemone_kg.paper.build import render, render_preprint
 from anemone_kg.paper.figures import write_all
 from anemone_kg.paper.references import fetch_crossref, load_references, verify
 
@@ -91,3 +91,15 @@ def test_figures_are_generated(cfg, rendered, tmp_path):
         svg = p.read_text()
         assert svg.startswith("<?xml") or svg.startswith("<svg")
         assert "nan" not in svg
+
+
+def test_preprint_layout_is_complete_and_unbranded(cfg, rendered):
+    """The working-paper layout carries the same body, all figures, and no journal styling."""
+    html, _, _ = render_preprint(cfg)
+    layout, _, _ = rendered
+    assert not re.search(r"\{\{|\{%|@@|\bNone\b|\bnan\b", html)
+    assert html.count('class="figure') == layout.count('class="figure') == 4
+    assert html.count('class="table-block') == layout.count('class="table-block') == 5
+    assert 'class="banner"' in layout and 'class="banner"' not in html
+    assert "column-count" not in (cfg.root / "paper" / "preprint.css").read_text()
+    assert "not peer reviewed" in html

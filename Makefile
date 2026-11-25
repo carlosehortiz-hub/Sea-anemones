@@ -1,7 +1,7 @@
 .PHONY: install lint format test test-fast cov run clean-outputs \
         extract canonicalize resolve validate build shacl query \
         docker-build docker-run endpoint-up endpoint-load endpoint-check endpoint-down \
-        paper paper-html paper-submission
+        paper paper-html paper-submission paper-preprint
 
 PY := uv run python -m anemone_kg run
 
@@ -62,3 +62,6 @@ paper-html:      ## manuscript HTML only
 
 paper-submission: ## journal submission files: DOCX, PDF preview, figures as separate files
 	uv run python -m anemone_kg paper --submission
+
+paper-preprint:  ## working-paper PDF: one column, figures in place, no journal styling
+	uv run python -m anemone_kg paper --preprint

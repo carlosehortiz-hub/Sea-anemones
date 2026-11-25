@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ short_title }}</title>
+<link rel="stylesheet" href="preprint.css">
+</head>
+<body>
+<header class="front">
+  <p class="kind">Working paper · not peer reviewed</p>
+  <h1 class="title">{{ title }}</h1>
+  <p class="authors">{{ authors | safe }}</p>
+  <div class="affil">{{ affiliations | safe }}</div>
+  <p class="snapshot">Data snapshot: {{ snapshot }} · Code and data:
+    github.com/carlosehortiz-hub/Sea-anemones</p>
+</header>
+<section class="abstract">
+  <h2>Abstract</h2>
+  <p><b>Background.</b> {{ abstract.background | safe }}</p>
+  <p><b>Results.</b> {{ abstract.results | safe }}</p>
+  <p><b>Conclusions.</b> {{ abstract.conclusions | safe }}</p>
+  <p class="keywords"><b>Keywords:</b> {{ keywords }}</p>
+</section>
+<main class="body">
+{{ body | safe }}
+</main>
+</body>
+</html>

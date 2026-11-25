@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import re
 import shutil
 import subprocess
@@ -132,13 +133,59 @@ def build(cfg: Config, pdf: bool = True) -> Path:
     log.info("[paper] wrote %s (%d references cited)", out / "manuscript.html", len(tracker.used))
     if pdf:
         head = yaml.safe_load((root / "front.yaml").read_text(encoding="utf-8"))["running_head"]
-        target = root / "manuscript.pdf"
-        subprocess.run(
-            ["node", str(root / "print.cjs"), str(out / "manuscript.html"), str(target), head],
-            check=True,
+        foot = (
+            "Manuscript prepared in the format of Marine Biodiversity Records. Not peer reviewed."
         )
+        target = root / "manuscript.pdf"
+        _print(root, out / "manuscript.html", target, f"{head} | Page {{page}} of {{pages}}", foot)
         log.info("[paper] wrote %s", target)
     return out / "manuscript.html"
+
+
+def _print(root: Path, html: Path, pdf: Path, head: str, foot: str, **env: str) -> None:
+    subprocess.run(
+        ["node", str(root / "print.cjs"), str(html), str(pdf), head, foot],
+        check=True,
+        env={**os.environ, **env},
+    )
+
+
+def render_preprint(cfg: Config) -> tuple[str, dict, dict]:
+    front, body, f, _ = render_parts(cfg)
+    env = _env(cfg.root / "paper")
+    snapshot = env.filters["longdate"](f["res"]["date_last"])
+    html = env.get_template("preprint.html.j2").render(body=body, snapshot=snapshot, **front)
+    return html, f, front
+
+
+def build_preprint(cfg: Config, pdf: bool = True) -> Path:
+    """Working-paper layout: one column, figures and tables in place, no journal styling.
+
+    Between the journal-styled layout and the submission DOCX: easy to read and to share,
+    without looking like a published article or a submission draft. Same body as both.
+    """
+    root = cfg.root / "paper"
+    out = root / "build"
+    out.mkdir(parents=True, exist_ok=True)
+    html, f, front = render_preprint(cfg)
+    write_all(f, out / "figures")
+    shutil.copy(root / "preprint.css", out / "preprint.css")
+    (out / "preprint.html").write_text(html, encoding="utf-8")
+    log.info("[paper] wrote %s", out / "preprint.html")
+    if pdf:
+        target = root / "preprint.pdf"
+        _print(
+            root,
+            out / "preprint.html",
+            target,
+            "",
+            f"{front['short_title']} · working paper | {{page}} / {{pages}}",
+            PAGE_HEIGHT="297mm",
+            MARGIN_TOP="18mm",
+            MARGIN_SIDE="22mm",
+        )
+        log.info("[paper] wrote %s", target)
+    return out / "preprint.html"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -149,10 +196,17 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="journal submission files (DOCX, figures as separate files) instead of the layout",
     )
+    p.add_argument(
+        "--preprint",
+        action="store_true",
+        help="working-paper layout (one column, figures in place) instead of the journal layout",
+    )
     p.add_argument("--config", default=None)
     args = p.parse_args(argv)
     cfg = load_config(args.config)
-    if args.submission:
+    if args.preprint:
+        build_preprint(cfg, pdf=not args.no_pdf)
+    elif args.submission:
         from anemone_kg.paper.submission import build_submission
 
         build_submission(cfg, pdf=not args.no_pdf)

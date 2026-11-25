@@ -1,0 +1,78 @@
+/* Working-paper layout: one column, figures and tables in place, no journal styling. */
+@page { size: A4; }
+
+:root {
+  --ink: #1d1d1b;
+  --muted: #5f5e5a;
+  --rule: #d9d8d3;
+  --tint: #f4f3ef;
+  --accent: #2a78d6;
+}
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Caladea", "Liberation Serif", Georgia, serif;
+  font-size: 10.6pt;
+  line-height: 1.5;
+  hyphens: auto;
+}
+h1, h2, h3, .kind, .snapshot, .caption, table, .abstract h2 {
+  font-family: "Liberation Sans", Arial, sans-serif;
+}
+
+/* ---- front matter ---- */
+.front { margin: 0 0 6mm; }
+.kind {
+  margin: 0 0 3mm; font-size: 8pt; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted);
+}
+.title { font-size: 19pt; line-height: 1.22; font-weight: 700; margin: 0 0 4mm; }
+.authors { font-size: 11pt; margin: 0 0 1mm; }
+.authors sup { font-size: 7pt; }
+.affil { font-size: 9pt; color: var(--muted); }
+.affil p { margin: 0; }
+.snapshot { font-size: 8.5pt; color: var(--muted); margin: 2mm 0 0; }
+
+.abstract {
+  background: var(--tint); border-left: 3px solid var(--accent);
+  padding: 4mm 5mm; margin: 0 0 7mm; font-size: 10pt; line-height: 1.45;
+}
+.abstract h2 { font-size: 10.5pt; margin: 0 0 2mm; font-weight: 700; }
+.abstract p { margin: 0 0 2mm; }
+.keywords { margin: 3mm 0 0 !important; font-size: 9pt; }
+
+/* ---- body ---- */
+.body p { margin: 0 0 2.4mm; orphans: 3; widows: 3; }
+.body h2 {
+  font-size: 13pt; font-weight: 700; margin: 8mm 0 2.5mm;
+  padding-top: 2mm; border-top: 0.6px solid var(--rule); break-after: avoid;
+}
+.body h2:first-child { margin-top: 0; }
+.body h3 { font-size: 11pt; font-weight: 600; margin: 5mm 0 1.5mm; break-after: avoid; }
+.body ul, .body ol { margin: 0 0 2.6mm; padding-left: 6mm; }
+.body li { margin: 0 0 1mm; }
+code { font-family: "JetBrains Mono", "DejaVu Sans Mono", monospace; font-size: 8.8pt; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- figures and tables, in place ---- */
+.figure { margin: 5mm 0 6mm; break-inside: avoid; }
+.figure img { display: block; width: 100%; height: auto; }
+.caption { font-size: 8.8pt; line-height: 1.4; color: var(--ink); margin: 2mm 0 0; }
+.figure .caption { border-top: 0.6px solid var(--rule); padding-top: 2mm; }
+.table-block { margin: 5mm 0 6mm; break-inside: avoid; }
+.table-block .caption { margin: 0 0 2mm; }
+table { width: 100%; border-collapse: collapse; font-size: 8.6pt; line-height: 1.35; }
+th {
+  text-align: left; font-weight: 600; padding: 1.4mm 2mm;
+  border-top: 0.9px solid var(--ink); border-bottom: 0.6px solid var(--ink);
+}
+td { padding: 1.1mm 2mm; vertical-align: top; border-bottom: 0.4px solid var(--rule); }
+tr:last-child td { border-bottom: 0.9px solid var(--ink); }
+th[style*="right"], td[style*="right"] { font-variant-numeric: tabular-nums; }
+
+/* ---- references ---- */
+.refs { font-size: 9pt; line-height: 1.4; }
+.body .refs p { padding-left: 5mm; text-indent: -5mm; margin: 0 0 1.6mm; }
