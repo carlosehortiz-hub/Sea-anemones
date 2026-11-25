@@ -333,6 +333,10 @@ Crossref record (cached in `paper/references/crossref/`). `tests/test_paper.py` 
 cited work is missing from the reference list, if a template placeholder survives, or if
 figures and tables are numbered out of order.
 
+`make paper-preprint` gives a third, simpler layout in between: [`paper/preprint.pdf`](paper/preprint.pdf),
+a one-column working paper with figures and tables in place and no journal styling, for reading
+and sharing.
+
 `make paper-submission` writes the same text as a submission package to `paper/submission/`:
 `manuscript.docx` (one column, double spacing, line and page numbers, title page, figure legends
 after the references, tables at the end), a PDF preview of it, and each figure as a separate
