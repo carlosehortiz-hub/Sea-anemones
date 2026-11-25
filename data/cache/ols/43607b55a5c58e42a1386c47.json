@@ -1,0 +1,69 @@
+{
+ "body": {
+  "_links": {
+   "individuals": {
+    "href": "http://www.ebi.ac.uk/ols4/api/ontologies/envo/individuals"
+   },
+   "properties": {
+    "href": "http://www.ebi.ac.uk/ols4/api/ontologies/envo/properties"
+   },
+   "self": {
+    "href": "http://www.ebi.ac.uk/ols4/api/ontologies/envo?lang=en"
+   },
+   "terms": {
+    "href": "http://www.ebi.ac.uk/ols4/api/ontologies/envo/terms"
+   }
+  },
+  "baseUris": [],
+  "config": {
+   "allowDownload": false,
+   "annotations": null,
+   "baseUris": [],
+   "creators": [],
+   "definitionProperties": [],
+   "description": "ENVO is an ontology which represents knowledge about environments,environmental processes, ecosystems, habitats, and related entities",
+   "fileLocation": "http://purl.obolibrary.org/obo/envo.owl",
+   "hiddenProperties": [],
+   "hierarchicalProperties": [],
+   "homepage": "http://environmentontology.org/",
+   "id": "envo",
+   "isSkos": false,
+   "labelProperty": "http://www.w3.org/2000/01/rdf-schema#label",
+   "logo": null,
+   "mailingList": null,
+   "namespace": "envo",
+   "oboSlims": false,
+   "preferredPrefix": "ENVO",
+   "preferredRootTerms": [],
+   "synonymProperties": [],
+   "title": "The Environment Ontology",
+   "tracker": "https://github.com/EnvironmentOntology/envo/issues/",
+   "version": "2026-10-23",
+   "versionIri": "http://purl.obolibrary.org/obo/envo/releases/2026-10-23/envo.owl"
+  },
+  "fileHash": null,
+  "lang": "en",
+  "languages": [
+   "de",
+   "en",
+   "en-br",
+   "en-us",
+   "es",
+   "it",
+   "zh"
+  ],
+  "loadAttempts": 0,
+  "loaded": "2026-11-25T00:08:22.086942825",
+  "message": "",
+  "numberOfIndividuals": 50,
+  "numberOfProperties": 290,
+  "numberOfTerms": 7073,
+  "ontologyId": "envo",
+  "status": "LOADED",
+  "updated": "2026-11-25T00:08:22.086942825",
+  "version": "2026-10-23"
+ },
+ "retrieved_at": "2026-11-25T13:01:29+00:00",
+ "status_code": 200,
+ "url": "https://www.ebi.ac.uk/ols4/api/ontologies/envo"
+}

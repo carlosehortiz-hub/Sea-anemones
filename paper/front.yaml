@@ -1,45 +1,51 @@
 # Front matter. Jinja placeholders are filled from the same facts as the body.
 title: >-
-  From a PDF inventory to a validated knowledge graph: a reproducible, standards-based
-  pipeline for the sea anemones of shallow-water Venezuela
+  From a PDF inventory to a schema-validated knowledge graph: a reproducible, standards-based
+  pipeline for the shallow-water sea anemones sensu lato of Venezuela
 short_title: Sea anemones of Venezuela as a knowledge graph
-running_head: "Ortiz. Sea anemones of Venezuela as a knowledge graph"
-authors: "Carlos Ortiz<sup>1*</sup>"
+running_head: "Hernández-Ortíz. Sea anemones of Venezuela as a knowledge graph"
+authors: "Carlos E. Hernández-Ortíz<sup>1*</sup>"
 affiliations: >-
   <p>* Correspondence: [e-mail to be completed]</p>
   <p><sup>1</sup>[Affiliation to be completed]</p>
 keywords: >-
   Biodiversity informatics, Darwin Core, Knowledge graph, SHACL, Taxonomic name resolution,
-  Data quality, Caribbean Sea, Actiniaria, Zoantharia
+  Data quality, Fitness for use, Caribbean Sea, Actiniaria, Zoantharia
 
 abstract:
   background: >-
     Regional species inventories are usually published as PDF tables. Their names, localities
     and evidence codes cannot be read by machines, and their taxonomy is fixed at the date of
-    publication. We asked whether such an inventory can be made findable, interoperable and
-    reusable without altering what its authors published. As a test case we used the
-    inventory of shallow-water sea anemones of Venezuela (González-Muñoz et al. 2016).
+    publication. We asked whether such an inventory can be made machine-actionable without
+    altering what its authors published, and what the conversion reveals about how far its
+    records can be trusted. The test case was the inventory of shallow-water sea anemones sensu
+    lato (Actiniaria, Corallimorpharia, Ceriantharia, Zoantharia) of Venezuela
+    (González-Muñoz et al. 2016), of which the present author is a co-author.
   results: >-
-    A reproducible Python pipeline extracted, from the published PDF alone, the
-    {{ f.src.t1_taxa }} taxa and {{ f.src.t1_codes }} evidence codes of the distribution table,
-    {{ f.src.t2 + f.src.t3 }} specimen records and {{ f.src.accounts }} species accounts. Every
-    value is traceable to its page, table and row. The records were harmonised to a Darwin
-    Core–aligned LinkML model, with no record lost. Names were resolved with recorded match
-    type and provenance against WoRMS ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF
+    A reproducible Python pipeline extracted, from the PDF alone, the {{ f.src.t1_taxa }} taxa
+    and {{ f.src.t1_codes }} evidence codes of the distribution table,
+    {{ f.src.t2 + f.src.t3 }} specimen records and {{ f.src.accounts }} species accounts. A
+    second transcription with an independent PDF engine agreed on all
+    {{ f.census.table1.cells_agree }} occupied cells and all
+    {{ (f.census.table2.fields_agree + f.census.table3.fields_agree) | thousands }} specimen
+    fields. Names were resolved, with recorded match type and provenance, against WoRMS
+    ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF
     ({{ f.res.gbif.accepted }}/{{ f.res.n_taxa }}) and NCBI Taxonomy
-    ({{ f.res.ncbi.accepted }}/{{ f.res.n_taxa }}), and habitats were aligned to
-    {{ f.envo.terms }} ENVO classes. Fuzzy matches were never accepted without review by the
-    author. {{ f.q.q03.valid | Words }} names that the article treats as valid now have a
-    different accepted name. Checks across the article's own tables showed that its distribution matrix
-    keeps museum records under identifications the same article revised or could not confirm,
-    and that {{ (100 * f.src.t1_agudo / f.src.t1_codes) | round | int }}% of its distribution
-    codes cite a single 1987 monograph. The resulting graph of
-    {{ f.graph.triples | thousands }} triples conforms to {{ f.shacl.shapes }} SHACL shapes.
-    Its {{ f.q.n_sparql }} SPARQL queries return identical results in two engines, and the
-    whole process is reproducible byte for byte.
+    ({{ f.res.ncbi.accepted - f.res.ncbi.via_accepted }} exact and {{ f.res.ncbi.via_accepted }}
+    via the accepted name, of {{ f.res.n_taxa }}). {{ f.q.q03.valid_changed | Words }} names that
+    the article uses as valid have a different accepted name in WoRMS; for
+    {{ f.q.q03.valid_before_2016 | words }} of them, WoRMS dates the change before 2016.
+    Comparing the article's three tables flagged {{ f.xt.rows }} disagreements:
+    {{ f.xt.explained }} have an explanation and {{ f.xt.rows - f.xt.explained }} remain
+    unreconciled as printed. Of the {{ f.cells.n }} taxon × area cells of the distribution
+    table, {{ f.cells.lit_only }} ({{ f.cells.pct_lit_only }}%) rest on literature alone, and
+    {{ f.cells.agudo_alone }} ({{ f.cells.pct_agudo_alone }}%) on a single 1987 monograph that
+    the article cites. The graph of {{ f.graph.triples | thousands }} triples has no SHACL
+    violation against {{ f.shacl.shapes }} shapes, and the build is deterministic given its
+    committed API cache.
   conclusions: >-
     Community standards (Darwin Core, Darwin-SW, PROV-O, SKOS, SSSOM, SHACL), explicit curation
-    and data-quality checks written as code are enough to turn a published inventory into
-    auditable, machine-actionable data. The original record is kept intact, and the inventory's
-    taxonomic differences from current names and its internal inconsistencies become explicit.
-    The approach transfers to other legacy inventories.
+    and data-quality checks written as code turn a published inventory into auditable data
+    while keeping the original record intact. The conversion also grades the evidence behind
+    each record, which a reuser needs and the PDF does not show. The layers after extraction
+    transfer to other inventories; extraction has to be rebuilt for each layout.

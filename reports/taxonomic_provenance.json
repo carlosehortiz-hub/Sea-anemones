@@ -1,0 +1,40 @@
+{
+  "releases": {
+    "gbif_backbone": {
+      "dataset_key": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+      "title": "GBIF Backbone Taxonomy",
+      "version": null,
+      "pub_date": "2023-08-28T00:00:00.000+00:00",
+      "modified": "2023-11-17T17:05:37.477+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode"
+    },
+    "ncbi_taxonomy": {
+      "last_update": "2026/11/24 21:01",
+      "count": "3179259"
+    },
+    "envo": {
+      "version": "2026-10-23",
+      "version_iri": "http://purl.obolibrary.org/obo/envo/releases/2026-10-23/envo.owl",
+      "loaded": "2026-11-25T00:08:22.086942825"
+    },
+    "worms": {
+      "version": "none published; the access date is the version"
+    }
+  },
+  "voucher_search": {
+    "MOHBR": {
+      "term": "MOHBR[All Fields]",
+      "nucleotide_records": 0,
+      "cache_key": "ncbi/42c443f3b23b79199415bf34.json"
+    },
+    "Museo Oceanologico Hermano Benigno Roman": {
+      "term": "\"Hermano Benigno\"[All Fields]",
+      "nucleotide_records": 0,
+      "cache_key": "ncbi/ba7661886ab530ca06ef022a.json"
+    }
+  },
+  "cached_responses": {
+    "resolution": 253,
+    "coverage_and_releases": 145
+  }
+}

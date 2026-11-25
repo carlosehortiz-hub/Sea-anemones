@@ -50,7 +50,11 @@ def test_registry_has_no_duplicates(reg):
 
 def test_project_vocabulary_is_minimal_and_documented(cfg, reg):
     akv = [t for t in reg.terms if t["term"].startswith("akv:")]
-    assert len(akv) <= 12, "the project namespace is growing; reuse first"
+    schema = [t for t in akv if t["kind"] in ("class", "property")]
+    values = [t for t in akv if t["kind"] == "individual"]
+    # Classes and properties are what a reuser must learn; concept-scheme values are data.
+    assert len(schema) <= 9, "the project namespace is growing; reuse first"
+    assert len(values) <= 10, "two small concept schemes (evidence kinds and tiers) only"
     g = rdflib.Graph().parse(cfg.root / "ontology" / "akv.ttl")
     for t in akv:
         iri = reg.iri(t["term"])

@@ -5,7 +5,7 @@
 | check family | checks | failing |
 |---|---:|---:|
 | Column-level (Pandera, generated from LinkML) | 269 | 0 values |
-| Cross-table critical rules | 14 | 0 |
+| Cross-table critical rules | 15 | 0 |
 | Cross-table warnings | 11 | 10 rules, 46 rows |
 
 Critical failures stop the pipeline before RDF generation. Warnings are reported with their rows and never altered.
@@ -28,6 +28,7 @@ Critical failures stop the pipeline before RDF generation. Warnings are reported
 | C12 | critical | consistency | every taxon has exactly one mapping row per service (gaps are explicit) | 0 |
 | C13 | critical | consistency | WoRMS identifiers and their accepted-name pointers resolve to stored WoRMS records | 0 |
 | C14 | critical | consistency | habitat annotations carry an ENVO id if and only if accepted, on an existing statement | 0 |
+| C15 | critical | validity | coordinates fall inside Venezuela's coast and islands (west longitude, north latitude) | 0 |
 | W01 | warning | validity | verbatim date that is not a valid calendar date | 1 |
 | W02 | warning | completeness | occurrence without locality ('-' in the source) | 2 |
 | W03 | warning | completeness | specimen whose current identification has no taxon | 3 |

@@ -1,0 +1,30 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "1",
+   "idlist": [
+    "6107"
+   ],
+   "querytranslation": "Anemonia[Scientific Name]",
+   "retmax": "1",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "1",
+     "explode": "N",
+     "field": "Scientific Name",
+     "term": "Anemonia[Scientific Name]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:01:55+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Anemonia%5BScientific+Name%5D"
+}

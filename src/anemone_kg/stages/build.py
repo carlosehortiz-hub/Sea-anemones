@@ -7,7 +7,8 @@ import logging
 from collections import Counter
 
 import rdflib
-from rdflib import RDF
+from rdflib import RDF, URIRef
+from rdflib.namespace import PROV
 
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
@@ -51,9 +52,18 @@ def stable_jsonld(text: str) -> str:
 def summary(g: rdflib.Graph) -> dict:
     classes = Counter(g.namespace_manager.normalizeUri(o) for o in g.objects(None, RDF.type))
     preds = Counter(g.namespace_manager.normalizeUri(p) for p in g.predicates())
+    derived = Counter(
+        g.namespace_manager.normalizeUri(t)
+        for s in set(g.subjects(PROV.qualifiedDerivation, None))
+        for t in g.objects(s, RDF.type)
+        if g.namespace_manager.normalizeUri(t) != "prov:Entity"
+        or (s, RDF.type, URIRef("http://purl.org/dc/terms/BibliographicResource")) not in g
+    )
     return {
         "triples": len(g),
         "subjects": len(set(g.subjects())),
+        "derivations": len(set(g.objects(None, PROV.qualifiedDerivation))),
+        "derived_by_class": dict(sorted(derived.items())),
         "instances_per_class": dict(sorted(classes.items())),
         "triples_per_predicate": dict(sorted(preds.items())),
     }

@@ -1,0 +1,76 @@
+{
+ "DOI": "10.1080/14772000.2015.1101028",
+ "author": [
+  {
+   "affiliation": [
+    {
+     "name": "Molecular Invertebrate Systematics and Ecology Laboratory, Graduate School of Engineering and Science, University of the Ryukyus, Senbaru 1, Nishihara, Okinawa 903-0213, Japan"
+    },
+    {
+     "name": "Tropical Biosphere Research Center, University of the Ryukyus, Senbaru 1, Nishihara, Okinawa 903-0213, Japan"
+    }
+   ],
+   "family": "Montenegro",
+   "given": "Javier",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Lee Kong Chian Natural History Museum, Faculty of Science, National University of Singapore, 2 Conservatory Drive, Singapore 117377, Republic of Singapore"
+    }
+   ],
+   "family": "Low",
+   "given": "Martyn E. Y.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [
+    {
+     "name": "Molecular Invertebrate Systematics and Ecology Laboratory, Graduate School of Engineering and Science, University of the Ryukyus, Senbaru 1, Nishihara, Okinawa 903-0213, Japan"
+    },
+    {
+     "name": "Tropical Biosphere Research Center, University of the Ryukyus, Senbaru 1, Nishihara, Okinawa 903-0213, Japan"
+    }
+   ],
+   "family": "Reimer",
+   "given": "James Davis",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "Systematics and Biodiversity"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2015,
+    12,
+    21
+   ]
+  ]
+ },
+ "page": "63-73",
+ "title": [
+  "The resurrection of the genus\n                    <i>Bergia</i>\n                    (Anthozoa, Zoantharia, Parazoanthidae)"
+ ],
+ "volume": "14"
+}

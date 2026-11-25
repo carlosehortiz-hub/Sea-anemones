@@ -29,7 +29,8 @@ aksh: sh:declare [ sh:prefix "dwc" ; sh:namespace "http://rs.tdwg.org/dwc/terms/
                  [ sh:prefix "dsw" ; sh:namespace "http://purl.org/dsw/"^^xsd:anyURI ] ,
                  [ sh:prefix "dwciri" ; sh:namespace "http://rs.tdwg.org/dwc/iri/"^^xsd:anyURI ] ,
                  [ sh:prefix "prov" ; sh:namespace "http://www.w3.org/ns/prov#"^^xsd:anyURI ] ,
-                 [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] .
+                 [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] ,
+                 [ sh:prefix "akv" ; sh:namespace "https://w3id.org/anemone-kg/vocab/"^^xsd:anyURI ] .
 
 # ------------------------------------------------------------ provenance
 
@@ -127,6 +128,25 @@ aksh:MaterialCitationShape
         sh:in ( akv:ThisSurvey akv:MohbrCollection akv:Literature ) ] ;
     sh:property [
         sh:path akv:isNewCountryRecord ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [
+        sh:path akv:evidenceTier ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( akv:SurveyVouchered akv:SurveyUnvouchered akv:MuseumTraced akv:MuseumUntraced
+                akv:LiteratureRecord ) ;
+        sh:message "Every Table 1 assertion carries exactly one evidence tier." ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "The evidence tier must belong to the assertion's evidence kind." ;
+        sh:prefixes aksh: ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <http://purl.org/dc/terms/type> ?k ;
+                    <https://w3id.org/anemone-kg/vocab/evidenceTier> ?t .
+              FILTER (!(
+                   (?k = akv:ThisSurvey && ?t IN (akv:SurveyVouchered, akv:SurveyUnvouchered))
+                || (?k = akv:MohbrCollection && ?t IN (akv:MuseumTraced, akv:MuseumUntraced))
+                || (?k = akv:Literature && ?t = akv:LiteratureRecord)
+              ))
+            }""" ] ;
     sh:property [
         sh:path dwc:associatedReferences ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:sparql [
@@ -258,8 +278,15 @@ aksh:MappingShape
         sh:path sssom:mapping_justification ; sh:minCount 1 ; sh:maxCount 1 ;
         sh:in ( semapv:LexicalMatching semapv:ManualMappingCuration ) ] ;
     sh:property [
-        sh:path sssom:confidence ; sh:datatype xsd:double ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:path sssom:confidence ; sh:datatype xsd:double ; sh:maxCount 1 ;
         sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
+    sh:property [
+        sh:path sssom:similarity_score ; sh:datatype xsd:double ; sh:maxCount 1 ;
+        sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
+    sh:xone (
+        [ sh:path sssom:confidence ; sh:minCount 1 ]
+        [ sh:path sssom:similarity_score ; sh:minCount 1 ]
+    ) ;
     sh:property [ sh:path sssom:mapping_tool ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [ sh:path dcterms:created ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [

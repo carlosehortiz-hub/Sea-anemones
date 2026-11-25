@@ -1,0 +1,32 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "0",
+   "errorlist": {
+    "fieldsnotfound": [],
+    "phrasesnotfound": [
+     "Palythoa flava[All Names]"
+    ]
+   },
+   "idlist": [],
+   "querytranslation": "(Palythoa flava[All Names])",
+   "retmax": "0",
+   "retstart": "0",
+   "translationset": [],
+   "warninglist": {
+    "outputmessages": [
+     "No items found."
+    ],
+    "phrasesignored": [],
+    "quotedphrasesnotfound": []
+   }
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:39+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Palythoa+flava%5BAll+Names%5D"
+}

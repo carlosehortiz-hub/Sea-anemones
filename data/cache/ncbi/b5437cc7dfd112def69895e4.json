@@ -1,0 +1,30 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "1",
+   "idlist": [
+    "1499598"
+   ],
+   "querytranslation": "Bunodeopsis antilliensis[All Names]",
+   "retmax": "1",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "1",
+     "explode": "N",
+     "field": "All Names",
+     "term": "Bunodeopsis antilliensis[All Names]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:01+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Bunodeopsis+antilliensis%5BAll+Names%5D"
+}

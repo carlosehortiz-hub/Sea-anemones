@@ -80,4 +80,4 @@ Unresolved labels (no ENVO class): coral rubble
 
 ## Cache
 
-- responses served from cache: 263, fetched: 0
+- responses served from cache: 417, fetched: 0

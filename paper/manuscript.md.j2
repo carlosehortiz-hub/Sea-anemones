@@ -1,7 +1,7 @@
 {#- Manuscript source. Every number comes from `f` (anemone_kg.paper.facts), every
     citation from `cite()`/`citet()` (paper/references.yaml, DOIs verified on Crossref). -#}
 {%- set s = f.src -%}{%- set c = f.canon -%}{%- set r = f.res -%}{%- set d = f.dq -%}
-{%- set q03 = f.q.q03 -%}
+{%- set q03 = f.q.q03 -%}{%- set x = f.xt -%}{%- set cl = f.cells -%}{%- set nc = f.ncbi_cov -%}
 ## Background
 
 Regional species inventories are a basic product of biodiversity research, and among the
@@ -18,21 +18,21 @@ identifiers and provenance.
 The community standards for closing this gap exist. Darwin Core {{ cite("wieczorek2012") }}
 provides the shared vocabulary for occurrences, taxa and locations, and Darwin-SW
 {{ cite("baskauf2016") }} supplies the relationships between them that Darwin Core leaves
-undefined. Taxonomic authorities such as the World Register of Marine Species (WoRMS)
+undefined. Taxonomic databases such as the World Register of Marine Species (WoRMS)
 {{ cite("worms2026") }}, the GBIF Backbone Taxonomy {{ cite("gbif2026") }} and NCBI Taxonomy
 {{ cite("schoch2020") }} provide persistent identifiers for names. The Environment Ontology
 (ENVO) {{ cite("buttigieg2013", "buttigieg2016") }} does the same for habitats. Mappings between
-local and external identifiers can be published with their justification and confidence using
-SSSOM {{ cite("matentzoglu2022") }}, and provenance can be expressed with PROV-O
+local and external identifiers can be published with their justification using SSSOM
+{{ cite("matentzoglu2022") }}, and provenance can be expressed with PROV-O
 {{ cite("w3c_provo") }}. Shape constraints in SHACL {{ cite("w3c_shacl") }} can check the
 resulting graph. What is less often shown is how to apply these pieces together to one
-published inventory. The result should be reproducible and auditable, so that every statement
-in the graph can be traced back to the table cell it came from, and no value is invented in
-the process.
+published inventory, so that every statement in the graph can be traced back to the table cell
+it came from, no value is invented, and the reuser learns how much each record can bear.
 
-Here we take the inventory of shallow-water sea anemones (Actiniaria, Corallimorpharia,
-Ceriantharia and Zoanthidea) of Venezuela {{ cite("gonzalezmunoz2016") }} as a test case. The
-article combines three kinds of evidence in {{ s.pages }} pages:
+Here we take the inventory of shallow-water sea anemones sensu lato (Actiniaria,
+Corallimorpharia, Ceriantharia and Zoantharia) of Venezuela {{ cite("gonzalezmunoz2016") }} as a
+test case. The present author is one of its co-authors. The article combines three kinds of
+evidence in {{ s.pages }} pages:
 
 - a distribution matrix of {{ s.t1_taxa }} taxa across {{ s.t1_localities }} localities, with
   codes for the authors' surveys, museum specimens and {{ (s.t1_sources - 1) | words }} earlier publications;
@@ -44,22 +44,27 @@ It is open access under CC BY 4.0, and its data are dedicated to the public doma
 
 Our aims were:
 
-1. to extract all of it from the published PDF without manual transcription;
-2. to harmonise it to a Darwin Core–aligned canonical model while keeping every value as
+1. to extract all of its tables, and the name, authority and habitat of each species account,
+   from the published PDF without manual transcription, and to measure how accurate the
+   extraction is;
+2. to harmonise them to a Darwin Core–aligned canonical model while keeping every value as
    published;
 3. to resolve names and habitats to persistent identifiers, recording how each match was
    made;
-4. to check data quality as code before building an RDF knowledge graph;
+4. to check data quality as code, and to grade the evidence behind each record, before
+   building an RDF knowledge graph;
 5. to validate the graph with SHACL and query it with SPARQL;
 
-and to make the whole process reproducible byte for byte (Fig. 1).
+and to make the whole process deterministic, so that a rebuild from the same inputs
+reproduces every output byte for byte (Fig. 1).
 
 <div class="figure wide" markdown="1">
 <img src="figures/fig1_pipeline.svg" alt="Pipeline from PDF to validated graph">
 <p class="caption"><b>Fig. 1</b> The pipeline. Seven stages run from the published PDF to a
 queried knowledge graph. Two quality gates (orange) stop the run on a critical data-quality
-failure or a SHACL violation. Curated inputs (green) carry every correction that needed
-judgement, and the API cache makes identifier resolution reproducible.</p>
+failure, a disagreement of the extraction census, or a SHACL violation. Curated inputs (green)
+carry every correction that needed judgement, and the API cache makes identifier resolution
+repeatable.</p>
 </div>
 
 <div class="table-block wide" markdown="1">
@@ -76,12 +81,20 @@ judgement, and the API cache makes identifier resolution reproducible.</p>
 
 ## Methods
 
-### Source data
+### Source data and the author's relationship to it
 
 The publisher's PDF {{ cite("gonzalezmunoz2016") }} is the only input. Its SHA-256 checksum is
 recorded in a manifest, and a test fails if the file changes. Table 1 lists the sources
-in the article and what was extracted from each.
+in the article and what was extracted from each. The rest of each species account
+(distribution text, remarks, depth) was not extracted.
 
+The author of this paper is a co-author of the source article and made every curation
+decision described below. No independent taxonomist has yet audited them; they are published
+in full, with their evidence, for that purpose (Additional file 3). One piece of information does
+not come from the PDF: that the Isla de Cubagua material was collected over several years. It
+comes from the author's own knowledge of the fieldwork. It is used only to justify leaving those
+collection dates empty, and the curated row that records it says that it cannot be traced to the
+article.
 
 ### Extraction
 
@@ -97,19 +110,19 @@ works on word bounding boxes obtained with pdfplumber {{ cite("sw_pdfplumber") }
 Table 1 is printed sideways and in two blocks of columns that repeat the same taxon rows. The
 parser requires the two blocks to agree on every taxon name. Extraction is *verbatim*: typing
 errors, impossible dates and blank cells are kept, and every row carries its page and a
-locator such as "Table 2, row 25".
+locator such as "Table 2, row 25". The parser raises an error instead of guessing whenever the
+sequence of row numbers breaks, a cell contains a code that is not in the legend, or the number
+of columns is unexpected.
 
-The parser raises an error instead of guessing whenever:
-
-- the sequence of row numbers breaks;
-- a cell contains a code that is not in the legend;
-- the number of columns is unexpected.
-
-Three layout problems found during development became regression tests:
-
-1. a dagger set above the baseline created a duplicate row;
-2. a family authority overrunning into the first column was read as cell codes;
-3. raised prime marks reordered the coordinates.
+**Extraction census.** These checks conserve counts, but none of them would catch a code read
+into the wrong cell. The tables are small, so every value was read a second time and compared,
+as a census rather than a sample. The second reading uses a different PDF engine (Poppler's
+`pdftotext`, instead of pdfminer under pdfplumber) and a separate, simpler parser. A Table 1
+code agrees when both readings put it in the same row and column. A field of Tables 2 and 3
+agrees when all of its tokens are found in the same printed row and the fields appear left to
+right in column order. Positive controls show that the comparison detects a code shifted to the
+next column, a code moved to another row, two columns swapped, a value read from another row,
+and a changed coordinate digit. Any disagreement stops the pipeline.
 
 ### Canonical model and harmonisation
 
@@ -124,61 +137,74 @@ A test keeps the table and the rule registry in the code identical in both direc
 
 Four modelling decisions matter for what follows.
 
-**Taxa are name usages.** A taxon record is *a name as used in the article*, not today's
-accepted concept. External identifiers are attached later as mappings, so a name synonymised
-since 2016 stays visible.
+**Taxa are name usages.** A taxon record is *a name as used in the article*
+(`dwc:nameAccordingTo` the article), not a taxon concept. External identifiers are attached
+later as mappings, so a name synonymised since then stays visible. For the literature records
+the article reports, the graph holds the 2016 compilers' names; whether they updated the names
+used in the original sources cannot be known from the article. Open nomenclature ("cf.",
+"sp.") is kept in `dwc:identificationQualifier` ({{ c.identification }} identifications, 9 of them
+qualified), and the base name is resolved.
 
 **Specimens and Table 1 assertions are kept apart.** A code in Table 1 summarises evidence,
 some of it specimens that are also listed in Tables 2 and 3. Treating each code as an
 independent occurrence would count the same organism twice. Table 1 assertions therefore
-become their own records (Darwin Core basis of record *MaterialCitation*). The two sources
-are then compared during the data-quality checks instead of being merged.
+become their own records (Darwin Core basis of record *MaterialCitation*), each with its own
+event, and are compared with the specimens during the data-quality checks instead of being
+merged.
 
 **Habitat belongs to the taxon.** The article describes habitat in each species account,
 not per record, and copying it onto occurrences would invent per-record habitat.
 
 **Judgement is curated, not coded.** Corrections that need judgement are rows in curated
-tables, each with its evidence and the date of the author's review. These cover:
+tables, each with its evidence and the date of the author's review: {{ c.curated_rows }} rows in
+{{ c.curated_files | words }} files (Additional file 3). They cover {{ c.typos | words }} misspellings of
+names in Table 2 (e.g. *Phymantus* for *Phymanthus*), spelling variants of state names, links
+from collecting sites to Table 1 localities, collection dates stated only in the Methods of
+the article, decisions on fuzzy name matches, and the habitat vocabulary. Values that cannot
+be harmonised become nulls, and the printed value is kept in a verbatim field. Examples are an
+impossible date ("31/04/2012"), a catalogue number "In progress", a current identification
+"not identified", and "–" for a missing locality.
 
-- {{ c.typos | words }} misspellings of names in Table 2, e.g. *Phymantus* for *Phymanthus*;
-- spelling variants of state names;
-- {{ c.crosswalk_accepted }} links from collecting sites to Table 1 localities. Three uncertain
-  links were reviewed and deliberately left unlinked.
-- collection dates stated only in the Methods of the article.
-
-Values that cannot be harmonised become nulls, and the printed value is kept in a verbatim
-field. Examples are an impossible date ("31/04/2012"), a catalogue number "In progress", a
-current identification "not identified", and "–" for a missing locality.
-
-Identifiers are deterministic UUIDv5 values derived from a natural key (catalogue number,
-name, locality) in a namespace derived from the article's DOI. Rebuilding therefore never
-changes an identifier.
+Identifiers are deterministic UUIDv5 values in a namespace derived from the article's DOI. The
+natural key of a specimen is its catalogue number, or its field code where it has none, and never
+its identification, so a later re-identification does not change the identifier.
 
 ### Name resolution and habitat alignment
 
 Each of the {{ r.n_taxa }} names was looked up in WoRMS {{ cite("worms2026") }}, the GBIF
 Backbone Taxonomy {{ cite("gbif2026") }} and NCBI Taxonomy {{ cite("schoch2020") }}. Every
 name receives one record per service, whether resolved or not, shaped after SSSOM
-{{ cite("matentzoglu2022") }}: subject, predicate, object, justification, confidence, tool and
-date. The acceptance policy is the same for all services:
+{{ cite("matentzoglu2022") }}: subject, predicate, object, justification, tool and date. The
+acceptance policy is the same for all services:
 
-- **Accepted:** an exact name, unique within Cnidaria, at the same rank. The context filter
-  reflects the scope of the article.
+- **Accepted:** an exact name, unique within Cnidaria, at the same rank, recorded as
+  `skos:exactMatch` {{ cite("w3c_skos") }} with confidence 1.
 - **Homonyms:** where WoRMS holds several records for the same name, the record whose
   authority matches the authority printed in the article is kept.
-- **Fuzzy matches** become *candidates*. They never become identifiers unless the author
-  accepts them in a curated file, which records the predicate and the evidence. Orthographic
-  variants, that is misspellings and the gender agreement of the epithet required by Article
-  34.2 of the Code {{ cite("iczn1999") }}, are linked with `skos:exactMatch`
-  {{ cite("w3c_skos") }} and the justification *manual mapping curation*.
+- **Fuzzy matches** become *candidates* and never become identifiers unless the author accepts
+  them in a curated file. Each accepted variant records its case under the Code
+  {{ cite("iczn1999") }}: mandatory gender agreement of an adjectival epithet (Art. 34.2), or an
+  incorrect subsequent spelling (Arts 33.3 and 33.4). The match score is exported as an SSSOM
+  similarity score, not as a confidence: it only ordered candidates for review.
 - **Accepted names:** for names that are not accepted, the record of the accepted name is
-  retrieved as well, so both become nodes of the graph.
+  retrieved as well, so both become nodes of the graph, linked by `dwc:acceptedNameUsageID`.
 - **NCBI fallback:** if a name is absent from NCBI Taxonomy, its WoRMS accepted name is tried
-  and the link is recorded as `skos:closeMatch`.
+  and the link is recorded as `skos:closeMatch`, never as an exact match.
 
-Confidence is 1 for exact matches and GBIF's own score for GBIF. For WoRMS fuzzy matches it is
-a fixed scale (phonetic 0.8; near_1 0.7; near_2 0.5; near_3 0.3). These values have no external
-basis: they only order candidates for review, and never accept anything on their own.
+All mappings are name-level. They say that two records carry the same name, not that the
+providers circumscribe the same taxon, and no concept equivalence is asserted.
+
+Three further analyses describe what the links rest on. First, for every name whose WoRMS record
+is not accepted, the WoRMS sources that document the change (a new combination, a synonymy or
+a taxonomy source) were retrieved, and the relation was classified from the WoRMS status and
+names. Second, every name unresolved in NCBI was queried again under all NCBI name classes,
+under every WoRMS synonym of its accepted name, and at genus level. For each linked taxon, the
+number of INSDC nucleotide records of the taxon and its descendants was counted, and INSDC was
+searched for sequences that cite the MOHBR collection. Third, the release of each service was
+recorded: the GBIF Backbone dataset published {{ f.prov.releases.gbif_backbone.pub_date[:10] | longdate }}, NCBI Taxonomy as
+updated on {{ f.prov.releases.ncbi_taxonomy.last_update[:10] | replace("/", "-") | longdate }}, and ENVO release
+{{ f.prov.releases.envo.version }}. WoRMS publishes no release number, so the access date of each
+response is its version.
 
 Habitat paragraphs were aligned to ENVO in two separate steps. First, a curated vocabulary of
 {{ f.envo.vocab }} phrases maps wording in the article to ENVO class labels; this is a human
@@ -186,12 +212,11 @@ decision. Second, each label is resolved to an IRI through the EBI Ontology Look
 exact label only. A phrase preceded by a negation within a few words is recorded as negated and
 not annotated; for example, "but not intertidal zones" does not yield *intertidal zone*.
 
-All {{ r.cached }} API responses (WoRMS {{ r.cached_by_service.worms }}, GBIF
-{{ r.cached_by_service.gbif }}, NCBI {{ r.cached_by_service.ncbi }}, OLS
-{{ r.cached_by_service.ols }}; retrieved {{ r.date_first | longdate }}) are cached and committed
-with the code. Each mapping cites the cached response it was derived from. In offline mode, as
-in continuous integration, no request leaves the machine, and a missing response becomes an
-unresolved record rather than a guess.
+All {{ r.cached }} API responses ({{ r.cache_purpose.resolution }} for resolution and
+{{ r.cache_purpose.coverage }} for the analyses above; retrieved {{ r.date_first | longdate }}) are
+cached and committed with the code. Each mapping cites the cached response it was derived
+from. In offline mode, as in continuous integration, no request leaves the machine, and a
+missing response becomes an unresolved record rather than a guess.
 
 ### Data quality as code
 
@@ -204,17 +229,40 @@ schema drives both, the contract and its enforcement cannot diverge.
 
 - **{{ d.n_critical }} critical rules.** These cover referential integrity, uniqueness of
   specimens and Table 1 assertions, exactly one current identification per specimen,
-  coordinates given as a pair, new-record codes only on survey records, consistency of
-  mappings, and closure of WoRMS accepted-name pointers. Any critical failure stops the pipeline.
+  coordinates given as a pair and inside Venezuela's coast and islands, new-record codes only
+  on survey records, consistency of mappings, and closure of WoRMS accepted-name pointers. Any
+  critical failure stops the pipeline.
 - **{{ d.n_warning }} warnings.** These record incompleteness and disagreement between sources
   without changing anything. Among them are four cross-source rules that compare Table 1 with
   the specimen tables in both directions:
-    - each survey (*) or museum (a) code in Table 1 against the specimens of that taxon in
-      that locality;
-    - each specimen against the Table 1 code that should list it.
+    - W08 and W10: a survey (*) or museum (a) code in Table 1 with no specimen of that taxon
+      from that locality in Table 2 or Table 3;
+    - W09 and W11: a specimen with no corresponding code in Table 1.
 
-Every rule returns the failing rows, not only a count, and every critical rule is tested
-against a deliberately injected fault.
+Every rule returns the failing rows, not only a count, and every rule, critical or warning, has a
+positive control: a test injects a fault and requires the rule to report it.
+
+**Why each cross-source warning fires.** Each row flagged by W08–W11 was given one cause, the
+first that applies in this order:
+
+1. the specimen and Table 1 name the same taxon differently (same WoRMS accepted name);
+2. a specimen of the same family is identified only above species level;
+3. the specimen was re-identified and Table 1 keeps its previous name;
+4. the article could not confirm the identification ("not identified");
+5. the flag depends on an uncertain site-to-area link;
+6. Table 1 lists the taxon there under another code;
+7. none of these: the tables differ as printed.
+
+The rules were also re-run with all {{ x.uncertain_links }} curated site-to-area links that are
+not an exact name or a printed park name set to unlinked, and then to linked, and each flagged
+row was checked for the paired signature that a column shift would leave: a code without a
+specimen and a specimen without a code for the same taxon in adjacent columns.
+
+**Evidence tiers.** From the same comparison, every Table 1 assertion receives one evidence tier:
+a survey record with or without a voucher in Table 2; a museum record traced or not traced to a
+specimen in Table 3 (Appendix 2, to which the legend refers code "a"); or a literature record,
+cited by the article and not consulted here. Matching is by WoRMS accepted name, and for museum
+records also by the specimen's previous identification.
 
 ### Knowledge graph
 
@@ -222,19 +270,21 @@ The graph reuses existing vocabularies and mints a project term only where none 
 
 - **Occurrences, organisms, events, identifications and taxa** use Darwin Core
   {{ cite("wieczorek2012") }}. Darwin-SW {{ cite("baskauf2016") }} links them: occurrence → event
-  → location, occurrence → organism, identification → organism.
+  → location, occurrence → organism, identification → organism. WoRMS records carry
+  `dwc:taxonomicStatus`, `dwc:nameAccordingTo` with the access date, and
+  `dwc:acceptedNameUsageID`.
 - **Taxa** are linked to external records with SKOS rather than `owl:sameAs`, so that a name
   usage of 2016 is not merged with today's accepted name.
 - **Each identifier link** is also reified as an SSSOM mapping record. The record carries its
-  justification (SEMAPV), confidence, request and date, and is derived from the cached
-  response with PROV-O {{ cite("w3c_provo") }}.
+  justification (SEMAPV), confidence or similarity score, request and date, and is derived from
+  the cached response with PROV-O {{ cite("w3c_provo") }}.
 - **Every record** is `prov:wasDerivedFrom` the article's DOI. A qualified derivation gives
   the locator in the article, the page and the pipeline stage.
 
-The {{ f.terms.total }} classes and properties the graph may use are listed in a term registry.
-Each is verified against a cached copy of the vocabulary that defines it, including the TDWG
-term lists, the Darwin-SW ontology, the SSSOM schema and SEMAPV. The graph builder refuses any
-term not in the registry. Checking the vocabularies changed three decisions:
+The {{ f.terms.total }} classes, properties and concepts the graph may use are listed in a term
+registry. Each is verified against a cached copy of the vocabulary that defines it, including
+the TDWG term lists, the Darwin-SW ontology, the SSSOM schema and SEMAPV. The graph builder
+refuses any term not in the registry. Checking the vocabularies changed three decisions:
 
 - Each specimen has its own organism node, because `dsw:identifies` has the range
   `dwc:Organism`.
@@ -242,9 +292,11 @@ term not in the registry. Checking the vocabularies changed three decisions:
   a TDWG taxon concept.
 - ENVO substrates are separated from habitats using the recent `dwciri:substrate` term.
 
-The project vocabulary is limited to {{ f.terms.akv }} terms (Fig. 2). It covers, for example,
-the source locator, the new-record flag and an IRI-valued link to the accepted name. The graph
-was built with RDFLib {{ cite("sw_rdflib") }} and serialised as Turtle and JSON-LD.
+The project vocabulary has {{ f.terms.akv }} terms (Fig. 2): the source locator and page, the
+new-record and doubtful-record flags, the sampled-locality flag, an IRI-valued link to the
+accepted name, the habitat-statement class, the evidence tier, and two small concept schemes
+(evidence kinds and evidence tiers). The graph was built with RDFLib {{ cite("sw_rdflib") }} and
+serialised as Turtle and JSON-LD.
 
 <div class="figure wide" markdown="1">
 <img src="figures/fig2_model.svg" alt="Data model of the knowledge graph">
@@ -257,44 +309,54 @@ qualified PROV-O derivation that carries its table, row and page.</p>
 
 ### Validation, queries and endpoint
 
-The graph is validated with SHACL {{ cite("w3c_shacl") }} using pySHACL {{ cite("sw_pyshacl") }}.
-There are {{ f.shacl.shapes }} node shapes for cardinalities, datatypes, identifier formats and
-provenance. SHACL-SPARQL constraints cover rules that a property path cannot express, such as
-one current identification per organism, or a mapping record that must describe a SKOS triple
-asserted in the graph. Violations stop the pipeline; warnings mirror the data-quality warnings.
+The graph is validated with SHACL {{ cite("w3c_shacl") }} using pySHACL {{ cite("sw_pyshacl") }},
+with SPARQL-based targets and constraints enabled and no inference. There are
+{{ f.shacl.shapes }} node shapes for cardinalities, datatypes, identifier formats, evidence tiers
+and provenance. SHACL-SPARQL constraints cover rules that a property path cannot express, such
+as one current identification per organism, or a mapping record that must describe a SKOS
+triple asserted in the graph. Only results of severity Violation stop the pipeline. A test
+injects sixteen independent faults into a copy of the graph, covering every node shape, and
+requires each to be reported on the right node.
 
 There are {{ f.q.n_sparql | words }} SPARQL queries {{ cite("w3c_sparql") }} over the graph and
 {{ f.q.n_sql | words }} SQL queries over the canonical tables in DuckDB {{ cite("raasveldt2019") }}.
 Each SQL query must return exactly the rows of its SPARQL counterpart. The graph was also loaded
 into an Oxigraph SPARQL endpoint {{ cite("sw_oxigraph") }} through the SPARQL 1.1 Graph Store
-Protocol. Every query was run through the SPARQL 1.1 Protocol and compared with the in-process
-results, which shows the queries are portable rather than specific to one engine.
+Protocol, and every query was run through the SPARQL 1.1 Protocol and compared with the
+in-process results.
 
 ### Reproducibility
 
 The pipeline is a Python {{ f.versions.python }} package with a locked environment. It runs as
-seven stages (Fig. 1), each logging its record counts in and out.
+seven stages (Fig. 1), each logging its record counts in and out. Continuous integration on
+every pull request runs the linter and the test suite, then the pipeline offline from the cached
+API responses, and fails if any regenerated output differs from the committed one. A Docker
+build reruns the pipeline and the endpoint check.
 
-Continuous integration on every pull request runs:
+The claim is determinism, not validity: the same PDF, cache and lockfile give byte-identical
+outputs. The Turtle file contains no blank nodes, the JSON-LD is written in a sorted canonical
+form, and the SHACL report is canonicalised. Continuous integration runs on one platform (Linux
+x86-64). Re-running the resolution against the live services would give a different, newer
+snapshot; that is a deliberate step that renews the cache.
 
-- linting and the test suite;
-- the pipeline offline, from the cached API responses;
-- a check that every regenerated output is identical to the committed one;
-- a Docker build that reruns the pipeline and the endpoint check.
-
-An end-to-end test does the same locally into an empty directory. Development used one feature
-branch and one reviewed pull request per stage. Claude Code (Anthropic) was used as a coding
-and writing assistant; all curation decisions and results were reviewed by the author.
+Development used one feature branch and one reviewed pull request per stage. Claude Code
+(Anthropic) was used as a coding and writing assistant; all curation decisions and results were
+reviewed by the author.
 
 ## Results
 
 ### Extraction and harmonisation
 
 All parts of the article listed in Table 1 were extracted. The row counts match the numbers the
-article states: {{ s.t2 }} collected and {{ s.t3 }} examined specimens. Harmonisation produced
+article states: {{ s.t2 }} collected and {{ s.t3 }} examined specimens. The second, independent
+transcription agreed with the extraction on all {{ f.census.table1.cells_agree }} occupied cells
+and all {{ f.census.table1.codes_agree }} codes of Table 1, on all
+{{ f.census.table2.fields_agree | thousands }} fields of Table 2 and all
+{{ f.census.table3.fields_agree }} fields of Table 3: no disagreement. Harmonisation produced
 the canonical tables in Table 2. No record was lost: every specimen became one occurrence, and
 every Table 1 code became one assertion. The only exception is the {{ c.n_folded | words }} codes for
-new records ("N"), which were merged into the survey assertion they qualify.
+new records ("N"), which qualify a survey code and were merged into it. Counts that cannot be
+rebuilt from the text alone are derived in the reconciliation table (Additional file 1).
 
 <div class="table-block" markdown="1">
 <p class="caption"><b>Table 2</b> Canonical tables and their Darwin Core or other standard
@@ -313,6 +375,14 @@ counterpart. Specimens are <i>PreservedSpecimen</i> occurrences; Table 1 asserti
 
 </div>
 
+The {{ r.n_taxa }} names are the {{ f.names.table1 }} taxa of Table 1, one family-level
+identification in Table 2, and {{ f.names.table3_previous | words }} previous identifications in Table 3. Of the
+{{ f.loc.columns }} columns of Table 1, {{ f.loc.areas }} are areas; the last, "Open Sea
+Distribution", is not a place, and its two assertions have no location. Of the
+{{ f.loc.sites }} collecting sites, {{ f.loc.sites_linked }} were linked to a Table 1 area;
+{{ f.loc.crosswalk_t3_rejected | words }} links the author judged uncertain were left unlinked, and one site has no
+Table 1 column.
+
 Working through the article cell by cell brought to light problems that a reader would hardly
 notice:
 
@@ -324,17 +394,20 @@ notice:
 - *Zoanthus pulchellus* in Table 1 but *Z.* cf. *pulchellus* in its species account and in
   Table 2.
 
-Coordinates exist only for the {{ c.sites_with_coords }} collecting sites of Table 2, so no
-locality was geocoded. Collection dates were stated in the Methods of the article only for
-four of the sampled areas, so {{ c.t2_dated }} of the {{ s.t2 }} collected specimens carry a
-date. The remainder were left undated rather than assumed: the Isla de Cubagua material, for
-instance, was collected over several years (information from the present author, a co-author of the
-article), so no single date describes it.
+Coordinates exist only for the {{ c.sites_with_coords }} collecting sites of Table 2, which fall in
+{{ f.loc.areas_with_coords | words }} of the {{ f.loc.areas }} areas; no locality was geocoded. Collection dates are
+stated in the Methods of the article for four of the sampled areas, so {{ c.t2_dated }} of the
+{{ s.t2 }} collected specimens carry a date (November 2012). The others were left undated rather
+than assumed. The literature assertions carry no date at all; their source's year of
+publication is only an upper bound.
 
 ### Identifier resolution
 
-WoRMS resolved all {{ r.worms.accepted }} names, GBIF {{ r.gbif.accepted }} and NCBI Taxonomy
-{{ r.ncbi.accepted }} (Fig. 3, Table 3). WoRMS held more than one record for
+WoRMS resolved all {{ r.worms.accepted }} names and GBIF {{ r.gbif.accepted }}. NCBI Taxonomy
+resolved {{ r.ncbi.accepted - r.ncbi.via_accepted }} by exact name and
+{{ r.ncbi.via_accepted | words }} more only through their WoRMS accepted name (`skos:closeMatch`) (Fig. 3,
+Table 3). The three services are not independent: the GBIF Backbone draws on WoRMS for marine
+groups, so agreement between them is not cross-validation. WoRMS held more than one record for
 {{ r.homonyms_total | words }} of the names. For {{ r.homonyms_by_authority | words }} of them, the authority
 printed in the article picked the right record. For example, *Zoanthus sociatus* (Ellis, 1768)
 was matched to the accepted record, not to a *taxon inquirendum* of the same name by Le Sueur
@@ -343,26 +416,24 @@ both of its records point to the same accepted name, which the author confirmed.
 
 The fuzzy candidates show why fuzzy matches are never accepted automatically. GBIF matched the
 historical label *Palythoa caribbeorum* to *Palythoa caribbea*, a different species, with a
-confidence of 0.98. The author rejected that match, while accepting WoRMS' phonetic match to
-*P. caribaeorum*. That acceptance is supported by Table 3 of the article itself, which lists the
-two names as the previous and the current identification of the same specimen.
-
-All {{ r.overrides | words }} curated decisions ({{ r.overrides_accept | words }} accepted, {{ r.overrides_reject | words }}
-rejected) are rows with evidence, and the pipeline fails if any of them is never used. Of the
-names absent from NCBI Taxonomy, {{ r.ncbi.via_accepted | words }} could be linked through their WoRMS
-accepted name. The remaining {{ r.ncbi.unresolved }} have no entry at all, which means no
-sequence data for those taxa can be linked by name.
+score of 0.98. The author rejected that match and accepted WoRMS' phonetic match to
+*P. caribaeorum*, as an incorrect subsequent spelling. The decision rests on Table 3 of the
+article, which gives the two names as the previous and current identification of the same
+specimen; it was not checked against the voucher. All {{ r.overrides | words }} curated decisions
+({{ r.overrides_accept | words }} accepted, {{ r.overrides_reject | words }} rejected) are rows with
+evidence, and the pipeline fails if any of them is never used.
 
 <div class="table-block" markdown="1">
 <p class="caption"><b>Table 3</b> Identifier resolution of the {{ r.n_taxa }} names per service.
-<i>Curated</i>: accepted by the author after review (included in <i>Accepted</i>). <i>Via
-accepted</i>: matched on the WoRMS accepted name (also included).</p>
+<i>Exact</i>: <code>skos:exactMatch</code>, including <i>curated</i> orthographic variants accepted
+by the author. <i>Via accepted name</i>: NCBI holds only the WoRMS accepted name,
+<code>skos:closeMatch</code>.</p>
 
-| Service | Accepted | Curated | Via accepted | Unresolved |
+| Service | Exact | of which curated | Via accepted name | Unresolved |
 |---|---:|---:|---:|---:|
 | WoRMS | {{ r.worms.accepted }} | {{ r.worms.curated }} | – | {{ r.worms.unresolved }} |
 | GBIF | {{ r.gbif.accepted }} | {{ r.gbif.curated }} | – | {{ r.gbif.unresolved }} |
-| NCBI | {{ r.ncbi.accepted }} | {{ r.ncbi.curated }} | {{ r.ncbi.via_accepted }} | {{ r.ncbi.unresolved }} |
+| NCBI | {{ r.ncbi.accepted - r.ncbi.via_accepted }} | {{ r.ncbi.curated }} | {{ r.ncbi.via_accepted }} | {{ r.ncbi.unresolved }} |
 
 </div>
 
@@ -375,42 +446,65 @@ evidence. <i>Via WoRMS accepted name</i>: NCBI holds only the accepted name, lin
 <code>skos:closeMatch</code>. The counts are given in Table 3.</p>
 </div>
 
+The {{ nc.unresolved }} names without an NCBI node were queried again under all name classes and
+synonyms. {{ nc.n_recovered | Words }} have a node under another name, and they are reported rather than linked
+(Additional file 4). One shows why name-level links are not concept equivalence: NCBI files
+*Bunodeopsis antilliensis*, which WoRMS accepts, as a name of *B. globulifera*. For
+{{ nc.genus_absent | words }} of the unresolved names, NCBI holds no node for the genus either. Having a
+node is not the same as having sequences: the {{ nc.linked }} linked taxa have a median of
+{{ nc.median_records }} INSDC nucleotide records, {{ nc.linked_le10 }} have ten or fewer, and
+{{ nc.linked_zero | words }} has none. No INSDC record cites the MOHBR collection
+({{ f.prov.voucher_search.MOHBR.nucleotide_records }} hits), so none of the
+{{ s.t2 + s.t3 }} specimens can yet be linked to a sequence. Per-marker counts are outside the
+scope of this paper.
 
 Linking each name to its WoRMS record shows how far the names in the
 inventory differ from current taxonomy. WoRMS gives a different accepted name for {{ q03.n }} of the names used in the
 article (Table 4). They fall into four groups:
 
-- **{{ q03.valid | Words }} names the article treats as valid.** Examples are *Parazoanthus parasiticus*,
-  now *Umimayanthus parasiticus*, and *Corynactis caribbeorum*, now *Pseudocorynactis
-  caribbeorum*.
-- **{{ q03.invalid | Words }} names the article already marks as invalid.**
+- **{{ q03.valid | Words }} names the article uses as valid.** For {{ q03.valid_changed | words }} of
+  them the accepted name differs, for example *Parazoanthus catenularis*, transferred to
+  *Bergia* by {{ citet("montenegro2015") }}; *Exaiptasia pallida* is instead an alternative
+  representation of *E. diaphana* whose priority awaits an ICZN ruling. WoRMS dates
+  {{ q03.valid_before_2016 | words }} of these changes before 2016, {{ q03.valid_mixed | words }} both before and after,
+  and gives no date for {{ q03.valid_undated | words }}. Part of the difference is therefore the article's lag,
+  not later change.
+- **{{ q03.invalid | Words }} names the article itself marks with †**, which its legend defines as "species
+  currently considered as invalid". One, *Anthopleura cascaia*, is a nomen nudum: as an
+  unavailable name it cannot be a synonym, and its accepted name is the WoRMS editors'
+  judgement of the intended taxon.
 - **{{ q03.label | Words }} old museum labels** that the authors themselves re-identified. One
   of them, *Aiptasia pallida*, is recorded by WoRMS as moved to a new genus by
   {{ citet("grajales2014") }}.
-- **{{ q03.spelling | Words }} differences of spelling only.**
+- **{{ q03.spelling | Words }} orthographic variants** whose matched WoRMS record is the accepted name
+  itself or its spelling (two cases of gender agreement, two incorrect subsequent spellings).
 
 The inventory remains as published. The graph adds today's view next to it, with the date on
 which it was taken.
 
 <div class="table-block wide" markdown="1">
 <p class="caption"><b>Table 4</b> Names used in the article whose accepted name in WoRMS differs
-({{ r.date_first | longdate }}). Category: <i>valid</i>, treated as valid in the article;
-<i>invalid</i>, marked † in its Table 1; <i>label</i>, a previous identification on a MOHBR
-specimen; <i>spelling</i>, an orthographic variant only.</p>
+({{ r.date_first | longdate }}). <i>Use in article</i>: how the article uses the name.
+<i>Relation</i>: nomenclatural relation to the accepted name, from the WoRMS status and names.
+<i>Act</i>: WoRMS sources that document the change (new combination, synonymy or taxonomy
+source), with year; "not given" where WoRMS cites none.</p>
 
-| Name in the article | WoRMS status | Accepted name | Category |
-|---|---|---|---|
+| Name in the article | Use in article | Relation | Act | Accepted name (AphiaID) |
+|---|---|---|---|---|
 {% for row in q03.rows | sort(attribute="name") | sort(attribute="category") -%}
-| *{{ row.name }}* | {{ row.status }} | *{{ row.accepted }}* | {{ row.category }} |
+| *{{ row.name }}* | {{ row.category }} | {{ row.relation }} | {{ row.act }} | *{{ row.accepted }}*{% if row.aphia %} ({{ row.aphia }}){% endif %} |
 {% endfor %}
 </div>
 
 Habitat alignment produced {{ f.envo.accepted }} ENVO annotations with {{ f.envo.terms }}
 distinct classes, covering {{ f.envo.statements }} of the {{ f.envo.statements_total }} habitat
-statements. The {{ f.envo.negated | words }} negated phrases were correctly left unannotated. *Coral
-rubble*, a substrate named in {{ f.envo.rubble_statements }} species accounts, has no ENVO class, and biotic
-substrates (sponges, hermit-crab shells, seagrass leaves) were not mapped. Both gaps are
-reported as such rather than approximated.
+statements. Only {{ f.envo.statements_total }} of the {{ s.t1_taxa }} taxa have a species account,
+so {{ s.t1_taxa - f.envo.statements }} taxa have no annotated habitat. Of the {{ f.envo.matches }} phrase
+matches, {{ f.envo.accepted }} were annotated, {{ f.envo.negated | words }} were negated and left unannotated, and
+the rest have no ENVO class: *coral rubble*, named in {{ f.envo.rubble_statements }} species accounts,
+and biotic substrates (sponges, hermit-crab shells, seagrass leaves). The latter are
+associations with other organisms rather than habitats, and are reported as gaps rather than
+forced into ENVO.
 
 ### Data quality
 
@@ -418,23 +512,6 @@ The canonical tables passed all {{ d.schema_checks }} column-level checks and al
 {{ d.n_critical }} critical rules. Of the {{ d.n_warning }} warnings,
 {{ d.warning_rules_firing }} reported a total of {{ d.warning_rows }} rows (Table 5). The gaps in completeness are those of
 the source.
-
-The cross-source warnings turned out to be the most informative result:
-
-- **Survey codes without vouchers.** {{ d.by_id.W08 }} survey codes in Table 1 have no
-  collected specimen of that taxon at that locality. They may rest on observations or
-  photographs, since the authors photographed specimens in situ, but the article does not say,
-  so the graph keeps them as published and flags them.
-- **Museum codes for identifications the authors revised.** Table 1 records a MOHBR specimen
-  (code "a") of *Homostichanthus duerdeni* at Playa Azul, Litoral Central. The only MOHBR
-  specimen from that locality under that original label is now identified as *Actinoporus
-  elegans* (Table 3, row 26).
-- **Museum codes for identifications the authors could not confirm.** Table 1 likewise keeps
-  code "a" for *Palythoa variabilis* at Morrocoy and *Diadumene lineata* at Golfo de Paria,
-  whose specimens the article lists as not identified.
-
-In other words, the distribution matrix partly reflects identifications that the same article
-revised or could not confirm. Only a check across the three tables reveals this.
 
 <div class="table-block" markdown="1">
 <p class="caption"><b>Table 5</b> Data-quality warnings that reported rows (no critical rule failed)</p>
@@ -445,6 +522,38 @@ revised or could not confirm. Only a check across the three tables reveals this.
 | {{ k }} | {{ d.desc[k][0] | upper }}{{ d.desc[k][1:] }} | {{ n }} |
 {% endfor %}
 </div>
+
+The four cross-source rules flagged {{ x.rows }} rows (Additional file 2). Because the census
+confirmed every printed value, none of them is an extraction error, and none shows the paired
+signature of a column shift. {{ x.explained | Words }} have an explanation:
+
+- {{ x.n_by_cause.above_species | words }} involve a specimen identified only to family (Actiniidae): one survey code of
+  *Condylactis gigantea* at Morrocoy may rest on it, and three specimens cannot have a
+  species-level code;
+- {{ x.n_by_cause.other_code | words }} specimens fall in an area where Table 1 lists the taxon, but under another code
+  (for example a survey or literature code where the specimen would call for "a");
+- {{ x.n_by_cause.reidentified | words }} reflect one re-identification: Table 1 gives code "a" for *Homostichanthus
+  duerdeni* at Playa Azul, Litoral Central, and the only MOHBR specimen from there with that
+  previous name is now *Actinoporus elegans* (Table 3, row 26);
+- {{ x.n_by_cause.unconfirmed | words }} museum codes, for *Palythoa variabilis* at Morrocoy and *Diadumene
+  lineata* (as *Haliplanella luciae*) at Golfo de Paria, match specimens that the article
+  lists as not identified.
+
+The other {{ x.rows - x.explained }} remain unreconciled as printed: {{ x.by_rule_cause["W08:as_printed"] }} survey codes without a
+voucher, {{ x.by_rule_cause["W09:as_printed"] | words }} survey specimens without a survey code, {{ x.by_rule_cause["W10:as_printed"] | words }} museum codes without a
+specimen and {{ x.by_rule_cause["W11:as_printed"] | words }} museum specimens without a code. The survey codes may rest on
+observations or photographs, which the article does not distinguish. The museum comparisons
+depend on site-to-area links: with all uncertain links unlinked, W10 drops from
+{{ x.sensitivity.as_curated.W10 }} to {{ x.sensitivity.all_unlinked.W10 }} and W11 from
+{{ x.sensitivity.as_curated.W11 }} to {{ x.sensitivity.all_unlinked.W11 }}; with all linked, they rise to
+{{ x.sensitivity.all_linked.W10 }} and {{ x.sensitivity.all_linked.W11 }}. W08 and W09 do not change.
+
+The same comparison grades every assertion of Table 1. Of the {{ f.codes.survey }} survey codes,
+{{ f.tiers.SurveyVouchered }} have a voucher in Table 2 and {{ f.tiers.SurveyUnvouchered }} do not. Of
+the {{ f.codes.mohbr }} museum codes, {{ f.tiers.MuseumTraced }} can be traced to a specimen in Table 3
+and {{ f.tiers.MuseumUntraced }} cannot; this includes codes in areas from which Table 3 has no
+specimen at all, which W10 does not count. The other {{ f.tiers.LiteratureRecord }} assertions are
+literature records.
 
 ### Knowledge graph, validation and queries
 
@@ -457,13 +566,13 @@ The graph contains {{ f.graph.triples | thousands }} triples about
 - {{ f.graph.cls["dwc:Taxon"] }} taxa ({{ r.n_taxa }} name usages from the article and
   {{ r.worms_records }} WoRMS records);
 - {{ f.graph.cls["owl:Axiom"] }} SSSOM mapping records;
-- {{ f.graph.cls["prov:Derivation"] }} qualified derivations, one for every record derived
-  from the article.
+- {{ f.graph.derivations }} qualified derivations, one for every record derived from the article.
 
-It conforms to all {{ f.shacl.shapes }} shapes, with no violations. The
-{{ f.shacl.warning | words }} warnings and the {{ f.shacl.info | words }} information result restate the gaps of the source.
-To show that the shapes work, a copy of the graph with twelve independent faults injected was
-validated in the tests, and each fault was reported on the right node.
+SHACL validation reported no result of severity Violation, {{ f.shacl.warning | words }} warnings and
+{{ f.shacl.info | words }} informational result, all restating gaps of the source. Under the SHACL
+Recommendation the graph therefore does not strictly conform, because `sh:conforms` is false
+whenever any result is reported; the pipeline's gate is the absence of violations. Each of the
+sixteen injected faults was reported on the right node.
 
 {%- set p5 = f.q.q05 %}
 Provenance can be queried end to end. For specimen MOHBR {{ p5[0].catalogNumber }}, one query
@@ -473,22 +582,26 @@ justification, the confidence, the request URL and the time of retrieval. All
 {{ f.q.n_sparql | words }} SPARQL queries returned identical rows on RDFLib and on the Oxigraph
 endpoint, and each SQL query returned the same rows as its SPARQL counterpart.
 
-{%- set lit = f.q.q07 | selectattr("evidence", "equalto", "previously published record") | map(attribute="records") | sum %}
-{%- set tot = f.q.q07 | map(attribute="records") | sum %}
-One query (Fig. 4) shows how much of the known distribution rests on second-hand evidence.
-Records from earlier literature make up {{ lit }} of the {{ tot }} Table 1 assertions that have a
-locality ({{ (100 * lit / tot) | round | int }}%; the {{ (c.distribution - tot) | words }}
-open-sea assertions have none), and they outnumber the authors' own survey records in
-every coastal region. Of all {{ s.t1_codes }} codes, {{ s.t1_agudo }}
-({{ (100 * s.t1_agudo / s.t1_codes) | round | int }}%) cite a single monograph
-{{ cite("agudo1987") }}.
+### What the distribution rests on
+
+Of the {{ cl.n }} taxon × area cells of Table 1, {{ cl.first_hand }} are supported by a survey or
+museum code, {{ cl.lit_only }} ({{ cl.pct_lit_only }}%) by literature only, and {{ cl.agudo_alone }}
+({{ cl.pct_agudo_alone }}%) by one monograph alone {{ cite("agudo1987") }} (Fig. 4). That monograph
+accounts for {{ f.codes.agudo }} of the {{ f.codes.literature }} literature codes
+({{ f.codes.pct_agudo_of_literature }}%). It is cited through the article and was not consulted
+here, so whether its records rest on vouchers is unknown. The share of cells supported by
+literature only ranges from {{ cl.by_region["Oceanic Islands"].pct_lit_only }}% in the Oceanic
+Islands to {{ cl.by_region["Central Coast"].pct_lit_only }}% on the Central Coast; the regions are the
+article's own grouping of its columns. These shares describe the evidence base of the
+inventory, not the effort of the authors' survey, which covered six localities.
 
 <div class="figure wide" markdown="1">
-<img src="figures/fig4_evidence.svg" alt="Table 1 records by region and evidence">
-<p class="caption"><b>Fig. 4</b> Presence records of Table 1 of the article by coastal region
-and kind of evidence: the authors' survey (code *), a specimen in the MOHBR collection (a), or
-an earlier publication (b–j). The values are printed on the bars. Records were computed with
-SPARQL query q07 over the graph.</p>
+<img src="figures/fig4_evidence.svg" alt="Table 1 cells by region and kind of support">
+<p class="caption"><b>Fig. 4</b> Taxon × area cells of Table 1 of the article by region and kind
+of support. <i>First-hand</i>: a survey (*) or MOHBR (a) code; <i>literature</i>: codes b–j.
+A cell supported by both counts once, as first-hand and literature. The values are printed on
+the bars; the labels give the share of cells supported by literature only. Computed with SPARQL
+query q07 over the graph.</p>
 </div>
 
 ## Discussion
@@ -498,17 +611,17 @@ to be preserved, not as text to be corrected. Names are kept as name usages and 
 current records with SKOS and SSSOM rather than replaced. The 2016 inventory and today's
 taxonomy therefore coexist in one graph, each with its own provenance, and the drift between
 them can be queried (Table 4). An `owl:sameAs` link would have merged a synonym with its
-accepted name and lost exactly that distinction. Likewise, keeping the specimen tables apart
-from the distribution matrix is what made the cross-source checks possible. Those checks
-exposed codes in Table 1 that reflect identifications the authors later revised.
+accepted name and lost exactly that distinction. The links stay at the level of names: when
+providers disagree about circumscription, as NCBI and WoRMS do for *Bunodeopsis antilliensis*,
+the graph shows the disagreement instead of hiding it. Keeping the specimen tables apart from
+the distribution matrix is what made the cross-source checks possible.
 
 **Judgement where it is needed, code everywhere else.** Most of the work is deterministic and
-tested: extraction, rule-based harmonisation, exact matching, validation. A small number of
-decisions need expertise, such as whether a misspelled museum label denotes a given species,
-whether two names differ only in gender agreement, or whether a collecting site belongs to a
-locality of Table 1. Here all such decisions, including the habitat vocabulary, fill {{ c.curated_rows }} rows in
-{{ c.curated_files | words }} curated files.
-Keeping them as data rather than code has three effects:
+tested: extraction and its census, rule-based harmonisation, exact matching, validation. A
+small number of decisions need expertise, such as whether a misspelled museum label denotes a
+given species, whether two names differ only in gender agreement, or whether a collecting site
+belongs to a locality of Table 1. Here all such decisions fill {{ c.curated_rows }} rows in
+{{ c.curated_files | words }} curated files. Keeping them as data rather than code has three effects:
 
 - each decision carries its evidence and the date it was reviewed;
 - a decision that no longer applies is detected, because the pipeline fails on an unused
@@ -516,28 +629,41 @@ Keeping them as data rather than code has three effects:
 - the line between what the machine asserted and what a person asserted is explicit, encoded
   in the mapping justification (lexical matching or manual curation).
 
-The same design would admit machine-learning or language-model assistance safely. Such a model
-could propose candidates for curation, but only the existing gates (curated files, schema checks
-and shapes) could turn a proposal into an assertion.
+It also makes them auditable by someone other than the curator, which matters here because the
+curator is a co-author of the source.
 
-**What the inventory rests on.** The graph makes explicit how much of the Venezuelan
-distribution data depend on a single source from 1987 {{ cite("agudo1987") }}. This is not a
-criticism of the article, which states its sources in the legend. It is the kind of dependency
-that is invisible in a PDF, and it matters when the inventory is reused, for instance in species
-distribution models or regional red-list assessments. The differences in taxonomy point the
-same way: WoRMS now places three species that the article lists under *Parazoanthus* in other
-genera (*Bergia*, *Umimayanthus*), and treats *Exaiptasia pallida* as an
-alternative representation of *E. diaphana*. A reuser who matched the printed names against a
-current checklist would silently drop or misplace these records.
+**Reading the cross-table differences.** The legend refers code "a" to Appendix 2 (Table 3), so
+a museum code with no specimen there is a genuine difference between the article's own tables.
+Of the {{ x.rows }} differences, {{ x.explained }} have an identifiable cause, mostly a coarse
+identification or a taxon coded otherwise in the matrix; only
+{{ (x.n_by_cause.reidentified + x.n_by_cause.unconfirmed) | words }} reflect identifications the article revised or
+could not confirm. The rest are unreconciled between tables rather than
+errors: the article does not say whether survey codes rest on specimens or on observations,
+and the matrix may record identifications as they stood in the collection catalogue. The
+classification is offered to the source authors as a list to check against their records.
 
-**Limitations.** Five limitations apply.
+**Fitness for use.** The graph is suitable for checklist work, for tracing each record to its
+evidence, and for reconciling the 2016 names with current taxonomy. It is not, as it stands,
+suitable for species distribution models or for area-of-occupancy estimates in red-list
+assessments. No area is georeferenced, the {{ f.loc.areas }} areas range from a single beach to a
+gulf, literature records have no date, and depth is not recorded. Presence is reported without
+any record of absence or effort, beyond the flag on the six sampled localities. Within those
+limits the evidence tiers let a reuser choose which records to rely on: for instance, the
+{{ f.tiers.SurveyVouchered + f.tiers.MuseumTraced }} assertions backed by a specimen listed in the article.
 
-- **One article.** The parser relies on the layout of this article. It refuses unexpected
-  layouts rather than guessing, but another article needs its own column and row rules.
-- **Habitat per species.** Habitat is attached to species, as the article reports it, and ENVO
-  coverage of reef substrates is incomplete.
-- **Heuristic confidence.** The confidence values for fuzzy matches are a heuristic, used only
-  to order candidates for review.
+**Limitations.** Seven limitations apply.
+
+- **One article.** The parser relies on the layout of this article and refuses unexpected
+  layouts rather than guessing. Only the layers after extraction (canonical model, resolution,
+  data quality, graph) are expected to transfer; extraction must be rebuilt for each source.
+- **Curation by a co-author.** The {{ c.curated_rows }} curated rows were made and reviewed by the
+  same person, who co-authored the source article. They have not been audited independently.
+- **Habitat per species.** Habitat is attached to species as the article reports it; half of the
+  taxa have none, and ENVO lacks a class for coral rubble.
+- **No georeferencing.** Areas are kept as named; a derived, separately versioned georeference
+  layer would be needed for spatial reuse.
+- **Heuristic scores.** The scores of fuzzy matches only ordered candidates for review and are
+  not probabilities.
 - **Placeholder namespaces.** The namespaces are not yet registered, so the graph's IRIs do not
   dereference.
 - **A dated snapshot.** Resolution reflects the external services on the retrieval date.
@@ -546,12 +672,17 @@ current checklist would silently drop or misplace these records.
 
 **Next steps.** Several extensions follow directly from the model:
 
+- An independent audit of the curated decisions by an anthozoan taxonomist, and a review of the
+  unreconciled cross-table differences with the source authors.
+- A derived georeference layer, with point-radius uncertainty, linked to each named area.
+- Publication of the canonical tables to GBIF as a Darwin Core Archive with a dataset DOI.
 - Later morphological data on the same specimens, such as cnidae measurements of *Condylactis
-  gigantea*, can be added as Darwin Core measurements on the existing occurrences, joined
-  through the same identifiers.
-- The canonical tables already follow Darwin Core, so they can be published to GBIF as a
-  Darwin Core Archive.
-- Re-running the resolution periodically would turn Table 4 into a record of taxonomic change.
+  gigantea*, added as Darwin Core measurements on the existing occurrences.
+- Molecular data linked to the same specimens: tissue samples and sequences as material
+  entities and DNA-derived data, joined through the catalogue numbers, which already serve as
+  stable keys.
+- Re-running the resolution periodically, which would turn Table 4 into a record of taxonomic
+  change.
 
 ## Conclusions
 
@@ -559,26 +690,28 @@ A species inventory published as a PDF can be made machine-actionable without re
 In this case:
 
 - every one of the {{ s.t1_codes }} distribution codes and {{ s.t2 + s.t3 }} specimen records
-  is traceable to its page, table and row;
+  is traceable to its page, table and row, and a second, independent transcription agrees with
+  every one of them;
 - every identifier link records how, when and by whom it was made;
-- the resulting graph is validated with SHACL, queryable with SPARQL, and reproducible byte
-  for byte.
+- the resulting graph has no SHACL violation, is queryable with SPARQL, and is rebuilt byte for
+  byte from its committed inputs.
 
-The process revealed that {{ q03.valid | words }} names the article treats as valid now have a different
-accepted name,
-inconsistencies between the article's own tables, and the article's dependence on a single
-earlier monograph. All of these are useful to anyone reusing the inventory, and none is visible
-in the PDF. The approach relies on community standards, open software and explicit curation,
-and transfers to other legacy inventories.
+The process showed that {{ q03.valid_changed | words }} names the article uses as valid now have a different
+accepted name, that its three tables disagree in {{ x.rows - x.explained }} places that no
+nomenclatural or coding explanation resolves, and that {{ cl.pct_lit_only }}% of its taxon × area
+cells rest on literature alone, most of them on a single monograph. The PDF shows none of
+this, and all of it matters to anyone reusing the inventory.
 
 ## Abbreviations
 
 DwC: Darwin Core; ENVO: Environment Ontology; GBIF: Global Biodiversity Information Facility;
-IRI: Internationalised Resource Identifier; LSID: Life Science Identifier; MOHBR: Museo
-Oceanológico Hermano Benigno Román; NCBI: National Center for Biotechnology Information; OLS:
-Ontology Lookup Service; PROV-O: PROV Ontology; RDF: Resource Description Framework; SHACL:
-Shapes Constraint Language; SKOS: Simple Knowledge Organization System; SSSOM: Simple Standard
-for Sharing Ontological Mappings; WoRMS: World Register of Marine Species.
+ICZN: International Commission on Zoological Nomenclature; INSDC: International Nucleotide
+Sequence Database Collaboration; IRI: Internationalised Resource Identifier; LSID: Life Science
+Identifier; MOHBR: Museo Oceanológico Hermano Benigno Román; NCBI: National Center for
+Biotechnology Information; OLS: Ontology Lookup Service; PROV-O: PROV Ontology; RDF: Resource
+Description Framework; SHACL: Shapes Constraint Language; SKOS: Simple Knowledge Organization
+System; SSSOM: Simple Standard for Sharing Ontological Mappings; WoRMS: World Register of
+Marine Species.
 
 ## Declarations
 
@@ -593,14 +726,17 @@ Not applicable.
 ### Availability of data and materials
 
 The code, curated mappings, cached API responses, canonical tables, knowledge graph (Turtle and
-JSON-LD), SHACL shapes, queries and all reports are available at
+JSON-LD), SSSOM mapping table, SHACL shapes, queries and all reports are available at
 https://github.com/carlosehortiz-hub/Sea-anemones. The derived data are released under CC0 1.0
-and the code under the MIT licence. The source article is available under CC BY 4.0 at
+and the code under the MIT licence. The cached API responses are redistributed under their
+providers' terms, not under CC0; WoRMS content and the GBIF Backbone Taxonomy are licensed
+CC BY 4.0. The source article is available under CC BY 4.0 at
 https://doi.org/10.1186/s41200-016-0016-7.
 
 ### Competing interests
 
-The author declares no competing interests.
+The author is a co-author of the source article {{ cite("gonzalezmunoz2016") }} and made all
+curation decisions in this work. The author declares no financial competing interests.
 
 ### Funding
 
@@ -608,14 +744,33 @@ This work received no specific funding.
 
 ### Authors' contributions
 
-CO designed the study, curated all decisions that required taxonomic judgement, and wrote the
-manuscript.
+CEHO designed the study, curated all decisions that required taxonomic judgement, and wrote
+the manuscript.
 
 ### Acknowledgements
 
-The author thanks the authors of González-Muñoz et al. (2016) for publishing the inventory
+The author thanks the co-authors of González-Muñoz et al. (2016) for publishing the inventory
 openly.
+
+## Additional files
+
+**Additional file 1.** Reconciliation table: every count in the text that cannot be rebuilt
+from the text alone, with its derivation (CSV).
+
+**Additional file 2.** The {{ x.rows }} cross-table differences (W08–W11) with their cause,
+evidence and link sensitivity (CSV).
+
+**Additional file 3.** The {{ c.curated_rows }} curated decisions, with evidence and review date
+(CSV).
+
+**Additional file 4.** NCBI Taxonomy coverage of the {{ r.n_taxa }} names: result, retry, genus and
+nucleotide record counts (CSV).
+
+**Additional file 5.** Name changes between the article and WoRMS: relation, act sources and
+years (CSV).
 
 ## References
 
 {{ references }}
+
+{{ appendix }}

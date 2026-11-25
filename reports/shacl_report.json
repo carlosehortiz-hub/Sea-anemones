@@ -1,8 +1,32 @@
 {
   "conforms": true,
+  "conforms_strict": false,
+  "validator": "pySHACL, advanced=True, inference=none, allow_warnings=True",
   "node_shapes": 14,
   "results": {
     "Info": 1,
     "Warning": 9
-  }
+  },
+  "by_message": [
+    {
+      "severity": "Info",
+      "message": "Specimen without a MOHBR catalogue number (as printed in the source).",
+      "count": 1
+    },
+    {
+      "severity": "Warning",
+      "message": "Event without a location ('-' in the source, or Open Sea Distribution).",
+      "count": 4
+    },
+    {
+      "severity": "Warning",
+      "message": "Habitat statement with no ENVO term.",
+      "count": 2
+    },
+    {
+      "severity": "Warning",
+      "message": "Specimen whose current identification has no taxon ('not identified').",
+      "count": 3
+    }
+  ]
 }

@@ -1,0 +1,33 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "4",
+   "idlist": [
+    "347413498",
+    "347413497",
+    "347413496",
+    "347413490"
+   ],
+   "querytranslation": "txid138296[Organism:exp]",
+   "retmax": "4",
+   "retstart": "0",
+   "translationset": [],
+   "translationstack": [
+    {
+     "count": "4",
+     "explode": "Y",
+     "field": "Organism",
+     "term": "txid138296[Organism:exp]"
+    },
+    "GROUP"
+   ]
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:02:02+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&retmax=20&retmode=json&term=txid138296%5BOrganism%3Aexp%5D"
+}

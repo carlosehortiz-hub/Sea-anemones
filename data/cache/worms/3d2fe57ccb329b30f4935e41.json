@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 855298,
+   "authority": null,
+   "citation": "Rodríguez, E.; Fautin, D; Daly, M. (2026). World List of Actiniaria. Anemonia sargassiensis. Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=855298 on 2026-11-25",
+   "class": "Hexacorallia",
+   "family": "Actiniidae",
+   "genus": "Anemonia",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": null,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:855298",
+   "match_type": "exact",
+   "modified": "2015-10-09T10:59:27.730Z",
+   "order": "Actiniaria",
+   "originalNameUsageID": null,
+   "parentNameUsageID": 100695,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Anemonia sargassiensis",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=855298",
+   "valid_AphiaID": 283333,
+   "valid_authority": "Hargitt, 1908",
+   "valid_name": "Anemonia sargassensis"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:01:53+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSynonymsByAphiaID/283333"
+}

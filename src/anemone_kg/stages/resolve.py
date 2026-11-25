@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 from dataclasses import asdict
 from pathlib import Path
@@ -12,6 +13,8 @@ import yaml
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
 from anemone_kg.logs import log_counts
+from anemone_kg.rdf.build import SIMILARITY
+from anemone_kg.resolve import coverage
 from anemone_kg.resolve.habitats import EnvoLookup, annotate
 from anemone_kg.resolve.http import CachedHttp
 from anemone_kg.resolve.taxa import Override, TaxonResolver
@@ -99,12 +102,19 @@ def write_sssom(df: pd.DataFrame, path: Path, cfg: Config) -> None:
         "object_label",
         "mapping_justification",
         "confidence",
+        "similarity_score",
+        "similarity_measure",
         "mapping_tool",
         "mapping_date",
         "comment",
     ]
     acc = df[df.status == "accepted"].copy()
     acc["subject_id"] = "ak:taxon/" + acc["subject_id"]
+    # Fuzzy scores order candidates; they are not confidence in the accepted mapping.
+    fuzzy = acc.match_type == "fuzzy"
+    acc["similarity_score"] = acc.confidence.where(fuzzy)
+    acc["similarity_measure"] = acc.object_source.map(SIMILARITY).where(fuzzy)
+    acc["confidence"] = acc.confidence.where(~fuzzy)
     header = "".join(f"#{line}\n" for line in yaml.safe_dump(meta, sort_keys=False).splitlines())
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(header + acc[cols].to_csv(sep="\t", index=False), encoding="utf-8")
@@ -220,6 +230,33 @@ def resolve(cfg: Config) -> None:
         tables["taxon_mapping"],
         cfg.path("processed") / "mappings" / "taxon_mappings.sssom.tsv",
         cfg,
+    )
+    used_resolution = set(http.used)
+    worms = tables["worms_record"]
+    changes = coverage.acts(http, worms)
+    cov = coverage.ncbi_coverage(http, taxa, tables["taxon_mapping"], worms)
+    rel = coverage.releases(http)
+    vouchers = coverage.voucher_search(http)
+    reports = cfg.path("reports")
+    changes.to_csv(reports / "taxonomic_changes.csv", index=False)
+    cov.to_csv(reports / "ncbi_coverage.csv", index=False)
+    (reports / "taxonomic_provenance.md").write_text(
+        coverage.to_markdown(changes, cov, rel, vouchers), encoding="utf-8"
+    )
+    (reports / "taxonomic_provenance.json").write_text(
+        json.dumps(
+            {
+                "releases": rel,
+                "voucher_search": vouchers,
+                "cached_responses": {
+                    "resolution": len(used_resolution),
+                    "coverage_and_releases": len(http.used - used_resolution),
+                },
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
     )
     (cfg.path("reports") / "resolution_report.md").write_text(
         report_markdown(tables, len(pd.read_csv(canon / "habitat_statement.csv")), http),

@@ -35,6 +35,8 @@ import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pandas as pd
+
 from anemone_kg.config import Config
 from anemone_kg.paper.build import render_parts
 from anemone_kg.paper.facts import collect
@@ -70,6 +72,8 @@ def submission_html(cfg: Config) -> tuple[str, list[tuple[str, str]], dict]:
     body = _TAB.sub("", body)
 
     main, refs = body.split("<h2>References</h2>", 1)
+    refs = refs.split('<h2 class="appendix">', 1)[0]  # sent as additional files instead
+    tables = [tb for tb in tables if "<b>Table S" not in tb[0]]
     legends = "".join(f"<p>{cap}</p>" for _, cap in figures)
     tail = "".join(f"{_break()}<p>{cap}</p>{table}" for cap, table in tables)
 
@@ -279,6 +283,7 @@ def build_submission(cfg: Config, pdf: bool = True) -> Path:
         subprocess.run(["node", str(root / "export_figures.cjs"), *jobs], check=True)
     log.info("[paper] wrote %d figures (PDF and PNG) to %s", len(figures), out / "figures")
 
+    write_additional_files(cfg, f, out / "additional_files")
     if pdf:
         subprocess.run(
             ["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(out), str(docx)],
@@ -287,3 +292,28 @@ def build_submission(cfg: Config, pdf: bool = True) -> Path:
         )
         log.info("[paper] wrote %s (preview of the DOCX)", out / "manuscript.pdf")
     return docx
+
+
+def write_additional_files(cfg: Config, f: dict, out: Path) -> None:
+    """Additional files 1-5, as CSV, named and numbered as the manuscript cites them."""
+    out.mkdir(parents=True, exist_ok=True)
+    rep, maps = cfg.path("reports"), cfg.path("mappings")
+    pd.DataFrame(f["recon"]).to_csv(out / "Additional_file_1_reconciliation.csv", index=False)
+    shutil.copy(rep / "cross_table_review.csv", out / "Additional_file_2_cross_table_review.csv")
+    curated = []
+    for name in (
+        "name_variants",
+        "state_names",
+        "locality_crosswalk",
+        "event_dates",
+        "resolution_overrides",
+        "habitat_vocabulary",
+    ):
+        df = pd.read_csv(maps / f"{name}.csv", dtype=str)
+        df.insert(0, "curated_file", f"mappings/{name}.csv")
+        curated.append(df)
+    pd.concat(curated, ignore_index=True).to_csv(
+        out / "Additional_file_3_curated_decisions.csv", index=False
+    )
+    shutil.copy(rep / "ncbi_coverage.csv", out / "Additional_file_4_ncbi_coverage.csv")
+    shutil.copy(rep / "taxonomic_changes.csv", out / "Additional_file_5_taxonomic_changes.csv")

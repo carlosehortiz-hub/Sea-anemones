@@ -1,0 +1,28 @@
+{
+ "body": {
+  "esearchresult": {
+   "count": "0",
+   "idlist": [],
+   "querytranslation": "(\"Hermano Benigno\"[All Fields])",
+   "retmax": "0",
+   "retstart": "0",
+   "translationset": [],
+   "warninglist": {
+    "outputmessages": [
+     "No items found."
+    ],
+    "phrasesignored": [],
+    "quotedphrasesnotfound": [
+     "\"Hermano Benigno\"[All Fields]"
+    ]
+   }
+  },
+  "header": {
+   "type": "esearch",
+   "version": "0.3"
+  }
+ },
+ "retrieved_at": "2026-11-25T13:01:30+00:00",
+ "status_code": 200,
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&retmax=20&retmode=json&term=%22Hermano+Benigno%22%5BAll+Fields%5D"
+}

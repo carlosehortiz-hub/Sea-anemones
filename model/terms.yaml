@@ -129,7 +129,9 @@ terms:
   - {term: owl:annotatedProperty, kind: property, use: "SSSOM predicate_id"}
   - {term: owl:annotatedTarget, kind: property, use: "SSSOM object_id"}
   - {term: sssom:mapping_justification, kind: property, use: "semapv:LexicalMatching | semapv:ManualMappingCuration"}
-  - {term: sssom:confidence, kind: property, use: "Match confidence"}
+  - {term: sssom:confidence, kind: property, use: "Match confidence (exact and accepted-name matches)"}
+  - {term: sssom:similarity_score, kind: property, use: "Fuzzy-match score; orders candidates only"}
+  - {term: sssom:similarity_measure, kind: property, use: "What the similarity score measures"}
   - {term: sssom:mapping_tool, kind: property, use: "Request URL used"}
   - {term: semapv:LexicalMatching, kind: individual, use: "Justification value"}
   - {term: semapv:ManualMappingCuration, kind: individual, use: "Justification value"}
@@ -150,3 +152,10 @@ terms:
   - {term: akv:ThisSurvey, kind: individual, use: "Table 1 code '*'"}
   - {term: akv:MohbrCollection, kind: individual, use: "Table 1 code 'a'"}
   - {term: akv:Literature, kind: individual, use: "Table 1 codes 'b'-'j'"}
+  - {term: akv:evidenceTier, kind: property, use: "Table 1 assertion -> evidence tier (derived)"}
+  - {term: akv:evidenceTiers, kind: individual, use: "Concept scheme"}
+  - {term: akv:SurveyVouchered, kind: individual, use: "'*' with a Table 2 voucher"}
+  - {term: akv:SurveyUnvouchered, kind: individual, use: "'*' without a Table 2 voucher"}
+  - {term: akv:MuseumTraced, kind: individual, use: "'a' traced to Table 3"}
+  - {term: akv:MuseumUntraced, kind: individual, use: "'a' not traced to Table 3"}
+  - {term: akv:LiteratureRecord, kind: individual, use: "codes 'b'-'j'"}

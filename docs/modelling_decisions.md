@@ -127,3 +127,48 @@ listed as a next step.
 | `semapv` | `semapv.owl` |
 | `dcterms`, `prov`, `skos`, `dcat`, `owl`, `rdfs` | rdflib `ClosedNamespace` objects, generated from the specifications. An unknown term raises an error. |
 | `akv` | `ontology/akv.ttl`. Every term must have a comment or a definition. |
+
+## Decisions added in response to peer review
+
+### Mappings are name-level, and SKOS entailment is accepted knowingly
+
+`skos:exactMatch` is transitive, and the SKOS mapping properties have `skos:Concept` as domain and
+range. Chaining article name → WoRMS record → GBIF usage therefore entails that all three are
+SKOS concepts linked by exact match. Here that entailment is harmless and intended at the level
+of **names**: each node is a name usage, and an exact match says the same name (and authority,
+where printed) is meant. It is **not** a claim that the providers circumscribe the same taxon.
+No concept-level relation (RCC-5 or similar) is asserted; where providers disagree - NCBI files
+*Bunodeopsis antilliensis* under *B. globulifera*, WoRMS accepts it - the disagreement is reported
+(`reports/taxonomic_provenance.md`) rather than encoded as a link. NCBI links made only through
+the WoRMS accepted name use `skos:closeMatch`, which is not transitive.
+
+### Similarity score is not confidence
+
+Fuzzy candidates are ordered by a score (WoRMS match type on an ordinal scale; GBIF's own match
+confidence). Neither is calibrated, and an accepted fuzzy mapping rests on the curator's evidence,
+not on the score. Accepted fuzzy mappings therefore carry `sssom:similarity_score` and
+`sssom:similarity_measure`, and no `sssom:confidence`; exact and accepted-name matches carry
+confidence 1. MappingShape requires exactly one of the two.
+
+### Evidence tier per Table 1 assertion
+
+`akv:evidenceTier` grades each assertion by how directly it can be traced to examined material:
+survey record with or without a Table 2 voucher, museum record traced or not to Table 3
+(Appendix 2, which the legend names for code "a"), or literature record. It is derived by the
+pipeline (`anemone_kg.dq.crosstable.evidence_tiers`), matching by WoRMS accepted name and, for
+museum records, also by previous identification. It is not `dwc:identificationVerificationStatus`,
+which grades an identification, not a presence record. A SHACL-SPARQL constraint keeps each tier
+consistent with the assertion's evidence kind.
+
+### Extraction is audited by a second, independent reading
+
+Counts, legends and block agreement cannot detect a code placed in the wrong cell. Every Table 1
+cell and every Table 2/3 field is therefore re-read with Poppler and a separate parser
+(`anemone_kg.audit.second_reading`), and any disagreement stops the pipeline. The shared inputs
+are only the page ranges and the printed column order.
+
+### What does not come from the PDF
+
+One curated row (Isla de Cubagua, `mappings/event_dates.csv`) records information from the
+curator, a co-author of the source, not from the article. It is used only to justify leaving
+dates empty and is marked as not traceable to the PDF.

@@ -80,13 +80,17 @@ def _svg(w, h, body):
 
 def pipeline_svg(f: dict) -> str:
     s, c, r, d, g, sh = f["src"], f["canon"], f["res"], f["dq"], f["graph"], f["shacl"]
+    nq = f["q"]["n_sparql"]
     W, H, bw, bh, gap, y0 = 760, 248, 82, 66, 12, 34
     stages = [
         ("PDF", f"{s['pages']} pages\nsha256-pinned"),
         ("1 extract", "Tables 1-3,\naccounts"),
         ("2 canonical", f"LinkML · DwC\n{c['rules']} rules"),
         ("3 resolve", "WoRMS · GBIF\nNCBI · ENVO"),
-        ("4 validate", f"{d['schema_checks']} checks\n{d['n_critical']} critical rules"),
+        (
+            "4 validate",
+            f"{d['schema_checks']} checks\n{d['n_critical']} critical rules\ncensus 0 diffs",
+        ),
         ("5 build", f"RDF, {g['triples']:,}\ntriples"),
         ("6 SHACL", f"{sh['shapes']} shapes,\n{sh['violation']} violations"),
         ("7 query", f"{f['q']['n_sparql']} SPARQL\n+ {f['q']['n_sql']} SQL"),
@@ -120,9 +124,12 @@ def pipeline_svg(f: dict) -> str:
         )
     y2 = y0 + bh + 70
     for idx, (title, sub) in (
-        (2, ("curated mappings", f"{c['typos']} typos,\n{c['crosswalk_accepted']} site links")),
+        (2, ("curated mappings", f"{c['curated_rows']} rows in\n{c['curated_files']} files")),
         (3, ("API cache", f"{r['cached']} responses,\ncommitted")),
-        (5, ("endpoint", "Oxigraph = rdflib\n(8/8 queries)")),
+        (
+            5,
+            ("endpoint", f"Oxigraph = rdflib\n({nq}/{nq} queries)"),
+        ),
     ):
         x = xs[idx] - 3
         out.append(_box(x, y2, bw + 6, 50, title, sub, fill="#f4fbf8", stroke=AQUA, title_size=8.6))
@@ -287,18 +294,19 @@ def resolution_svg(f: dict, path: Path) -> None:
 
 
 def evidence_svg(f: dict, path: Path) -> None:
+    """Fig. 4: Table 1 cells (taxon x area) by kind of support, per region (query q07)."""
     rows = f["q"]["q07"]
     regions = ["West Coast", "Central Coast", "East Coast", "Oceanic Islands"]
     kinds = [
-        ("documented in this survey", "this survey (*)", BLUE, "white"),
-        ("MOHBR collection specimen", "MOHBR collection (a)", AQUA, INK),
-        ("previously published record", "earlier literature (b-j)", ORANGE, INK),
+        ("first-hand only", "first-hand only (*, a)", BLUE, "white"),
+        ("first-hand and literature", "first-hand and literature", AQUA, INK),
+        ("literature only: other or several sources", "literature only: other", GREY, INK),
+        ("literature only: Agudo (1987) alone", "literature only: Agudo (1987)", ORANGE, INK),
     ]
-    val = {(r["region"], r["evidence"]): int(r["records"]) for r in rows}
-    fig, ax = plt.subplots(figsize=(6.6, 2.1), dpi=150)
+    val = {(r["region"], r["support"]): int(r["cells"]) for r in rows}
+    fig, ax = plt.subplots(figsize=(6.6, 2.3), dpi=150)
     y = range(len(regions))[::-1]
     left = [0] * 4
-    small: dict = {}
     for key, label, col, tcol in kinds:
         vals = [val.get((reg, key), 0) for reg in regions]
         ax.barh(
@@ -312,7 +320,7 @@ def evidence_svg(f: dict, path: Path) -> None:
             linewidth=1.5,
         )
         for yi, v, lft in zip(y, vals, left, strict=True):
-            if v >= 8:
+            if v >= 7:
                 ax.text(
                     lft + v / 2,
                     yi,
@@ -323,29 +331,27 @@ def evidence_svg(f: dict, path: Path) -> None:
                     color=tcol,
                     fontweight="bold",
                 )
-            elif v:
-                small.setdefault(yi, []).append(f"{v} {label.split(' (')[0]}")
         left = [a + b for a, b in zip(left, vals, strict=True)]
-    for yi, total in zip(y, left, strict=True):
-        extra = "  ·  ".join(small.get(yi, []))
+    for yi, reg, total in zip(y, regions, left, strict=True):
+        lit = f["cells"]["by_region"][reg]
         ax.text(
             total + 2,
             yi,
-            f"n = {total}" + (f"; {extra}" if extra else ""),
+            f"n = {total}; {lit['pct_lit_only']}% literature only",
             ha="left",
             va="center",
             fontsize=7,
             color=INK2,
         )
     ax.set_yticks(list(y), regions)
-    ax.set_xlim(0, max(left) * 1.5)  # room for the "n = …" annotations
-    ax.set_xlabel("presence records in Table 1 (taxon \u00d7 locality \u00d7 source)")
+    ax.set_xlim(0, max(left) * 1.55)
+    ax.set_xlabel("taxon \u00d7 area cells of Table 1 (one cell may carry several codes)")
     _finish(ax)
     ax.legend(
-        ncol=3,
+        ncol=2,
         frameon=False,
         loc="lower center",
-        bbox_to_anchor=(0.45, 1.0),
+        bbox_to_anchor=(0.42, 1.0),
         fontsize=7.2,
         handlelength=1.2,
     )

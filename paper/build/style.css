@@ -103,3 +103,7 @@ th[style*="right"], td[style*="right"] { font-variant-numeric: tabular-nums; }
 /* ----------------------------------------------------------- references */
 .refs { font-size: 8.2pt; line-height: 1.3; text-align: left; }
 .body .refs p { padding-left: 4mm; margin: 0 0 1.1mm; text-indent: -4mm !important; }
+
+/* Table cells: never justified (wide gaps in narrow cells), no hyphenation of names. */
+td, th { text-align: left; hyphens: none; }
+h2.appendix { break-before: page; column-span: all; }

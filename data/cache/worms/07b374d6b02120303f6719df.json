@@ -1,0 +1,77 @@
+{
+ "body": [
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "357, 621, 622, 623, 640, 642, 653",
+   "reference": "Weill, R., 1934. Contribution à l'étude des Cnidaires et de leurs nématocystes. II. Valeur taxonomique du cnidôme. Trav. Stn zool. Wimereux 11 : 349-701.",
+   "source_id": 26876,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=26876",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "183",
+   "reference": "Carlgren, O. (1937). Ceriantharia and Zoantharia. Scientific Reports of the Great Barrier Reef Expedition 1928-29. 5(5): 177-207.",
+   "source_id": 145381,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=145381",
+   "use": "additional source"
+  },
+  {
+   "doi": "10.5962/bhl.part.28921",
+   "fulltext": null,
+   "link": "https://www.biodiversitylibrary.org/page/14214322",
+   "page": "287-289",
+   "reference": "Verrill, A.E. (1907). The Bermuda Islands. Part IV. Geology and paleontology, and part V. An account of the coral reefs. Transactions of the Connecticut Academy of Arts and Sciences. 12: 45-348.",
+   "source_id": 347313,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=347313",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "332",
+   "reference": "Duerden, J. E. (1902). Report on the actinians of Porto Rico [Investigations of the aquatic resources and fisheries of Porto Rico by the U.S. Fish Commission Steamer Fish Hawk in 1899]. Bulletin of the U.S. Fisheries Commission, 20, 2, 323-374",
+   "source_id": 418877,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=418877",
+   "use": "additional source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": "15, 16",
+   "reference": "McMurrich, J. P. (1905). A Revision of the Duchassaing and Michelotti Actinian Types in the Museum of Natural History, Turin. Bollettino del Musei di Zoologia ed Anatomia Comparata, 20(494): 1-23",
+   "source_id": 419109,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=419109",
+   "use": "additional source"
+  },
+  {
+   "doi": "10.5962/bhl.part.7033",
+   "fulltext": null,
+   "link": null,
+   "page": "561, 566",
+   "reference": "Verrill, A. E. (1900). Additions to the Anthozoa and Hydrozoa of the Bermudas. In:  Verrill, A. E., Zoology of the Bermudas, 1903. 551-572 + 3 plates.",
+   "source_id": 396876,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=396876",
+   "use": "original description"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Fautin, Daphne G. (2013). Hexacorallians of the World. ",
+   "source_id": 494,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=494",
+   "use": "context source (Hexacorallia)"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:00:20+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSourcesByAphiaID/590578"
+}

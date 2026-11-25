@@ -1,0 +1,37 @@
+# title: Table 1 cells by kind of support, per coastal region
+# question: For each region, how many taxon x area cells of Table 1 are supported by first-hand evidence (survey '*' or MOHBR 'a'), by first-hand evidence and literature, or by literature only - and how many of the latter by Agudo (1987) alone?
+# why: The unit a reuser needs is the cell (is this taxon recorded in this area, and on what?), not the code: a cell often carries several codes. One denominator, no comparison of literature with the authors' six-locality survey effort.
+PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
+PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
+PREFIX dsw:     <http://purl.org/dsw/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
+
+SELECT ?region ?support (COUNT(*) AS ?cells)
+WHERE {
+  {
+    SELECT ?taxon ?area ?region (MAX(?fh) AS ?first) (MAX(?lit) AS ?literature)
+           (MAX(?notAgudo) AS ?other)
+    WHERE {
+      ?rec dwc:basisOfRecord "MaterialCitation" ;
+           dwciri:toTaxon ?taxon ;
+           dcterms:type ?kind ;
+           dsw:atEvent/dsw:locatedAt ?area .
+      ?area dcterms:isPartOf ?regionNode .
+      ?regionNode dwc:locality ?region .
+      FILTER STRSTARTS(STR(?regionNode), "https://w3id.org/anemone-kg/location/region-")
+      OPTIONAL { ?rec dcterms:references ?ref }
+      BIND(IF(?kind IN (akv:ThisSurvey, akv:MohbrCollection), 1, 0) AS ?fh)
+      BIND(IF(?kind = akv:Literature, 1, 0) AS ?lit)
+      BIND(IF(?kind = akv:Literature && ?ref != <https://w3id.org/anemone-kg/reference/e>, 1, 0)
+           AS ?notAgudo)
+    }
+    GROUP BY ?taxon ?area ?region
+  }
+  BIND(IF(?first = 1 && ?literature = 1, "first-hand and literature",
+       IF(?first = 1, "first-hand only",
+       IF(?other = 0, "literature only: Agudo (1987) alone",
+          "literature only: other or several sources"))) AS ?support)
+}
+GROUP BY ?region ?support
+ORDER BY ?region ?support

@@ -94,9 +94,15 @@ def to_markdown(conforms: bool, res: list[dict], n_shapes: int, data_triples: in
     lines = [
         "# SHACL validation report",
         "",
-        f"**Conforms: {'yes' if conforms else 'NO'}** - {data_triples} data triples validated "
-        f"against {n_shapes} node shapes (pySHACL, advanced mode for SPARQL targets and "
-        "constraints, no inference).",
+        f"**Violations: {by_sev.get('Violation', 0)}** - {data_triples} data triples validated "
+        f"against {n_shapes} node shapes (pySHACL, `advanced=True` for SPARQL targets and "
+        "constraints, `inference='none'`, `allow_warnings=True`).",
+        "",
+        f"`sh:conforms` under the SHACL Recommendation (section 3.6): "
+        f"**{'true' if not res else 'false'}** - it is false whenever the report holds any "
+        "result, whatever its severity. The pipeline gate is weaker on purpose: with "
+        "`allow_warnings=True` pySHACL returns conforms only if there is no Violation "
+        f"(here: {'true' if conforms else 'false'}), and only Violations stop the run.",
         "",
         "| severity | results |",
         "|---|---:|",
@@ -143,8 +149,14 @@ def shacl(cfg: Config) -> None:
     )
     summary = {
         "conforms": conforms,
+        "conforms_strict": not res,
+        "validator": "pySHACL, advanced=True, inference=none, allow_warnings=True",
         "node_shapes": n_shapes,
         "results": dict(Counter(r["severity"] for r in res)),
+        "by_message": [
+            {"severity": sev, "message": msg, "count": n}
+            for (sev, msg), n in sorted(Counter((r["severity"], r["message"]) for r in res).items())
+        ],
     }
     (reports / "shacl_report.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"

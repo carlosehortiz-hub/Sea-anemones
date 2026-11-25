@@ -45,6 +45,7 @@ def test_same_text_as_the_layout(cfg, sub):
     """Only the arrangement may differ: every word of the layout's body is in the submission."""
     _, body, _, _ = render_parts(cfg)
     html, _, _ = sub
+    body = body.split('<h2 class="appendix">')[0]  # the appendix goes as additional files
     assert not (_words(body) - _words(html))
 
 

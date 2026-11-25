@@ -1,0 +1,37 @@
+{
+ "body": [
+  {
+   "AphiaID": 592855,
+   "authority": "(den Hartog, 1980)",
+   "citation": "Daly, M.; Fautin, D.G. (2013). World List of Corallimorpharia. Corynactis caribbeorum (den Hartog, 1980). Accessed through: World Register of Marine Species at: https://www.marinespecies.org/aphia.php?p=taxdetails&id=592855 on 2026-11-25",
+   "class": "Hexacorallia",
+   "family": "Corallimorphidae",
+   "genus": "Corynactis",
+   "isBrackish": null,
+   "isExtinct": null,
+   "isFreshwater": 0,
+   "isMarine": 1,
+   "isTerrestrial": 0,
+   "kingdom": "Animalia",
+   "lsid": "urn:lsid:marinespecies.org:taxname:592855",
+   "match_type": "exact",
+   "modified": "2024-01-24T19:43:41.150Z",
+   "order": "Corallimorpharia",
+   "originalNameUsageID": 101017,
+   "parentNameUsageID": 100785,
+   "phylum": "Cnidaria",
+   "rank": "Species",
+   "scientificname": "Corynactis caribbeorum",
+   "status": "unaccepted",
+   "taxonRankID": 220,
+   "unacceptreason": null,
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=592855",
+   "valid_AphiaID": 101017,
+   "valid_authority": "Den Hartog, 1980",
+   "valid_name": "Pseudocorynactis caribbeorum"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:02:11+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSynonymsByAphiaID/101017"
+}

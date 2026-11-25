@@ -1,0 +1,47 @@
+{
+ "body": [
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Fautin, Daphne G. (2013). Hexacorallians of the World. ",
+   "source_id": 494,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=494",
+   "use": "basis of record"
+  },
+  {
+   "doi": "10.11646/zootaxa.2775.1.2",
+   "fulltext": null,
+   "link": null,
+   "page": "39",
+   "reference": "Fautin, D.G. (2011). Corallimorphus niwa new species (Cnidaria: Anthozoa), New Zealand members of Corallimorphus, and redefinition of Corallimorphidae and its members. Zootaxa, 2775: 37–49.",
+   "source_id": 171067,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=171067",
+   "use": "source of synonymy"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Ocaña, O, den Hartog, J. C., and Brito A. (2017). Restoration of the genus Pseudocorynactis Den Hartog, and enmended diagnosis of the genera Corynactis Allman, 1846, Pseudocorynactis and Paracorynactis. Rev. Acad. Canar. Cienc. 29: 9-20.",
+   "source_id": 303279,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=303279",
+   "use": "taxonomy source"
+  },
+  {
+   "doi": null,
+   "fulltext": null,
+   "link": null,
+   "page": null,
+   "reference": "Fautin, Daphne G. (2013). Hexacorallians of the World. ",
+   "source_id": 494,
+   "url": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=494",
+   "use": "context source (Hexacorallia)"
+  }
+ ],
+ "retrieved_at": "2026-11-25T13:00:18+00:00",
+ "status_code": 200,
+ "url": "https://www.marinespecies.org/rest/AphiaSourcesByAphiaID/592855"
+}

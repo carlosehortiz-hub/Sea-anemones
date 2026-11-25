@@ -4,6 +4,10 @@
 #   docker run --rm anemone-kg run shacl          # one stage
 FROM python:3.12-slim
 
+# Poppler: the extraction census re-reads the tables with a second PDF engine.
+RUN apt-get update && apt-get install -y --no-install-recommends poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
 # uv from PyPI, pinned to the version that wrote uv.lock.
 RUN pip install --no-cache-dir uv==0.11.32
 
