@@ -1,7 +1,6 @@
 {
   "engine_first": "pdfplumber (pdfminer.six)",
   "engine_second": "Poppler pdftotext -bbox",
-  "poppler_version": "pdftotext version 24.02.0",
   "table1": {
     "codes_first": 344,
     "codes_second": 344,
@@ -29,7 +28,6 @@
     "disagreements": []
   },
   "rendered": {
-    "renderer": "pdftoppm version 24.02.0",
     "dpi": 150,
     "cells": 1404,
     "occupied": 263,
@@ -38,7 +36,6 @@
     "no_ink_no_code": 1141,
     "ink_without_code": [],
     "code_without_ink": [],
-    "min_ink_occupied": 10,
-    "max_ink_empty": 0
+    "separated": true
   }
 }

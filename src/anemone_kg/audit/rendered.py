@@ -119,7 +119,6 @@ def ink_census(pdf: Path, interim: Path) -> dict:
     ]
     bad = cells[cells.has_ink != cells.has_code]
     return {
-        "renderer": _version(),
         "dpi": DPI,
         "cells": len(cells),
         "occupied": int(cells.has_code.sum()),
@@ -132,12 +131,14 @@ def ink_census(pdf: Path, interim: Path) -> dict:
         "code_without_ink": bad[~bad.has_ink][["row_no", "locality_col_id", "page", "ink"]].to_dict(
             "records"
         ),
-        "min_ink_occupied": int(cells.loc[cells.has_code, "ink"].min()),
-        "max_ink_empty": int(cells.loc[~cells.has_code, "ink"].max()),
+        # pixel extremes depend on the rasteriser build; logged, not written to the reports
+        "separated": bool(
+            cells.loc[cells.has_code, "ink"].min() > cells.loc[~cells.has_code, "ink"].max()
+        ),
     }
 
 
-def _version() -> str:
+def renderer_version() -> str:
     out = subprocess.run(["pdftoppm", "-v"], capture_output=True, text=True)
     return (out.stderr or out.stdout).splitlines()[0].strip()
 

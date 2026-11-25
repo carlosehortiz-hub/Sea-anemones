@@ -337,7 +337,7 @@ SPARQL 1.1 Protocol and compared with the in-process results.
 
 The pipeline is a Python {{ f.versions.python }} package with a locked environment; Poppler, a
 system binary outside the lockfile, is installed in continuous integration and in the Docker
-image, and its version is recorded in the extraction report. Continuous integration on every
+image, and its version is written to the run log. Continuous integration on every
 pull request runs the linter and the tests, then the pipeline offline from the cached API
 responses, and fails if any regenerated output differs from the committed one.
 
@@ -363,8 +363,7 @@ the article states. The second extraction agreed with the first on all
 {{ (cen.table2.fields_checked + cen.table3.fields_checked) | thousands }} fields of Tables 2 and 3
 ({{ cen.table3.fields_blank | words }} of them blank). The rendered-image check found ink in each of the
 {{ cen.rendered.ink_and_code }} occupied cells and in none of the {{ cen.rendered.no_ink_no_code | thousands }}
-empty ones (faintest occupied cell {{ cen.rendered.min_ink_occupied }} dark pixels; darkest empty cell
-{{ cen.rendered.max_ink_empty }}). Both checks agreed at their first run; no parser was changed to reach
+empty ones. Both checks agreed at their first run; no parser was changed to reach
 agreement. Harmonisation produced the canonical tables in Table 2. Every specimen became one
 occurrence and every Table 1 code one assertion, except the {{ c.n_folded | words }} new-record codes ("N"),
 which qualify a survey code and were merged into it. Counts that cannot be rebuilt from the text

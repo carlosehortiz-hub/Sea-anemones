@@ -340,7 +340,7 @@ SPARQL 1.1 Protocol and compared with the in-process results.</p>
 <h3>Reproducibility</h3>
 <p>The pipeline is a Python 3.12 package with a locked environment; Poppler, a
 system binary outside the lockfile, is installed in continuous integration and in the Docker
-image, and its version is recorded in the extraction report. Continuous integration on every
+image, and its version is written to the run log. Continuous integration on every
 pull request runs the linter and the tests, then the pipeline offline from the cached API
 responses, and fails if any regenerated output differs from the committed one.</p>
 <p>The claim is determinism, not validity: the same PDF, cache, lockfile and Poppler version give
@@ -361,8 +361,7 @@ the article states. The second extraction agreed with the first on all
 1,612 fields of Tables&nbsp;2 and 3
 (one of them blank). The rendered-image check found ink in each of the
 263 occupied cells and in none of the 1,141
-empty ones (faintest occupied cell 10 dark pixels; darkest empty cell
-0). Both checks agreed at their first run; no parser was changed to reach
+empty ones. Both checks agreed at their first run; no parser was changed to reach
 agreement. Harmonisation produced the canonical tables in Table&nbsp;2. Every specimen became one
 occurrence and every Table&nbsp;1 code one assertion, except the two new-record codes ("N"),
 which qualify a survey code and were merged into it. Counts that cannot be rebuilt from the text

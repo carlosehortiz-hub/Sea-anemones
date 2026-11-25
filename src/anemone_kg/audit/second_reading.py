@@ -66,7 +66,7 @@ def poppler_words(pdf: Path, page: int) -> list[W]:
     ]
 
 
-def _poppler_version() -> str:
+def poppler_version() -> str:
     out = subprocess.run(["pdftotext", "-v"], capture_output=True, text=True)
     return (out.stderr or out.stdout).splitlines()[0].strip()
 
@@ -312,7 +312,6 @@ def audit(pdf: Path, interim: Path) -> dict:
     return {
         "engine_first": "pdfplumber (pdfminer.six)",
         "engine_second": "Poppler pdftotext -bbox",
-        "poppler_version": _poppler_version(),
         "table1": compare_table1(t1, second),
         "table2": compare_fixed(t2, TABLE2_FIELDS, pdf),
         "table3": compare_fixed(t3, TABLE3_FIELDS, pdf),
@@ -343,7 +342,7 @@ def to_markdown(r: dict, ink: dict | None = None) -> str:
         "was checked for ink on the rendered page.",
         "",
         f"First extraction: {r['engine_first']} (the pipeline). Second extraction: "
-        f"{r['engine_second']} ({r.get('poppler_version', '')}) with a separate parser "
+        f"{r['engine_second']} with a separate parser "
         "(`anemone_kg.audit.second_reading`). Both read the PDF's text layer, so they agree on "
         "anything wrong in that layer; the rendered-image check does not read it.",
         "",
@@ -376,7 +375,7 @@ def to_markdown(r: dict, ink: dict | None = None) -> str:
         out += [
             "## Rendered-image check of Table 1",
             "",
-            f"Pages rasterised with {ink['renderer']} at {ink['dpi']} dpi (glyphs and vector "
+            f"Pages rasterised with Poppler pdftoppm at {ink['dpi']} dpi (glyphs and vector "
             "paths). Each cell rectangle (row band x column band) is tested for ink; no text is "
             "read.",
             "",
@@ -386,8 +385,11 @@ def to_markdown(r: dict, ink: dict | None = None) -> str:
             f"| {ink['cells']} | {ink['ink_and_code']} | {ink['no_ink_no_code']} | "
             f"{len(ink['ink_without_code'])} | {len(ink['code_without_ink'])} |",
             "",
-            f"Separation: the faintest occupied cell has {ink['min_ink_occupied']} dark pixels, "
-            f"the darkest empty cell {ink['max_ink_empty']}.",
+            "Every occupied cell has more ink than any empty cell: "
+            + ("yes." if ink["separated"] else "no."),
+            "",
+            "Engine versions are written to the run log, not to this report, so that the "
+            "committed report does not depend on the Poppler build.",
             "",
         ]
     out += ["## Disagreements", ""]

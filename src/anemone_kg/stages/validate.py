@@ -240,6 +240,11 @@ def validate(cfg: Config) -> None:
         "accepted_cell_support": cells_acc.support.value_counts().sort_index().to_dict(),
     }
     census = second_reading.audit(cfg.pdf, cfg.path("interim"))
+    log.info(
+        "[validate] engines: %s; %s",
+        second_reading.poppler_version(),
+        rendered.renderer_version(),
+    )
     ink = rendered.ink_census(cfg.pdf, cfg.path("interim"))
     census["rendered"] = ink
     (reports / "extraction_audit.md").write_text(

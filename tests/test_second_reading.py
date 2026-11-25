@@ -123,7 +123,7 @@ def test_rendered_check_agrees_on_every_cell(ink):
     assert ink["cells"] == 52 * 27
     assert ink["ink_and_code"] == 263 and ink["no_ink_no_code"] == 52 * 27 - 263
     assert not ink["ink_without_code"] and not ink["code_without_ink"]
-    assert ink["max_ink_empty"] < ink["min_ink_occupied"]
+    assert ink["separated"]
 
 
 def test_rendered_check_finds_a_missed_and_an_invented_code(cfg, tmp_path):

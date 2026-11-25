@@ -2,7 +2,7 @@
 
 **Status: AGREE.** Every cell of Table 1 and every field of Tables 2 and 3 was extracted a second time, with another PDF engine and parser, and every Table 1 cell was checked for ink on the rendered page.
 
-First extraction: pdfplumber (pdfminer.six) (the pipeline). Second extraction: Poppler pdftotext -bbox (pdftotext version 24.02.0) with a separate parser (`anemone_kg.audit.second_reading`). Both read the PDF's text layer, so they agree on anything wrong in that layer; the rendered-image check does not read it.
+First extraction: pdfplumber (pdfminer.six) (the pipeline). Second extraction: Poppler pdftotext -bbox with a separate parser (`anemone_kg.audit.second_reading`). Both read the PDF's text layer, so they agree on anything wrong in that layer; the rendered-image check does not read it.
 
 | table | unit | extraction | second extraction | agree |
 |---|---|---:|---:|---:|
@@ -21,13 +21,15 @@ The census found no disagreement at its first run; no parser was changed to reac
 
 ## Rendered-image check of Table 1
 
-Pages rasterised with pdftoppm version 24.02.0 at 150 dpi (glyphs and vector paths). Each cell rectangle (row band x column band) is tested for ink; no text is read.
+Pages rasterised with Poppler pdftoppm at 150 dpi (glyphs and vector paths). Each cell rectangle (row band x column band) is tested for ink; no text is read.
 
 | cells | with a code and ink | empty and no ink | ink without a code | code without ink |
 |---:|---:|---:|---:|---:|
 | 1404 | 263 | 1141 | 0 | 0 |
 
-Separation: the faintest occupied cell has 10 dark pixels, the darkest empty cell 0.
+Every occupied cell has more ink than any empty cell: yes.
+
+Engine versions are written to the run log, not to this report, so that the committed report does not depend on the Poppler build.
 
 ## Disagreements
 
