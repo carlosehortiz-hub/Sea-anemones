@@ -43,6 +43,61 @@ montenegro2015:
   doi: 10.1080/14772000.2015.1101028
   cite_as: Montenegro et al. 2015
 
+fautin2011:
+  authors: [Fautin DG]
+  year: 2011
+  title: "Corallimorphus niwa new species (Cnidaria: Anthozoa), New Zealand members of Corallimorphus, and redefinition of Corallimorphidae and its members"
+  journal: Zootaxa
+  volume: "2775"
+  pages: "37–49"
+  doi: 10.11646/zootaxa.2775.1.2
+  cite_as: Fautin 2011
+
+ocana2017:
+  authors: [Ocaña O, den Hartog JC, Brito A]
+  year: 2017
+  title: "Restoration of the genus Pseudocorynactis den Hartog, and emended diagnosis of the genera Corynactis Allman, 1846, Pseudocorynactis and Paracorynactis"
+  journal: Revista de la Academia Canaria de Ciencias
+  journal_abbrev: Rev Acad Canar Cienc
+  volume: "29"
+  pages: "9–20"
+  note: as cited by WoRMS; not checked against the original
+  cite_as: Ocaña et al. 2017
+
+swain2015:
+  authors: [Swain TD, Schellinger JL, Strimaitis AM, Reuter KE]
+  year: 2015
+  title: "Evolution of anthozoan polyp retraction mechanisms: convergent functional morphology and evolutionary allometry of the marginal musculature in order Zoanthidea (Cnidaria: Anthozoa: Hexacorallia)"
+  journal: BMC Evolutionary Biology
+  journal_abbrev: BMC Evol Biol
+  volume: "15"
+  pages: "123"
+  doi: 10.1186/s12862-015-0406-1
+  cite_as: Swain et al. 2015
+
+iczn2017:
+  authors: [International Commission on Zoological Nomenclature]
+  year: 2017
+  title: "Opinion 2404 (Case 3633) — Dysactis pallida Agassiz in Verrill, 1864 (currently Aiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): precedence over Aiptasia diaphana (Rapp, 1829)"
+  note: title abridged
+  journal: Bulletin of Zoological Nomenclature
+  journal_abbrev: Bull Zool Nomencl
+  volume: "74"
+  pages: "130"
+  doi: 10.21805/bzn.v74.a034
+  cite_as: ICZN 2017
+
+iczn2023:
+  authors: [International Commission on Zoological Nomenclature]
+  year: 2023
+  title: "Opinion 2500 (Case 3790) – Proposed review of Opinion 2404 and reconsideration of Case 3633: Dysactis pallida Agassiz in Verrill, 1864 (currently Exaiptasia pallida; Cnidaria, Anthozoa, Hexacorallia, Actiniaria): proposed precedence over Exaiptasia diaphana (Rapp, 1829) not approved"
+  journal: Bulletin of Zoological Nomenclature
+  journal_abbrev: Bull Zool Nomencl
+  volume: "80"
+  pages: "105–106"
+  doi: 10.21805/bzn.v80.a029
+  cite_as: ICZN 2023
+
 wieczorek2012:
   authors: [Wieczorek J, Bloom D, Guralnick R, Blum S, Döring M, Giovanni R, Robertson T, Vieglais D]
   year: 2012

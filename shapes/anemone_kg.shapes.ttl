@@ -130,7 +130,8 @@ aksh:MaterialCitationShape
         sh:path akv:isNewCountryRecord ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [
         sh:path akv:evidenceTier ; sh:minCount 1 ; sh:maxCount 1 ;
-        sh:in ( akv:SurveyVouchered akv:SurveyUnvouchered akv:MuseumTraced akv:MuseumUntraced
+        sh:in ( akv:SurveyVouchered akv:SurveyVoucheredQualified akv:SurveyUnvouchered
+                akv:MuseumConfirmed akv:MuseumReidentified akv:MuseumUnconfirmed akv:MuseumUntraced
                 akv:LiteratureRecord ) ;
         sh:message "Every Table 1 assertion carries exactly one evidence tier." ] ;
     sh:sparql [
@@ -142,8 +143,11 @@ aksh:MaterialCitationShape
               $this <http://purl.org/dc/terms/type> ?k ;
                     <https://w3id.org/anemone-kg/vocab/evidenceTier> ?t .
               FILTER (!(
-                   (?k = akv:ThisSurvey && ?t IN (akv:SurveyVouchered, akv:SurveyUnvouchered))
-                || (?k = akv:MohbrCollection && ?t IN (akv:MuseumTraced, akv:MuseumUntraced))
+                   (?k = akv:ThisSurvey
+                    && ?t IN (akv:SurveyVouchered, akv:SurveyVoucheredQualified, akv:SurveyUnvouchered))
+                || (?k = akv:MohbrCollection
+                    && ?t IN (akv:MuseumConfirmed, akv:MuseumReidentified, akv:MuseumUnconfirmed,
+                              akv:MuseumUntraced))
                 || (?k = akv:Literature && ?t = akv:LiteratureRecord)
               ))
             }""" ] ;
@@ -283,10 +287,9 @@ aksh:MappingShape
     sh:property [
         sh:path sssom:similarity_score ; sh:datatype xsd:double ; sh:maxCount 1 ;
         sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ] ;
-    sh:xone (
-        [ sh:path sssom:confidence ; sh:minCount 1 ]
-        [ sh:path sssom:similarity_score ; sh:minCount 1 ]
-    ) ;
+    sh:property [
+        sh:path sssom:comment ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every mapping records how it was made." ] ;
     sh:property [ sh:path sssom:mapping_tool ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [ sh:path dcterms:created ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [

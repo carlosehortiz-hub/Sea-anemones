@@ -25,7 +25,7 @@
 <line x1="375" y1="67.0" x2="384" y2="67.0" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="480" y="34" width="82" height="66" rx="6" fill="#f3f7fd" stroke="#2a78d6" stroke-width="1.2"/>
 <text x="521.0" y="64.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0b0b0b">5 build</text>
-<text x="521.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">RDF, 20,678</text>
+<text x="521.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">RDF, 20,780</text>
 <text x="521.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">triples</text>
 <line x1="469" y1="67.0" x2="478" y2="67.0" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="574" y="34" width="82" height="66" rx="6" fill="#fff4ef" stroke="#eb6834" stroke-width="1.2"/>

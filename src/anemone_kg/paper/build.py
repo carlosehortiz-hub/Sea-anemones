@@ -95,6 +95,7 @@ def render_parts(cfg: Config) -> tuple[dict, str, dict, CitationTracker]:
         "f": f,
         "cite": tracker.cite,
         "citet": tracker.citet,
+        "ref": tracker._use,  # plain "Author year", for table cells
         "references": "@@REFS@@",
         "appendix": appendix_md(f),
     }
@@ -127,10 +128,26 @@ def _cell(v) -> str:
     return str(v).replace("|", "\\|").replace("\n", " ") if v == v and v is not None else ""
 
 
+def _codes(text: str) -> str:
+    return _cell(text).replace("this_survey", "*").replace("mohbr_collection", "a")
+
+
 def appendix_md(f: dict) -> str:
     """Tables S1 and S2 for the layouts; the submission sends them as additional files."""
-    from anemone_kg.dq.crosstable import CAUSES
+    from anemone_kg.dq.crosstable import CAUSES, KINDS
 
+    short_kind = {
+        "survey_code_no_voucher": "* without specimen",
+        "museum_code_no_specimen": "a without specimen",
+        "survey_specimen_no_code": "Table 2 specimen without *",
+        "museum_specimen_no_code": "Table 3 specimen without a",
+    }
+    short_cause = {
+        "reidentified": "re-identified",
+        "unconfirmed": "not identified",
+        "above_species": "above species (possible)",
+        "other_code": "other code",
+    }
     s1 = [
         '<div class="table-block wide" markdown="1">',
         '<p class="caption"><b>Table S1</b> Reconciliation of counts that cannot be rebuilt '
@@ -142,18 +159,31 @@ def appendix_md(f: dict) -> str:
         "",
         "</div>",
     ]
+
+    def status(r: dict) -> str:
+        if r["explained"]:
+            return "explained"
+        return "code only" if r["code_level_only"] else "unexplained"
+
     s2 = [
         '<div class="table-block wide" markdown="1">',
-        f'<p class="caption"><b>Table S2</b> The {f["xt"]["rows"]} cross-table differences '
-        "(Additional file 2): rule, locator, taxon, area, cause and evidence. <i>Link</i>: the "
-        "flag rests on a curated site-to-area link that is not an exact name.</p>",
+        '<p class="caption"><b>Table S2</b> The '
+        f"{f['xt']['cells']} taxon \u00d7 area cells in which Table 1 and the specimen "
+        "tables disagree (Additional file 2). <i>Kind</i>: what is "
+        "missing. <i>Causes</i>: every cause in the article that applies. <i>Status</i>: "
+        "explained, code only (presence agrees under another code) or unexplained. "
+        "<i>Link</i>: the discrepancy changes when uncertain site-to-area links are all "
+        "unlinked or linked.</p>",
         "",
-        "| Rule | Locator | Taxon | Area | Cause | Evidence | Link |",
+        "| Accepted name | Area | Kind | Causes | Status | Link | Table 1 codes |",
         "|---|---|---|---|---|---|---|",
         *[
-            f"| {r['rule']} | {_cell(r['source_ref']).split(', code')[0]} | *{_cell(r['taxon'])}* "
-            f"| {_cell(r['area'])} | {CAUSES[r['cause']]} | {_cell(r['evidence'])} | "
-            f"{'yes' if r['rests_on_curated_link'] else ''} |"
+            f"| *{_cell(r['taxon'])}* | {_cell(r['area'])} | "
+            + "; ".join(short_kind[k] for k in KINDS if r[k])
+            + " | "
+            + ("; ".join(short_cause[k] for k in CAUSES if r[k]) or "–")
+            + f" | {status(r)} | {'yes' if r['link_dependent'] else ''} | "
+            f"{_codes(r['table1_codes'])} |"
             for r in f["xt"]["rows_list"]
         ],
         "",

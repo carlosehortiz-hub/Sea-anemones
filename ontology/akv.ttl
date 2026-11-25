@@ -121,32 +121,51 @@ akv:evidenceTiers
     skos:definition "Graded traceability of a presence assertion to examined material, for fitness-for-use decisions."@en ;
     rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
 
+
 akv:SurveyVouchered
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
     skos:prefLabel "survey record, vouchered"@en ;
-    skos:definition "Code '*' with a specimen of the same taxon (by WoRMS accepted name) from the same area in Table 2 (Appendix 1)."@en .
+    skos:definition "Code '*' with a Table 2 specimen of the same taxon (by WoRMS accepted name) from the same area, identified without qualifier. Best tier for '*'."@en .
+
+akv:SurveyVoucheredQualified
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "survey record, voucher identified with qualifier"@en ;
+    skos:definition "Code '*' whose only matching Table 2 specimen is identified with cf. or sp."@en .
 
 akv:SurveyUnvouchered
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
     skos:prefLabel "survey record, no voucher"@en ;
-    skos:definition "Code '*' without such a specimen in Table 2. It may rest on an observation or a photograph; the article does not say."@en .
+    skos:definition "Code '*' without a Table 2 specimen of that taxon and area. The legend ('records documented in our surveys') does not say whether a specimen was taken."@en .
 
-akv:MuseumTraced
+akv:MuseumConfirmed
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "museum record, traced"@en ;
-    skos:definition "Code 'a' with a specimen of the same taxon from the same area in Table 3 (Appendix 2), under its current or previous identification."@en .
+    skos:prefLabel "museum record, identification confirmed"@en ;
+    skos:definition "Code 'a' with a Table 3 (Appendix 2) specimen of that taxon and area whose current identification agrees."@en .
+
+akv:MuseumReidentified
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "museum record, specimen re-identified"@en ;
+    skos:definition "Code 'a' traceable only to a Table 3 specimen whose previous identification is the taxon and whose current identification is another taxon."@en .
+
+akv:MuseumUnconfirmed
+    a skos:Concept ;
+    skos:inScheme akv:evidenceTiers ;
+    skos:prefLabel "museum record, specimen not identified"@en ;
+    skos:definition "Code 'a' traceable only to a Table 3 specimen whose previous identification is the taxon and which the article lists as 'not identified'."@en .
 
 akv:MuseumUntraced
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
     skos:prefLabel "museum record, not traced"@en ;
-    skos:definition "Code 'a' without such a specimen in Table 3, although the legend refers code 'a' to Appendix 2."@en .
+    skos:definition "Code 'a' without any Table 3 specimen of that taxon from that area, although the legend refers code 'a' to Appendix 2."@en .
 
 akv:LiteratureRecord
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
     skos:prefLabel "literature record"@en ;
-    skos:definition "Codes 'b'-'j': a record in an earlier publication, cited by the article and not consulted here; whether it rests on a voucher is unknown."@en .
+    skos:definition "Codes 'b'-'j': a record in an earlier publication, cited by the article and not consulted here; whether it rests on a voucher is unknown, and its name cannot be fixed to a current taxon concept."@en .

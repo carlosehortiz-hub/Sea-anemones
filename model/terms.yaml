@@ -52,6 +52,7 @@ terms:
   - {term: dwc:catalogNumber, kind: property, use: "MOHBR catalogue number"}
   - {term: dwc:otherCatalogNumbers, kind: property, use: "Field code (RG-/VE-)"}
   - {term: dwc:institutionCode, kind: property, use: "MOHBR"}
+  - {term: dwc:associatedOccurrences, kind: property, use: "Table 1 assertion -> its specimen occurrenceID(s)"}
   - {term: dwc:occurrenceRemarks, kind: property, use: "Remarks kept from canonicalisation"}
   - {term: dwc:occurrenceStatus, kind: property, use: "'present' on Table 1 assertions"}
   - {term: dwc:associatedReferences, kind: property, use: "Short citation of the work behind a Table 1 code"}
@@ -133,6 +134,7 @@ terms:
   - {term: sssom:similarity_score, kind: property, use: "Fuzzy-match score; orders candidates only"}
   - {term: sssom:similarity_measure, kind: property, use: "What the similarity score measures"}
   - {term: sssom:mapping_tool, kind: property, use: "Request URL used"}
+  - {term: sssom:comment, kind: property, use: "How the mapping was made (method)"}
   - {term: semapv:LexicalMatching, kind: individual, use: "Justification value"}
   - {term: semapv:ManualMappingCuration, kind: individual, use: "Justification value"}
 
@@ -154,8 +156,11 @@ terms:
   - {term: akv:Literature, kind: individual, use: "Table 1 codes 'b'-'j'"}
   - {term: akv:evidenceTier, kind: property, use: "Table 1 assertion -> evidence tier (derived)"}
   - {term: akv:evidenceTiers, kind: individual, use: "Concept scheme"}
-  - {term: akv:SurveyVouchered, kind: individual, use: "'*' with a Table 2 voucher"}
-  - {term: akv:SurveyUnvouchered, kind: individual, use: "'*' without a Table 2 voucher"}
-  - {term: akv:MuseumTraced, kind: individual, use: "'a' traced to Table 3"}
-  - {term: akv:MuseumUntraced, kind: individual, use: "'a' not traced to Table 3"}
+  - {term: akv:SurveyVouchered, kind: individual, use: "Evidence tier: survey record, vouchered"}
+  - {term: akv:SurveyVoucheredQualified, kind: individual, use: "Evidence tier: survey record, voucher identified with qualifier"}
+  - {term: akv:SurveyUnvouchered, kind: individual, use: "Evidence tier: survey record, no voucher"}
+  - {term: akv:MuseumConfirmed, kind: individual, use: "Evidence tier: museum record, identification confirmed"}
+  - {term: akv:MuseumReidentified, kind: individual, use: "Evidence tier: museum record, specimen re-identified"}
+  - {term: akv:MuseumUnconfirmed, kind: individual, use: "Evidence tier: museum record, specimen not identified"}
+  - {term: akv:MuseumUntraced, kind: individual, use: "Evidence tier: museum record, not traced"}
   - {term: akv:LiteratureRecord, kind: individual, use: "codes 'b'-'j'"}

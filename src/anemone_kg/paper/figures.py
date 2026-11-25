@@ -15,6 +15,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 import matplotlib
+import pandas as pd
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -274,6 +275,16 @@ def resolution_svg(f: dict, path: Path) -> None:
         ax.text(
             r["n_taxa"] + 0.8, yi, "  ".join(labels), ha="left", va="center", fontsize=7, color=INK2
         )
+    rec = f["ncbi_cov"]["n_recovered"]
+    ax.text(
+        r["n_taxa"] + 0.8,
+        y[-1],
+        f"{rec} of {r['ncbi']['unresolved']} under\nanother name class",
+        ha="left",
+        va="center",
+        fontsize=7,
+        color=INK2,
+    )
     ax.set_yticks(list(y), [lab for _, lab in services])
     ax.set_xlim(0, r["n_taxa"] + 14)
     ax.set_xticks(range(0, r["n_taxa"] + 1, 10))
@@ -294,65 +305,91 @@ def resolution_svg(f: dict, path: Path) -> None:
 
 
 def evidence_svg(f: dict, path: Path) -> None:
-    """Fig. 4: Table 1 cells (taxon x area) by kind of support, per region (query q07)."""
-    rows = f["q"]["q07"]
-    regions = ["West Coast", "Central Coast", "East Coast", "Oceanic Islands"]
+    """Fig. 4: Table 1 cells by best evidence tier, per region and by sampling (query q07)."""
+    rows = pd.DataFrame(f["q"]["q07"])
     kinds = [
-        ("first-hand only", "first-hand only (*, a)", BLUE, "white"),
-        ("first-hand and literature", "first-hand and literature", AQUA, INK),
+        (
+            "specimen listed, identification confirmed",
+            "specimen, identification confirmed",
+            BLUE,
+            "white",
+        ),
+        ("survey/museum code, no confirmed specimen", "code, no confirmed specimen", AQUA, INK),
         ("literature only: other or several sources", "literature only: other", GREY, INK),
         ("literature only: Agudo (1987) alone", "literature only: Agudo (1987)", ORANGE, INK),
     ]
-    val = {(r["region"], r["support"]): int(r["cells"]) for r in rows}
-    fig, ax = plt.subplots(figsize=(6.6, 2.3), dpi=150)
-    y = range(len(regions))[::-1]
-    left = [0] * 4
+    regions = ["West Coast", "Central Coast", "East Coast", "Oceanic Islands"]
+    n_areas = sum(f["cells"]["areas_per_region"].values())
+    groups = [(r, rows[rows.region == r]) for r in regions] + [
+        ("sampled areas", rows[rows.sampled]),
+        ("areas not sampled", rows[~rows.sampled]),
+    ]
+    labels = [f"{r} ({f['cells']['areas_per_region'][r]} areas)" for r in regions] + [
+        f"sampled ({f['cells']['sampled_areas']} areas)",
+        f"not sampled ({n_areas - f['cells']['sampled_areas']} areas)",
+    ]
+    ypos = [7, 6, 5, 4, 2, 1]
+    fig, ax = plt.subplots(figsize=(6.6, 2.9), dpi=150)
+    left = [0] * len(groups)
     for key, label, col, tcol in kinds:
-        vals = [val.get((reg, key), 0) for reg in regions]
+        vals = [int(g.loc[g.best == key, "cells"].sum()) for _, g in groups]
         ax.barh(
-            list(y),
+            ypos,
             vals,
             left=left,
             color=col,
-            height=0.56,
+            height=0.62,
             label=label,
             edgecolor="white",
             linewidth=1.5,
         )
-        for yi, v, lft in zip(y, vals, left, strict=True):
-            if v >= 7:
+        for yi, v, lft in zip(ypos, vals, left, strict=True):
+            if v >= 5:
                 ax.text(
                     lft + v / 2,
                     yi,
                     str(v),
                     ha="center",
                     va="center",
-                    fontsize=7.5,
+                    fontsize=7.3,
                     color=tcol,
                     fontweight="bold",
                 )
+            elif v:
+                ax.text(
+                    lft + v / 2,
+                    yi + 0.42,
+                    str(v),
+                    ha="center",
+                    va="bottom",
+                    fontsize=6.4,
+                    color=INK2,
+                )
         left = [a + b for a, b in zip(left, vals, strict=True)]
-    for yi, reg, total in zip(y, regions, left, strict=True):
-        lit = f["cells"]["by_region"][reg]
+    for yi, (_, g), total in zip(ypos, groups, left, strict=True):
+        lo = int(g.loc[g.best.str.startswith("literature"), "cells"].sum())
+        sp = int(g.loc[g.best.str.startswith("specimen"), "cells"].sum())
         ax.text(
             total + 2,
             yi,
-            f"n = {total}; {lit['pct_lit_only']}% literature only",
+            f"n = {total}; {round(100 * sp / total)}% specimen, "
+            f"{round(100 * lo / total)}% literature only",
             ha="left",
             va="center",
-            fontsize=7,
+            fontsize=6.8,
             color=INK2,
         )
-    ax.set_yticks(list(y), regions)
-    ax.set_xlim(0, max(left) * 1.55)
-    ax.set_xlabel("taxon \u00d7 area cells of Table 1 (one cell may carry several codes)")
+    ax.axhline(3, color=RULE, linewidth=0.8)
+    ax.set_yticks(ypos, labels)
+    ax.set_xlim(0, max(left) * 1.6)
+    ax.set_xlabel("taxon \u00d7 area cells of Table 1 (printed name \u00d7 area), by best evidence")
     _finish(ax)
     ax.legend(
         ncol=2,
         frameon=False,
         loc="lower center",
         bbox_to_anchor=(0.42, 1.0),
-        fontsize=7.2,
+        fontsize=7.0,
         handlelength=1.2,
     )
     fig.tight_layout()

@@ -66,6 +66,11 @@ def poppler_words(pdf: Path, page: int) -> list[W]:
     ]
 
 
+def _poppler_version() -> str:
+    out = subprocess.run(["pdftotext", "-v"], capture_output=True, text=True)
+    return (out.stderr or out.stdout).splitlines()[0].strip()
+
+
 def _norm(s: str) -> str:
     return unicodedata.normalize("NFKC", s).replace("’", "'").replace("”", '"')
 
@@ -205,66 +210,70 @@ def _row_words(pdf: Path, pages: list[int]) -> dict[int, list[W]]:
     return out
 
 
-def _locate(field: str, words: list[W], used: set[int]) -> float | None:
-    """x of the field's first token if every token is found among unused row words."""
-    tokens = _norm(field).split()
-    xs = []
-    for tok in tokens:
-        hit = next(
-            (
-                i
-                for i, w in enumerate(words)
-                if i not in used
-                and (_norm(w.text) == tok or (len(tok) >= 4 and tok in _norm(w.text)))
-            ),
-            None,
-        )
-        if hit is None:
-            # The two engines may split one printed token differently (e.g. 2.51" vs 2.51 ").
-            joined = "".join(_norm(w.text) for i, w in enumerate(words) if i not in used)
-            if len(tok) >= 3 and tok in joined:
-                xs.append(None)
-                continue
-            return None
-        used.add(hit)
-        xs.append(words[hit].x0)
-    first = next((x for x in xs if x is not None), None)
-    return first if first is not None else -1.0
+def _column_lefts(pdf: Path, page: int) -> list[float]:
+    """Left edges of the data columns of Table 2 or 3, from Poppler's header words."""
+    words = poppler_words(pdf, page)
+    title = min(w.y0 for w in words if w.text == "Table" and w.x0 < ROW_NO_MAX_X)
+    first = min(w.y0 for w in words if w.x1 < ROW_NO_MAX_X and w.text.isdigit() and w.y0 > title)
+    hdr = sorted(
+        (w for w in words if title + 5 < w.y0 < first - 3 and w.text != "No."),
+        key=lambda w: w.x0,
+    )
+    lefts: list[float] = []
+    prev = None
+    for w in hdr:
+        if prev is None or w.x0 - prev.x1 > SEGMENT_GAP:
+            lefts.append(w.x0)
+        prev = w
+    return lefts
+
+
+def _squash(text: str) -> str:
+    return "".join(_norm(text).split())
 
 
 def compare_fixed(df: pd.DataFrame, fields: list[str], pdf: Path) -> dict:
+    """Field-aligned and symmetric: for every field, the printed text inside that column's
+    horizontal band must equal the extracted value (whitespace ignored), blanks included.
+
+    A value moved into an adjacent empty field, a value read from another row, two swapped
+    columns and a changed character all fail. Agreement on a blank field counts as agreement.
+    """
     pages = sorted(df.source_page.unique().tolist())
     by_row = _row_words(pdf, pages)
-    checked = agree = 0
+    lefts = _column_lefts(pdf, pages[0])
+    if len(lefts) != len(fields):
+        raise ValueError(f"{len(lefts)} header columns for {len(fields)} fields")
+    bounds = [
+        (lefts[i] - 8 if i == 0 else lefts[i] - 4, lefts[i + 1] - 4 if i + 1 < len(lefts) else 1e9)
+        for i in range(len(lefts))
+    ]
+    checked = agree = blanks = 0
     problems = []
     for rec in df.to_dict("records"):
-        words = by_row.get(int(rec["no"]), [])
-        used: set[int] = set()
-        last_x = -1.0
-        for f in fields:
+        words = sorted(by_row.get(int(rec["no"]), []), key=lambda w: (round(w.y0), w.x0))
+        for f, (lo, hi) in zip(fields, bounds, strict=True):
             val = rec[f]
-            if pd.isna(val) or str(val).strip() == "":
-                continue
+            extracted = "" if pd.isna(val) else _squash(str(val))
+            printed = _squash(" ".join(w.text for w in words if lo <= w.x0 < hi))
             checked += 1
-            x = _locate(str(val), words, used)
-            ok = x is not None and (x < 0 or x > last_x - 1)
-            if ok:
+            blanks += extracted == ""
+            if extracted == printed:
                 agree += 1
-                if x is not None and x >= 0:
-                    last_x = x
             else:
                 problems.append(
                     {
                         "row": int(rec["no"]),
                         "field": f,
-                        "extracted": str(val),
-                        "printed_row": " ".join(w.text for w in words),
+                        "extracted": "" if pd.isna(val) else str(val),
+                        "printed_in_column": printed,
                     }
                 )
     return {
         "rows": len(df),
         "rows_second": len(by_row),
         "fields_checked": checked,
+        "fields_blank": blanks,
         "fields_agree": agree,
         "disagreements": problems,
     }
@@ -303,6 +312,7 @@ def audit(pdf: Path, interim: Path) -> dict:
     return {
         "engine_first": "pdfplumber (pdfminer.six)",
         "engine_second": "Poppler pdftotext -bbox",
+        "poppler_version": _poppler_version(),
         "table1": compare_table1(t1, second),
         "table2": compare_fixed(t2, TABLE2_FIELDS, pdf),
         "table3": compare_fixed(t3, TABLE3_FIELDS, pdf),
@@ -313,42 +323,83 @@ def n_disagreements(result: dict) -> int:
     return sum(len(result[t]["disagreements"]) for t in ("table1", "table2", "table3"))
 
 
-def to_markdown(r: dict) -> str:
+SHARED_KNOWLEDGE = [
+    "the page ranges of Tables 1-3",
+    "rows are anchored on the row numbers printed in the left margin",
+    "Table 1 has two column blocks; columns are numbered left to right within a block",
+    "the legend's code set (a-j, *, N)",
+    "the printed column order of Tables 2 and 3 (from their header words)",
+]
+
+
+def to_markdown(r: dict, ink: dict | None = None) -> str:
     t1, t2, t3 = r["table1"], r["table2"], r["table3"]
-    status = "AGREE" if n_disagreements(r) == 0 else "DISAGREE"
+    status = "AGREE" if n_disagreements(r) == 0 and not _ink_bad(ink) else "DISAGREE"
     out = [
-        "# Extraction census: second, independent transcription",
+        "# Extraction census: a second automated extraction and a rendered-image check",
         "",
-        f"**Status: {status}** - every occupied cell of Table 1 and every field of Tables 2 "
-        "and 3 was read a second time, with a different PDF engine and parser, and compared "
-        "with the extraction.",
+        f"**Status: {status}.** Every cell of Table 1 and every field of Tables 2 and 3 was "
+        "extracted a second time, with another PDF engine and parser, and every Table 1 cell "
+        "was checked for ink on the rendered page.",
         "",
-        f"First reading: {r['engine_first']} (the pipeline's extraction). "
-        f"Second reading: {r['engine_second']} with a separate parser "
-        "(`anemone_kg.audit.second_reading`).",
+        f"First extraction: {r['engine_first']} (the pipeline). Second extraction: "
+        f"{r['engine_second']} ({r.get('poppler_version', '')}) with a separate parser "
+        "(`anemone_kg.audit.second_reading`). Both read the PDF's text layer, so they agree on "
+        "anything wrong in that layer; the rendered-image check does not read it.",
         "",
-        "| table | unit | extraction | second reading | agree |",
+        "| table | unit | extraction | second extraction | agree |",
         "|---|---|---:|---:|---:|",
         f"| Table 1 | occupied cells | {t1['cells_first']} | {t1['cells_second']} | "
         f"{t1['cells_agree']} |",
         f"| Table 1 | evidence codes | {t1['codes_first']} | {t1['codes_second']} | "
         f"{t1['codes_agree']} |",
         f"| Table 2 | rows | {t2['rows']} | {t2['rows_second']} | - |",
-        f"| Table 2 | non-empty fields | {t2['fields_checked']} | - | {t2['fields_agree']} |",
+        f"| Table 2 | fields ({t2['fields_blank']} blank) | {t2['fields_checked']} | - | "
+        f"{t2['fields_agree']} |",
         f"| Table 3 | rows | {t3['rows']} | {t3['rows_second']} | - |",
-        f"| Table 3 | non-empty fields | {t3['fields_checked']} | - | {t3['fields_agree']} |",
+        f"| Table 3 | fields ({t3['fields_blank']} blank) | {t3['fields_checked']} | - | "
+        f"{t3['fields_agree']} |",
         "",
-        "A Table 1 code agrees when both readings put it in the same row and column. A field "
-        "of Tables 2 and 3 agrees when all its tokens are found in the same printed row and "
-        "the fields appear left to right in column order. The check detects a column shift, "
-        "a value read into the wrong row, two columns swapped and a changed digit "
-        "(tests/test_second_reading.py injects each of these).",
+        "A Table 1 code agrees when both extractions put it in the same row and column. A "
+        "field of Tables 2 and 3 agrees when the text printed inside that column's band of the "
+        "same row equals the extracted value (whitespace ignored), blanks included.",
         "",
-        "## Disagreements",
+        "The two extractions share this layout knowledge: "
+        + "; ".join(SHARED_KNOWLEDGE)
+        + ". They share no code, PDF engine, word segmentation, column building or row grouping.",
+        "",
+        "The census found no disagreement at its first run; no parser was changed to reach "
+        "agreement.",
         "",
     ]
+    if ink:
+        out += [
+            "## Rendered-image check of Table 1",
+            "",
+            f"Pages rasterised with {ink['renderer']} at {ink['dpi']} dpi (glyphs and vector "
+            "paths). Each cell rectangle (row band x column band) is tested for ink; no text is "
+            "read.",
+            "",
+            "| cells | with a code and ink | empty and no ink | ink without a code | "
+            "code without ink |",
+            "|---:|---:|---:|---:|---:|",
+            f"| {ink['cells']} | {ink['ink_and_code']} | {ink['no_ink_no_code']} | "
+            f"{len(ink['ink_without_code'])} | {len(ink['code_without_ink'])} |",
+            "",
+            f"Separation: the faintest occupied cell has {ink['min_ink_occupied']} dark pixels, "
+            f"the darkest empty cell {ink['max_ink_empty']}.",
+            "",
+        ]
+    out += ["## Disagreements", ""]
     rows = [{"table": "Table 1", **d} for d in t1["disagreements"]] + [
         {"table": t, **d} for t, k in (("Table 2", t2), ("Table 3", t3)) for d in k["disagreements"]
     ]
+    if ink:
+        rows += [{"table": "Table 1 (image)", **d} for d in ink["ink_without_code"]]
+        rows += [{"table": "Table 1 (image)", **d} for d in ink["code_without_ink"]]
     out.append(pd.DataFrame(rows).to_markdown(index=False) if rows else "None.")
     return "\n".join(out) + "\n"
+
+
+def _ink_bad(ink: dict | None) -> bool:
+    return bool(ink) and bool(ink["ink_without_code"] or ink["code_without_ink"])

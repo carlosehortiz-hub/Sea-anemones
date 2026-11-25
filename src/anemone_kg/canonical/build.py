@@ -298,7 +298,9 @@ class CanonicalBuilder:
                 self.ledger.note("R_CATALOG", r.source_ref, remark)
             event_date = trim(dates.get(r.national_park))
             self.ledger.hit("R_DATE_METHODS")
-            oid = mint_id(self.ns, "occurrence", catalog or f"field:{r.field_code}")
+            # Natural key: the field code, which every Table 2 specimen has from collection on.
+            # A catalogue number assigned later (e.g. 'In progress') must not change the id.
+            oid = mint_id(self.ns, "occurrence", f"field:{r.field_code}")
             occ.append(
                 {
                     "occurrence_id": oid,
@@ -360,7 +362,10 @@ class CanonicalBuilder:
                 self.ledger.note(
                     "R_PERSON", r.source_ref, f"{r.verbatim_collector!r} -> {people!r}"
                 )
-            oid = mint_id(self.ns, "occurrence", catalog or f"table3:{r.no}")
+            # Natural key: institution + catalogue number (never the identification).
+            oid = mint_id(
+                self.ns, "occurrence", f"MOHBR:{catalog}" if catalog else f"table3:{r.no}"
+            )
             occ.append(
                 {
                     "occurrence_id": oid,

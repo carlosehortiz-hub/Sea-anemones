@@ -1,0 +1,70 @@
+{
+ "DOI": "10.1186/s12862-015-0406-1",
+ "author": [
+  {
+   "affiliation": [],
+   "family": "Swain",
+   "given": "Timothy D.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "first"
+  },
+  {
+   "affiliation": [],
+   "family": "Schellinger",
+   "given": "Jennifer L.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Strimaitis",
+   "given": "Anna M.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  },
+  {
+   "affiliation": [],
+   "family": "Reuter",
+   "given": "Kim E.",
+   "role": [
+    {
+     "role": "author",
+     "vocabulary": "crossref"
+    }
+   ],
+   "sequence": "additional"
+  }
+ ],
+ "container-title": [
+  "BMC Evolutionary Biology"
+ ],
+ "issued": {
+  "date-parts": [
+   [
+    2015,
+    6,
+    30
+   ]
+  ]
+ },
+ "page": null,
+ "title": [
+  "Evolution of anthozoan polyp retraction mechanisms: convergent functional morphology and evolutionary allometry of the marginal musculature in order Zoanthidea (Cnidaria: Anthozoa: Hexacorallia)"
+ ],
+ "volume": "15"
+}

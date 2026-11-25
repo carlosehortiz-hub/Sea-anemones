@@ -6,7 +6,7 @@ This project is a reproducible Python pipeline. It takes the species inventory o
 paper and turns it into four things:
 
 - a **harmonised, quality-checked dataset**, aligned with Darwin Core and described by a LinkML schema;
-- **persistent identifiers** resolved against WoRMS, GBIF, NCBI Taxonomy and ENVO, with every match type, confidence value and API response recorded;
+- **persistent identifiers** resolved against WoRMS, GBIF, NCBI Taxonomy and ENVO, with every match method and API response recorded;
 - an **RDF knowledge graph** (Turtle and JSON-LD) that reuses Darwin Core, Darwin-SW, PROV-O, SKOS and SSSOM and is validated with **SHACL**;
 - documented **SPARQL** and **SQL (DuckDB)** queries over the graph and the tables.
 
@@ -92,7 +92,7 @@ choice and the alternative it replaced. Some examples:
 - SKOS links instead of `owl:sameAs`, because the paper's names must not be merged with today's names;
 - Darwin-SW for the links Darwin Core leaves undefined;
 - one Organism node per specimen, because `dsw:identifies` has range Organism;
-- SSSOM mapping records, so every identifier says how, when and with what confidence it was matched.
+- SSSOM mapping records, so every identifier says how and when it was matched.
 
 All **105 terms** the graph may use are listed in [`model/terms.yaml`](model/terms.yaml). Each is
 verified against a cached copy of the vocabulary that defines it: TDWG term lists, `dsw.owl`,
@@ -168,19 +168,22 @@ The checks are code, and critical failures stop the pipeline before any RDF is w
 **Result: PASS, with 0 critical failures and 46 warning rows.** Every rule, critical or
 warning, has a positive control: a test injects a fault and requires the rule to report it.
 
-- **Extraction census** ([`reports/extraction_audit.md`](reports/extraction_audit.md)): every cell
-  of Table 1 and every field of Tables 2 and 3 is read a second time with another PDF engine
-  (Poppler) and parser. Agreement: 263/263 cells, 344/344 codes,
-  1,611 specimen fields, 0 disagreements. A disagreement stops the pipeline.
-- **Cross-table review** ([`reports/cross_table_review.md`](reports/cross_table_review.md)): each of
-  the 33 W08-W11 rows gets a cause. 14 are explained (coarse identification, another code,
-  re-identification, unconfirmed identification) and 19 differ as printed. No row shows the
-  signature of a column shift, and the counts are re-run with every uncertain site link
-  unlinked and linked. For example, Table 1 keeps code `a` for *Homostichanthus duerdeni* at
-  Playa Azul, although the only MOHBR specimen from there with that previous name (Table 3,
-  row 26) is now identified as *Actinoporus elegans*.
-- **Evidence tiers**: every Table 1 assertion is graded (survey vouchered or not, museum record
-  traced to Table 3 or not, literature) and carries `akv:evidenceTier` in the graph.
+- **Extraction checks** ([`reports/extraction_audit.md`](reports/extraction_audit.md)): a second
+  automated extraction with another PDF engine (Poppler) and parser agrees on
+  263/263 cells, 344/344 codes and
+  1,612 specimen fields (field-aligned, blanks included). A rendered-image check, which reads
+  no text, finds ink in exactly the 263 occupied cells of the 1,404 cells of Table 1. Any
+  disagreement stops the pipeline.
+- **Cross-table review** ([`reports/cross_table_review.md`](reports/cross_table_review.md)): Table 1
+  and the specimen tables are compared per accepted-name × area cell, both directions merged.
+  43 cells disagree: 11 are explained by the article (re-identification, not identified,
+  identification above species level), 9 differ only in the code, and 23 remain
+  (11 of them survey codes without a voucher, which the legend does not require). Causes are
+  multi-label; dependence on the 22 curated uncertain locality links is reported as a
+  condition (14 cells), with the comparison re-run with all of them unlinked and linked.
+- **Evidence tiers**: every Table 1 assertion is graded by traceability *and* the identification
+  status of the specimen behind it (`akv:evidenceTier`), and points to that specimen with
+  `dwc:associatedOccurrences`.
 
 ## SHACL validation
 
@@ -189,7 +192,7 @@ required properties, cardinalities, datatypes, identifier formats and provenance
 SHACL-SPARQL for rules that a path cannot express, such as one current identification per
 organism, latitude/longitude pairs, and every mapping record matching an asserted SKOS triple.
 
-**Result: 20,678 triples were checked, with 0 violations, 9 warnings and 1 info**
+**Result: 20,780 triples were checked, with 0 violations, 9 warnings and 1 info**
 ([`reports/shacl_report.md`](reports/shacl_report.md)). The pipeline gate is "no Violation"
 (pySHACL `allow_warnings=True`); under the SHACL Recommendation `sh:conforms` is false whenever
 any result is reported, and the report says so. The warnings are source gaps the data-quality
@@ -229,15 +232,18 @@ Excerpt:
 **Provenance of one specimen** (`q05`, MOHBR I-547): Table 3, row 2, p. 29, produced by stage
 `canonicalize`, then:
 
-- WoRMS `888637`, exact match, LexicalMatching, confidence 1.0;
+- WoRMS `888637`, exact match, LexicalMatching;
 - GBIF `8161075`, exact match;
-- NCBI `2652724`, close match through the WoRMS accepted name.
+- NCBI `2652724`, close match through the WoRMS accepted name (the method records that the chain
+  crosses no genus change).
 
-Each link records the request URL and the retrieval time.
+Each link records how it was made (`sssom:comment`), the request URL and the retrieval time.
+Exact matches carry no confidence value.
 
 **What the distribution rests on** (`q07`): of the 261 taxon × area cells of Table 1,
-165 (63%) are supported by literature only, and 156 (60%) by Agudo (1987) alone, a
-monograph cited by the paper and not consulted here. The unit is the cell, not the code.
+70 (27%) rest on a listed specimen whose identification the paper confirms, 165 (63%) on
+literature only, and 156 (60%) on Agudo (1987) alone. In the 6 sampled areas 36% of cells are
+literature-only; elsewhere 80%.
 
 ## How to run
 

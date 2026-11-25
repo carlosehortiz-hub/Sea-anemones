@@ -1,4 +1,4 @@
-"""Cross-table review: every W08-W11 flag gets a cause; link sensitivity; evidence tiers."""
+"""Cross-table review per cell; evidence tiers by identification status; link scenarios."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ import pytest
 
 from anemone_kg.config import load_config
 from anemone_kg.dq import crosstable as ct
-from anemone_kg.dq.rules import RULES
 from anemone_kg.stages.validate import load_tables
 
 
@@ -27,62 +26,82 @@ def cw(cfg):
 
 
 @pytest.fixture(scope="module")
-def review(t, cw):
-    return ct.classify(t, cw)
+def disc(t, cw):
+    return ct.discrepancies(t, cw)
 
 
-def test_every_flag_has_exactly_one_known_cause(t, review):
-    n = sum(len(r.check(t)) for r in RULES if r.rule_id in ct.RULES)
-    assert len(review) == n == 33
-    assert set(review.cause) <= set(ct.CAUSES)
+def test_one_definition_of_uncertain_link(cw):
+    """Review finding (round 2): three different notions of 'uncertain link' were used."""
+    un = ct.uncertain_links(cw)
+    assert len(un) == 22
+    assert set(un.rule) == {"names_area", "article_variant", "geographic_knowledge"}
 
 
-def test_reidentification_is_found_across_a_misspelt_previous_name(review):
-    """Bug once: previous identifications were compared by name-usage id, so the misspelt
-    'Homostichantus duerdenii' in Table 3 did not meet 'Homostichanthus duerdeni' in Table 1."""
-    r = review[(review.rule == "W10") & (review.taxon == "Homostichanthus duerdeni")]
-    assert r.cause.item() == "reidentified"
-    assert "Actinoporus elegans" in r.evidence.item()
+def test_cells_are_unique_and_every_cell_has_a_kind(disc):
+    assert not disc.duplicated(["aphia_id", "area"]).any()
+    assert disc[list(ct.KINDS)].any(axis=1).all()
 
 
-def test_family_level_voucher_only_explains_taxa_of_that_family(t, review):
-    """Bug once: an Actiniidae specimen was offered as the possible voucher of zoantharians."""
-    fam = dict(zip(t["taxon"].scientific_name, t["taxon"].family, strict=True))
-    above = review[(review.rule == "W08") & (review.cause == "above_species")]
-    assert set(above.taxon.map(fam)) == {"Actiniidae"}
+def test_one_cell_is_not_filed_twice(disc):
+    """Bug once (round 2): the Bunodeopsis antilliensis Morrocoy cell was filed as explained in
+    one row (W09) and unexplained in another (W10). As one cell it carries both kinds, and the
+    same presence under another code is a code-level difference, not an explanation."""
+    r = disc[(disc.taxon == "Bunodeopsis antilliensis") & disc.area.str.startswith("Morrocoy")]
+    assert len(r) == 1
+    assert r.museum_code_no_specimen.item() and r.survey_specimen_no_code.item()
+    assert r.code_level_only.item() and not r.explained.item()
 
 
-def test_no_column_shift_signature(review):
-    assert not review.shift_pair.any()
+def test_area_unconditioned_comparison_reaches_areas_without_specimens(disc):
+    """W08/W10 only compare areas the specimen table covers; the cell review does not."""
+    assert disc.area_without_specimens.any()
 
 
-def test_sensitivity_brackets_the_curated_counts(t, cw):
-    s = ct.sensitivity(t, cw).set_index("scenario")
-    curated = s.loc["as_curated"]
-    assert (curated == [13, 7, 5, 8]).all()
+def test_link_dependence_is_a_condition_not_a_cause(disc):
+    assert "link" not in ct.CAUSES
+    assert disc.link_dependent.any()
+
+
+def test_reidentification_both_sides(disc):
+    """The Playa Azul re-identification appears on the code side and the specimen side."""
+    pa = disc[disc.area.str.startswith("Playa Azul") & disc.reidentified]
+    assert set(pa.taxon) == {"Homostichanthus duerdeni", "Actinoporus elegans"}
+
+
+def test_scenarios_bracket_the_curated_count(t, cw, disc):
+    s = ct.scenario_counts(t, cw).set_index("scenario")
+    assert s.loc["as_curated", "cells"] == len(disc)
     assert s.attrs["uncertain_links"] == 22
 
 
-def test_relink_changes_only_uncertain_sites(t, cw):
-    linked = ct.relink(t, cw, "all_linked")["locality"]
-    before = t["locality"].set_index("locality_id").parent_locality_id
-    after = linked.set_index("locality_id").parent_locality_id
-    changed = before.index[before.fillna("") != after.fillna("")]
-    assert len(changed) == 3  # the three links the curator rejected
-
-
-def test_evidence_tiers_cover_every_assertion(t):
+def test_tiers_depend_on_identification_status(t):
+    """Review finding (round 2): a museum code traced only through a previous identification
+    was ranked with confirmed specimens."""
     tiers = ct.evidence_tiers(t)
     assert tiers.notna().all() and len(tiers) == len(t["distribution"])
-    counts = tiers.value_counts()
-    assert counts["LiteratureRecord"] == 229
-    assert counts["SurveyVouchered"] + counts["SurveyUnvouchered"] == 57
-    assert counts["MuseumTraced"] + counts["MuseumUntraced"] == 56
+    c = tiers.value_counts()
+    assert c["MuseumReidentified"] >= 1 and c["MuseumUnconfirmed"] >= 1
+    assert sum(c.get(k, 0) for k in c.index if k.startswith("Museum")) == 56
+    assert sum(c.get(k, 0) for k in c.index if k.startswith("Survey")) == 57
+    assert c["LiteratureRecord"] == 229
 
 
-def test_cell_support_counts_cells_not_codes(t):
+def test_tier_and_rule_counts_reconcile(t):
+    """15 unvouchered survey codes vs W08 = 13: the 2 others lie in areas with no Table 2
+    specimen at all, which W08 does not compare."""
+    x = ct.tier_rule_crosstab(t)
+    unv = x[x.tier == "SurveyUnvouchered"]
+    assert unv[unv.flagged].assertions.sum() == 13
+    assert unv[~unv.area_has_specimens].assertions.sum() == 2
+
+
+def test_best_tier_partitions_the_cells(t):
     cells = ct.cell_support(t)
+    assert set(cells.best_tier) <= set(ct.BEST_TIER)
     d = t["distribution"]
-    located = d[d.locality_id.notna()]
-    assert len(cells) == located.groupby(["taxon_id", "locality_id"]).ngroups
-    assert len(cells) < len(located)
+    assert len(cells) == d[d.locality_id.notna()].groupby(["taxon_id", "locality_id"]).ngroups
+
+
+def test_accepted_name_cells_merge_synonyms(t):
+    by_name, by_acc = ct.cell_support(t), ct.cell_support(t, by="accepted")
+    assert len(by_acc) < len(by_name)

@@ -172,3 +172,52 @@ are only the page ranges and the printed column order.
 One curated row (Isla de Cubagua, `mappings/event_dates.csv`) records information from the
 curator, a co-author of the source, not from the article. It is used only to justify leaving
 dates empty and is marked as not traceable to the PDF.
+
+## Decisions added in the second review round
+
+### What an exactMatch chain licenses
+
+`skos:exactMatch` is transitive and its subjects and objects are `skos:Concept`s. A reasoner
+that loads the SKOS axioms would infer, from article name → WoRMS record → GBIF usage, that the
+article's name and the GBIF usage match exactly and that all three are concepts. At the level of
+names both inferences hold. They license nothing about circumscription, and the graph does not
+import the SKOS axioms. NCBI fallback links (`skos:closeMatch`, not transitive) join the
+article's name to the node that carries the WoRMS accepted name; their method records the NCBI
+name class and whether the chain crosses a genus change.
+
+### Method instead of confidence
+
+Exact and accepted-name matches carry no `sssom:confidence`: a constant 1 would claim more than
+a lexical match, and four exact matches needed a homonym resolved by the printed authority. Every
+mapping instead carries its method in `sssom:comment` ("exact name, unique within Cnidaria",
+"homonym resolved by the authority printed in the article", "NCBI fallback ... crosses a genus
+change: yes"). Accepted fuzzy matches keep their score as `sssom:similarity_score`.
+
+### Evidence tiers depend on identification status
+
+A museum code traced only through a specimen's *previous* identification is not ranked with one
+whose *current* identification agrees: `MuseumConfirmed`, `MuseumReidentified`,
+`MuseumUnconfirmed`, `MuseumUntraced`; likewise `SurveyVouchered`, `SurveyVoucheredQualified`
+(cf./sp.), `SurveyUnvouchered`; and `LiteratureRecord`. Assertions backed by a confirmed specimen
+point to it with `dwc:associatedOccurrences`, so specimens and Table 1 assertions are never
+counted together.
+
+### Cross-table comparison per cell
+
+Discrepancies between Table 1 and the specimen tables are counted per accepted name × area,
+both directions merged and every area included. Causes are multi-label; "the same presence
+under another code" is a code-level difference, not an explanation; dependence on a curated
+locality link is a condition. There is one definition of an uncertain link: a Table 3 crosswalk
+row whose rule is not `exact` or `park_name`.
+
+### Stable specimen keys
+
+A collected specimen is keyed on its field code, a museum specimen on `MOHBR:` + catalogue
+number. Neither key contains the identification, and a catalogue number assigned later cannot
+change the identifier of a collected specimen.
+
+### A check that does not read the text layer
+
+The two extractions read the same text layer. `anemone_kg.audit.rendered` rasterises Table 1 and
+tests every cell rectangle for ink, so a code missing from the text layer, or drawn as a path,
+would be caught as ink without a code.

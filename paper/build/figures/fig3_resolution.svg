@@ -296,6 +296,10 @@ L 466.56 102.144375
    <g id="text_19">
     <text style="font-size: 7px; font-family: 'Liberation Sans'; text-anchor: start; fill: #52514e" x="396.73288" y="65.262227" transform="rotate(-0 396.73288 65.262227)">2 not resolved</text>
    </g>
+   <g id="text_20">
+    <text style="font-size: 7px; font-family: 'Liberation Sans'; fill: #52514e" transform="translate(396.73288 88.934201)">3 of 17 under</text>
+    <text style="font-size: 7px; font-family: 'Liberation Sans'; fill: #52514e" transform="translate(396.73288 96.552854)">another name class</text>
+   </g>
    <g id="legend_1">
     <g id="patch_16">
      <path d="M 86.607875 16.761797 
@@ -305,7 +309,7 @@ L 86.607875 11.721797
 z
 " style="fill: #2a78d6; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
     </g>
-    <g id="text_20">
+    <g id="text_21">
      <text style="font-size: 7.2px; font-family: 'Liberation Sans'; text-anchor: start" x="101.007875" y="16.761797" transform="rotate(-0 101.007875 16.761797)">exact name (lexical)</text>
     </g>
     <g id="patch_17">
@@ -316,7 +320,7 @@ L 173.667125 11.721797
 z
 " style="fill: #eb6834; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
     </g>
-    <g id="text_21">
+    <g id="text_22">
      <text style="font-size: 7.2px; font-family: 'Liberation Sans'; text-anchor: start" x="188.067125" y="16.761797" transform="rotate(-0 188.067125 16.761797)">curated variant</text>
     </g>
     <g id="patch_18">
@@ -327,7 +331,7 @@ L 244.3295 11.721797
 z
 " style="fill: #1baf7a; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
     </g>
-    <g id="text_22">
+    <g id="text_23">
      <text style="font-size: 7.2px; font-family: 'Liberation Sans'; text-anchor: start" x="258.7295" y="16.761797" transform="rotate(-0 258.7295 16.761797)">via WoRMS accepted name</text>
     </g>
     <g id="patch_19">
@@ -338,7 +342,7 @@ L 356.47175 11.721797
 z
 " style="fill: #b9b8b3; stroke: #ffffff; stroke-width: 1.5; stroke-linejoin: miter"/>
     </g>
-    <g id="text_23">
+    <g id="text_24">
      <text style="font-size: 7.2px; font-family: 'Liberation Sans'; text-anchor: start" x="370.87175" y="16.761797" transform="rotate(-0 370.87175 16.761797)">not resolved</text>
     </g>
    </g>

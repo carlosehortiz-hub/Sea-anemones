@@ -55,7 +55,7 @@ def relation(name: str, rec: pd.Series, valid_name: str | None) -> str:
     if status == "nomen nudum":
         return "nomen nudum: unavailable name; the accepted name is the WoRMS editors' judgement"
     if status == "alternative representation":
-        return "alternative representation (priority pending an ICZN ruling)"
+        return "alternative representation in WoRMS (see text: ICZN Opinion 2500, 2023)"
     g1, *e1 = name.split()
     g2, *e2 = (valid_name or name).split()
     e1 = e1[0] if e1 else ""

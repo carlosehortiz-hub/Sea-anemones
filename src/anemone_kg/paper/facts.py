@@ -186,7 +186,14 @@ def collect(cfg: Config) -> dict:
     f["q"]["q01"] = q["q01_species_per_order"].to_dict("records")
     f["q"]["q05"] = q["q05_provenance_of_a_record"].to_dict("records")
     changes = _csv(rep / "taxonomic_changes.csv")
-    f["q"]["q03"] = _breakdown_q03(q["q03_accepted_name_differs"], tables["taxon"], ov, changes)
+    f["q"]["q03"] = _breakdown_q03(
+        q["q03_accepted_name_differs"],
+        tables["taxon"],
+        ov,
+        changes,
+        tables["taxon_mapping"],
+        tables["worms_record"],
+    )
 
     f["q"]["q07"] = q["q07_cell_support_by_region"].to_dict("records")
     _revision_facts(cfg, f, tables, dq, ov, cw, cache)
@@ -230,12 +237,42 @@ def short_cite(source: str) -> str:
     return f"{who} {year.group(1)}" if year else who
 
 
+# Short citations as WoRMS gives them -> reference keys of paper/references.yaml.
+ACT_REFS = {
+    "Grajales & Rodriguez 2014": "grajales2014",
+    "Grajales & Rodríguez 2014": "grajales2014",
+    "Montenegro et al. 2015": "montenegro2015",
+    "Fautin 2011": "fautin2011",
+    "Ocaña et al. 2017": "ocana2017",
+    "Swain et al. 2015": "swain2015",
+    "ICZN 2017": "iczn2017",
+}
+SUBMITTED = 2016  # the article was received on 9 February 2016 (p. 33 of the PDF)
+
+
 def _breakdown_q03(
-    q03: pd.DataFrame, taxa: pd.DataFrame, ov: pd.DataFrame, changes: pd.DataFrame
+    q03: pd.DataFrame,
+    taxa: pd.DataFrame,
+    ov: pd.DataFrame,
+    changes: pd.DataFrame,
+    mapping: pd.DataFrame,
+    worms: pd.DataFrame,
 ) -> dict:
-    """q03 rows by the article's use of the name, with the relation and the act from WoRMS."""
+    """q03 rows by the article's use of the name, with the relation and the WoRMS-cited sources.
+
+    The sources are those WoRMS cites for the change (new combination, synonymy, taxonomy
+    source); they are not necessarily the original act. Timing is judged against the article's
+    submission (9 February 2016): a source dated 2015 or earlier was available to the authors.
+    """
     t = taxa.set_index("scientific_name")
     ch = changes.set_index("name")
+    wm = mapping[(mapping.object_source == "worms") & mapping.object_id.notna()]
+    valid_of = dict(zip(worms.aphia_id.astype(int), worms.valid_aphia_id, strict=True))
+    aphia_of = {}
+    for name, oid in zip(wm.subject_label, wm.object_id, strict=True):
+        aid = int(oid.split(":")[1])
+        v = valid_of.get(aid)
+        aphia_of[name] = int(v) if pd.notna(v) else aid
     rows = []
     for r in q03.itertuples():
         name = r.nameInPaper
@@ -247,22 +284,26 @@ def _breakdown_q03(
             cat = "† in Table 1"
         else:
             cat = "used as valid"
+        keys, years = [], []
+        relation = ""
         if name in ch.index:
             c = ch.loc[name]
             relation = c.relation
-            acts = [
-                short_cite(a)
-                for a in str(c.act_sources).split(" | ")
-                if a and a != "nan" and not a.startswith("unaccept reason: name unavailable")
-            ]
-            act = ", ".join(dict.fromkeys(acts)) or "not given"
-            timing = c.timing
-            aphia = int(c.accepted_aphia_id)
-        else:
-            relation = SPELLING_CASE.get(name, "")
-            act, timing, aphia = "-", "-", None
+            for a in str(c.act_sources).split(" | "):
+                if not a or a == "nan" or a.startswith("unaccept reason: name unavailable"):
+                    continue
+                short = short_cite(a)
+                if short in ACT_REFS and ACT_REFS[short] not in keys:
+                    keys.append(ACT_REFS[short])
+                    years.append(int(short.rsplit(" ", 1)[1]))
         if name in SPELLING_CASE:
             relation = "orthographic variant: " + SPELLING_CASE[name]
+        if not years:
+            timing = "no source cited"
+        elif min(years) < SUBMITTED:
+            timing = "source before submission"
+        else:
+            timing = "sources after submission only"
         rows.append(
             {
                 "name": name,
@@ -270,13 +311,14 @@ def _breakdown_q03(
                 "accepted": r.acceptedName,
                 "category": cat,
                 "relation": relation,
-                "act": act,
+                "act_keys": keys,
                 "timing": timing,
-                "aphia": aphia,
+                "aphia": aphia_of.get(name),
             }
         )
     c = Counter(r["category"] for r in rows)
     valid = [r for r in rows if r["category"] == "used as valid"]
+    with_source = [r for r in rows if r["act_keys"]]
     return {
         "rows": rows,
         "n": len(rows),
@@ -286,52 +328,120 @@ def _breakdown_q03(
         "spelling": c.get("spelling variant", 0),
         "valid_changed": sum(r["status"] != "alternative representation" for r in valid),
         "valid_altrep": sum(r["status"] == "alternative representation" for r in valid),
-        "valid_before_2016": sum(r["timing"] == "before 2016" for r in valid),
-        "valid_undated": sum(r["timing"] == "not dated in WoRMS" for r in valid),
-        "valid_mixed": sum(r["timing"] == "before and after 2016" for r in valid),
+        "with_source": len(with_source),
+        "no_source": len(rows) - len(with_source),
+        "before_submission": sum(r["timing"] == "source before submission" for r in rows),
+        "after_only": sum(r["timing"] == "sources after submission only" for r in rows),
+        "valid_with_source": sum(bool(r["act_keys"]) for r in valid),
+        "valid_before_submission": sum(r["timing"] == "source before submission" for r in valid),
+        "aphia_missing": sum(r["aphia"] is None for r in rows),
     }
 
 
 def _revision_facts(cfg: Config, f: dict, tables: dict, dq: dict, ov, cw, cache) -> None:
     """Facts added in response to peer review: census, causes, cells, tiers, provenance."""
     from anemone_kg.dq import crosstable
-    from anemone_kg.stages.validate import load_tables
 
     rep = cfg.path("reports")
     f["census"] = dq["extraction_census"]
     xt = dq["cross_table"]
-    review = _csv(rep / "cross_table_review.csv")
-    f["xt"] = {
-        **xt,
-        "rows_list": review.to_dict("records"),
-        "n_by_cause": review.cause.value_counts().to_dict(),
-        "explained": int((review.cause != "as_printed").sum()),
-    }
-    tiers = crosstable.evidence_tiers(load_tables(cfg)).value_counts().to_dict()
-    f["tiers"] = tiers
-    cells = pd.DataFrame(f["q"]["q07"])
-    tot = cells.groupby("support").cells.sum().to_dict()
-    n = int(cells.cells.sum())
-    lit_only = tot.get("literature only: Agudo (1987) alone", 0) + tot.get(
-        "literature only: other or several sources", 0
+    disc = _csv(rep / "cross_table_review.csv")
+    f["xt"] = {**xt, "rows_list": disc.to_dict("records")}
+    f["tiers"] = xt["tiers"]
+    f["tiers"]["specimen_confirmed"] = xt["tiers"].get("SurveyVouchered", 0) + xt["tiers"].get(
+        "MuseumConfirmed", 0
     )
-    by_region = {}
-    for region, g in cells.groupby("region"):
-        d = dict(zip(g.support, g.cells, strict=True))
-        rn = int(g.cells.sum())
+    q07 = pd.DataFrame(f["q"]["q07"])
+    best = q07.groupby("best").cells.sum().to_dict()
+    n = int(q07.cells.sum())
+    lit_a = best.get("literature only: Agudo (1987) alone", 0)
+    lit_o = best.get("literature only: other or several sources", 0)
+    spec = best.get("specimen listed, identification confirmed", 0)
+    code = best.get("survey/museum code, no confirmed specimen", 0)
+
+    def share(g: pd.DataFrame) -> dict:
+        d = g.groupby("best").cells.sum().to_dict()
+        m = int(g.cells.sum())
         lo = d.get("literature only: Agudo (1987) alone", 0) + d.get(
             "literature only: other or several sources", 0
         )
-        by_region[region] = {"n": rn, "lit_only": lo, "pct_lit_only": round(100 * lo / rn)}
+        sp = d.get("specimen listed, identification confirmed", 0)
+        return {
+            "n": m,
+            "lit_only": lo,
+            "pct_lit_only": round(100 * lo / m),
+            "specimen": sp,
+            "pct_specimen": round(100 * sp / m),
+        }
+
+    loc = tables["locality"]
+    areas = loc[loc.locality_level == "area"]
     f["cells"] = {
         "n": n,
-        "by_support": tot,
-        "lit_only": lit_only,
-        "pct_lit_only": round(100 * lit_only / n),
-        "agudo_alone": tot.get("literature only: Agudo (1987) alone", 0),
-        "pct_agudo_alone": round(100 * tot.get("literature only: Agudo (1987) alone", 0) / n),
-        "first_hand": tot.get("first-hand only", 0) + tot.get("first-hand and literature", 0),
-        "by_region": by_region,
+        "lit_only": lit_a + lit_o,
+        "pct_lit_only": round(100 * (lit_a + lit_o) / n),
+        "agudo_alone": lit_a,
+        "pct_agudo_alone": round(100 * lit_a / n),
+        "lit_other": lit_o,
+        "specimen": spec,
+        "pct_specimen": round(100 * spec / n),
+        "code_only": code,
+        "first_hand": spec + code,
+        "by_region": {r: share(g) for r, g in q07.groupby("region")},
+        "sampled": share(q07[q07.sampled]),
+        "not_sampled": share(q07[~q07.sampled]),
+        "areas_per_region": areas.groupby("region").size().to_dict(),
+        "sampled_areas": int(areas.sampled_in_study.sum()),
+        "accepted_n": xt["accepted_cells"],
+        "accepted_agudo": xt["accepted_cell_support"].get("literature only: Agudo (1987) alone", 0),
+        "accepted_lit_only": xt["accepted_cell_support"].get(
+            "literature only: Agudo (1987) alone", 0
+        )
+        + xt["accepted_cell_support"].get("literature only: other or several sources", 0),
+    }
+    f["cells"]["accepted_pct_lit_only"] = round(
+        100 * f["cells"]["accepted_lit_only"] / f["cells"]["accepted_n"]
+    )
+    acc = crosstable.accepted_ids(tables)
+    t1 = tables["taxon"][tables["taxon"].name_roles.fillna("").str.contains("table1")]
+    occ = tables["occurrence"]
+    t3o = occ[occ.record_source == "table3"]
+    sites = loc[loc.locality_level == "site"]
+    with_coords = set(sites.loc[sites.decimal_latitude.notna(), "parent_locality_id"])
+    ref = tables["reference"]
+    lit_years = sorted(int(y) for y in ref.short_citation.str.extract(r"\((\d{4})\)")[0].dropna())
+    wm2 = tables["taxon_mapping"]
+    wm2 = wm2[(wm2.object_source == "worms") & wm2.object_id.notna()]
+    shared = wm2[wm2.object_id.duplicated(keep=False)].sort_values("object_id")
+    cov = _csv(rep / "ncbi_coverage.csv")
+    q03_names = {r["name"] for r in f["q"]["q03"]["rows"]}
+    linked = cov[cov.taxid.notna()].nucleotide_records
+    f["extra"] = {
+        "sites_t2": int(sites.source_ref.str.startswith("Table 2").sum()),
+        "sites_t3": int(sites.source_ref.str.startswith("Table 3").sum()),
+        "t3_dated": int(t3o.event_date.notna().sum()),
+        "t3_date_min": str(t3o.event_date.dropna().min())[:4],
+        "t3_date_max": str(t3o.event_date.dropna().max())[:4],
+        "lit_year_min": lit_years[0],
+        "lit_year_max": lit_years[-1],
+        "sampled_without_coords": sorted(
+            areas.loc[
+                areas.sampled_in_study & ~areas.locality_id.isin(with_coords), "locality_name"
+            ]
+        ),
+        "shared_worms": [" / ".join(g.subject_label) for _, g in shared.groupby("object_id")],
+        "t4_unresolved_ncbi": sorted(q03_names & set(cov.loc[cov.taxid.isna(), "name"])),
+        "insdc_q1": int(linked.quantile(0.25)),
+        "insdc_q3": int(linked.quantile(0.75)),
+        "insdc_over_1000": int((linked > 1000).sum()),
+        "ncbi_fallback_genus_change": _fallback_genus_changes(tables["taxon_mapping"]),
+        "associated_links": len(crosstable.supporting_specimens(tables)),
+    }
+    f["species"] = {
+        "table1_names": len(t1),
+        "accepted": len({acc.get(x) for x in t1.taxon_id}),
+        "dagger": int(t1.flag_invalid_in_source.sum()),
+        "species_rank": int((t1.taxon_rank == "species").sum()),
     }
     d = tables["distribution"]
     lit = d[d.evidence_kind == "literature"]
@@ -426,10 +536,45 @@ def _revision_facts(cfg: Config, f: dict, tables: dict, dq: dict, ov, cw, cache)
     f["recon"] = _reconciliation(f)
 
 
+def _tier_rule_row(f: dict) -> dict:
+    """Why the tier counts differ from W08/W10 (which compare only covered areas)."""
+    x = pd.DataFrame(f["xt"]["tier_rule_crosstab"])
+    t = f["tiers"]
+    unv = x[x.tier == "SurveyUnvouchered"]
+    w10 = x[(x.evidence_kind == "mohbr_collection") & x.flagged]
+    untr = x[x.tier == "MuseumUntraced"]
+    parts = ", ".join(
+        f"{int(n)} {tier.removeprefix('Museum').lower()}"
+        for tier, n in w10.groupby("tier").assertions.sum().items()
+    )
+    return {
+        "count": f"{t['SurveyUnvouchered']} unvouchered survey codes vs W08 = "
+        f"{f['dq']['by_id']['W08']}; {t['MuseumUntraced']} untraced museum codes vs W10 = "
+        f"{f['dq']['by_id']['W10']}",
+        "derivation": "W08 and W10 compare only areas from which the specimen table has "
+        f"specimens: {int(unv[~unv.area_has_specimens].assertions.sum())} survey codes lie in "
+        "areas with no Table 2 specimen, and "
+        f"{int(untr[~untr.area_has_specimens].assertions.sum())} museum codes in areas "
+        f"with no Table 3 specimen. The {f['dq']['by_id']['W10']} W10 rows are {parts} "
+        "museum codes",
+    }
+
+
+def _fallback_genus_changes(m: pd.DataFrame) -> int:
+    fb = m[m.match_type == "via_accepted_name"]
+    return int(
+        sum(
+            str(a).split()[0] != str(b).split()[0]
+            for a, b in zip(fb.subject_label, fb.object_label, strict=True)
+        )
+    )
+
+
 def _reconciliation(f: dict) -> list[dict]:
     """One row per published count that a reader cannot rebuild from the text alone."""
     s, c, r, d, g = f["src"], f["canon"], f["res"], f["dq"], f["graph"]
     dc = g["derived_by_class"]
+    n_fields = f["census"]["table2"]["fields_checked"] + f["census"]["table3"]["fields_checked"]
     loc, nm, wn, cb = f["loc"], f["names"], f["worms_nodes"], f["curated_by_file"]
     msgs = {m["message"]: m["count"] for m in f["shacl"]["by_message"]}
     ev = next(v for k, v in msgs.items() if "Event without" in k)
@@ -502,6 +647,64 @@ def _reconciliation(f: dict) -> list[dict]:
             f"resolution + {r['cache_purpose'].get('coverage', 0)} for the coverage and release "
             "analyses added in revision; by service: "
             + ", ".join(f"{k} {v}" for k, v in sorted(r["cached_by_service"].items())),
+        },
+        {
+            "count": f"{dc.get('dcterms:Location', 0)} dcterms:Location vs "
+            f"{c['locality']} locality rows",
+            "derivation": f"{c['locality']} localities ({loc['areas']} areas + {loc['sites']} "
+            "sites) + 4 region nodes (the article's own grouping of its Table 1 columns); areas "
+            "per region: "
+            + ", ".join(f"{k} {v}" for k, v in f["cells"]["areas_per_region"].items()),
+        },
+        {
+            "count": f"{loc['sites']} sites by table",
+            "derivation": f"{f['extra']['sites_t2']} collecting sites of Table 2 + "
+            f"{f['extra']['sites_t3']} localities of Table 3",
+        },
+        {
+            "count": f"{f['xt']['uncertain_links']} uncertain links",
+            "derivation": "Table 3 crosswalk rows that are neither an exact name nor a printed "
+            f"park name: {loc['crosswalk_t3_linked'] - 5} name-in-area or spelling-variant "
+            f"links (of the {loc['crosswalk_t3_linked']} linked, 5 are exact) + "
+            f"{loc['crosswalk_t3_rejected']} links the curator rejected",
+        },
+        {
+            "count": f"{n_fields:,} specimen fields",
+            "derivation": "128 rows x 8 fields (Table 2) + 84 rows x 7 fields (Table 3); "
+            f"{f['census']['table3']['fields_blank']} field is blank in the source and agrees "
+            "when both readings find it blank",
+        },
+        {
+            "count": f"{f['curated_by_file']['event_dates']} event-date rows",
+            "derivation": "4 dated sampled areas (November 2012) + 1 row for Isla de Cubagua, "
+            "left undated (information from the curator, not from the article)",
+        },
+        {
+            "count": f"{wn['matched']} WoRMS records matched by {r['n_taxa']} names",
+            "derivation": "two pairs of names share a record: "
+            + "; ".join(f["extra"]["shared_worms"])
+            + " (a misspelling and its correct form)",
+        },
+        {
+            "count": f"{f['envo']['matches']} habitat phrase matches",
+            "derivation": f"{f['envo']['accepted']} annotated + {f['envo']['negated']} negated + "
+            f"{f['envo']['matches'] - f['envo']['accepted'] - f['envo']['negated']} 'coral "
+            "rubble' (one per account; no ENVO class). Biotic substrates are not in the phrase "
+            "vocabulary, so they are not counted here",
+        },
+        _tier_rule_row(f),
+        {
+            "count": f"{f['xt']['cells']} discrepant cells vs 33 W08-W11 rows",
+            "derivation": "cells merge both directions for one accepted name and area, and "
+            "include areas the specimen tables do not cover; rows count each direction "
+            "separately and only in covered areas",
+        },
+        {
+            "count": f"{f['graph']['cls']['dwc:Occurrence']} occurrences",
+            "derivation": f"{c['occurrence']} specimens (PreservedSpecimen) + "
+            f"{c['distribution']} Table 1 assertions (MaterialCitation), of which "
+            f"{f['extra']['associated_links']} are linked to their specimen by "
+            "dwc:associatedOccurrences; the two classes are not to be counted together",
         },
         {
             "count": "three different sets of four",

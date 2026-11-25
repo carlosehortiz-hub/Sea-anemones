@@ -13,7 +13,7 @@ import yaml
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
 from anemone_kg.logs import log_counts
-from anemone_kg.rdf.build import SIMILARITY
+from anemone_kg.rdf.build import SIMILARITY, mapping_method
 from anemone_kg.resolve import coverage
 from anemone_kg.resolve.habitats import EnvoLookup, annotate
 from anemone_kg.resolve.http import CachedHttp
@@ -114,7 +114,12 @@ def write_sssom(df: pd.DataFrame, path: Path, cfg: Config) -> None:
     fuzzy = acc.match_type == "fuzzy"
     acc["similarity_score"] = acc.confidence.where(fuzzy)
     acc["similarity_measure"] = acc.object_source.map(SIMILARITY).where(fuzzy)
-    acc["confidence"] = acc.confidence.where(~fuzzy)
+    # Exact and accepted-name matches carry no confidence; the comment says how they were made.
+    acc["confidence"] = None
+    acc["comment"] = [
+        mapping_method(row) + (f"; {row.comment}" if isinstance(row.comment, str) else "")
+        for row in acc.itertuples()
+    ]
     header = "".join(f"#{line}\n" for line in yaml.safe_dump(meta, sort_keys=False).splitlines())
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(header + acc[cols].to_csv(sep="\t", index=False), encoding="utf-8")

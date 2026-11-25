@@ -54,7 +54,7 @@ def test_project_vocabulary_is_minimal_and_documented(cfg, reg):
     values = [t for t in akv if t["kind"] == "individual"]
     # Classes and properties are what a reuser must learn; concept-scheme values are data.
     assert len(schema) <= 9, "the project namespace is growing; reuse first"
-    assert len(values) <= 10, "two small concept schemes (evidence kinds and tiers) only"
+    assert len(values) <= 14, "two small concept schemes (evidence kinds and tiers) only"
     g = rdflib.Graph().parse(cfg.root / "ontology" / "akv.ttl")
     for t in akv:
         iri = reg.iri(t["term"])
