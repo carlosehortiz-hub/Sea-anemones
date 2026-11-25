@@ -24,13 +24,14 @@ import pandas as pd
 
 from anemone_kg.canonical.rules import (
     RULES,
+    SPECIMEN_NAMESPACE,
     dms_to_decimal,
+    event_date_with_precision,
     is_informal,
     mint_id,
     namespace_for,
     normalise_people,
     parse_catalog,
-    parse_dmy,
     parse_name,
     parse_rank_heading,
     trim,
@@ -298,9 +299,14 @@ class CanonicalBuilder:
                 self.ledger.note("R_CATALOG", r.source_ref, remark)
             event_date = trim(dates.get(r.national_park))
             self.ledger.hit("R_DATE_METHODS")
-            # Natural key: the field code, which every Table 2 specimen has from collection on.
-            # A catalogue number assigned later (e.g. 'In progress') must not change the id.
-            oid = mint_id(self.ns, "occurrence", f"field:{r.field_code}")
+            # Natural key: institution + catalogue number, as for Table 3, so that a lot keeps its
+            # identifier wherever it is cited; the field code only where no number was assigned
+            # yet ('In progress', RG-041).
+            oid = mint_id(
+                SPECIMEN_NAMESPACE,
+                "occurrence",
+                f"{INSTITUTION}:{catalog}" if catalog else f"field:{r.field_code}",
+            )
             occ.append(
                 {
                     "occurrence_id": oid,
@@ -352,20 +358,23 @@ class CanonicalBuilder:
                         "source_page": int(r.source_page),
                     }
                 locality_id = sites[key]["locality_id"]
-            iso, problem = parse_dmy(r.verbatim_date)
+            iso, problem = event_date_with_precision(r.verbatim_date)
             self.ledger.hit("R_DATE_DMY")
             if problem:
-                self.ledger.note("R_DATE_DMY", r.source_ref, f"{r.verbatim_date!r}: {problem}")
+                self.ledger.note(
+                    "R_DATE_PRECISION", r.source_ref, f"{r.verbatim_date!r}: {problem}"
+                )
             catalog, remark = parse_catalog(r.mohbr_catalog)
             people = normalise_people(r.verbatim_collector)
             if people and people.replace(" | ", " and ") != trim(r.verbatim_collector):
                 self.ledger.note(
                     "R_PERSON", r.source_ref, f"{r.verbatim_collector!r} -> {people!r}"
                 )
-            # Natural key: institution + catalogue number (never the identification).
-            oid = mint_id(
-                self.ns, "occurrence", f"MOHBR:{catalog}" if catalog else f"table3:{r.no}"
-            )
+            # Natural key: institution + catalogue number (never the identification). Every
+            # Table 3 row has one; the fallback (row number) is not stable and is never used.
+            if not catalog:
+                raise ValueError(f"{r.source_ref}: Table 3 specimen without a catalogue number")
+            oid = mint_id(SPECIMEN_NAMESPACE, "occurrence", f"{INSTITUTION}:{catalog}")
             occ.append(
                 {
                     "occurrence_id": oid,
@@ -378,7 +387,7 @@ class CanonicalBuilder:
                     "event_date": iso,
                     "verbatim_event_date": trim(r.verbatim_date),
                     "recorded_by": people,
-                    "occurrence_remarks": f"verbatimEventDate {problem}" if problem else remark,
+                    "occurrence_remarks": f"eventDate: {problem}" if problem else remark,
                     "source_ref": r.source_ref,
                     "source_page": int(r.source_page),
                 }
@@ -409,7 +418,9 @@ class CanonicalBuilder:
         return self._name_or_none(oid, curr, True, "table3_current", r)
 
     def _name_or_none(self, oid: str, name: str, current: bool, role: str, r) -> dict:
-        remark = None if current else "Superseded identification; re-identified in this study"
+        # The reason for a change (spelling, name update, determination, unverified) is
+        # classified later against WoRMS (anemone_kg.dq.crosstable.identification_changes).
+        remark = None if current else "Previous identification (Table 3, Appendix 2)"
         if is_informal(name):
             self.ledger.note("R_INFORMAL", r.source_ref, f"{name!r} is not a scientific name")
             return self._identification(
@@ -473,7 +484,11 @@ class CanonicalBuilder:
                         "locality_id": self.area_ids.get(col),
                         "evidence_kind": kind,
                         "reference_code": None if code == "*" else code,
-                        "basis_of_record": "MaterialCitation",
+                        # MaterialCitation only where the legend cites material (code 'a');
+                        # literature and survey codes may rest on no specimen at all.
+                        "basis_of_record": "MaterialCitation"
+                        if kind == "mohbr_collection"
+                        else "Occurrence",
                         "is_new_record": new and code == "*",
                         "occurrence_remarks": remark,
                         "source_ref": f"{first.source_ref}, code '{code}' ({legend[code]})",

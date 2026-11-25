@@ -3,7 +3,7 @@ Actinia bermudensis,Actiniaria,Actiniidae,species,exact_accepted,1078900,,,,2.0
 Actiniidae,Actiniaria,Actiniidae,family,exact_accepted,42822,,,,306378.0
 Actinoporus elegans,Actiniaria,Capneidae,species,unresolved,,2.0,none,False,
 Actinostella flosculifera,Actiniaria,Actiniidae,species,exact_accepted,3034631,,,,137.0
-Aiptasia pallida,,,species,via_accepted_name,2652724,,,,111833.0
+Aiptasia pallida,Actiniaria,,species,via_accepted_name,2652724,,,,111833.0
 Anemonia sargassensis,Actiniaria,Actiniidae,species,unresolved,,2.0,none,True,
 Anthopleura cascaia,Actiniaria,Actiniidae,species,exact_accepted,2805811,,,,65.0
 Anthopleura krebsi,Actiniaria,Actiniidae,species,exact_accepted,478384,,,,18.0
@@ -13,33 +13,33 @@ Bartholomea werneri,Actiniaria,Aiptasiidae,species,unresolved,,1.0,none,True,
 Bunodeopsis antilliensis,Actiniaria,Boloceroididae,species,unresolved,,2.0,Bunodeopsis antilliensis -> NCBI taxid 1499598 (Bunodeopsis globulifera),True,
 Bunodosoma caissarum,Actiniaria,Actiniidae,species,exact_accepted,31165,,,,3.0
 Bunodosoma cangicum,Actiniaria,Actiniidae,species,exact_accepted,138296,,,,4.0
-Bunodosoma cavernata,,,species,via_accepted_name,2022721,,,,13.0
+Bunodosoma cavernata,Actiniaria,,species,via_accepted_name,2022721,,,,13.0
 Bunodosoma cavernatum,Actiniaria,Actiniidae,species,exact_accepted,2022721,,,,13.0
 Bunodosoma granuliferum,Actiniaria,Actiniidae,species,exact_accepted,31164,,,,15.0
 Bunodosoma kuekenthali,Actiniaria,Actiniidae,species,unresolved,,5.0,none,True,
 Calliactis tricolor,Actiniaria,Hormathiidae,species,exact_accepted,656065,,,,18.0
 Ceriantheomorphe brasiliensis,Ceriantharia,Cerianthidae,species,exact_accepted,1048506,,,,63.0
-Ceriantheopsis americanus,Ceriantharia,Cerianthidae,species,unresolved,,2.0,Ceriantheopsis americanus -> NCBI taxid 37515 (Ceriantheopsis americana),True,
+Ceriantheopsis americanus,Ceriantharia,Cerianthidae,species,via_accepted_name,37515,,,,14.0
 Condylactis gigantea,Actiniaria,Actiniidae,species,exact_accepted,47073,,,,55.0
 Corynactis caribbeorum,Corallimorpharia,Corallimorphidae,species,unresolved,,2.0,none,True,
 Diadumene lineata,Actiniaria,Diadumenidae,species,exact_accepted,1789172,,,,99.0
 Discosoma carlgreni,Corallimorpharia,Discosomatidae,species,exact_accepted,541188,,,,15.0
 Epizoanthus cutressi,Zoanthidea,Epizoanthidae,species,via_accepted_name,518606,,,,7.0
 Exaiptasia pallida,Actiniaria,Aiptasiidae,species,via_accepted_name,2652724,,,,111833.0
-Haliplanella luciae,,,species,via_accepted_name,1789172,,,,99.0
+Haliplanella luciae,Actiniaria,,species,via_accepted_name,1789172,,,,99.0
 Homostichanthus duerdeni,Actiniaria,Homostichanthidae,species,exact_accepted,1301368,,,,0.0
-Homostichantus duerdenii,,,species,unresolved,,7.0,Stichodactyla duerdeni -> NCBI taxid 1301368 (Homostichanthus duerdeni),False,
+Homostichantus duerdenii,Actiniaria,,species,via_accepted_name,1301368,,,,0.0
 Isarachnanthus nocturnus,Ceriantharia,Arachnanthidae,species,exact_accepted,1240238,,,,94.0
 Isaurus duchassaingi,Zoanthidea,Zoanthidae,species,via_accepted_name,167633,,,,73.0
 Isoaulactinia stelloides,Actiniaria,Actiniidae,species,unresolved,,4.0,none,False,
 Laviactis lucida,Actiniaria,Aiptasiidae,species,exact_accepted,1720311,,,,30.0
 Lebrunia coralligens,Actiniaria,Aliciidae,species,exact_accepted,1326991,,,,9.0
-Lebrunia danae,,,species,via_accepted_name,338257,,,,16.0
+Lebrunia danae,Actiniaria,,species,via_accepted_name,338257,,,,16.0
 Lebrunia neglecta,Actiniaria,Aliciidae,species,exact_accepted,338257,,,,16.0
 Monactis vestita,Actiniaria,Hormathiidae,species,unresolved,,2.0,none,True,
 Pachycerianthus curacaoensis,Ceriantharia,Cerianthidae,species,unresolved,,1.0,none,True,
 Palythoa caribaeorum,Zoanthidea,Sphenopidae,species,exact_accepted,134933,,,,173.0
-Palythoa caribbeorum,,,species,unresolved,,5.0,none,True,
+Palythoa caribbeorum,Zoantharia,,species,via_accepted_name,134933,,,,173.0
 Palythoa grandis,Zoanthidea,Sphenopidae,species,exact_accepted,862612,,,,18.0
 Palythoa mammillosa,Zoanthidea,Sphenopidae,species,unresolved,,8.0,none,True,
 Palythoa variabilis,Zoanthidea,Sphenopidae,species,exact_accepted,86597,,,,4.0
@@ -47,14 +47,14 @@ Parazoanthus catenularis,Zoanthidea,Parazoanthidae,species,exact_accepted,518607
 Parazoanthus parasiticus,Zoanthidea,Parazoanthidae,species,via_accepted_name,2608291,,,,37.0
 Parazoanthus puertoricense,Zoanthidea,Parazoanthidae,species,via_accepted_name,2608285,,,,20.0
 Parazoanthus swiftii,Zoanthidea,Parazoanthidae,species,exact_accepted,328570,,,,68.0
-Phyllactis praetexta,,,species,unresolved,,4.0,none,True,
+Phyllactis praetexta,Actiniaria,,species,unresolved,,4.0,none,True,
 Phymactis,Actiniaria,Actiniidae,genus,exact_accepted,1078902,,,,6.0
 Phymanthus crucifer,Actiniaria,Phymanthidae,species,exact_accepted,1291152,,,,76.0
 Rhodactis osculifera,Corallimorpharia,Discosomatidae,species,exact_accepted,2751898,,,,36.0
 Scolanthus curacaoensis,Actiniaria,Edwardsiidae,species,unresolved,,5.0,none,True,
 Stichodactyla helianthus,Actiniaria,Stichodactylidae,species,exact_accepted,6123,,,,22.0
 Telmatactis cricoides,Actiniaria,Isophelliidae,species,exact_accepted,1143180,,,,4.0
-Telmatactis rufa,,,species,unresolved,,2.0,none,True,
+Telmatactis rufa,Actiniaria,,species,unresolved,,2.0,none,True,
 Telmatactis vernonia,Actiniaria,Isophelliidae,species,unresolved,,4.0,none,True,
 Zoanthus proteus,Zoanthidea,Zoanthidae,species,via_accepted_name,134931,,,,128.0
 Zoanthus pulchellus,Zoanthidea,Zoanthidae,species,exact_accepted,504656,,,,141.0

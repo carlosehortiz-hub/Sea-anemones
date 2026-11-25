@@ -10,7 +10,7 @@
 <rect x="198" y="34" width="82" height="66" rx="6" fill="#f3f7fd" stroke="#2a78d6" stroke-width="1.2"/>
 <text x="239.0" y="64.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0b0b0b">2 canonical</text>
 <text x="239.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">LinkML · DwC</text>
-<text x="239.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">25 rules</text>
+<text x="239.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">26 rules</text>
 <line x1="187" y1="67.0" x2="196" y2="67.0" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="292" y="34" width="82" height="66" rx="6" fill="#f3f7fd" stroke="#2a78d6" stroke-width="1.2"/>
 <text x="333.0" y="64.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0b0b0b">3 resolve</text>
@@ -20,12 +20,12 @@
 <rect x="386" y="34" width="82" height="66" rx="6" fill="#fff4ef" stroke="#eb6834" stroke-width="1.2"/>
 <text x="427.0" y="64.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0b0b0b">4 validate</text>
 <text x="427.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">269 checks</text>
-<text x="427.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">15 critical rules</text>
+<text x="427.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">16 critical rules</text>
 <text x="427.0" y="99.0" text-anchor="middle" font-size="8.2" fill="#52514e">census 0 diffs</text>
 <line x1="375" y1="67.0" x2="384" y2="67.0" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="480" y="34" width="82" height="66" rx="6" fill="#f3f7fd" stroke="#2a78d6" stroke-width="1.2"/>
 <text x="521.0" y="64.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0b0b0b">5 build</text>
-<text x="521.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">RDF, 20,780</text>
+<text x="521.0" y="77.0" text-anchor="middle" font-size="8.2" fill="#52514e">RDF, 21,205</text>
 <text x="521.0" y="88.0" text-anchor="middle" font-size="8.2" fill="#52514e">triples</text>
 <line x1="469" y1="67.0" x2="478" y2="67.0" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="574" y="34" width="82" height="66" rx="6" fill="#fff4ef" stroke="#eb6834" stroke-width="1.2"/>
@@ -44,12 +44,12 @@
 <text x="615.0" y="144" text-anchor="middle" font-size="8" fill="#eb6834" font-weight="700">stop the pipeline</text>
 <rect x="195" y="170" width="88" height="50" rx="6" fill="#f4fbf8" stroke="#1baf7a" stroke-width="1.2"/>
 <text x="239.0" y="192.0" text-anchor="middle" font-size="8.6" font-weight="700" fill="#0b0b0b">curated mappings</text>
-<text x="239.0" y="205.0" text-anchor="middle" font-size="8.2" fill="#52514e">71 rows in</text>
-<text x="239.0" y="216.0" text-anchor="middle" font-size="8.2" fill="#52514e">6 files</text>
+<text x="239.0" y="205.0" text-anchor="middle" font-size="8.2" fill="#52514e">87 rows in</text>
+<text x="239.0" y="216.0" text-anchor="middle" font-size="8.2" fill="#52514e">7 files</text>
 <line x1="239.0" y1="168" x2="239.0" y2="102" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="289" y="170" width="88" height="50" rx="6" fill="#f4fbf8" stroke="#1baf7a" stroke-width="1.2"/>
 <text x="333.0" y="192.0" text-anchor="middle" font-size="8.6" font-weight="700" fill="#0b0b0b">API cache</text>
-<text x="333.0" y="205.0" text-anchor="middle" font-size="8.2" fill="#52514e">398 responses,</text>
+<text x="333.0" y="205.0" text-anchor="middle" font-size="8.2" fill="#52514e">388 responses,</text>
 <text x="333.0" y="216.0" text-anchor="middle" font-size="8.2" fill="#52514e">committed</text>
 <line x1="333.0" y1="168" x2="333.0" y2="102" stroke="#52514e" stroke-width="1.1" marker-end="url(#ah)"/>
 <rect x="477" y="170" width="88" height="50" rx="6" fill="#f4fbf8" stroke="#1baf7a" stroke-width="1.2"/>

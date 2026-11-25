@@ -75,8 +75,8 @@ akv:sampledInStudy
     a owl:DatatypeProperty ;
     rdfs:domain dcterms:Location ;
     rdfs:range xsd:boolean ;
-    rdfs:label "sampled in study"@en ;
-    rdfs:comment "True for the six localities the authors sampled themselves (bold column headers in Table 1)."@en ;
+    rdfs:label "visited in study"@en ;
+    rdfs:comment "True for the six localities whose column header is bold in Table 1: the areas the authors visited themselves (four reserves in November 2012, and observations and collections at Isla de Cubagua and Chichiriviche). Effort and season are not reported, so the flag means 'visited', not 'surveyed for absence'."@en ;
     rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
 
 # ----------------------------------------------------- evidence-kind scheme
@@ -91,13 +91,13 @@ akv:ThisSurvey
     a skos:Concept ;
     skos:inScheme akv:evidenceKinds ;
     skos:prefLabel "documented in this survey"@en ;
-    skos:definition "Table 1 code '*': recorded in the authors' own surveys (specimens or observations)."@en .
+    skos:definition "Table 1 code '*': '(*) records documented in our surveys' (legend). The source deposited vouchers per species, not per area, and also photographed and observed; a '*' does not imply a voucher from that area."@en .
 
 akv:MohbrCollection
     a skos:Concept ;
     skos:inScheme akv:evidenceKinds ;
-    skos:prefLabel "MOHBR collection specimen"@en ;
-    skos:definition "Table 1 code 'a': a specimen in the collection of the Museo Oceanológico Hermano Benigno Román."@en .
+    skos:prefLabel "MOHBR collection specimen (previous record)"@en ;
+    skos:definition "Table 1 code 'a', listed in the legend under 'Citation of previous records': 'Specimens of the MOHBR scientific collection (see Appendix 2)', deposited earlier by other collectors and re-examined by the authors."@en .
 
 akv:Literature
     a skos:Concept ;
@@ -115,6 +115,14 @@ akv:evidenceTier
     rdfs:comment "How directly a Table 1 assertion can be traced to examined material. Derived by the pipeline from the cross-table comparison (anemone_kg.dq.crosstable.evidence_tiers), not stated by the source. It is not dwc:identificationVerificationStatus: it grades the presence record, not an identification."@en ;
     rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
 
+akv:citesSpecimen
+    a owl:ObjectProperty ;
+    rdfs:domain dwc:Occurrence ;
+    rdfs:range dwc:Occurrence ;
+    rdfs:label "cites specimen"@en ;
+    rdfs:comment "Links a Table 1 assertion to the specimen occurrence (Table 2 or 3) it rests on, including a specimen now identified as another taxon or not identified, so that an organism is not counted twice. IRI-valued counterpart of dwc:associatedOccurrences, which takes a literal; the specimen's identification says whether it supports or contradicts the assertion."@en ;
+    rdfs:isDefinedBy <https://w3id.org/anemone-kg/vocab/> .
+
 akv:evidenceTiers
     a skos:ConceptScheme ;
     skos:prefLabel "Evidence tiers of Table 1 assertions"@en ;
@@ -125,43 +133,43 @@ akv:evidenceTiers
 akv:SurveyVouchered
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "survey record, vouchered"@en ;
+    skos:prefLabel "survey code, specimen from the area"@en ;
     skos:definition "Code '*' with a Table 2 specimen of the same taxon (by WoRMS accepted name) from the same area, identified without qualifier. Best tier for '*'."@en .
 
 akv:SurveyVoucheredQualified
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "survey record, voucher identified with qualifier"@en ;
+    skos:prefLabel "survey code, specimen from the area identified with qualifier"@en ;
     skos:definition "Code '*' whose only matching Table 2 specimen is identified with cf. or sp."@en .
 
 akv:SurveyUnvouchered
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "survey record, no voucher"@en ;
-    skos:definition "Code '*' without a Table 2 specimen of that taxon and area. The legend ('records documented in our surveys') does not say whether a specimen was taken."@en .
+    skos:prefLabel "survey code, no specimen from the area"@en ;
+    skos:definition "Code '*' without a Table 2 specimen of that taxon and area. The legend does not require a specimen, and the source vouchered each species once, so for most such codes the species is vouchered from another area; two species of the survey are not vouchered at all."@en .
 
 akv:MuseumConfirmed
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "museum record, identification confirmed"@en ;
+    skos:prefLabel "museum code, matching specimen"@en ;
     skos:definition "Code 'a' with a Table 3 (Appendix 2) specimen of that taxon and area whose current identification agrees."@en .
 
 akv:MuseumReidentified
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "museum record, specimen re-identified"@en ;
-    skos:definition "Code 'a' traceable only to a Table 3 specimen whose previous identification is the taxon and whose current identification is another taxon."@en .
+    skos:prefLabel "museum code, specimen now another taxon"@en ;
+    skos:definition "Code 'a' traceable only to a Table 3 specimen whose previous identification is the taxon and whose current identification is another taxon: the article's own counter-evidence. Ranked below an untraced code."@en .
 
 akv:MuseumUnconfirmed
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "museum record, specimen not identified"@en ;
+    skos:prefLabel "museum code, specimen not identified"@en ;
     skos:definition "Code 'a' traceable only to a Table 3 specimen whose previous identification is the taxon and which the article lists as 'not identified'."@en .
 
 akv:MuseumUntraced
     a skos:Concept ;
     skos:inScheme akv:evidenceTiers ;
-    skos:prefLabel "museum record, not traced"@en ;
+    skos:prefLabel "museum code, no specimen listed"@en ;
     skos:definition "Code 'a' without any Table 3 specimen of that taxon from that area, although the legend refers code 'a' to Appendix 2."@en .
 
 akv:LiteratureRecord

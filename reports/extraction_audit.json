@@ -37,5 +37,13 @@
     "ink_without_code": [],
     "code_without_ink": [],
     "separated": true
+  },
+  "prose": {
+    "species_listed": 19,
+    "species_claimed": 22,
+    "specimens_listed": 81,
+    "table3_identified": 81,
+    "agree": 19,
+    "disagreements": []
   }
 }

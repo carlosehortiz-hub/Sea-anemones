@@ -21,7 +21,7 @@ WHERE {
   ?specimen dsw:occurrenceOf ?organism ; dwc:catalogNumber ?catalogNumber .
   OPTIONAL {
     ?current dwciri:toTaxon ?taxon .
-    ?taxon skos:exactMatch ?record .
+    ?taxon skos:exactMatch|skos:closeMatch ?record .
     FILTER STRSTARTS(STR(?record), "urn:lsid:marinespecies.org:taxname:")
     ?record akv:hasAcceptedName/dwc:scientificName ?acceptedToday .
   }

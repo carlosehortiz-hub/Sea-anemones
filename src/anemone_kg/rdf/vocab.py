@@ -69,8 +69,17 @@ def _tdwg_terms(path: str) -> frozenset[str]:
 
 @cache
 def _sssom_names(path: str) -> frozenset[str]:
+    """SSSOM slots and classes whose IRI is in the sssom: namespace. A slot declared with
+    another ``slot_uri`` (comment -> rdfs:comment, mapping_date -> dcterms:created) must be
+    emitted under that IRI; ``sssom:comment`` is not a term (bug once, round 3: the registry
+    checked slot names only, so an SSSOM parser silently dropped the mapping method)."""
     y = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
-    return frozenset(y.get("slots", {})) | frozenset(y.get("classes", {}))
+    slots = {
+        k
+        for k, v in (y.get("slots") or {}).items()
+        if not (v or {}).get("slot_uri") or str(v["slot_uri"]).startswith("sssom:")
+    }
+    return frozenset(slots) | frozenset(y.get("classes", {}))
 
 
 def verify(reg: Registry, root: Path) -> dict[str, str]:

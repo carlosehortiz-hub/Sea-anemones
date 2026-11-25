@@ -14,7 +14,7 @@ PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
 
 SELECT ?name ?wormsRecord
 WHERE {
-  ?taxon dwc:taxonID ?id ; dwc:scientificName ?name ; skos:exactMatch ?wormsRecord .
+  ?taxon dwc:taxonID ?id ; dwc:scientificName ?name ; skos:exactMatch|skos:closeMatch ?wormsRecord .
   FILTER STRSTARTS(STR(?wormsRecord), "urn:lsid:marinespecies.org:taxname:")
   FILTER NOT EXISTS {
     ?taxon skos:exactMatch|skos:closeMatch ?ncbi .

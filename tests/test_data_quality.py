@@ -130,6 +130,10 @@ def _inject(rule_id, t):
     elif rule_id == "C14":
         a = t["habitat_annotation"]
         a.loc[a[a.status == "negated"].index[0], "envo_id"] = "ENVO:00000316"
+    elif rule_id == "C16":  # a mis-keyed digit that keeps the number unique
+        occ = t["occurrence"]
+        i = occ[(occ.record_source == "table3") & occ.catalog_number.notna()].index[5]
+        occ.loc[i, "catalog_number"] = "I-9" + occ.loc[i, "catalog_number"][2:]
     return t
 
 
@@ -159,7 +163,14 @@ def _inject_warning(rule_id, t):
     occ, ident, loc, m = t["occurrence"], t["identification"], t["locality"], t["taxon_mapping"]
     if rule_id == "W01":
         dated = occ[occ.event_date.notna() & occ.verbatim_event_date.notna()]
-        occ.loc[dated.index[0], "event_date"] = None
+        occ.loc[dated.index[0], "occurrence_remarks"] = (
+            "eventDate: impossible calendar date; published as year only"
+        )
+    elif rule_id == "W12":
+        dated = occ[occ.event_date.fillna("").str.len().eq(10)]
+        occ.loc[dated.index[0], "occurrence_remarks"] = (
+            "eventDate: day given as 01, published as year-month (the day looks defaulted)"
+        )
     elif rule_id == "W02":
         occ.loc[occ[occ.locality_id.notna()].index[0], "locality_id"] = None
     elif rule_id == "W03":

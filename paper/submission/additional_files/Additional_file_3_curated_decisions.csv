@@ -1,72 +1,88 @@
-curated_file,verbatim_name,canonical_name,rule_id,evidence,status,reviewed,verbatim_state,state_province,source_table,verbatim_key,table1_locality_col_id,rule,note,national_park,event_date,subject_label,service,object_id,decision,predicate_id,phrase_regex,envo_label,kind
-mappings/name_variants.csv,Phymantus crucifer,Phymanthus crucifer,R_TYPO,"Table 2 row 25; edit distance 1; 12 other Table 2 rows, Table 1 row 18 and the species account spell Phymanthus",accepted,author 2026-11-24,,,,,,,,,,,,,,,,,
-mappings/name_variants.csv,Anemonia sargassansis,Anemonia sargassensis,R_TYPO,Table 2; edit distance 1; Table 1 row 4 and the species account spell sargassensis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,
-mappings/name_variants.csv,Bunodeopsis antillensis,Bunodeopsis antilliensis,R_TYPO,Table 2; edit distance 1; Table 1 row 26 and the species account spell antilliensis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,
-mappings/name_variants.csv,Callactis tricolor,Calliactis tricolor,R_TYPO,Table 2; edit distance 1; Table 1 row 28 and the species account spell Calliactis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_STATE_SPELLING,Table 2 omits the accent; Table 3 prints 'Falcón',,,Falcon,Falcón,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Falcón,Falcón,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Sucre,Sucre,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Nueva Esparta,Nueva Esparta,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Dependencias Federales,Dependencias Federales,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Miranda,Miranda,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Vargas,Vargas,,,,,,,,,,,,,,,
-mappings/state_names.csv,,,R_IDENTITY,,,,Zulia,Zulia,,,,,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Morrocoy,T1A02,park_name,Table 2 'National Park' column -> Table 1 column,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Mochima,T1A09,park_name,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Los Roques,T1B10,park_name,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,La Restinga,T1B04,park_name,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Isla Cubagua,T1B05,park_name,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Archipiélago Los Testigos, Isla La Iguana",T1B08,names_area,same island and archipelago named,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Gran Roque, Los Roques",T1B10,names_area,Gran Roque is named as part of Los Roques,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla La Blanquilla,T1B12,exact,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Isla La Blanquilla, Caronton",T1B12,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla La Tortuga,T1B02,article_variant,'Isla La Tortuga' vs 'Isla Tortuga',,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla de Aves,T1B14,exact,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Boca Seca, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Boca Seca, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Pescadores, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Sombrero, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Caño de Manglar, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Parque Nacional Morrocoy,T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Morrocoy",T1A02,names_area,Not the Playa Azul of Litoral Central (state Falcón vs Vargas),,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Norte, Morrocoy",T1A02,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Los Totumos,T1A08,exact,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla Cubagua,T1B05,article_variant,'Isla Cubagua' vs 'Isla de Cubagua',,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Laguna de La Restinga, Isla Margarita",T1B04,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Golfo de Paria, Caño Guariquén",T1B09,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Laguna de Chacopata,T1B01,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa San Luis, Cumaná",T1A11,exact,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Balneario Camuri Chico,T1A07,exact,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Litoral Central",T1A06,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Municipio Vargas, Litoral Central",T1A06,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla de Pájaros,T1A01,names_area,,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,"Laguna de Punta de Piedras, Isla Margarita",T1B03,geographic_knowledge,Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,Golfo de Cariaco,T1A12,geographic_knowledge,Table 1 column is 'La Chica' within the gulf; the gulf is broader | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,"Ensenada Penetepe, Golfo de Cariaco",T1A12,geographic_knowledge,Same question as above | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,
-mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Bajo Manzanillo, Isla Margarita",,no_match,No Table 1 column for this site,,,,,,,,,,
-mappings/event_dates.csv,,,,Methods p.25: 'Sampling was conducted in November 2012 in four marine reserves',,author 2026-11-24,,,,,,,,Morrocoy,2012-11,,,,,,,,
-mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,Mochima,2012-11,,,,,,,,
-mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,Los Roques,2012-11,,,,,,,,
-mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,La Restinga,2012-11,,,,,,,,
-mappings/event_dates.csv,,,,"Methods p.25: 'Additionally, we include observations and collections made in Isla de Cubagua' - no date given. Curator (co-author of the article): collected over several years, so no single event date applies",,author 2026-11-24,,,,,,,,Isla Cubagua,,,,,,,,,
-mappings/resolution_overrides.csv,,,,"Incorrect subsequent spelling of Homostichanthus duerdeni Carlgren, 1900 (ICZN Art. 33.3: genus misspelt; Art. 33.4: -ii for -i in a patronym), found by a WoRMS phonetic match; listed in Table 1 row 17. Name on an old MOHBR label (Table 3 row 26); that specimen is now identified as Actinoporus elegans - the mapping is about the name, not the specimen.",,author 2026-11-24,,,,,,,,,,Homostichantus duerdenii,worms,worms:418868,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,"Same orthographic variant as the WoRMS row (GBIF fuzzy match to Homostichanthus duerdeni Carlgren, 1900).",,author 2026-11-24,,,,,,,,,,Homostichantus duerdenii,gbif,gbif:2257002,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,"Incorrect subsequent spelling of caribaeorum (ICZN Art. 33.3; no gender agreement involved). Inferred, not verified against the voucher: Table 3 row 59 gives 'Palythoa caribbeorum' as previous and 'Palythoa caribaeorum' as current identification of the same specimen.",,author 2026-11-24,,,,,,,,,,Palythoa caribbeorum,worms,worms:288456,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,"GBIF fuzzy match is Palythoa caribbea, a different species.",,author 2026-11-24,,,,,,,,,,Palythoa caribbeorum,gbif,gbif:5711857,reject,,,,
-mappings/resolution_overrides.csv,,,,"Mandatory gender agreement (ICZN Art. 34.2): Ceriantheopsis is feminine, so americanus -> americana; same name.",,author 2026-11-24,,,,,,,,,,Ceriantheopsis americanus,worms,worms:158282,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,Same gender-agreement correction as the WoRMS row.,,author 2026-11-24,,,,,,,,,,Ceriantheopsis americanus,gbif,gbif:2258556,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,Mandatory gender agreement (ICZN Art. 34.2): cavernata -> cavernatum; Table 3 row 66 gives cavernata as previous and cavernatum as current identification; WoRMS holds cavernata as unaccepted pointing to cavernatum.,,author 2026-11-24,,,,,,,,,,Bunodosoma cavernata,gbif,gbif:6472214,accept,skos:exactMatch,,,
-mappings/resolution_overrides.csv,,,,"WoRMS homonyms 1665452 (Mello-Leitão, 1919; accepted) and 289584 (Carlgren, 1931; junior homonym). The paper prints no authority, so the usage cannot be identified, but both records point to 1665452 as accepted name.",,author 2026-11-24,,,,,,,,,,Ceriantheomorphe brasiliensis,worms,worms:1665452,accept,skos:exactMatch,,,
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,'seagrass(es) meadows' in the accounts; ENVO label is 'sea grass bed',,,,,,,,seagrass(?:es)? meadows?,sea grass bed,habitat
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,includes 'coral reef lagoons' (ENVO has no reef-lagoon class),,,,,,,,coral reefs?,coral reef,habitat
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,reef[’']s crest,marine coral reef crest,zone
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,fore-reef,marine coral reef fore reef,zone
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,back-reef,marine coral reef back reef,zone
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,'mangrove roots' read as the mangrove habitat the roots belong to,,,,,,,,mangroves? (?:zones|roots),mangrove swamp,habitat
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,attachment substrate; includes 'coral rocks',,,,,,,,\brock(?:s|y patches)?\b,rock,substrate
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bsand\b|sandy (?:patches|shores|substratum),sand,substrate
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,crevices?,crevice,habitat
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bcaves?\b,cave,habitat
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bmud\b,mud,substrate
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,both occurrences are negated in the text ('but not intertidal zones'),,,,,,,,intertidal zones?,intertidal zone,zone
-mappings/habitat_vocabulary.csv,,,,,,,,,,,,,no ENVO class expected; kept so the gap is reported,,,,,,,,coral rubble,coral rubble,substrate
+curated_file,verbatim_name,canonical_name,rule_id,evidence,status,reviewed,verbatim_state,state_province,source_table,verbatim_key,table1_locality_col_id,rule,note,national_park,event_date,subject_label,service,object_id,decision,predicate_id,phrase_regex,envo_label,kind,name,relation,acts,fixing_act,fixing_year,concept_status
+mappings/name_variants.csv,Phymantus crucifer,Phymanthus crucifer,R_TYPO,"Table 2 row 25; edit distance 1; 12 other Table 2 rows, Table 1 row 18 and the species account spell Phymanthus",accepted,author 2026-11-24,,,,,,,,,,,,,,,,,,,,,,,
+mappings/name_variants.csv,Anemonia sargassansis,Anemonia sargassensis,R_TYPO,Table 2; edit distance 1; Table 1 row 4 and the species account spell sargassensis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,,,,,,,
+mappings/name_variants.csv,Bunodeopsis antillensis,Bunodeopsis antilliensis,R_TYPO,Table 2; edit distance 1; Table 1 row 26 and the species account spell antilliensis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,,,,,,,
+mappings/name_variants.csv,Callactis tricolor,Calliactis tricolor,R_TYPO,Table 2; edit distance 1; Table 1 row 28 and the species account spell Calliactis,accepted,author 2026-11-24,,,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_STATE_SPELLING,Table 2 omits the accent; Table 3 prints 'Falcón',,,Falcon,Falcón,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Falcón,Falcón,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Sucre,Sucre,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Nueva Esparta,Nueva Esparta,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Dependencias Federales,Dependencias Federales,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Miranda,Miranda,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Vargas,Vargas,,,,,,,,,,,,,,,,,,,,,
+mappings/state_names.csv,,,R_IDENTITY,,,,Zulia,Zulia,,,,,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Morrocoy,T1A02,park_name,Table 2 'National Park' column -> Table 1 column,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Mochima,T1A09,park_name,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Los Roques,T1B10,park_name,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,La Restinga,T1B04,park_name,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table2,Isla Cubagua,T1B05,park_name,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Archipiélago Los Testigos, Isla La Iguana",T1B08,names_area,same island and archipelago named,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Gran Roque, Los Roques",T1B10,names_area,Gran Roque is named as part of Los Roques,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla La Blanquilla,T1B12,exact,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Isla La Blanquilla, Caronton",T1B12,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla La Tortuga,T1B02,article_variant,'Isla La Tortuga' vs 'Isla Tortuga',,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla de Aves,T1B14,exact,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Boca Seca, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Boca Seca, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Pescadores, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Cayo Sombrero, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Caño de Manglar, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Parque Nacional Morrocoy,T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Morrocoy",T1A02,names_area,Not the Playa Azul of Litoral Central (state Falcón vs Vargas),,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Norte, Morrocoy",T1A02,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Los Totumos,T1A08,exact,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla Cubagua,T1B05,article_variant,'Isla Cubagua' vs 'Isla de Cubagua',,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Laguna de La Restinga, Isla Margarita",T1B04,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Golfo de Paria, Caño Guariquén",T1B09,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Laguna de Chacopata,T1B01,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa San Luis, Cumaná",T1A11,exact,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Balneario Camuri Chico,T1A07,exact,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Litoral Central",T1A06,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Playa Azul, Municipio Vargas, Litoral Central",T1A06,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,Isla de Pájaros,T1A01,names_area,,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,"Laguna de Punta de Piedras, Isla Margarita",T1B03,geographic_knowledge,Is 'Laguna de Punta de Piedras' the Table 1 'Laguna de Piedras'? Not stated in the paper | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,Golfo de Cariaco,T1A12,geographic_knowledge,Table 1 column is 'La Chica' within the gulf; the gulf is broader | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,rejected,,,,table3,"Ensenada Penetepe, Golfo de Cariaco",T1A12,geographic_knowledge,Same question as above | Reviewed by author 2026-11-24: keep unlinked,,,,,,,,,,,,,,,,
+mappings/locality_crosswalk.csv,,,,,accepted,,,,table3,"Bajo Manzanillo, Isla Margarita",,no_match,No Table 1 column for this site,,,,,,,,,,,,,,,,
+mappings/event_dates.csv,,,,Methods p.25: 'Sampling was conducted in November 2012 in four marine reserves',,author 2026-11-24,,,,,,,,Morrocoy,2012-11,,,,,,,,,,,,,,
+mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,Mochima,2012-11,,,,,,,,,,,,,,
+mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,Los Roques,2012-11,,,,,,,,,,,,,,
+mappings/event_dates.csv,,,,"Methods p.25, same sentence",,author 2026-11-24,,,,,,,,La Restinga,2012-11,,,,,,,,,,,,,,
+mappings/event_dates.csv,,,,"Methods p.25: 'Additionally, we include observations and collections made in Isla de Cubagua' - no date is stated in the source, so none is recorded",,author 2026-11-25,,,,,,,,Isla Cubagua,,,,,,,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"Incorrect subsequent spelling of Homostichanthus duerdeni Carlgren, 1900 (ICZN Art. 33.3: genus misspelt; Art. 33.4: -ii for -i in a patronym), found by a WoRMS phonetic match; listed in Table 1 row 17. Name on an old MOHBR label (Table 3 row 26); that specimen is now identified as Actinoporus elegans - the mapping is about the name, not the specimen.",,author 2026-11-24,,,,,,,,,,Homostichantus duerdenii,worms,worms:418868,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"Same orthographic variant as the WoRMS row (GBIF fuzzy match to Homostichanthus duerdeni Carlgren, 1900).",,author 2026-11-24,,,,,,,,,,Homostichantus duerdenii,gbif,gbif:2257002,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"Incorrect subsequent spelling of caribaeorum (ICZN Art. 33.3; no gender agreement involved). Inferred, not verified against the voucher: Table 3 row 59 gives 'Palythoa caribbeorum' as previous and 'Palythoa caribaeorum' as current identification of the same specimen.",,author 2026-11-24,,,,,,,,,,Palythoa caribbeorum,worms,worms:288456,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"GBIF fuzzy match is Palythoa caribbea, a different species.",,author 2026-11-24,,,,,,,,,,Palythoa caribbeorum,gbif,gbif:5711857,reject,,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"Mandatory gender agreement (ICZN Art. 34.2): Ceriantheopsis is feminine, so americanus -> americana; same name.",,author 2026-11-24,,,,,,,,,,Ceriantheopsis americanus,worms,worms:158282,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,Same gender-agreement correction as the WoRMS row.,,author 2026-11-24,,,,,,,,,,Ceriantheopsis americanus,gbif,gbif:2258556,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,Mandatory gender agreement (ICZN Art. 34.2): cavernata -> cavernatum; Table 3 row 66 gives cavernata as previous and cavernatum as current identification; WoRMS holds cavernata as unaccepted pointing to cavernatum.,,author 2026-11-24,,,,,,,,,,Bunodosoma cavernata,gbif,gbif:6472214,accept,skos:closeMatch,,,,,,,,,
+mappings/resolution_overrides.csv,,,,"WoRMS homonyms 1665452 (Mello-Leitão, 1919; accepted) and 289584 (Carlgren, 1931; junior homonym). The paper prints no authority, so the usage cannot be identified, but both records point to 1665452 as accepted name.",,author 2026-11-24,,,,,,,,,,Ceriantheomorphe brasiliensis,worms,worms:1665452,accept,skos:closeMatch,,,,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,'seagrass(es) meadows' in the accounts; ENVO label is 'sea grass bed',,,,,,,,seagrass(?:es)? meadows?,sea grass bed,habitat,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,includes 'coral reef lagoons' (ENVO has no reef-lagoon class),,,,,,,,coral reefs?,coral reef,habitat,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,reef[’']s crest,marine coral reef crest,zone,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,fore-reef,marine coral reef fore reef,zone,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,back-reef,marine coral reef back reef,zone,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,'mangrove roots' read as the mangrove habitat the roots belong to,,,,,,,,mangroves? (?:zones|roots),mangrove swamp,habitat,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,attachment substrate; includes 'coral rocks',,,,,,,,\brock(?:s|y patches)?\b,rock,substrate,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bsand\b|sandy (?:patches|shores|substratum),sand,substrate,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,crevices?,crevice,habitat,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bcaves?\b,cave,habitat,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,,,,,,,,,\bmud\b,mud,substrate,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,both occurrences are negated in the text ('but not intertidal zones'),,,,,,,,intertidal zones?,intertidal zone,zone,,,,,,
+mappings/habitat_vocabulary.csv,,,,,,,,,,,,,no ENVO class expected; kept so the gap is reported,,,,,,,,coral rubble,coral rubble,substrate,,,,,,
+mappings/taxonomic_acts.csv,,,,WoRMS unaccept reason: new genus created by Grajales & Rodriguez 2014 (the genus step). The synonymy with diaphana is a taxonomic judgement; Opinion 2404 (2017) declined to give pallida precedence over diaphana and Opinion 2500 (2023) declined to reverse it. They fix the name only if the two are conspecific. The article uses a worldwide sensu lato concept (source p. 17).,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Aiptasia pallida,"new combination in *Exaiptasia*, then junior subjective synonym of *E. diaphana*",grajales2014;iczn2017;iczn2019;iczn2023,iczn2017,2017,contested
+mappings/taxonomic_acts.csv,,,,"WoRMS record (modified 2020-12-16) still reads 'pallida valid until ICZN rules Case 3790', which predates Opinion 2500 (2023); the record is stale. In February 2016 Case 3633 was pending.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Exaiptasia pallida,junior subjective synonym of *E. diaphana*; precedence of *diaphana* upheld,iczn2017;iczn2019;iczn2023,iczn2017,2017,contested
+mappings/taxonomic_acts.csv,,,,"ICZN Art. 11.1: no description. The link from the nomen nudum to Anthopleura correae is made in Durán-Fuentes et al. (2025), whose authors include the source article's first author; the present author is not an author of it. A nomen nudum has no status, so the link is a concept-level judgement, not a synonymy.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Anthopleura cascaia,nomen nudum (unavailable name); WoRMS links it to a species described in 2025,duranfuentes2025,duranfuentes2025,2025,unavailable name
+mappings/taxonomic_acts.csv,,,,Mandatory change; no act is needed.,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Bunodosoma cavernata,gender agreement of the epithet (ICZN Art. 34.2),,mandatory,,name only
+mappings/taxonomic_acts.csv,,,,"Original combination Pseudocorynactis caribbeorum den Hartog, 1980 (WoRMS authority without parentheses). Fautin (2011) sank Pseudocorynactis into Corynactis; Ocaña et al. (2017) restored it. The article followed Fautin (2011) and recorded the alternative (source pp. 21, 24): not a lag.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Corynactis caribbeorum,restored original combination (genus *Pseudocorynactis* resurrected),fautin2011;ocana2017,ocana2017,2017,name only
+mappings/taxonomic_acts.csv,,,,"WoRMS cites Swain et al. (2015) as the new-combination reference, but that paper is a study of polyp retraction musculature, not the act; the act transferring cutressi to Bergia is not identified here.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Epizoanthus cutressi,new combination in *Bergia* (genus transfer),swain2015,not identified,,name only
+mappings/taxonomic_acts.csv,,,,WoRMS cites no act; whether the synonymy is objective or subjective is not recorded.,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Haliplanella luciae,synonym of *Diadumene lineata*,,not cited,,synonymy (concept claim)
+mappings/taxonomic_acts.csv,,,,"WoRMS cites no act (record modified 2011-10-04, an upper bound for the change in WoRMS, not an act date).",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Isaurus duchassaingi,synonym of *Isaurus tuberculatus*,,not cited,,synonymy (concept claim)
+mappings/taxonomic_acts.csv,,,,"Both names are Duchassaing & Michelotti, 1860, so precedence needs a first reviser (Art. 24.2); WoRMS cites none.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Lebrunia danae,synonym of *Lebrunia neglecta*,,not cited,,synonymy (concept claim)
+mappings/taxonomic_acts.csv,,,,"Original combination Bergia catenularis Duchassaing & Michelotti, 1860 (WoRMS authority without parentheses). Montenegro et al. resurrected Bergia, online 21 December 2015, seven weeks before submission.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Parazoanthus catenularis,restored original combination (genus *Bergia* resurrected),montenegro2015,montenegro2015,2015,name only
+mappings/taxonomic_acts.csv,,,,WoRMS unaccept reason 'Moved to genus Umimayanthus' cites no act.,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Parazoanthus parasiticus,new combination in *Umimayanthus* (genus transfer),,not cited,,name only
+mappings/taxonomic_acts.csv,,,,"Montenegro et al., online 21 December 2015, seven weeks before submission.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Parazoanthus puertoricense,new combination in *Bergia* (genus transfer),montenegro2015,montenegro2015,2015,name only
+mappings/taxonomic_acts.csv,,,,"The article itself marks the name † (Reimer et al. 2012, as cited by the source). Agudo's (1987) literature records under this name cannot be re-examined, and Z. sociatus / Z. pulchellus / Z. solanderi are confusable from external morphology.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Zoanthus proteus,synonym of *Zoanthus sociatus*,,not cited,,synonymy (concept claim)
+mappings/taxonomic_acts.csv,,,,"Spelling judged against WoRMS, not against the original description; prevailing usage not assessed: provisional.",,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Homostichantus duerdenii,orthographic variant: incorrect subsequent spelling (Art. 33.3),,mandatory,,name only
+mappings/taxonomic_acts.csv,,,,Spelling judged against WoRMS; prevailing usage not assessed: provisional.,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Palythoa caribbeorum,orthographic variant: incorrect subsequent spelling (Art. 33.3),,mandatory,,name only
+mappings/taxonomic_acts.csv,,,,Mandatory change; no act is needed.,,round-3 review 2026-11-25,,,,,,,,,,,,,,,,,,Ceriantheopsis americanus,gender agreement of the epithet (ICZN Art. 34.2),,mandatory,,name only

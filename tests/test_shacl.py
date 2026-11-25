@@ -81,10 +81,10 @@ def broken(data):
     loc = next(iter(sorted(g.subjects(DWC.decimalLatitude, None))))
     g.remove((loc, DWC.decimalLongitude, None))
     faults["lat_without_lon"] = loc
-    # 5. confidence out of range
+    # 5. similarity score out of range
     axioms = sorted(g.subjects(RDF.type, OWL.Axiom))
-    g.set((axioms[0], SSSOM.confidence, Literal(1.5, datatype=XSD.double)))
-    faults["confidence"] = axioms[0]
+    g.set((axioms[0], SSSOM.similarity_score, Literal(1.5, datatype=XSD.double)))
+    faults["similarity"] = axioms[0]
     # 6. mapping record whose SKOS triple is missing
     ax = axioms[1]
     g.remove(
@@ -134,10 +134,34 @@ def broken(data):
     resp = g.value(ax, PROV.wasDerivedFrom)
     g.remove((resp, PROV.generatedAtTime, None))
     faults["response_without_time"] = ax
-    # 16. evidence tier that contradicts the evidence kind (MaterialCitationShape)
+    # 16. evidence tier that contradicts the evidence kind (AssertionShape)
     lit2 = sorted(g.subjects(rdflib.URIRef("http://purl.org/dc/terms/type"), AKV.Literature))[1]
     g.set((lit2, AKV.evidenceTier, AKV.SurveyVouchered))
     faults["tier_contradicts_kind"] = lit2
+    # 17. a traced assertion that does not cite its specimen (AssertionShape; round 3)
+    museum = sorted(g.subjects(AKV.evidenceTier, AKV.MuseumConfirmed))[0]
+    g.remove((museum, AKV.citesSpecimen, None))
+    faults["traced_without_specimen"] = museum
+    # 18. a literature assertion typed as cited material (AssertionShape; round 3)
+    lit3 = sorted(g.subjects(rdflib.URIRef("http://purl.org/dc/terms/type"), AKV.Literature))[2]
+    g.set((lit3, DWC.basisOfRecord, Literal("MaterialCitation")))
+    faults["literature_as_material"] = lit3
+    # 19. two records of one service equated by the exactMatch closure (MappingShape; round 3:
+    # curated spelling variants as exact links equated two WoRMS records of one name)
+    ax19 = next(
+        a
+        for a in axioms[3:]
+        if g.value(a, OWL.annotatedProperty) == SKOS.exactMatch
+        and str(g.value(a, OWL.annotatedTarget)).startswith(WORMS)
+    )
+    target = g.value(ax19, OWL.annotatedTarget)
+    other = next(
+        o
+        for o in sorted(g.objects(None, SKOS.exactMatch))
+        if str(o).startswith(WORMS) and o != target
+    )
+    g.add((g.value(ax19, OWL.annotatedSource), SKOS.exactMatch, other))
+    faults["exact_closure"] = ax19
     return g, faults
 
 
@@ -147,9 +171,12 @@ FAULT_SHAPE = {
     "bad_catalog": "SpecimenShape",
     "two_current_ids": "OrganismShape",
     "lat_without_lon": "LocationShape",
-    "confidence": "MappingShape",
+    "similarity": "MappingShape",
+    "exact_closure": "MappingShape",
+    "traced_without_specimen": "AssertionShape",
+    "literature_as_material": "AssertionShape",
     "mapping_without_triple": "MappingShape",
-    "new_record_literature": "MaterialCitationShape",
+    "new_record_literature": "AssertionShape",
     "dangling_accepted_name": "WormsRecordShape",
     "bad_exact_match": "PaperTaxonShape",
     "untyped_date": "EventShape",
@@ -158,7 +185,7 @@ FAULT_SHAPE = {
     "bad_occurrence_id": "OccurrenceShape",
     "bad_qualifier": "IdentificationShape",
     "response_without_time": "ResponseShape",
-    "tier_contradicts_kind": "MaterialCitationShape",
+    "tier_contradicts_kind": "AssertionShape",
 }
 
 
@@ -183,27 +210,7 @@ def test_broken_graph_does_not_conform(broken_results):
     assert broken_results[0] is False
 
 
-@pytest.mark.parametrize(
-    "fault",
-    [
-        "no_provenance",
-        "bad_catalog",
-        "two_current_ids",
-        "lat_without_lon",
-        "confidence",
-        "mapping_without_triple",
-        "new_record_literature",
-        "dangling_accepted_name",
-        "bad_exact_match",
-        "untyped_date",
-        "non_envo_habitat",
-        "page_out_of_range",
-        "bad_occurrence_id",
-        "bad_qualifier",
-        "response_without_time",
-        "tier_contradicts_kind",
-    ],
-)
+@pytest.mark.parametrize("fault", sorted(FAULT_SHAPE))
 def test_each_injected_fault_is_a_violation(broken, broken_results, fault):
     _, faults = broken
     node = str(faults[fault])

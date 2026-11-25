@@ -248,7 +248,42 @@ def _c15(t):
 @rule("W01", "warning", "validity", "verbatim date that is not a valid calendar date")
 def _w01(t):
     o = t["occurrence"]
-    return o[o.verbatim_event_date.notna() & o.event_date.isna()]
+    return o[o.occurrence_remarks.fillna("").str.contains("impossible calendar date")]
+
+
+@rule(
+    "W12",
+    "warning",
+    "precision",
+    "date printed with day 01, published as year-month (the day looks defaulted)",
+)
+def _w12(t):
+    o = t["occurrence"]
+    return o[o.occurrence_remarks.fillna("").str.contains("day given as 01")]
+
+
+def _row(ref: str) -> int:
+    return int(ref.split("row")[1].split(",")[0])
+
+
+@rule(
+    "C16",
+    "critical",
+    "consistency",
+    "catalogue numbers in sequence: Table 3 strictly ascending by row, Table 2 consecutive "
+    "by row apart from rows without a number (a mis-keyed digit that stays unique breaks it)",
+)
+def _c16(t):
+    o = t["occurrence"]
+    bad = []
+    for src, step in (("table3", None), ("table2", 1)):
+        g = o[(o.record_source == src) & o.catalog_number.notna()].copy()
+        g["row"] = g.source_ref.map(_row)
+        g["n"] = g.catalog_number.str.removeprefix("I-").astype(int)
+        g = g.sort_values("row")
+        d = g.n.diff()
+        bad.append(g[(d <= 0) if step is None else (d.notna() & (d != step))])
+    return pd.concat(bad)
 
 
 @rule("W02", "warning", "completeness", "occurrence without locality ('-' in the source)")
@@ -328,7 +363,8 @@ def _cross(t: Tables, kind: str, source: str, direction: str) -> pd.DataFrame:
     "W08",
     "warning",
     "consistency",
-    "Table 1 '*' (this survey) in a sampled area, but no Table 2 specimen of that taxon there",
+    "Table 1 '*' (this survey) in an area with Table 2 specimens, but no Table 2 specimen of "
+    "that taxon there",
 )
 def _w08(t):
     return _cross(t, "this_survey", "table2", "assertion_without_specimen")

@@ -376,8 +376,11 @@ def to_markdown(r: dict, ink: dict | None = None) -> str:
             "## Rendered-image check of Table 1",
             "",
             f"Pages rasterised with Poppler pdftoppm at {ink['dpi']} dpi (glyphs and vector "
-            "paths). Each cell rectangle (row band x column band) is tested for ink; no text is "
-            "read.",
+            "paths). Each cell rectangle (row band x column band) is tested for ink; no glyph "
+            "inside a cell is read. The rectangles come from text-layer positions (printed row "
+            "numbers and column headers) shared with the second extraction. The check sees a "
+            "code missing from an empty cell, not one missing from a cell that holds another "
+            "code, and not the identity of a code.",
             "",
             "| cells | with a code and ink | empty and no ink | ink without a code | "
             "code without ink |",
@@ -388,13 +391,29 @@ def to_markdown(r: dict, ink: dict | None = None) -> str:
             "Every occupied cell has more ink than any empty cell: "
             + ("yes." if ink["separated"] else "no."),
             "",
-            "Engine versions are written to the run log, not to this report, so that the "
-            "committed report does not depend on the Poppler build.",
+            "Engine versions and the ink margin (faintest occupied cell, darkest empty cell) "
+            "are written to the run log, not to this report, so that the committed report does "
+            "not depend on the Poppler build.",
+            "",
+        ]
+    pr = r.get("prose")
+    if pr:
+        out += [
+            "## Table 3 against the article's own prose",
+            "",
+            f"The Results list {pr['species_listed']} species with their number of MOHBR "
+            f"specimens ({pr['specimens_listed']} specimens); the extracted current "
+            f"identifications of Table 3 give {pr['table3_identified']}. "
+            f"{pr['agree']} of {pr['species_listed']} species agree. The same sentence states "
+            f"{pr['species_claimed']} species while listing {pr['species_listed']}.",
             "",
         ]
     out += ["## Disagreements", ""]
     rows = [{"table": "Table 1", **d} for d in t1["disagreements"]] + [
         {"table": t, **d} for t, k in (("Table 2", t2), ("Table 3", t3)) for d in k["disagreements"]
+    ]
+    rows += [
+        {"table": "Table 3 vs prose", **d} for d in (r.get("prose") or {}).get("disagreements", [])
     ]
     if ink:
         rows += [{"table": "Table 1 (image)", **d} for d in ink["ink_without_code"]]

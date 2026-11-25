@@ -130,6 +130,20 @@
       "failing_rows": 1
     },
     {
+      "id": "W12",
+      "severity": "warning",
+      "dimension": "precision",
+      "description": "date printed with day 01, published as year-month (the day looks defaulted)",
+      "failing_rows": 23
+    },
+    {
+      "id": "C16",
+      "severity": "critical",
+      "dimension": "consistency",
+      "description": "catalogue numbers in sequence: Table 3 strictly ascending by row, Table 2 consecutive by row apart from rows without a number (a mis-keyed digit that stays unique breaks it)",
+      "failing_rows": 0
+    },
+    {
       "id": "W02",
       "severity": "warning",
       "dimension": "completeness",
@@ -175,7 +189,7 @@
       "id": "W08",
       "severity": "warning",
       "dimension": "consistency",
-      "description": "Table 1 '*' (this survey) in a sampled area, but no Table 2 specimen of that taxon there",
+      "description": "Table 1 '*' (this survey) in an area with Table 2 specimens, but no Table 2 specimen of that taxon there",
       "failing_rows": 13
     },
     {
@@ -201,55 +215,126 @@
     }
   ],
   "cross_table": {
-    "cells": 43,
-    "explained": 11,
+    "cells": 40,
+    "not_comparable": 3,
+    "explained": 5,
+    "possible": 1,
     "code_level_only": 9,
-    "unexplained": 23,
+    "unexplained": 25,
     "link_dependent": 14,
     "unexplained_link_dependent": 5,
     "by_kind": {
       "survey_code_no_voucher": 15,
       "museum_code_no_specimen": 14,
-      "survey_specimen_no_code": 7,
+      "survey_specimen_no_code": 4,
       "museum_specimen_no_code": 8
     },
     "unexplained_by_kind": {
       "survey_code_no_voucher": 11,
-      "museum_code_no_specimen": 8,
-      "survey_specimen_no_code": 1,
+      "museum_code_no_specimen": 9,
+      "survey_specimen_no_code": 2,
       "museum_specimen_no_code": 3
     },
     "by_cause": {
       "reidentified": 2,
       "unconfirmed": 3,
-      "above_species": 6,
+      "above_species": 1,
       "other_code": 10
     },
+    "survey_vouchered_elsewhere": 13,
     "area_without_specimens": 10,
     "scenarios": {
       "all_unlinked": {
-        "cells": 64,
+        "cells": 61,
         "survey_code_no_voucher": 15,
         "museum_code_no_specimen": 44,
-        "survey_specimen_no_code": 7,
-        "museum_specimen_no_code": 3
+        "survey_specimen_no_code": 4,
+        "museum_specimen_no_code": 3,
+        "explained": 0,
+        "possible": 1,
+        "code_level_only": 15,
+        "unexplained": 45,
+        "specimen_cells": 53,
+        "specimen_share": 0.203
+      },
+      "accepted_unlinked": {
+        "cells": 61,
+        "survey_code_no_voucher": 15,
+        "museum_code_no_specimen": 44,
+        "survey_specimen_no_code": 4,
+        "museum_specimen_no_code": 3,
+        "explained": 0,
+        "possible": 1,
+        "code_level_only": 15,
+        "unexplained": 45,
+        "specimen_cells": 53,
+        "specimen_share": 0.203
       },
       "as_curated": {
-        "cells": 43,
+        "cells": 40,
         "survey_code_no_voucher": 15,
         "museum_code_no_specimen": 14,
-        "survey_specimen_no_code": 7,
-        "museum_specimen_no_code": 8
+        "survey_specimen_no_code": 4,
+        "museum_specimen_no_code": 8,
+        "explained": 5,
+        "possible": 1,
+        "code_level_only": 9,
+        "unexplained": 25,
+        "specimen_cells": 70,
+        "specimen_share": 0.268
       },
-      "all_linked": {
-        "cells": 39,
+      "rejected_linked": {
+        "cells": 36,
         "survey_code_no_voucher": 15,
         "museum_code_no_specimen": 9,
-        "survey_specimen_no_code": 7,
-        "museum_specimen_no_code": 9
+        "survey_specimen_no_code": 4,
+        "museum_specimen_no_code": 9,
+        "explained": 5,
+        "possible": 1,
+        "code_level_only": 10,
+        "unexplained": 20,
+        "specimen_cells": 75,
+        "specimen_share": 0.287
+      },
+      "all_linked": {
+        "cells": 36,
+        "survey_code_no_voucher": 15,
+        "museum_code_no_specimen": 9,
+        "survey_specimen_no_code": 4,
+        "museum_specimen_no_code": 9,
+        "explained": 5,
+        "possible": 1,
+        "code_level_only": 10,
+        "unexplained": 20,
+        "specimen_cells": 75,
+        "specimen_share": 0.287
       }
     },
     "uncertain_links": 22,
+    "rejected_link_concordance": [
+      {
+        "table3_locality": "Laguna de Punta de Piedras, Isla Margarita",
+        "candidate_area": "Laguna de Piedras (Isla de Margarita)",
+        "specimens": 4,
+        "taxa": 4,
+        "taxa_with_a_code_in_area": 4
+      },
+      {
+        "table3_locality": "Golfo de Cariaco",
+        "candidate_area": "La Chica, Golfo de Cariaco",
+        "specimens": 1,
+        "taxa": 1,
+        "taxa_with_a_code_in_area": 1
+      },
+      {
+        "table3_locality": "Ensenada Penetepe, Golfo de Cariaco",
+        "candidate_area": "La Chica, Golfo de Cariaco",
+        "specimens": 1,
+        "taxa": 1,
+        "taxa_with_a_code_in_area": 0
+      }
+    ],
+    "table3_without_area": 9,
     "name_level_cells": 43,
     "tiers": {
       "LiteratureRecord": 229,
@@ -279,7 +364,7 @@
       {
         "evidence_kind": "mohbr_collection",
         "tier": "MuseumUnconfirmed",
-        "area_has_specimens": true,
+        "area_has_specimens": false,
         "flagged": false,
         "assertions": 1
       },
@@ -335,49 +420,81 @@
     ],
     "table1_cells": 261,
     "best_tier": {
-      "code": 26,
       "lit_agudo": 156,
       "lit_other": 9,
-      "specimen": 70
+      "museum_code": 14,
+      "specimen": 70,
+      "survey_code": 10,
+      "survey_never": 2
     },
     "best_tier_by_region": {
       "Central Coast": {
-        "code": 3,
         "lit_agudo": 34,
         "lit_other": 1,
-        "specimen": 9
+        "museum_code": 1,
+        "specimen": 9,
+        "survey_code": 0,
+        "survey_never": 2
       },
       "East Coast": {
-        "code": 13,
         "lit_agudo": 90,
         "lit_other": 2,
-        "specimen": 33
+        "museum_code": 9,
+        "specimen": 33,
+        "survey_code": 4,
+        "survey_never": 0
       },
       "Oceanic Islands": {
-        "code": 7,
         "lit_agudo": 12,
         "lit_other": 0,
-        "specimen": 15
+        "museum_code": 1,
+        "specimen": 15,
+        "survey_code": 6,
+        "survey_never": 0
       },
       "West Coast": {
-        "code": 3,
         "lit_agudo": 20,
         "lit_other": 6,
-        "specimen": 13
+        "museum_code": 3,
+        "specimen": 13,
+        "survey_code": 0,
+        "survey_never": 0
       }
     },
-    "best_tier_by_sampled": {
-      "not sampled": {
-        "code": 11,
+    "best_tier_by_visited": {
+      "not visited": {
         "lit_agudo": 122,
         "lit_other": 8,
-        "specimen": 22
+        "museum_code": 11,
+        "specimen": 22,
+        "survey_code": 0,
+        "survey_never": 0
       },
-      "sampled": {
-        "code": 15,
+      "visited": {
         "lit_agudo": 34,
         "lit_other": 1,
-        "specimen": 48
+        "museum_code": 3,
+        "specimen": 48,
+        "survey_code": 10,
+        "survey_never": 2
+      }
+    },
+    "region_by_visited": {
+      "Central Coast": {
+        "not visited": 45,
+        "visited": 2
+      },
+      "East Coast": {
+        "not visited": 95,
+        "visited": 43
+      },
+      "Oceanic Islands": {
+        "not visited": 10,
+        "visited": 24
+      },
+      "West Coast": {
+        "not visited": 13,
+        "visited": 29
       }
     },
     "cell_support": {
@@ -427,6 +544,13 @@
       "ink_and_code": 263,
       "no_ink_no_code": 1141,
       "separated": true
+    },
+    "prose": {
+      "species_listed": 19,
+      "species_claimed": 22,
+      "specimens_listed": 81,
+      "table3_identified": 81,
+      "agree": 19
     }
   }
 }

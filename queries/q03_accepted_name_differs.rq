@@ -16,10 +16,15 @@ SELECT ?nameInPaper ?wormsStatus ?acceptedName ?acceptedRecord
 WHERE {
   ?taxon dwc:taxonID ?id ;
          dwc:scientificName ?nameInPaper ;
-         skos:exactMatch ?record .
+         skos:exactMatch|skos:closeMatch ?record .
   FILTER STRSTARTS(STR(?record), "urn:lsid:marinespecies.org:taxname:")
-  ?record dwc:taxonomicStatus ?wormsStatus ;
-          akv:hasAcceptedName ?acceptedRecord .
+  ?record akv:hasAcceptedName ?acceptedRecord .
+  # WoRMS's own status: a GBIF TaxonomicStatus value, or the nomenclatural status, or the
+  # status WoRMS gives where no GBIF value fits (kept in taxonRemarks)
+  OPTIONAL { ?record dwc:taxonomicStatus ?ts }
+  OPTIONAL { ?record dwc:nomenclaturalStatus ?ns }
+  OPTIONAL { ?record dwc:taxonRemarks ?tr }
+  BIND (COALESCE(?ns, REPLACE(?tr, "^WoRMS status: ", ""), ?ts) AS ?wormsStatus)
   ?acceptedRecord dwc:scientificName ?acceptedName .
   FILTER (?acceptedName != ?nameInPaper)
 }

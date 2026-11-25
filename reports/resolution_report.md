@@ -6,13 +6,13 @@
 |---|---:|---:|---:|---:|
 | worms | 61 | 0 | 0 | 0 |
 | gbif | 59 | 0 | 0 | 2 |
-| ncbi | 44 | 0 | 0 | 17 |
+| ncbi | 47 | 0 | 0 | 14 |
 
 ## Match types (accepted rows)
 
 - worms: exact_accepted 45, exact_synonym 13, fuzzy 3
 - gbif: exact_accepted 46, exact_synonym 10, fuzzy 3
-- ncbi: exact_accepted 34, via_accepted_name 10
+- ncbi: exact_accepted 34, via_accepted_name 13
 
 ## Names whose WoRMS accepted name differs from the paper (13)
 
@@ -32,7 +32,7 @@
 | Haliplanella luciae | worms:100873 (unaccepted) | Diadumene lineata (worms:395099) |
 | Bunodosoma cavernata | worms:283411 (unaccepted) | Bunodosoma cavernatum (worms:592952) |
 
-## Needs attention (19 rows) - nothing here was guessed
+## Needs attention (16 rows) - nothing here was guessed
 
 | name | service | status | candidate | confidence | comment |
 |---|---|---|---|---:|---|
@@ -42,14 +42,11 @@
 | Bartholomea werneri | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Bunodeopsis antilliensis | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Bunodosoma kuekenthali | ncbi | unresolved |  |  | not in NCBI Taxonomy |
-| Ceriantheopsis americanus | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Corynactis caribbeorum | ncbi | unresolved |  |  | not in NCBI Taxonomy |
-| Homostichantus duerdenii | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Isoaulactinia stelloides | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Monactis vestita | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Pachycerianthus curacaoensis | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Palythoa caribbeorum | gbif | unresolved |  | 0.98 | rejected by curator: GBIF fuzzy match is Palythoa caribbea, a different species. |
-| Palythoa caribbeorum | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Palythoa mammillosa | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Phyllactis praetexta | ncbi | unresolved |  |  | not in NCBI Taxonomy |
 | Scolanthus curacaoensis | ncbi | unresolved |  |  | not in NCBI Taxonomy |
@@ -80,4 +77,4 @@ Unresolved labels (no ENVO class): coral rubble
 
 ## Cache
 
-- responses served from cache: 417, fetched: 0
+- responses served from cache: 410, fetched: 0

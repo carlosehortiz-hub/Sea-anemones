@@ -15,16 +15,31 @@ Four kinds of discrepancy are recorded for a cell, independently:
   the article's own tables;
 * ``survey_specimen_no_code`` and ``museum_specimen_no_code``: the reverse.
 
-Causes are multi-label: every cause that applies is recorded, and the counts are marginal. A
-cause *explains* a discrepancy only if it is a property of the article (re-identification,
-unconfirmed identification, identification above species level, or the same presence under
-another code); a dependence on a curated site-to-area link is reported separately, as a
-condition, never as an explanation.
+Causes are multi-label: every cause that applies is recorded, and the counts are marginal.
+Each discrepant cell falls in exactly one class:
+
+* ``explained``: the article itself accounts for it (Table 3 re-identified the specimen, or
+  lists it as 'not identified');
+* ``possible``: a specimen of the same family, identified only above species level, lies in
+  the same area *in the table the missing specimen would be in*. This can only account for a
+  code without a specimen - never for a specimen without a code (bug once, round 3: the rule
+  was direction-blind, so unrelated Actiniidae sp. at Cubagua "explained" a species-level
+  Condylactis gigantea specimen missing from Table 1);
+* ``code_level_only``: presence agrees, but under another code;
+* ``unexplained``: none of these.
+
+A cell whose taxon has no row in Table 1 (the family-level Actiniidae sp. of the specimen
+tables) cannot disagree with Table 1 and is reported as *not comparable*, outside the count.
+
+A dependence on a curated site-to-area link is reported separately, as a condition, never
+as an explanation.
 
 Uncertain link (one definition throughout): a curated link from a Table 3 locality to a
 Table 1 area whose rule is neither an exact name match nor a printed park name (rules
-``names_area``, ``article_variant`` and ``geographic_knowledge``). The analysis is re-run
-with all of them unlinked and all of them linked.
+``names_area``, ``article_variant`` and ``geographic_knowledge``). The class is syntactic: it
+names how the link was made, not how likely it is to be wrong. The analysis is re-run per rule:
+the three rejected ``geographic_knowledge`` links linked, the accepted ones unlinked, and all of
+them unlinked or linked.
 
 Evidence tier (per Table 1 assertion) depends on traceability *and* on the identification
 status of the specimen behind it: a museum code traced only through the specimen's previous
@@ -48,8 +63,15 @@ KINDS = {
 CAUSES = {
     "reidentified": "Table 3 re-identified the specimen; Table 1 keeps the previous name",
     "unconfirmed": "Table 3 lists the specimen as 'not identified'",
-    "above_species": "identified only above species level (possible explanation)",
+    "above_species": "a same-family specimen identified above species level lies in the area, "
+    "in the table the missing specimen would be in (possible explanation)",
     "other_code": "presence agrees, but Table 1 or the other specimen table codes it otherwise",
+}
+CLASSES = {
+    "explained": "accounted for by the article (re-identified or not identified)",
+    "possible": "possibly accounted for by an identification above species level",
+    "code_level_only": "presence agrees; the code differs",
+    "unexplained": "none of the above",
 }
 CONDITIONS = {
     "link_dependent": "the discrepancy changes when uncertain links are all unlinked or linked",
@@ -67,9 +89,15 @@ TIERS = {
     "LiteratureRecord": "record in an earlier publication, cited by the article, not consulted",
 }
 SPECIMEN_CONFIRMED = {"SurveyVouchered", "MuseumConfirmed"}
+# Within museum codes without a matching specimen the order is untraced > not identified >
+# re-identified as another taxon: a code whose only specimen the article now calls something
+# else is the article's own counter-evidence, not weaker support.
+MUSEUM_ORDER = ["MuseumUntraced", "MuseumUnconfirmed", "MuseumReidentified"]
 BEST_TIER = {  # Fig. 4 classes, best first
-    "specimen": "specimen listed, identification confirmed",
-    "code": "survey/museum code, no confirmed specimen",
+    "specimen": "specimen listed, unqualified identification by the authors",
+    "survey_code": "survey code; the species is vouchered from another area",
+    "museum_code": "museum code without a matching specimen",
+    "survey_never": "survey code; the species is never vouchered",
     "lit_other": "literature only: other or several sources",
     "lit_agudo": "literature only: Agudo (1987) alone",
 }
@@ -108,19 +136,68 @@ def uncertain_links(crosswalk: pd.DataFrame) -> pd.DataFrame:
     return cw[~cw.rule.isin(CERTAIN_LINK_RULES) & cw.table1_locality_col_id.notna()]
 
 
+SCENARIOS = {
+    "all_unlinked": "all 22 uncertain links unlinked",
+    "accepted_unlinked": "the 19 accepted uncertain links unlinked",
+    "as_curated": "as curated",
+    "rejected_linked": "the 3 rejected links linked",
+    "all_linked": "all 22 uncertain links linked",
+}
+
+
 def relink(t: Tables, crosswalk: pd.DataFrame, scenario: str) -> Tables:
-    """Tables with every uncertain link set to 'linked' or 'unlinked'."""
+    """Tables with uncertain links switched according to ``scenario`` (see SCENARIOS)."""
     if scenario == "as_curated":
         return t
     loc = t["locality"].copy()
     col_area = {v: k for k, v in _area_col(t).items()}
     un = uncertain_links(crosswalk)
+    rejected = un.status.eq("rejected")
+    if scenario == "rejected_linked":
+        un, link = un[rejected], True
+    elif scenario == "accepted_unlinked":
+        un, link = un[~rejected], False
+    else:
+        link = scenario == "all_linked"
     for key, col in zip(un.verbatim_key, un.table1_locality_col_id, strict=True):
         is_site = (loc.locality_level == "site") & (loc.verbatim_locality == key)
-        loc.loc[is_site, "parent_locality_id"] = (
-            col_area.get(col) if scenario == "all_linked" else None
-        )
+        loc.loc[is_site, "parent_locality_id"] = col_area.get(col) if link else None
     return {**t, "locality": loc}
+
+
+def rejected_link_concordance(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
+    """For each rejected link: how many of the site's Table 3 taxa carry a museum code (a) in
+    the candidate Table 1 area. Evidence internal to the article; it does not decide the link."""
+    acc = accepted_ids(t)
+    col_area = {v: k for k, v in _area_col(t).items()}
+    d = t["distribution"]
+    a_codes = d[d.evidence_kind == "mohbr_collection"]
+    s3 = _specimens(t, "table3")
+    loc_name = dict(zip(t["locality"].locality_id, t["locality"].locality_name, strict=True))
+    rows = []
+    un = uncertain_links(crosswalk)
+    for key, col in zip(
+        un[un.status == "rejected"].verbatim_key,
+        un[un.status == "rejected"].table1_locality_col_id,
+        strict=True,
+    ):
+        area = col_area.get(col)
+        site = t["locality"][
+            (t["locality"].locality_level == "site") & (t["locality"].verbatim_locality == key)
+        ]
+        here = s3[s3.locality_id.isin(site.locality_id) & s3.taxon_id.notna()]
+        coded = set(a_codes[a_codes.locality_id == area].taxon_id.map(acc))
+        taxa = set(here.taxon_id.map(acc))
+        rows.append(
+            {
+                "table3_locality": key,
+                "candidate_area": loc_name.get(area),
+                "specimens": len(here),
+                "taxa": len(taxa),
+                "taxa_with_a_code_in_area": len(taxa & coded),
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def _specimens(t: Tables, source: str) -> pd.DataFrame:
@@ -161,6 +238,10 @@ class _Evidence:
             keys = list(zip(ok.taxon_id.map(acc), ok.area_id, strict=True))
             self.current[s] = {k: ok[[kk == k for kk in keys]] for k in set(keys)}
         self.areas_with = {s: set(sp.area_id.dropna()) for s, sp in self.spec.items()}
+        tx = t["taxon"]
+        self.in_table1 = {acc.get(i) for i in tx[tx.table1_row.notna()].taxon_id}
+        s2 = self.spec["table2"]
+        self.vouchered = set(s2[s2.taxon_id.notna()].taxon_id.map(acc))
 
     def kinds(self, cell: tuple) -> set[str]:
         codes = self.codes.get(cell, set())
@@ -180,14 +261,21 @@ class _Evidence:
     def cells(self) -> set[tuple]:
         return set(self.codes) | set(self.current["table2"]) | set(self.current["table3"])
 
+    def comparable(self, cell: tuple) -> bool:
+        return cell[0] in self.in_table1
+
 
 # --------------------------------------------------------------------- discrepancies
 
 
-def discrepancies(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
+def discrepancies(t: Tables, crosswalk: pd.DataFrame, scenarios: bool = True) -> pd.DataFrame:
     """One row per discrepant (accepted taxon x area) cell, with kinds, causes, conditions."""
     ev = _Evidence(t)
-    scen = {s: _Evidence(relink(t, crosswalk, s)) for s in ("all_unlinked", "all_linked")}
+    scen = (
+        {s: _Evidence(relink(t, crosswalk, s)) for s in ("all_unlinked", "all_linked")}
+        if scenarios
+        else {}
+    )
     acc_name = _accepted_names(t)
     loc_name = dict(zip(t["locality"].locality_id, t["locality"].locality_name, strict=True))
     region = dict(zip(t["locality"].locality_id, t["locality"].region, strict=True))
@@ -220,14 +308,17 @@ def discrepancies(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
             )
         )
         coarse = False
-        for s in ("table2", "table3"):
+        for kind, s in (
+            ("survey_code_no_voucher", "table2"),
+            ("museum_code_no_specimen", "table3"),
+        ):
+            if kind not in kinds:
+                continue
             sp = ev.spec[s]
             c = sp[(sp.area_id == area) & sp.taxon_id.notna()]
             c = c[c.taxon_id.map(ev.rank).ne("species")]
             if any(family.get(ev.acc.get(x)) == family.get(taxon) for x in c.taxon_id):
                 coarse = True
-        if ev.rank.get(_any_taxon(t, ev.acc, taxon)) not in (None, "species"):
-            coarse = True
         other_code = False
         if "survey_specimen_no_code" in kinds and codes - {"this_survey"}:
             other_code = True
@@ -251,6 +342,17 @@ def discrepancies(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
             [f"{r.source_ref}: {r.prev_name} -> {r.verbatim_name}" for r in reid.itertuples()]
             + [f"{r.source_ref}: {r.prev_name} -> not identified" for r in unconf.itertuples()]
         )
+        # Only properties of the article explain; the same presence under another code still
+        # disagrees at code level and is reported as such.
+        if causes["reidentified"] or causes["unconfirmed"]:
+            klass = "explained"
+        elif causes["above_species"]:
+            klass = "possible"
+        elif causes["other_code"]:
+            klass = "code_level_only"
+        else:
+            klass = "unexplained"
+        comparable = ev.comparable(cell)
         rows.append(
             {
                 "taxon": acc_name.get(taxon, str(taxon)),
@@ -259,15 +361,10 @@ def discrepancies(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
                 "region": region.get(area),
                 **{k: k in kinds for k in KINDS},
                 **causes,
-                # Only properties of the article explain; the same presence under another
-                # code still disagrees at code level and is reported as such.
-                "explained": causes["reidentified"]
-                or causes["unconfirmed"]
-                or causes["above_species"],
-                "code_level_only": causes["other_code"]
-                and not (
-                    causes["reidentified"] or causes["unconfirmed"] or causes["above_species"]
-                ),
+                "comparable": comparable,
+                "class": klass if comparable else "not_comparable",
+                **{k: comparable and klass == k for k in CLASSES},
+                "vouchered_elsewhere": "survey_code_no_voucher" in kinds and taxon in ev.vouchered,
                 "link_dependent": link_dep,
                 "area_without_specimens": no_specimens,
                 "table1_codes": ", ".join(sorted(codes)) or "-",
@@ -283,21 +380,21 @@ def _accepted_names(t: Tables) -> dict[int, str]:
     return {a: names.get(a, str(a)) for a in set(accepted_ids(t).values())}
 
 
-def _any_taxon(t: Tables, acc: dict, aphia: int) -> str | None:
-    return next((tx for tx, a in acc.items() if a == aphia), None)
-
-
 def scenario_counts(t: Tables, crosswalk: pd.DataFrame) -> pd.DataFrame:
     """Discrepant cells by kind under the three linking scenarios."""
     rows = []
-    for s in ("all_unlinked", "as_curated", "all_linked"):
-        ev = _Evidence(relink(t, crosswalk, s))
-        kinds = [ev.kinds(c) for c in ev.cells()]
+    for s in SCENARIOS:
+        tt = relink(t, crosswalk, s)
+        disc = discrepancies(tt, crosswalk, scenarios=False)
+        cs = cell_support(tt)
         rows.append(
             {
                 "scenario": s,
-                "cells": sum(bool(k) for k in kinds),
-                **{k: sum(k in ks for ks in kinds) for k in KINDS},
+                "cells": int(disc.comparable.sum()),
+                **{k: int((disc[k] & disc.comparable).sum()) for k in KINDS},
+                **{k: int(disc[k].sum()) for k in CLASSES},
+                "specimen_cells": int((cs.best_tier == "specimen").sum()),
+                "specimen_share": round(float((cs.best_tier == "specimen").mean()), 3),
             }
         )
     df = pd.DataFrame(rows)
@@ -352,22 +449,71 @@ def evidence_tiers(t: Tables) -> pd.Series:
 
 
 def supporting_specimens(t: Tables) -> dict[str, list[str]]:
-    """distribution_id -> occurrenceIDs of the specimens whose current identification matches
-    the assertion's accepted taxon in the same area (survey: Table 2; museum: Table 3)."""
+    """distribution_id -> occurrenceIDs of the specimens an assertion rests on: those whose
+    current identification matches its accepted taxon in the same area (survey: Table 2;
+    museum: Table 3), or - for a museum code with no such specimen - those whose *previous*
+    identification matches (re-identified or not identified). Bug once (round 3): only the
+    first kind was linked, so the four traced-through-previous-identification assertions were
+    counted twice, once as an assertion and once as a specimen."""
     acc = accepted_ids(t)
     d = t["distribution"]
     out: dict[str, list[str]] = {}
     for kind, source in (("this_survey", "table2"), ("mohbr_collection", "table3")):
         sp = _specimens(t, source)
-        sp = sp[sp.taxon_id.notna() & sp.area_id.notna()]
+        sp = sp[sp.area_id.notna()]
         by_key: dict[tuple, list[str]] = {}
-        for oid, tx, area in zip(sp.occurrence_id, sp.taxon_id, sp.area_id, strict=True):
-            by_key.setdefault((acc.get(tx), area), []).append(oid)
+        by_prev: dict[tuple, list[str]] = {}
+        for oid, tx, prev, area in zip(
+            sp.occurrence_id, sp.taxon_id, sp.prev_taxon_id, sp.area_id, strict=True
+        ):
+            if pd.notna(tx):
+                by_key.setdefault((acc.get(tx), area), []).append(oid)
+            if pd.notna(prev):
+                by_prev.setdefault((acc.get(prev), area), []).append(oid)
         sub = d[(d.evidence_kind == kind) & d.locality_id.notna()]
         for did, tx, area in zip(sub.distribution_id, sub.taxon_id, sub.locality_id, strict=True):
-            hits = by_key.get((acc.get(tx), area))
+            key = (acc.get(tx), area)
+            hits = by_key.get(key) or (by_prev.get(key) if source == "table3" else None)
             if hits:
-                out[did] = sorted(hits)
+                out[did] = sorted(set(hits))
+    return out
+
+
+IDENTIFICATION_CHANGE = {
+    "orthographic": "spelling or gender ending only; same accepted name",
+    "nomenclatural": "name update (new combination or synonymy); same WoRMS accepted name",
+    "determination": "changed determination; different WoRMS accepted name",
+    "unverified": "could not be corroborated (poor condition of the specimen); not refuted",
+}
+
+
+def _spelling_only(a: str, b: str, matcher) -> bool:
+    """Every word differs at most in spelling: same initial, similar letters (Homostichantus /
+    Homostichanthus), never a different genus (Aiptasia / Exaiptasia)."""
+    wa, wb = a.split(), b.split()
+    return len(wa) == len(wb) and all(
+        x[0] == y[0] and matcher(None, x, y).ratio() >= 0.8 for x, y in zip(wa, wb, strict=True)
+    )
+
+
+def identification_changes(t: Tables) -> dict[str, str]:
+    """occurrence_id -> reason the Table 3 current identification differs from the previous
+    one. Bug once (round 3): every previous identification was stamped 're-identified in this
+    study', which is wrong for name updates and for specimens the authors could not verify."""
+    from difflib import SequenceMatcher
+
+    acc = accepted_ids(t)
+    s3 = _specimens(t, "table3")
+    out = {}
+    for r in s3[s3.prev_name.notna()].itertuples():
+        if pd.isna(r.taxon_id):
+            out[r.occurrence_id] = "unverified"
+        elif acc.get(r.taxon_id) != acc.get(r.prev_taxon_id):
+            out[r.occurrence_id] = "determination"
+        elif _spelling_only(str(r.prev_name), str(r.verbatim_name), SequenceMatcher):
+            out[r.occurrence_id] = "orthographic"
+        else:
+            out[r.occurrence_id] = "nomenclatural"
     return out
 
 
@@ -382,6 +528,9 @@ def cell_support(t: Tables, by: str = "name") -> pd.DataFrame:
     tiers = evidence_tiers(t)
     d = d.assign(tier=d.distribution_id.map(tiers))
     acc = accepted_ids(t)
+    s2 = _specimens(t, "table2")
+    # vouchered anywhere in Table 2, by printed name (the unit of these cells and of q07)
+    vouchered = set(s2.taxon_id.dropna())
     key = d.taxon_id if by == "name" else d.taxon_id.map(acc)
     loc = t["locality"].set_index("locality_id")
     rows = []
@@ -398,10 +547,18 @@ def cell_support(t: Tables, by: str = "name") -> pd.DataFrame:
             support = "literature only: Agudo (1987) alone"
         else:
             support = "literature only: other or several sources"
-        if set(g.tier) & SPECIMEN_CONFIRMED:
+        tiers_here = set(g.tier)
+        survey_unv = g[g.tier == "SurveyUnvouchered"]
+        if tiers_here & SPECIMEN_CONFIRMED:
             best = "specimen"
+        elif tiers_here & {"SurveyVoucheredQualified"} or any(
+            x in vouchered for x in survey_unv.taxon_id
+        ):
+            best = "survey_code"
+        elif tiers_here & set(MUSEUM_ORDER):
+            best = "museum_code"
         elif first:
-            best = "code"
+            best = "survey_never"
         elif refs == {"e"}:
             best = "lit_agudo"
         else:
@@ -411,7 +568,7 @@ def cell_support(t: Tables, by: str = "name") -> pd.DataFrame:
                 "taxon": taxon,
                 "area_id": area,
                 "region": loc.region[area],
-                "sampled": bool(loc.sampled_in_study[area]),
+                "visited": bool(loc.sampled_in_study[area]),
                 "support": support,
                 "best_tier": best,
             }
@@ -427,10 +584,15 @@ def tier_rule_crosstab(t: Tables) -> pd.DataFrame:
     w = set(_w08(t).distribution_id) | set(_w10(t).distribution_id)
     d = t["distribution"]
     d = d[d.evidence_kind != "literature"]
-    spec_areas = {
-        "this_survey": set(_specimens(t, "table2").area_id.dropna()),
-        "mohbr_collection": set(_specimens(t, "table3").area_id.dropna()),
-    }
+
+    # The same definition as the rules: an area is covered through a specimen with a current
+    # identification (bug once, round 3: counting any specimen left the reconciliation with
+    # W10 off by one - Isaurus at Chacopata, whose only specimen is 'not identified').
+    def covered(src: str) -> set:
+        sp = _specimens(t, src)
+        return set(sp[sp.taxon_id.notna()].area_id.dropna())
+
+    spec_areas = {"this_survey": covered("table2"), "mohbr_collection": covered("table3")}
     out = d.assign(
         tier=d.distribution_id.map(tiers),
         flagged=d.distribution_id.isin(w),
@@ -450,11 +612,17 @@ def tier_rule_crosstab(t: Tables) -> pd.DataFrame:
 # -------------------------------------------------------------------------- report
 
 
-def to_markdown(disc: pd.DataFrame, scen: pd.DataFrame, cells: pd.DataFrame) -> str:
-    kinds = {k: int(disc[k].sum()) for k in KINDS}
-    causes = {k: int(disc[k].sum()) for k in CAUSES}
-    resid = disc[~disc.explained & ~disc.code_level_only]
+def to_markdown(
+    disc: pd.DataFrame, scen: pd.DataFrame, cells: pd.DataFrame, conc: pd.DataFrame
+) -> str:
+    comp = disc[disc.comparable]
+    kinds = {k: int(comp[k].sum()) for k in KINDS}
+    causes = {k: int(comp[k].sum()) for k in CAUSES}
+    resid = comp[comp.unexplained]
     tab = pd.crosstab(cells.region, cells.best_tier, margins=True, margins_name="all")
+    vis = pd.crosstab(
+        [cells.region, cells.visited], cells.best_tier, margins=True, margins_name="all"
+    )
     out = [
         "# Cross-table review: Table 1 codes against the specimen tables",
         "",
@@ -462,12 +630,13 @@ def to_markdown(disc: pd.DataFrame, scen: pd.DataFrame, cells: pd.DataFrame) -> 
         "(not only areas from which the specimen table has specimens). Causes are multi-label; "
         "a dependence on a curated site-to-area link is a condition, not an explanation.",
         "",
-        f"**{len(disc)} discrepant cells.** {int(disc.explained.sum())} are explained by the "
-        "article (re-identification, unconfirmed identification, or possibly an identification "
-        f"above species level); {int(disc.code_level_only.sum())} agree on presence but differ in "
-        f"the code; {len(resid)} remain unexplained. {int(disc.link_dependent.sum())} change "
-        f"when the {scen.attrs['uncertain_links']} uncertain links are all unlinked or all "
-        "linked.",
+        f"**{len(comp)} discrepant cells** ({len(disc) - len(comp)} further cells have no Table 1 "
+        f"row and are not comparable). {int(comp.explained.sum())} are explained by the article "
+        f"(re-identified or not identified); {int(comp.possible.sum())} possibly by an "
+        f"identification above species level; {int(comp.code_level_only.sum())} agree on "
+        f"presence but differ in the code; {len(resid)} remain unexplained. "
+        f"{int(comp.link_dependent.sum())} change when the {scen.attrs['uncertain_links']} "
+        "uncertain links are all unlinked or all linked.",
         "",
         "| kind | cells | unexplained |",
         "|---|---:|---:|",
@@ -478,9 +647,13 @@ def to_markdown(disc: pd.DataFrame, scen: pd.DataFrame, cells: pd.DataFrame) -> 
         *[f"| {CAUSES[k]} | {causes[k]} |" for k in CAUSES],
         *[f"| condition: {CONDITIONS[k]} | {int(disc[k].sum())} |" for k in CONDITIONS],
         "",
-        "## Link scenarios (discrepant cells)",
+        "## Link scenarios (discrepant cells and specimen-backed share of Table 1 cells)",
         "",
         scen.to_markdown(index=False),
+        "",
+        "## Rejected links: taxon-set concordance with the candidate area",
+        "",
+        conc.to_markdown(index=False),
         "",
         "## Every discrepant cell",
         "",
@@ -489,6 +662,10 @@ def to_markdown(disc: pd.DataFrame, scen: pd.DataFrame, cells: pd.DataFrame) -> 
         "## Best evidence tier of Table 1 cells (printed name x area), by region",
         "",
         tab.to_markdown(),
+        "",
+        "## The same, by region and visited / not visited",
+        "",
+        vis.to_markdown(),
         "",
     ]
     return "\n".join(out)

@@ -23,7 +23,10 @@ RULES: dict[str, str] = {
     "R_TRIM": "Collapse internal whitespace and strip; no other change.",
     "R_MISSING": "'-' or empty string -> null (the paper's placeholder for 'not recorded').",
     "R_CONSTANT": "Constant stated once for the whole dataset (e.g. country, institution).",
-    "R_UUID5": "Deterministic UUIDv5 from a natural key, namespaced on the source DOI.",
+    "R_UUID5": "Deterministic UUIDv5 from a natural key, namespaced on the source DOI; "
+    "specimens are namespaced on the institution, so a lot keeps its id in any later source.",
+    "R_DATE_PRECISION": "Day 01 in Table 3 -> year-month (the day looks defaulted); an "
+    "impossible date -> year only. Verbatim date always kept.",
     "R_FLAGS": "Table 1 marks after a name: dagger -> flag_invalid, '?' -> flag_doubtful.",
     "R_SPLIT_QUALIFIER": "Split an open-nomenclature qualifier (cf., sp., sp.?) off the name.",
     "R_RANK_FROM_NAME": "Rank from name form: binomial=species, '-idae'=family, else genus.",
@@ -35,7 +38,7 @@ RULES: dict[str, str] = {
     "R_NOT_IDENTIFIED": "'not identified' -> no taxon; kept verbatim with a remark.",
     "R_STATE": "State spelling from mappings/state_names.csv.",
     "R_DMS": "Degrees-minutes-seconds -> decimal degrees, 6 dp; W and S negative.",
-    "R_DATE_DMY": "dd/mm/yyyy -> ISO 8601; impossible calendar dates -> null, verbatim kept.",
+    "R_DATE_DMY": "dd/mm/yyyy -> ISO 8601; impossible calendar dates flagged, verbatim kept.",
     "R_DATE_METHODS": "Event date stated in Methods per park, from mappings/event_dates.csv.",
     "R_PERSON": "Collectors: fix 'Agudo. I.' -> 'Agudo, I.'; ' and ' -> ' | ' (DwC list).",
     "R_CATALOG": "MOHBR catalogue number; non-identifier text ('In progress') -> null + remark.",
@@ -53,6 +56,12 @@ MISSING_TOKENS = frozenset({"", "-", "–"})
 # ------------------------------------------------------------------ identifiers
 def namespace_for(doi: str) -> uuid.UUID:
     return uuid.uuid5(uuid.NAMESPACE_URL, f"https://doi.org/{doi}")
+
+
+# Specimens are keyed on institution + catalogue number. Their namespace is derived from the
+# institution code, not from the source DOI, so that the same MOHBR lot cited in a later
+# article (or published by the museum) gets the same occurrenceID (round 3, R5 M4 / R7 M4).
+SPECIMEN_NAMESPACE = uuid.uuid5(uuid.NAMESPACE_URL, "urn:anemone-kg:institution:MOHBR")
 
 
 def mint_id(namespace: uuid.UUID, kind: str, natural_key: str) -> str:
@@ -145,6 +154,29 @@ def dms_to_decimal(verbatim: str, hemisphere: str) -> float:
 
 
 # ------------------------------------------------------------------------ dates
+def event_date_with_precision(verbatim: str | None) -> tuple[str | None, str | None]:
+    """R_DATE_PRECISION. (eventDate, remark): day 01 becomes year-month, an impossible date
+    keeps its year.
+
+    23 of the 81 parseable Table 3 dates fall on day 01, against about 3 expected if days were
+    uniform: the pattern of a defaulted day. Publishing them at day precision would invent
+    information (round 3, R7 M3).
+
+    >>> event_date_with_precision("01/08/1987")
+    ('1987-08', 'day given as 01, published as year-month (the day looks defaulted)')
+    >>> event_date_with_precision("31/04/2012")
+    ('2012', 'impossible calendar date; published as year only')
+    >>> event_date_with_precision("23/02/1995")
+    ('1995-02-23', None)
+    """
+    iso, problem = parse_dmy(verbatim)
+    if problem == "impossible calendar date":
+        return trim(verbatim)[-4:], "impossible calendar date; published as year only"
+    if iso and iso.endswith("-01"):
+        return iso[:7], "day given as 01, published as year-month (the day looks defaulted)"
+    return iso, problem
+
+
 def parse_dmy(verbatim: str | None) -> tuple[str | None, str | None]:
     """R_DATE_DMY + R_MISSING. Returns (iso_date, problem).
 

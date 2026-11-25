@@ -1,39 +1,46 @@
-# title: Table 1 cells by best evidence tier, per region and sampling status
-# question: For each region, and for areas the authors sampled or not, how many taxon x area cells of Table 1 rest on a specimen with a confirmed identification, on a survey or museum code without one, or on literature only (Agudo 1987 alone, or other sources)?
-# why: The unit a reuser needs is the cell, graded by its best evidence (akv:evidenceTier), on one denominator. Only in sampled areas can a missing first-hand record mean "looked for and not found".
+# title: Table 1 cells by best evidence tier, per region and visited / not visited
+# question: For each region, and for areas the authors visited or not, how many taxon x area cells of Table 1 rest on a specimen from the area, on a survey code for a species vouchered elsewhere, on a museum code without a matching specimen, on a survey code for a species never vouchered, or on literature only (Agudo 1987 alone, or other sources)?
+# why: The unit a reuser needs is the cell, graded by its best evidence (akv:evidenceTier), on one denominator. A survey code can only occur in a visited area, so the strata differ partly by construction; effort and season are not reported.
 PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
 PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
 PREFIX dsw:     <http://purl.org/dsw/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
 
-SELECT ?region ?sampled ?best (COUNT(*) AS ?cells)
+SELECT ?region ?visited ?best (COUNT(*) AS ?cells)
 WHERE {
   {
-    SELECT ?taxon ?area ?region ?sampled (MAX(?spec) AS ?specimen) (MAX(?fh) AS ?first)
-           (MAX(?notAgudo) AS ?other)
+    SELECT ?taxon ?area ?region ?visited (MAX(?spec) AS ?specimen) (MAX(?sv) AS ?survey)
+           (MAX(?mu) AS ?museum) (MAX(?sn) AS ?surveyNever) (MAX(?notAgudo) AS ?other)
     WHERE {
-      ?rec dwc:basisOfRecord "MaterialCitation" ;
+      ?rec dcterms:type ?kind ;
            dwciri:toTaxon ?taxon ;
-           dcterms:type ?kind ;
            akv:evidenceTier ?tier ;
            dsw:atEvent/dsw:locatedAt ?area .
       ?area dcterms:isPartOf ?regionNode ;
-            akv:sampledInStudy ?sampled .
+            akv:sampledInStudy ?visited .
       ?regionNode dwc:locality ?region .
       FILTER STRSTARTS(STR(?regionNode), "https://w3id.org/anemone-kg/location/region-")
       OPTIONAL { ?rec dcterms:references ?ref }
+      # vouchered anywhere: some Table 2 specimen (it has a field code) is identified as the name
+      BIND(EXISTS { ?v dwc:otherCatalogNumbers ?fc ; dwciri:toTaxon ?taxon } AS ?vouchered)
       BIND(IF(?tier IN (akv:SurveyVouchered, akv:MuseumConfirmed), 1, 0) AS ?spec)
-      BIND(IF(?kind IN (akv:ThisSurvey, akv:MohbrCollection), 1, 0) AS ?fh)
+      BIND(IF(?tier = akv:SurveyVoucheredQualified
+              || (?tier = akv:SurveyUnvouchered && ?vouchered), 1, 0) AS ?sv)
+      BIND(IF(?tier IN (akv:MuseumUntraced, akv:MuseumUnconfirmed, akv:MuseumReidentified), 1, 0)
+           AS ?mu)
+      BIND(IF(?tier = akv:SurveyUnvouchered && !?vouchered, 1, 0) AS ?sn)
       BIND(IF(?kind = akv:Literature && ?ref != <https://w3id.org/anemone-kg/reference/e>, 1, 0)
            AS ?notAgudo)
     }
-    GROUP BY ?taxon ?area ?region ?sampled
+    GROUP BY ?taxon ?area ?region ?visited
   }
-  BIND(IF(?specimen = 1, "specimen listed, identification confirmed",
-       IF(?first = 1, "survey/museum code, no confirmed specimen",
+  BIND(IF(?specimen = 1, "specimen listed, unqualified identification by the authors",
+       IF(?survey = 1, "survey code; the species is vouchered from another area",
+       IF(?museum = 1, "museum code without a matching specimen",
+       IF(?surveyNever = 1, "survey code; the species is never vouchered",
        IF(?other = 0, "literature only: Agudo (1987) alone",
-          "literature only: other or several sources"))) AS ?best)
+          "literature only: other or several sources"))))) AS ?best)
 }
-GROUP BY ?region ?sampled ?best
-ORDER BY ?region ?sampled ?best
+GROUP BY ?region ?visited ?best
+ORDER BY ?region ?visited ?best

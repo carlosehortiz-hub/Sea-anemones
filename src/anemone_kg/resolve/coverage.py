@@ -48,19 +48,30 @@ def _epithet_stem(e: str) -> str:
     return re.sub(r"(us|a|um|is|e|i|ii|ae|orum|arum)$", "", e or "")
 
 
-def relation(name: str, rec: pd.Series, valid_name: str | None) -> str:
-    """Nomenclatural relation of an article name to its WoRMS accepted name."""
+def relation(
+    name: str, rec: pd.Series, valid_name: str | None, valid_authority: str | None = None
+) -> str:
+    """Nomenclatural relation of an article name to its WoRMS accepted name, from the WoRMS
+    records alone (the curated relation, with the act, is in mappings/taxonomic_acts.csv).
+
+    Bug once (round 3): a genus change was always "new combination". When the accepted name's
+    authority carries no parentheses while the article's does, the accepted name is the
+    original combination, restored after its genus was resurrected (Corynactis ->
+    Pseudocorynactis caribbeorum Den Hartog, 1980)."""
     status = str(rec.taxonomic_status)
     reason = str(rec.unaccept_reason) if pd.notna(rec.unaccept_reason) else ""
     if status == "nomen nudum":
-        return "nomen nudum: unavailable name; the accepted name is the WoRMS editors' judgement"
+        return "nomen nudum: unavailable name; WoRMS links it to a later-described species"
     if status == "alternative representation":
-        return "alternative representation in WoRMS (see text: ICZN Opinion 2500, 2023)"
+        return "junior subjective synonym (WoRMS status 'alternative representation')"
     g1, *e1 = name.split()
     g2, *e2 = (valid_name or name).split()
     e1 = e1[0] if e1 else ""
     e2 = e2[0] if e2 else ""
     if g1 != g2 and _epithet_stem(e1) == _epithet_stem(e2):
+        auth = str(rec.scientific_name_authorship or "")
+        if auth.startswith("(") and valid_authority and not valid_authority.startswith("("):
+            return "restored original combination (genus resurrected)"
         return "new combination (genus transfer)"
     if g1 == g2 and e1 != e2 and _epithet_stem(e1) == _epithet_stem(e2):
         return "gender agreement of the epithet (ICZN Art. 34.2)"
@@ -72,6 +83,7 @@ def relation(name: str, rec: pd.Series, valid_name: str | None) -> str:
 def acts(http: CachedHttp, worms: pd.DataFrame) -> pd.DataFrame:
     """One row per unaccepted WoRMS record: relation, act source(s) and year(s)."""
     rows = []
+    auth_of = dict(zip(worms.aphia_id.astype(int), worms.scientific_name_authorship, strict=True))
     un = worms[worms.valid_aphia_id.notna() & (worms.valid_aphia_id != worms.aphia_id)]
     for r in un.sort_values("scientific_name").itertuples():
         resp = http.get("worms", f"{WORMS}/AphiaSourcesByAphiaID/{int(r.aphia_id)}")
@@ -98,10 +110,16 @@ def acts(http: CachedHttp, worms: pd.DataFrame) -> pd.DataFrame:
                 "unaccept_reason": reason,
                 "accepted_name": r.valid_name,
                 "accepted_aphia_id": int(r.valid_aphia_id),
-                "relation": relation(r.scientific_name, pd.Series(r._asdict()), r.valid_name),
+                "relation": relation(
+                    r.scientific_name,
+                    pd.Series(r._asdict()),
+                    r.valid_name,
+                    auth_of.get(int(r.valid_aphia_id)),
+                ),
                 "act_sources": " | ".join(cites),
                 "act_years": ", ".join(str(y) for y in sorted(set(years))),
-                "timing": (
+                # of the sources WoRMS cites, which are not necessarily acts
+                "cited_source_years": (
                     "not dated in WoRMS"
                     if not years
                     else "before 2016"
@@ -142,9 +160,14 @@ def ncbi_coverage(
     rows = []
     for t in taxa.sort_values("scientific_name").itertuples():
         m = ncbi.loc[t.taxon_id]
+        wrow0 = wm[wm.subject_id == t.taxon_id]
+        w_order = (
+            w_by_id.order.get(int(wrow0.object_id.iloc[0].split(":")[1])) if len(wrow0) else None
+        )
         row: dict[str, Any] = {
             "name": t.scientific_name,
-            "order": t.order,
+            # order as printed; for names printed only in the specimen tables, WoRMS's order
+            "order": t.order if isinstance(t.order, str) else w_order,
             "family": t.family,
             "rank": t.taxon_rank,
             "ncbi_result": m.match_type if m.status == "accepted" else m.status,
@@ -163,8 +186,13 @@ def ncbi_coverage(
             if len(wrow):
                 aid = int(wrow.object_id.iloc[0].split(":")[1])
                 valid = w_by_id.valid_aphia_id.get(aid)
-                for syn in _synonyms(http, int(valid) if pd.notna(valid) else aid):
-                    tried.append(f"{syn}[All Names]")
+                acc_id = int(valid) if pd.notna(valid) else aid
+                acc_name = w_by_id.scientific_name.get(acc_id)
+                if isinstance(acc_name, str) and acc_name != t.scientific_name:
+                    tried.append(f"{acc_name}[All Names]")  # the accepted name itself
+                for syn in _synonyms(http, acc_id):
+                    if f"{syn}[All Names]" not in tried:
+                        tried.append(f"{syn}[All Names]")
             hit = None
             for term in tried:
                 _, ids, _ = _esearch(http, "taxonomy", term)
@@ -198,6 +226,39 @@ def voucher_search(http: CachedHttp) -> dict:
     ):
         n, _, key = _esearch(http, "nuccore", term)
         out[label] = {"term": term, "nucleotide_records": n, "cache_key": key}
+    return out
+
+
+def collection_search(http: CachedHttp) -> dict:
+    """Is MOHBR already published? GBIF datasets and GRSciColl institutions and collections that
+    name it (full-text search). A specimen already in GBIF would be a duplicate if published
+    again from this graph (round 3, R5 M4)."""
+    out = {}
+    for label, url, params in (
+        ("GBIF datasets", "https://api.gbif.org/v1/dataset/search", {"q": "Hermano Benigno"}),
+        ("GBIF datasets (MOHBR)", "https://api.gbif.org/v1/dataset/search", {"q": "MOHBR"}),
+        (
+            "GRSciColl institutions",
+            "https://api.gbif.org/v1/grscicoll/institution/search",
+            {"q": "Hermano Benigno"},
+        ),
+        (
+            "GRSciColl collections",
+            "https://api.gbif.org/v1/grscicoll/collection/search",
+            {"q": "Hermano Benigno"},
+        ),
+    ):
+        resp = http.get("gbif", url, {**params, "limit": 20})
+        body = _body(resp) or {}
+        hits = body.get("results", body if isinstance(body, list) else [])
+        out[label] = {
+            "query": params["q"],
+            "hits": int(body.get("count", len(hits))) if isinstance(body, dict) else len(hits),
+            "titles": sorted(
+                str(h.get("title") or h.get("name") or h.get("institutionName") or "") for h in hits
+            )[:10],
+            "cache_key": resp.cache_key,
+        }
     return out
 
 

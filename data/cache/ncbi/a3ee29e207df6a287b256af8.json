@@ -5,11 +5,11 @@
    "errorlist": {
     "fieldsnotfound": [],
     "phrasesnotfound": [
-     "Palythoa caribdea[All Names]"
+     "Pseudocorynactis caribbeorum[All Names]"
     ]
    },
    "idlist": [],
-   "querytranslation": "(Palythoa caribdea[All Names])",
+   "querytranslation": "(Pseudocorynactis caribbeorum[All Names])",
    "retmax": "0",
    "retstart": "0",
    "translationset": [],
@@ -26,7 +26,7 @@
    "version": "0.3"
   }
  },
- "retrieved_at": "2026-11-25T13:02:33+00:00",
+ "retrieved_at": "2026-11-25T20:35:49+00:00",
  "status_code": 200,
- "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Palythoa+caribdea%5BAll+Names%5D"
+ "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&retmax=20&retmode=json&term=Pseudocorynactis+caribbeorum%5BAll+Names%5D"
 }

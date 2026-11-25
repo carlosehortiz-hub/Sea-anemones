@@ -1,0 +1,41 @@
+{
+ "body": {
+  "count": 1,
+  "endOfRecords": true,
+  "facets": [],
+  "limit": 20,
+  "offset": 0,
+  "results": [
+   {
+    "description": "<p>This dataset contains the digitized treatments in Plazi based on the original journal article Serrano, Artur R. M. (2023): Afrotropical ground beetles of Macrocheilus Hope, 1838 (Coleoptera, Carabidae) description of four new species and faunistic notes. Zootaxa 5256 (1): 1-35, DOI: 10.11646/zootaxa.5256.1.1, URL: http://dx.doi.org/10.11646/zootaxa.5256.1.1</p><p>Abstract</p><p>Four new species of Afrotropical ground beetles of the genus Macrocheilus Hope, 1838 (Coleoptera, Carabidae) are described: M. assmanni n. sp. from Tanzania, M. kudrnai n. sp. from Benin and Burkina Faso, M. philippeorum n. sp. from Benin, Burkina Faso and Senegal and M. schuelei n. sp. from Central African Republic. An annotated checklist of 19 Afrotropical species and subspecies is provided, including data on general distribution and new distribution records at country level. Further, a dichotomic key is made available for the identification of the Afrotropical (excluding Madagascar) Macrocheilus species and subspecies and diagnosing morphological characters of both males and females are illustrated.</p>",
+    "doi": "10.15468/wp936n",
+    "endorsingNodeKey": "ffb07bec-2d10-492d-9c37-361fe0b79427",
+    "hostingCountry": "CH",
+    "hostingOrganizationKey": "7ce8aef0-9e92-11dc-8738-b8a03c50a862",
+    "hostingOrganizationTitle": "Plazi.org taxonomic treatments database",
+    "key": "af11ec5c-5727-415a-8595-7dbd5a6722a2",
+    "keywords": [
+     "new species",
+     "Helluonini",
+     "carabides",
+     "new records",
+     "Afrotropical Region",
+     "Macrocheilus"
+    ],
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "modified": "2026-09-08T03:15:06.612+00:00",
+    "nameUsagesCount": 27,
+    "publicationDate": "2023-03-16T12:00:00.000+00:00",
+    "publishingCountry": "CH",
+    "publishingOrganizationKey": "7ce8aef0-9e92-11dc-8738-b8a03c50a862",
+    "publishingOrganizationTitle": "Plazi.org taxonomic treatments database",
+    "recordCount": 29,
+    "title": "Afrotropical ground beetles of Macrocheilus Hope, 1838 (Coleoptera, Carabidae) description of four new species and faunistic notes",
+    "type": "CHECKLIST"
+   }
+  ]
+ },
+ "retrieved_at": "2026-11-25T20:43:05+00:00",
+ "status_code": 200,
+ "url": "https://api.gbif.org/v1/dataset/search?limit=20&q=Hermano+Benigno"
+}

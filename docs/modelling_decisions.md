@@ -189,7 +189,7 @@ name class and whether the chain crosses a genus change.
 
 Exact and accepted-name matches carry no `sssom:confidence`: a constant 1 would claim more than
 a lexical match, and four exact matches needed a homonym resolved by the printed authority. Every
-mapping instead carries its method in `sssom:comment` ("exact name, unique within Cnidaria",
+mapping instead carries its method in the SSSOM `comment` slot, whose IRI is `rdfs:comment` ("exact name, unique within Cnidaria",
 "homonym resolved by the authority printed in the article", "NCBI fallback ... crosses a genus
 change: yes"). Accepted fuzzy matches keep their score as `sssom:similarity_score`.
 
@@ -221,3 +221,67 @@ change the identifier of a collected specimen.
 The two extractions read the same text layer. `anemone_kg.audit.rendered` rasterises Table 1 and
 tests every cell rectangle for ink, so a code missing from the text layer, or drawn as a path,
 would be caught as ink without a code.
+
+## Third review round
+
+### Exact links join identical names only
+
+`skos:exactMatch` is symmetric and transitive. When curated spelling variants were exact links,
+the closure equated two WoRMS records of one name (one unaccepted) and two article usages that
+Table 3 gives as the previous and current identification of one specimen. Curated variants, the
+homonym printed without authority and the NCBI fallback are now `skos:closeMatch` (not
+transitive), and `aksh:MappingShape` fails if the closure of exact links holds two records of one
+service. Only an identical name gets the WoRMS LSID as `dwc:scientificNameID`.
+
+### SSSOM slots by their IRIs
+
+The registry checks an SSSOM term against the slot's `slot_uri`, not its name. `comment` is
+`rdfs:comment` and `mapping_date` is `dcterms:created` (an `xsd:date`); `sssom:comment` and
+`sssom:confidence` are gone. `mapping_tool` names the client and `mapping_tool_version` the
+pipeline version; the request URL lives in the provenance of the cached response. The NCBI
+fallback is justified as `semapv:MappingChaining`. The SSSOM TSV also carries rejected candidates
+(`predicate_modifier: Not`) and names a service lacks (`sssom:NoTermFound`).
+
+### Basis of record by code
+
+A museum code ('a') cites material: `MaterialCitation`. Survey and literature codes may rest on
+no specimen: `Occurrence`. Every assertion traced to a specimen, including one now identified as
+another taxon or not identified, links it with `akv:citesSpecimen` (IRI) and with
+`dwc:associatedOccurrences` ("(cited specimen) MOHBR:I-…"), and a SHACL constraint requires the
+link for every traced tier.
+
+### Specimen keys are the museum's
+
+All specimens are keyed on institution + catalogue number, in a namespace derived from the
+institution rather than from the source DOI, so a lot keeps its identifier wherever it is cited.
+Only the specimen without a number is keyed on its field code. A catalogue entry is modelled as
+one organism (the source does not say whether an entry is a lot).
+
+### Dates keep their precision
+
+A Table 3 date printed with day 01 (23 of 80, against about 3 expected) is published as
+year-month, and the impossible date keeps its year. The verbatim date is kept.
+
+### Coded changes of identification
+
+The previous identification of a Table 3 specimen carries the reason for the change, classified
+against WoRMS (orthographic, nomenclatural, determination, unverified), and the current
+identification carries `dwc:identificationVerificationStatus`.
+
+### Status terms
+
+`dwc:taxonomicStatus` takes GBIF TaxonomicStatus values (accepted, synonym); "nomen nudum" is a
+`dwc:nomenclaturalStatus`, and the WoRMS status "alternative representation" and the source's
+dagger are `dwc:taxonRemarks`.
+
+### The cross-table classes
+
+A cell is explained (re-identified or not identified), possibly explained (a same-family
+specimen identified above species level in the table the missing specimen would be in, which can
+account only for a code without a specimen), code-level only, or unexplained. A cell whose taxon
+has no Table 1 row is not comparable. Link sensitivity is run per rule.
+
+### Coordinates
+
+Sites with printed coordinates carry `dwc:geodeticDatum` "not recorded" and
+`dwc:coordinatePrecision`; no uncertainty radius is invented.

@@ -77,9 +77,9 @@ graph LR
   ID["Identification"] -- dsw:identifies --> ORG
   ID -- prov:wasRevisionOf --> IDp["superseded Identification"]
   ID -- dwciri:toTaxon --> TX["Taxon<br/>(name as used in the paper)"]
-  TX -- "skos:exactMatch" --> W["WoRMS record"] -- akv:hasAcceptedName --> WA["accepted name"]
+  TX -- "skos:exactMatch / closeMatch" --> W["WoRMS record"] -- akv:hasAcceptedName --> WA["accepted name"]
   TX -- "skos:exactMatch / closeMatch" --> GN["GBIF · NCBI"]
-  DIST["Occurrence<br/>MaterialCitation (Table 1)"] -- dwciri:toTaxon --> TX
+  DIST["Occurrence<br/>Table 1 assertion"] -- dwciri:toTaxon --> TX
   DIST -- dcterms:references --> REF["cited work"]
   HS["HabitatStatement"] -- dcterms:subject --> TX
   HS -- "dwciri:habitat / substrate" --> ENVO["ENVO class"]
@@ -137,20 +137,26 @@ not**, so gaps are explicit ([`docs/identifier_resolution.md`](docs/identifier_r
   *Palythoa caribbeorum* to *P. caribbea*, a different species, shows why.
 - Habitat text is mapped to ENVO through a curated phrase → label vocabulary. IRIs come from
   EBI OLS by exact label only, and negated phrases ("but not intertidal zones") are not annotated.
-- **All 398 API responses are cached in `data/cache/` and committed** (253 for resolution, 145 for the coverage and release analyses). CI runs offline, and each
+- **All 388 API responses are cached in `data/cache/` and committed** (255 for resolution, 133 for the coverage, release and collection analyses), and no unused response is kept. CI runs offline, and each
   mapping cites the response it came from.
-- Mappings are **name-level**: `skos:exactMatch` for an exact or curated name, `skos:closeMatch` for NCBI
-  through the WoRMS accepted name. No concept equivalence is asserted. Fuzzy scores are exported as
-  SSSOM `similarity_score`, not as confidence. Each curated spelling variant records its ICZN case.
-- [`reports/taxonomic_provenance.md`](reports/taxonomic_provenance.md) adds the WoRMS act (source and year)
-  behind each name change, an NCBI retry under all name classes and synonyms, INSDC record counts,
-  and the release of each service.
+- Mappings are **name-level**. `skos:exactMatch` joins identical names only. Curated spelling or
+  gender variants, an unidentifiable homonym and the NCBI fallback through the WoRMS accepted name
+  are `skos:closeMatch`, so that the transitive closure of exact links never equates two records
+  of one service (a SHACL constraint checks it). No concept equivalence is asserted. Fuzzy scores
+  are exported as SSSOM `similarity_score`, not as confidence; the method and evidence are the
+  SSSOM `comment` (`rdfs:comment`). The SSSOM file also lists rejected candidates
+  (`predicate_modifier: Not`) and names a service lacks (`sssom:NoTermFound`).
+- [`reports/taxonomic_provenance.md`](reports/taxonomic_provenance.md) adds the sources WoRMS cites
+  behind each name change, an NCBI retry under all name classes, the accepted name and its
+  synonyms, nucleotide record counts, the release of each service, and a search of GBIF and
+  GRSciColl for the museum. [`mappings/taxonomic_acts.csv`](mappings/taxonomic_acts.csv) records,
+  per name change, the act that fixes today's name, its year and whether it changes the concept.
 
 | service | accepted | unresolved |
 |---|---:|---:|
 | WoRMS | 61 / 61 | 0 |
 | GBIF | 59 / 61 | 2: a *nomen nudum*, and the rejected fuzzy match |
-| NCBI Taxonomy | 44 / 61 | 17 names absent from NCBI (44 = 34 exact + 10 via the WoRMS accepted name) |
+| NCBI Taxonomy | 47 / 61 | 14 names absent from NCBI (47 = 34 exact + 13 via the WoRMS accepted name, 3 of them curated spellings) |
 
 ## Data quality
 
@@ -159,31 +165,34 @@ The checks are code, and critical failures stop the pipeline before any RDF is w
 
 - **269 column-level checks** are generated from the LinkML schema as Pandera schemas, covering
   dtype, required, unique, pattern, enum and range.
-- **15 critical cross-table rules**: referential integrity, no duplicate specimens, exactly one
+- **16 critical cross-table rules**: referential integrity, no duplicate specimens, exactly one
   current identification per specimen, coordinate pairs inside Venezuela, consistency of the
-  new-record flags and of the mappings.
-- **11 warnings** cover completeness and **cross-source consistency** between Table 1 and the
-  specimen tables.
+  new-record flags and of the mappings, and catalogue numbers in sequence.
+- **12 warnings** cover completeness, date precision and **cross-source consistency** between
+  Table 1 and the specimen tables.
 
-**Result: PASS, with 0 critical failures and 46 warning rows.** Every rule, critical or
+**Result: PASS, with 0 critical failures and 69 warning rows.** Every rule, critical or
 warning, has a positive control: a test injects a fault and requires the rule to report it.
 
 - **Extraction checks** ([`reports/extraction_audit.md`](reports/extraction_audit.md)): a second
   automated extraction with another PDF engine (Poppler) and parser agrees on
   263/263 cells, 344/344 codes and
   1,612 specimen fields (field-aligned, blanks included). A rendered-image check, which reads
-  no text, finds ink in exactly the 263 occupied cells of the 1,404 cells of Table 1. Any
-  disagreement stops the pipeline.
+  no glyph inside a cell, finds ink in exactly the 263 occupied cells of the 1,404 cells of
+  Table 1. The species counts printed in the article's prose agree with Table 3 (19 species,
+  81 specimens). Any disagreement stops the pipeline.
 - **Cross-table review** ([`reports/cross_table_review.md`](reports/cross_table_review.md)): Table 1
   and the specimen tables are compared per accepted-name × area cell, both directions merged.
-  43 cells disagree: 11 are explained by the article (re-identification, not identified,
-  identification above species level), 9 differ only in the code, and 23 remain
-  (11 of them survey codes without a voucher, which the legend does not require). Causes are
-  multi-label; dependence on the 22 curated uncertain locality links is reported as a
-  condition (14 cells), with the comparison re-run with all of them unlinked and linked.
+  40 comparable cells disagree: 5 are explained by the article (re-identified or not
+  identified), 1 possibly by a same-family specimen identified above species level, 9 differ
+  only in the code, and 25 remain (11 of them survey codes without a specimen from the area,
+  which the legend does not require). Causes are multi-label; dependence on the 22 curated
+  uncertain locality links is a condition, with the comparison re-run per linking rule. All 5
+  link-dependent unexplained cells depend on the 3 links the curator rejected.
 - **Evidence tiers**: every Table 1 assertion is graded by traceability *and* the identification
-  status of the specimen behind it (`akv:evidenceTier`), and points to that specimen with
-  `dwc:associatedOccurrences`.
+  status of the specimen behind it (`akv:evidenceTier`), and all 88 traced assertions point to
+  their specimen (`akv:citesSpecimen`, and `dwc:associatedOccurrences` as "(cited specimen)
+  MOHBR:I-…").
 
 ## SHACL validation
 
@@ -192,7 +201,7 @@ required properties, cardinalities, datatypes, identifier formats and provenance
 SHACL-SPARQL for rules that a path cannot express, such as one current identification per
 organism, latitude/longitude pairs, and every mapping record matching an asserted SKOS triple.
 
-**Result: 20,780 triples were checked, with 0 violations, 9 warnings and 1 info**
+**Result: 21,205 triples were checked, with 0 violations, 9 warnings and 1 info**
 ([`reports/shacl_report.md`](reports/shacl_report.md)). The pipeline gate is "no Violation"
 (pySHACL `allow_warnings=True`); under the SHACL Recommendation `sh:conforms` is false whenever
 any result is reported, and the report says so. The warnings are source gaps the data-quality
@@ -237,13 +246,13 @@ Excerpt:
 - NCBI `2652724`, close match through the WoRMS accepted name (the method records that the chain
   crosses no genus change).
 
-Each link records how it was made (`sssom:comment`), the request URL and the retrieval time.
+Each link records how it was made (SSSOM `comment`, i.e. `rdfs:comment`), the request URL and the retrieval time.
 Exact matches carry no confidence value.
 
 **What the distribution rests on** (`q07`): of the 261 taxon × area cells of Table 1,
-70 (27%) rest on a listed specimen whose identification the paper confirms, 165 (63%) on
-literature only, and 156 (60%) on Agudo (1987) alone. In the 6 sampled areas 36% of cells are
-literature-only; elsewhere 80%.
+70 (27%; 20–29% across linking choices) rest on a specimen from the area identified without
+qualifier by the source authors, 165 (63%) on literature only, and 156 (60%) on Agudo (1987)
+alone. In the 6 areas the authors visited 36% of cells are literature-only; elsewhere 80%.
 
 ## How to run
 
@@ -352,8 +361,9 @@ tests/               unit, data, graph, SHACL, query and end-to-end tests
   name → identifier candidates. Accept them only through the same curated-override file and
   the same Pandera and SHACL gates, so the model can propose but never assert.
 - Register the w3id namespace, so the `ak:` IRIs dereference to the Oxigraph endpoint.
-- Publish the occurrences as a Darwin Core Archive to GBIF, since the canonical tables already
-  follow Darwin Core.
+- Publish the specimens as an occurrence dataset and the Table 1 assertions as a checklist with
+  a distribution extension, once a georeference layer exists; never the assertions as
+  occurrences.
 - Re-run resolution periodically and report taxonomic changes as a diff of the mappings.
 
 ## Manuscript

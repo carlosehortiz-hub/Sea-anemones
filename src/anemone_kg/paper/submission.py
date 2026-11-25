@@ -308,6 +308,7 @@ def write_additional_files(cfg: Config, f: dict, out: Path) -> None:
         "event_dates",
         "resolution_overrides",
         "habitat_vocabulary",
+        "taxonomic_acts",
     ):
         df = pd.read_csv(maps / f"{name}.csv", dtype=str)
         df.insert(0, "curated_file", f"mappings/{name}.csv")
@@ -316,7 +317,18 @@ def write_additional_files(cfg: Config, f: dict, out: Path) -> None:
         out / "Additional_file_3_curated_decisions.csv", index=False
     )
     shutil.copy(rep / "ncbi_coverage.csv", out / "Additional_file_4_ncbi_coverage.csv")
-    shutil.copy(rep / "taxonomic_changes.csv", out / "Additional_file_5_taxonomic_changes.csv")
+    # WoRMS records and cited sources, joined with the curated act that fixes today's name
+    changes = pd.read_csv(rep / "taxonomic_changes.csv", dtype=str)
+    acts = pd.read_csv(maps / "taxonomic_acts.csv", dtype=str).rename(
+        columns={"relation": "relation_curated", "evidence": "act_evidence"}
+    )
+    q03 = pd.DataFrame(f["q"]["q03"]["rows"])[["name", "category", "timing", "concept"]]
+    t5 = q03.merge(acts.drop(columns=["reviewed"]), on="name", how="left").merge(
+        changes.drop(columns=["relation", "timing", "cache_key"], errors="ignore"),
+        on="name",
+        how="left",
+    )
+    t5.to_csv(out / "Additional_file_5_taxonomic_changes.csv", index=False)
     from anemone_kg.audit.rendered import crop_sheet
     from anemone_kg.dq.crosstable import table1_cells_for
     from anemone_kg.stages.validate import load_tables
