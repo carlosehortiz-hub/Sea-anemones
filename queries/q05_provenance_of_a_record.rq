@@ -1,5 +1,5 @@
 # title: Provenance of a record and of its identifiers
-# question: Where does specimen MOHBR I-547 come from in the paper, and how was each identifier of its taxon resolved (service, method, confidence, request, time)?
+# question: Where does specimen MOHBR I-547 come from in the paper, and how was each identifier of its taxon resolved (service, predicate, justification, method, request, time)?
 # why: Every record is traceable to the paper (table, row, page, pipeline stage) and every identifier to the API response it came from.
 PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
 PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
@@ -13,7 +13,7 @@ PREFIX sssom:   <https://w3id.org/sssom/>
 PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
 
 SELECT ?catalogNumber ?sourceLocator ?page ?stage ?taxonName ?service ?predicate ?identifier
-       ?justification ?confidence ?request ?retrieved
+       ?justification ?method ?request ?retrieved
 WHERE {
   VALUES ?catalogNumber { "I-547" }
   ?occ dwc:catalogNumber ?catalogNumber ;
@@ -25,7 +25,7 @@ WHERE {
      owl:annotatedProperty ?predicate ;
      owl:annotatedTarget ?identifier ;
      sssom:mapping_justification ?justification ;
-     sssom:confidence ?confidence ;
+     sssom:comment ?method ;
      prov:wasGeneratedBy ?activity ;
      prov:wasDerivedFrom ?response .
   ?activity prov:wasAssociatedWith ?agent .

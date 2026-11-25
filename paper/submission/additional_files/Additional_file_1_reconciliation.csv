@@ -11,4 +11,14 @@ count,derivation
 9 SHACL warnings + 1 info,"results per focus node: 4 events without location (W02: 2 specimens; 2 open-sea assertions), 3 'not identified' (W03), 2 habitat statements (W07), 1 specimen without catalogue number (Info; W04). The other warning rules (W01, W05, W08-W11) have no SHACL counterpart"
 46 warning rows,W01 1 + W02 2 + W03 3 + W04 1 + W05 4 + W07 2 + W08 13 + W09 7 + W10 5 + W11 8
 398 cached API responses,"253 for name and habitat resolution + 145 for the coverage and release analyses added in revision; by service: gbif 62, ncbi 219, ols 14, worms 103"
+75 dcterms:Location vs 71 locality rows,"71 localities (26 areas + 45 sites) + 4 region nodes (the article's own grouping of its Table 1 columns); areas per region: Central Coast 4, East Coast 13, Oceanic Islands 5, West Coast 4"
+45 sites by table,17 collecting sites of Table 2 + 28 localities of Table 3
+22 uncertain links,"Table 3 crosswalk rows that are neither an exact name nor a printed park name: 19 name-in-area or spelling-variant links (of the 24 linked, 5 are exact) + 3 links the curator rejected"
+"1,612 specimen fields",128 rows x 8 fields (Table 2) + 84 rows x 7 fields (Table 3); 1 field is blank in the source and agrees when both readings find it blank
+5 event-date rows,"4 dated sampled areas (November 2012) + 1 row for Isla de Cubagua, left undated (information from the curator, not from the article)"
+59 WoRMS records matched by 61 names,two pairs of names share a record: Palythoa caribaeorum / Palythoa caribbeorum; Homostichanthus duerdeni / Homostichantus duerdenii (a misspelling and its correct form)
+65 habitat phrase matches,"49 annotated + 2 negated + 14 'coral rubble' (one per account; no ENVO class). Biotic substrates are not in the phrase vocabulary, so they are not counted here"
+15 unvouchered survey codes vs W08 = 13; 10 untraced museum codes vs W10 = 5,"W08 and W10 compare only areas from which the specimen table has specimens: 2 survey codes lie in areas with no Table 2 specimen, and 8 museum codes in areas with no Table 3 specimen. The 5 W10 rows are 1 reidentified, 2 unconfirmed, 2 untraced museum codes"
+43 discrepant cells vs 33 W08-W11 rows,"cells merge both directions for one accepted name and area, and include areas the specimen tables do not cover; rows count each direction separately and only in covered areas"
+554 occurrences,"212 specimens (PreservedSpecimen) + 342 Table 1 assertions (MaterialCitation), of which 84 are linked to their specimen by dwc:associatedOccurrences; the two classes are not to be counted together"
 three different sets of four,4 misspelt names in Table 2 (name variants); 4 WoRMS links accepted after curation; 4 spelling-only rows of Table 4

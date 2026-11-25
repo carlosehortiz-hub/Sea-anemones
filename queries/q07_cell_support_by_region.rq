@@ -1,37 +1,39 @@
-# title: Table 1 cells by kind of support, per coastal region
-# question: For each region, how many taxon x area cells of Table 1 are supported by first-hand evidence (survey '*' or MOHBR 'a'), by first-hand evidence and literature, or by literature only - and how many of the latter by Agudo (1987) alone?
-# why: The unit a reuser needs is the cell (is this taxon recorded in this area, and on what?), not the code: a cell often carries several codes. One denominator, no comparison of literature with the authors' six-locality survey effort.
+# title: Table 1 cells by best evidence tier, per region and sampling status
+# question: For each region, and for areas the authors sampled or not, how many taxon x area cells of Table 1 rest on a specimen with a confirmed identification, on a survey or museum code without one, or on literature only (Agudo 1987 alone, or other sources)?
+# why: The unit a reuser needs is the cell, graded by its best evidence (akv:evidenceTier), on one denominator. Only in sampled areas can a missing first-hand record mean "looked for and not found".
 PREFIX dwc:     <http://rs.tdwg.org/dwc/terms/>
 PREFIX dwciri:  <http://rs.tdwg.org/dwc/iri/>
 PREFIX dsw:     <http://purl.org/dsw/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX akv:     <https://w3id.org/anemone-kg/vocab/>
 
-SELECT ?region ?support (COUNT(*) AS ?cells)
+SELECT ?region ?sampled ?best (COUNT(*) AS ?cells)
 WHERE {
   {
-    SELECT ?taxon ?area ?region (MAX(?fh) AS ?first) (MAX(?lit) AS ?literature)
+    SELECT ?taxon ?area ?region ?sampled (MAX(?spec) AS ?specimen) (MAX(?fh) AS ?first)
            (MAX(?notAgudo) AS ?other)
     WHERE {
       ?rec dwc:basisOfRecord "MaterialCitation" ;
            dwciri:toTaxon ?taxon ;
            dcterms:type ?kind ;
+           akv:evidenceTier ?tier ;
            dsw:atEvent/dsw:locatedAt ?area .
-      ?area dcterms:isPartOf ?regionNode .
+      ?area dcterms:isPartOf ?regionNode ;
+            akv:sampledInStudy ?sampled .
       ?regionNode dwc:locality ?region .
       FILTER STRSTARTS(STR(?regionNode), "https://w3id.org/anemone-kg/location/region-")
       OPTIONAL { ?rec dcterms:references ?ref }
+      BIND(IF(?tier IN (akv:SurveyVouchered, akv:MuseumConfirmed), 1, 0) AS ?spec)
       BIND(IF(?kind IN (akv:ThisSurvey, akv:MohbrCollection), 1, 0) AS ?fh)
-      BIND(IF(?kind = akv:Literature, 1, 0) AS ?lit)
       BIND(IF(?kind = akv:Literature && ?ref != <https://w3id.org/anemone-kg/reference/e>, 1, 0)
            AS ?notAgudo)
     }
-    GROUP BY ?taxon ?area ?region
+    GROUP BY ?taxon ?area ?region ?sampled
   }
-  BIND(IF(?first = 1 && ?literature = 1, "first-hand and literature",
-       IF(?first = 1, "first-hand only",
+  BIND(IF(?specimen = 1, "specimen listed, identification confirmed",
+       IF(?first = 1, "survey/museum code, no confirmed specimen",
        IF(?other = 0, "literature only: Agudo (1987) alone",
-          "literature only: other or several sources"))) AS ?support)
+          "literature only: other or several sources"))) AS ?best)
 }
-GROUP BY ?region ?support
-ORDER BY ?region ?support
+GROUP BY ?region ?sampled ?best
+ORDER BY ?region ?sampled ?best

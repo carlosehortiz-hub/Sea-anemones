@@ -25,7 +25,7 @@ import pandas as pd
 from rdflib import RDF, XSD, BNode, Graph, Literal, Namespace, URIRef
 
 from anemone_kg import __version__
-from anemone_kg.dq.crosstable import evidence_tiers
+from anemone_kg.dq.crosstable import evidence_tiers, supporting_specimens
 from anemone_kg.rdf.vocab import Registry
 
 DOI_IRI = "https://doi.org/{doi}"
@@ -60,6 +60,28 @@ SIMILARITY = {
     "near_2 0.5, near_3 0.3); orders candidates only, not calibrated",
     "gbif": "GBIF species/match confidence scaled to 0-1; not calibrated",
 }
+
+
+def _genus(name) -> str:
+    return str(name).split()[0] if isinstance(name, str) and name else ""
+
+
+def mapping_method(r) -> str:
+    """How a mapping was made, in words (exported as sssom:comment and in the SSSOM table)."""
+    if r.match_type == "via_accepted_name":
+        cross = _genus(r.subject_label) != _genus(r.object_label)
+        return (
+            "NCBI fallback: the NCBI node carrying the WoRMS accepted name "
+            f"({r.object_label}), matched under the NCBI scientific-name class; no "
+            "circumscription claim; crosses a genus change: " + ("yes" if cross else "no")
+        )
+    if r.match_type == "fuzzy":
+        return "fuzzy candidate accepted by the curator (see rdfs:comment for the evidence)"
+    if isinstance(r.comment, str) and "resolved by authority" in r.comment:
+        return "exact name; WoRMS homonym resolved by the authority printed in the article"
+    if r.match_type == "exact_synonym":
+        return "exact name of an unaccepted record (synonym or variant) in the service"
+    return "exact name, unique within Cnidaria at the same rank"
 
 
 def _slug(text: str) -> str:
@@ -245,6 +267,8 @@ class GraphBuilder:
             self.add(ax, "owl:annotatedProperty", self.t(r.predicate_id))
             self.add(ax, "owl:annotatedTarget", obj)
             self.add(ax, "sssom:mapping_justification", self.t(r.mapping_justification))
+            method = mapping_method(r)
+            self.add(ax, "sssom:comment", Literal(method))
             if r.match_type == "fuzzy":
                 # A fuzzy score orders candidates; it is not a probability that the accepted
                 # mapping is right (that rests on the curator's evidence, in rdfs:comment).
@@ -252,8 +276,8 @@ class GraphBuilder:
                     ax, "sssom:similarity_score", Literal(float(r.confidence), datatype=XSD.double)
                 )
                 self.add(ax, "sssom:similarity_measure", Literal(SIMILARITY[r.object_source]))
-            else:
-                self.add(ax, "sssom:confidence", Literal(float(r.confidence), datatype=XSD.double))
+            # Exact and accepted-name matches carry no confidence: the method (sssom:comment)
+            # says how the link was made, and a constant 1 would claim more than a lexical match.
             self.add(ax, "sssom:mapping_tool", Literal(r.mapping_tool))
             self.add(ax, "dcterms:created", Literal(r.mapping_date, datatype=XSD.dateTime))
             self.add(ax, "rdfs:comment", r.comment)
@@ -390,7 +414,9 @@ class GraphBuilder:
             self.add(s, "dcterms:bibliographicCitation", Literal(r.short_citation))
             self.derived(s, f"{r.source_ref}, code '{r.reference_code}'", r.source_page, "extract")
 
-    def distribution(self, d: pd.DataFrame, refs: pd.DataFrame, tiers: pd.Series) -> None:
+    def distribution(
+        self, d: pd.DataFrame, refs: pd.DataFrame, tiers: pd.Series, support: dict
+    ) -> None:
         cites = dict(zip(refs.reference_code, refs.short_citation, strict=True))
         for r in d.itertuples():
             s = self.iri("distribution", r.distribution_id)
@@ -402,6 +428,11 @@ class GraphBuilder:
             self.add(s, "dwciri:toTaxon", self.iri("taxon", r.taxon_id))
             self.add(s, "dcterms:type", self.t(f"akv:{EVIDENCE[r.evidence_kind]}"))
             self.add(s, "akv:evidenceTier", self.t(f"akv:{tiers[r.distribution_id]}"))
+            if support.get(r.distribution_id):
+                # the specimen occurrence(s) behind this assertion; avoids double counting
+                self.add(
+                    s, "dwc:associatedOccurrences", Literal(" | ".join(support[r.distribution_id]))
+                )
             if _present(r.reference_code):
                 self.add(s, "dcterms:references", self.iri("reference", r.reference_code))
                 self.add(s, "dwc:associatedReferences", Literal(cites[r.reference_code]))
@@ -450,7 +481,12 @@ def build_graph(
     b.locations(tables["locality"])
     b.specimens(tables["occurrence"], tables["identification"])
     b.references(tables["reference"])
-    b.distribution(tables["distribution"], tables["reference"], evidence_tiers(tables))
+    b.distribution(
+        tables["distribution"],
+        tables["reference"],
+        evidence_tiers(tables),
+        supporting_specimens(tables),
+    )
     b.habitats(tables["habitat_statement"], tables["habitat_annotation"])
     if vocab is not None:  # project vocabulary travels with the data
         b.g += vocab

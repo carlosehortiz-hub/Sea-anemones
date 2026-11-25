@@ -317,3 +317,11 @@ def write_additional_files(cfg: Config, f: dict, out: Path) -> None:
     )
     shutil.copy(rep / "ncbi_coverage.csv", out / "Additional_file_4_ncbi_coverage.csv")
     shutil.copy(rep / "taxonomic_changes.csv", out / "Additional_file_5_taxonomic_changes.csv")
+    from anemone_kg.audit.rendered import crop_sheet
+    from anemone_kg.dq.crosstable import table1_cells_for
+    from anemone_kg.stages.validate import load_tables
+
+    disc = pd.read_csv(rep / "cross_table_review.csv")
+    targets = table1_cells_for(disc, load_tables(cfg))
+    n = crop_sheet(cfg.pdf, targets, out / "Additional_file_6_cell_crops.pdf")
+    log.info("[paper] additional file 6: %d rendered crops", n)

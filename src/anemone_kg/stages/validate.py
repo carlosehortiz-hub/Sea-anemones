@@ -14,7 +14,7 @@ import logging
 import pandas as pd
 import pandera.pandas as pa
 
-from anemone_kg.audit import second_reading
+from anemone_kg.audit import rendered, second_reading
 from anemone_kg.cli import stage
 from anemone_kg.config import Config
 from anemone_kg.dq import crosstable
@@ -202,35 +202,62 @@ def validate(cfg: Config) -> None:
     )
     summary = to_json(tables, schema_fails, n_checks, results)
     crosswalk = pd.read_csv(cfg.path("mappings") / "locality_crosswalk.csv")
-    review = crosstable.classify(tables, crosswalk)
-    sens = crosstable.sensitivity(tables, crosswalk)
+    disc = crosstable.discrepancies(tables, crosswalk)
+    scen = crosstable.scenario_counts(tables, crosswalk)
     cells = crosstable.cell_support(tables)
+    cells_acc = crosstable.cell_support(tables, by="accepted")
     (reports / "cross_table_review.md").write_text(
-        crosstable.to_markdown(review, sens, cells), encoding="utf-8"
+        crosstable.to_markdown(disc, scen, cells), encoding="utf-8"
     )
-    review.to_csv(reports / "cross_table_review.csv", index=False)
+    disc.to_csv(reports / "cross_table_review.csv", index=False)
+    resid = disc[~disc.explained & ~disc.code_level_only]
+    tiers = crosstable.evidence_tiers(tables)
+    xtab = crosstable.tier_rule_crosstab(tables)
     summary["cross_table"] = {
-        "rows": len(review),
-        "by_cause": review.cause.value_counts().sort_index().to_dict(),
-        "by_rule_cause": {
-            f"{r}:{c}": int(n) for (r, c), n in review.groupby(["rule", "cause"]).size().items()
-        },
-        "rests_on_curated_link": int(review.rests_on_curated_link.sum()),
-        "shift_pairs": int(review.shift_pair.sum()),
-        "sensitivity": sens.set_index("scenario").to_dict(orient="index"),
-        "uncertain_links": sens.attrs["uncertain_links"],
-        "cells": len(cells),
+        "cells": len(disc),
+        "explained": int(disc.explained.sum()),
+        "code_level_only": int(disc.code_level_only.sum()),
+        "unexplained": len(resid),
+        "link_dependent": int(disc.link_dependent.sum()),
+        "unexplained_link_dependent": int(resid.link_dependent.sum()),
+        "by_kind": {k: int(disc[k].sum()) for k in crosstable.KINDS},
+        "unexplained_by_kind": {k: int(resid[k].sum()) for k in crosstable.KINDS},
+        "by_cause": {k: int(disc[k].sum()) for k in crosstable.CAUSES},
+        "area_without_specimens": int(disc.area_without_specimens.sum()),
+        "scenarios": scen.set_index("scenario").to_dict(orient="index"),
+        "uncertain_links": scen.attrs["uncertain_links"],
+        "name_level_cells": crosstable.name_level_count(tables),
+        "tiers": tiers.value_counts().sort_index().to_dict(),
+        "tier_rule_crosstab": xtab.to_dict(orient="records"),
+        "table1_cells": len(cells),
+        "best_tier": cells.best_tier.value_counts().sort_index().to_dict(),
+        "best_tier_by_region": pd.crosstab(cells.region, cells.best_tier).to_dict(orient="index"),
+        "best_tier_by_sampled": pd.crosstab(cells.sampled, cells.best_tier)
+        .rename(index={True: "sampled", False: "not sampled"})
+        .to_dict(orient="index"),
         "cell_support": cells.support.value_counts().sort_index().to_dict(),
-        "cell_support_by_region": pd.crosstab(cells.region, cells.support).to_dict(orient="index"),
+        "accepted_cells": len(cells_acc),
+        "accepted_cell_support": cells_acc.support.value_counts().sort_index().to_dict(),
     }
     census = second_reading.audit(cfg.pdf, cfg.path("interim"))
+    log.info(
+        "[validate] engines: %s; %s",
+        second_reading.poppler_version(),
+        rendered.renderer_version(),
+    )
+    ink = rendered.ink_census(cfg.pdf, cfg.path("interim"))
+    census["rendered"] = ink
     (reports / "extraction_audit.md").write_text(
-        second_reading.to_markdown(census), encoding="utf-8"
+        second_reading.to_markdown(census, ink), encoding="utf-8"
     )
     (reports / "extraction_audit.json").write_text(
         json.dumps(census, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    n_census = second_reading.n_disagreements(census)
+    n_census = (
+        second_reading.n_disagreements(census)
+        + len(ink["ink_without_code"])
+        + len(ink["code_without_ink"])
+    )
     log.info("[validate] extraction census: %d disagreements", n_census)
     summary["extraction_census"] = {
         k: {kk: vv for kk, vv in v.items() if kk != "disagreements"}
@@ -238,6 +265,9 @@ def validate(cfg: Config) -> None:
         if k.startswith("table")
     }
     summary["extraction_census"]["disagreements"] = n_census
+    summary["extraction_census"]["rendered"] = {
+        k: v for k, v in ink.items() if not isinstance(v, list)
+    }
     if n_census:
         summary["status"] = "fail"
     (reports / "data_quality.json").write_text(

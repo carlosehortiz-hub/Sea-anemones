@@ -14,38 +14,36 @@ keywords: >-
 
 abstract:
   background: >-
-    Regional species inventories are usually published as PDF tables. Their names, localities
-    and evidence codes cannot be read by machines, and their taxonomy is fixed at the date of
-    publication. We asked whether such an inventory can be made machine-actionable without
-    altering what its authors published, and what the conversion reveals about how far its
-    records can be trusted. The test case was the inventory of shallow-water sea anemones sensu
+    Regional species inventories are usually published as PDF tables, which machines cannot
+    read and whose taxonomy is fixed at publication. We asked whether such an inventory can be made machine-actionable without
+    altering what its authors published, and how far its records can be trusted. The test case was the inventory of shallow-water sea anemones sensu
     lato (Actiniaria, Corallimorpharia, Ceriantharia, Zoantharia) of Venezuela
     (González-Muñoz et al. 2016), of which the present author is a co-author.
   results: >-
-    A reproducible Python pipeline extracted, from the PDF alone, the {{ f.src.t1_taxa }} taxa
-    and {{ f.src.t1_codes }} evidence codes of the distribution table,
-    {{ f.src.t2 + f.src.t3 }} specimen records and {{ f.src.accounts }} species accounts. A
-    second transcription with an independent PDF engine agreed on all
-    {{ f.census.table1.cells_agree }} occupied cells and all
-    {{ (f.census.table2.fields_agree + f.census.table3.fields_agree) | thousands }} specimen
-    fields. Names were resolved, with recorded match type and provenance, against WoRMS
-    ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF
+    A Python pipeline extracted from the PDF the {{ f.src.t1_taxa }} names and
+    {{ f.src.t1_codes }} evidence codes of the distribution table, {{ f.src.t2 }} collected and
+    {{ f.src.t3 }} museum specimens and {{ f.src.accounts }} species accounts. A second automated
+    extraction agreed on every cell and field, and a check of the rendered pages found ink in
+    exactly the {{ f.census.table1.cells_agree }} occupied cells of {{ f.census.rendered.cells | thousands }}.
+    Names were resolved against WoRMS ({{ f.res.worms.accepted }}/{{ f.res.n_taxa }}), GBIF
     ({{ f.res.gbif.accepted }}/{{ f.res.n_taxa }}) and NCBI Taxonomy
-    ({{ f.res.ncbi.accepted - f.res.ncbi.via_accepted }} exact and {{ f.res.ncbi.via_accepted }}
-    via the accepted name, of {{ f.res.n_taxa }}). {{ f.q.q03.valid_changed | Words }} names that
-    the article uses as valid have a different accepted name in WoRMS; for
-    {{ f.q.q03.valid_before_2016 | words }} of them, WoRMS dates the change before 2016.
-    Comparing the article's three tables flagged {{ f.xt.rows }} disagreements:
-    {{ f.xt.explained }} have an explanation and {{ f.xt.rows - f.xt.explained }} remain
-    unreconciled as printed. Of the {{ f.cells.n }} taxon × area cells of the distribution
-    table, {{ f.cells.lit_only }} ({{ f.cells.pct_lit_only }}%) rest on literature alone, and
-    {{ f.cells.agudo_alone }} ({{ f.cells.pct_agudo_alone }}%) on a single 1987 monograph that
-    the article cites. The graph of {{ f.graph.triples | thousands }} triples has no SHACL
-    violation against {{ f.shacl.shapes }} shapes, and the build is deterministic given its
-    committed API cache.
+    ({{ f.res.ncbi.accepted - f.res.ncbi.via_accepted }} exact, {{ f.res.ncbi.via_accepted }}
+    through the accepted name; accessed {{ f.res.date_first | longdate }}).
+    {{ f.q.q03.valid_changed | Words }} names the article uses as valid have another accepted name.
+    Comparing the article's tables per taxon × area cell found {{ f.xt.cells }} discrepancies:
+    {{ f.xt.explained }} are explained by re-identified, unconfirmed or coarse identifications,
+    {{ f.xt.code_level_only }} differ only in the code, and {{ f.xt.unexplained }} remain, of
+    which {{ f.xt.unexplained_by_kind.survey_code_no_voucher }} are survey records without a
+    voucher, which the legend does not require, and {{ f.xt.unexplained_link_dependent }} depend
+    on curated locality links. Of the {{ f.cells.n }} cells, {{ f.cells.specimen }}
+    ({{ f.cells.pct_specimen }}%) rest on a specimen whose identification the article confirms,
+    {{ f.cells.lit_only }} ({{ f.cells.pct_lit_only }}%) on literature only, and
+    {{ f.cells.agudo_alone }} ({{ f.cells.pct_agudo_alone }}%) on one 1987 monograph alone. The
+    graph ({{ f.canon.occurrence }} specimens and {{ f.canon.distribution }} matrix assertions,
+    kept apart) has no SHACL violation, and the build is deterministic given its API cache.
   conclusions: >-
-    Community standards (Darwin Core, Darwin-SW, PROV-O, SKOS, SSSOM, SHACL), explicit curation
-    and data-quality checks written as code turn a published inventory into auditable data
+    Community standards (Darwin Core, PROV-O, SKOS, SSSOM, SHACL), explicit curation and
+    data-quality checks written as code turn a published inventory into auditable data
     while keeping the original record intact. The conversion also grades the evidence behind
-    each record, which a reuser needs and the PDF does not show. The layers after extraction
-    transfer to other inventories; extraction has to be rebuilt for each layout.
+    each record. The layers after extraction are expected to transfer to
+    other inventories; extraction has to be rebuilt for each layout.
